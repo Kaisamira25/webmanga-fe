@@ -1,14 +1,21 @@
 import MenuLine from '../assets/icons/FluentMdl2BulletedListText'
 function Header() {
   return (
-    <div className="w-full h-36">
-      <header className='px-10 h-full'>
-        <nav className='w-full h-full grid grid-cols-2 md:grid-cols-3 content-center'>
-          <div className='col-span-1'>FuckThisGroup</div>
-          <div className='col-span-1 grid justify-items-end'><MenuLine/></div>
-          <div className='hidden  md:block md:col-span-1'>Demo3</div>
+    <div className='h-16 max-h-16 bg-wrapper200'>
+        <nav className='h-full px-5 flex justify-between items-center'>
+          <span>Lainovo</span>
+          <div>
+            <MenuLine/>
+          </div>
+          {/* <div>
+            <ul className='flex'>
+              <li>Home</li>
+              <li>Publications</li>
+              <li>About us</li>
+              <li>Contact</li>
+            </ul>
+          </div> */}
         </nav>
-      </header>
     </div>
   );
 }
