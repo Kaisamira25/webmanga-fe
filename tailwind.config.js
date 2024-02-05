@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        OpenSans: '"Open Sans", sans-serif'
+        OpenSans: '"Open Sans", sans-serif',
+        Pacifico: '"Pacifico", cursive',
+        Poppin: '"Poppins", sans-serif',
       }
     },
     colors:{
