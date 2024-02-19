@@ -1,6 +1,6 @@
 function Footer() {
     return ( 
-        <div className="w-full fixed bottom-0 p-14 bg-white100 flex flex-col">
+        <div className="w-full p-14 bg-white50 flex flex-col">
             <div>
                 <p>LAINOVO</p>
                 <p>© 2021 Your Company. All rights reserved.</p>

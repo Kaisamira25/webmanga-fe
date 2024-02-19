@@ -6,8 +6,8 @@ import AccountCircle from "../assets/icons/MaterialSymbolsAccountCircleFull";
 import ShoppingCart from "../assets/icons/MaterialSymbolsShoppingCartOutlineRounded";
 function HeaderDemo() {
   return (
-    <header className="bg-gradient-to-r from-[#DCEFE5] to-[#c1e7d7]  text-center p-5 h-24 relative">
-      <span className="flex justify-center items-center space-x-2 text-2xl text-green400">
+    <header className="bg-green500 text-center p-5 h-24 relative">
+      <span className="flex justify-center items-center space-x-2 text-2xl text-white100">
         <WebHook />
         <p>LAINOVO</p>
       </span>
