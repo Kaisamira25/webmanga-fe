@@ -1,6 +1,15 @@
 import Card from "../../../components/_Card";
 
 function PopularItem() {
+  const products = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 3 },
+    // Các sản phẩm khác...
+  ];
   return (
     // <article>
     //   <p className="text-2xl text-center">Popular Publications</p>
@@ -13,12 +22,12 @@ function PopularItem() {
     // </article>
     <article>
       <p className="text-center text-3xl mb-10">Popular Publications</p>
-      <div className="product-card flex flex-col px-5 md:flex-row place-content-around md:flex-wrap">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <div className="product-card flex flex-col  px-5  md:flex-row justify-between md:flex-wrap ">
+        {products.map((product, index) => (
+          <div key={index} className="py-3">
+            <Card />
+          </div>
+        ))}
       </div>
     </article>
   );
