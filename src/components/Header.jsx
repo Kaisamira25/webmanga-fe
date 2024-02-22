@@ -12,12 +12,12 @@ function Header() {
     { id: 4, iconName: <IconUser /> },
   ];
   return (
-    <header className="h-24 bg-white100 text-center text-2xl flex justify-center items-center relative">
+    <header className="h-24 bg-background400 text-center text-2xl flex justify-center items-center relative">
       <a className="flex items-center" href="/">
         <LogoIcon />
         LAINOVO
       </a>
-      <div className="absolute -bottom-6 flex gap-10">
+      <div className="absolute -bottom-6 flex gap-10 md:gap-24 lg:gap-52">
         {btnList.map((iconName, index) => (
           <BtnHeader btnIcon={iconName.iconName} key={index} />
         ))}

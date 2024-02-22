@@ -4,7 +4,7 @@ import Content from "./component/Content";
 
 function Home() {
     return ( 
-        <div className="h-screen bg-green400">
+        <div className="h-full bg-white100">
             <Header/>
             <Content/>
             <Footer/>
