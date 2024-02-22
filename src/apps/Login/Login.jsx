@@ -11,7 +11,7 @@ function Login() {
                 <div>
                     <form>
                         <div>
-                            <h2 className="text-4xl font-Pacifico mb-4 text-center ">Login</h2>
+                            <h2 className="text-4xl font-pacifico mb-4 text-center ">Login</h2>
                         </div>
                         <div>
                             <InputLG />
