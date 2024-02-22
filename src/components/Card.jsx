@@ -11,14 +11,14 @@ function Card({
   priceCurrent,
 }) {
   return (
-    <div className="rounded min-h-[300p[x]] drop-shadow bg-[#DCEFE5]">
+    <div className="rounded min-h-[300px] drop-shadow bg-[#DCEFE5]">
       <div className="h-2/3 flex">
-        <div className="basis-1/2 h-[200px]">
-          <div className="h-full flex justify-center">
+        <div className="basis-1/2 h-[200px] xl:basis-1/3">
+          <div className="h-full flex justify-center xl:pl-2 xl:pt-2 xl:justify-normal">
             <img className="h-full" src={avatarCard} alt="" />
           </div>
         </div>
-        <div className="basis-1/2">
+        <div className="basis-1/2 xl:basis-2/3">
           <div>
             <div>
               <a className="text-xl font-bold" href="/">
