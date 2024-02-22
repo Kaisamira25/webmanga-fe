@@ -1,10 +1,10 @@
 import React from 'react';
-import EmailIP from './componnents/EmailIP';
+import EmailIP from './componnents/Emailresinput';
 import Username from './componnents/Username';
-import PasswordRS from './componnents/passwordIP';
-import PasswordRP from './componnents/passwordRP'
+import PasswordRS from './componnents/Passwordinput';
+import PasswordRP from './componnents/Passwordrepeat'
 import RESGISTER from './componnents/Resgisterbutton';
-import Lgform from './componnents/Golgbutton';
+import Lgform from './componnents/Gologinbutton';
 function REGIS() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -12,14 +12,14 @@ function REGIS() {
                 <div>
                     <form>
                         <div>
-                            <h2 className="text-4xl font-Pacifico mb-4 text-center ">REGISTER</h2>
+                            <h2 className="text-4xl  mb-4 text-center font-pacifico ">REGISTER</h2>
                         </div>
                         <div>
                             <form>
-                                <Username />
-                                <EmailIP />
-                                <PasswordRS />
-                                <PasswordRP />
+                                <Username placeholder={'username'}  />
+                                <EmailIP placeholder={'Email'}/>
+                                <PasswordRS placeholder={'Mật khẩu '} type={'password'}/>
+                                <PasswordRP placeholder={'nhập lại mật khẩu'} type={'password'}/>
                             </form>
 
                         </div>

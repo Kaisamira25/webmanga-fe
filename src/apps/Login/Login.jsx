@@ -1,8 +1,8 @@
 import React from 'react';
 import InputLG from '../../components/_InputLG';
-import Buttonlg from './componnents/LGbutton';
-import Resform from './componnents/goresbutton';
-import Fgpw from './componnents/Forgotpw';
+import Buttonlg from './componnents/Loginbutton';
+import Resform from './componnents/Goresgiterbutton';
+import Fgpw from './componnents/Fogotyourbutton';
 
 function Login() {
     return (
