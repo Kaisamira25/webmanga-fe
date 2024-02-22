@@ -11,7 +11,7 @@ function Card({
   priceCurrent,
 }) {
   return (
-    <div className="rounded w-[500px] min-h-[300px] drop-shadow bg-[#DCEFE5]">
+    <div className="rounded min-h-[300p[x]] drop-shadow bg-[#DCEFE5]">
       <div className="h-2/3 flex">
         <div className="basis-1/2 h-[200px]">
           <div className="h-full flex justify-center">
@@ -39,7 +39,7 @@ function Card({
           </div>
         </div>
       </div>
-      <div className="mt-3 h-1/3 line-clamp-3 px-2 hover:line-clamp-none">
+      <div className="mt-2 h-1/3 line-clamp-3 px-2 hover:line-clamp-none">
         <p>{summary}</p>
       </div>
     </div>
