@@ -1,6 +1,9 @@
+import ImageCarousel from '../../../assets/imgs/1.webp'
 function Carousel() {
     return ( 
-        <div></div>
+        <div>
+            <img src={ImageCarousel} alt="" />
+        </div>
      );
 }
 

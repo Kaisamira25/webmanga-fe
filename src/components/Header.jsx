@@ -1,9 +1,9 @@
-import LogoIcon from "../assets/icons/IcBaselineWebhook";
+import LogoIcon from "../assets/icons/LogoIcon";
 import BtnHeader from "./BtnHeader";
-import IconHome from "../assets/icons/CharmHome";
-import IconBook from '../assets/icons/MaterialSymbolsBook2Outline'
-import IconCart from '../assets/icons/MaterialSymbolsShoppingCartOutlineRounded'
-import IconUser from '../assets/icons/MaterialSymbolsAccountCircleFull'
+import IconHome from "../assets/icons/HomeIcon";
+import IconBook from '../assets/icons/BookIcon'
+import IconCart from '../assets/icons/CartIcon'
+import IconUser from '../assets/icons/AccountIcon'
 function Header() {
   const btnList = [
     { id: 1, iconName: <IconHome /> },
@@ -17,7 +17,7 @@ function Header() {
         <LogoIcon />
         LAINOVO
       </a>
-      <div className="absolute -bottom-4 flex gap-10">
+      <div className="absolute -bottom-6 flex gap-10">
         {btnList.map((iconName, index) => (
           <BtnHeader btnIcon={iconName.iconName} key={index} />
         ))}
