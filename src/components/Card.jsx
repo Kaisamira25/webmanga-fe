@@ -1,6 +1,8 @@
 import BtnCard from "./BtnCard";
 import CartIcon from "../assets/icons/CartIcon";
 import EyeIcon from "../assets/icons/EyeIcon";
+import ToolTip from "./ToolTip";
+import styles from '../apps/Home/css/ToolTip.module.css'
 function Card({
   avatarCard,
   bookName,
@@ -39,7 +41,7 @@ function Card({
           </div>
         </div>
       </div>
-      <div className="mt-2 h-1/3 line-clamp-3 px-2 hover:line-clamp-none">
+      <div className={`mt-2 h-1/3 line-clamp-3 hover:line-clamp-none`}>
         <p>{summary}</p>
       </div>
     </div>

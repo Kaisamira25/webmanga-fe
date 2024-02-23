@@ -5,20 +5,12 @@ function PopularView() {
     { id: "1" },
     { id: "2" },
     { id: "3" },
-    // { id: "4" },
-    // { id: "5" },
-    // { id: "6" },
-    // { id: "7" },
-    // { id: "8" },
-    // { id: "9" },
-    // { id: "10" },
-    // { id: "11" },
-    // { id: "12" },
-    // { id: "13" },
-    // { id: "14" }
+    { id: "4" },
+    { id: "5" },
+    { id: "6" }
   ];
   return (
-    <article className="px-5 grid grid-cols-1 justify-items-center gap-y-10 md:grid md:grid-cols-1 md:gap-y-10 md:justify-items-center lg:grid-cols-2 lg:gap-x-4 xl:grid-cols-3">
+    <article className="grid grid-cols-1 justify-items-center gap-y-10 md:grid md:grid-cols-1 md:gap-y-10 md:justify-items-center lg:grid-cols-2 lg:gap-x-4 xl:grid-cols-3q">
       {cardList.map((card, index) => (
         <div className="w-full md:w-1/2 lg:w-full">
           <Card
