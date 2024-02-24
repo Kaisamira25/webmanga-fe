@@ -14,7 +14,7 @@ function Passwordinput({ type, id, password, placeholder, validatePassword }) {
       error = "Mật khẩu phải chứa ít nhất một số.";
     } else if (passwordValue.length < 8) {
       error = "Mật khẩu phải có ít nhất 8 kí tự.";
-    }
+    } 
     setErrorMessage(error);
     validatePassword(passwordValue, error);
   };
