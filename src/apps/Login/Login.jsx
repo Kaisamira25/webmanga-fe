@@ -1,9 +1,8 @@
 import React from 'react';
-import InputLG from '../../components/_InputLG';
+import InputLogin from '../../components/_InputLG';
 import Buttonlg from './componnents/Loginbutton';
 import Resform from './componnents/Goresgiterbutton';
-import Fgpw from './componnents/Fogotyourbutton';
-
+import FgForgotyourPasswordpw from './componnents/Fogotyourbutton';
 function Login() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -14,10 +13,10 @@ function Login() {
                             <h2 className="text-4xl font-pacifico mb-4 text-center ">Login</h2>
                         </div>
                         <div>
-                            <InputLG />
+                            <InputLogin />
                         </div>
                         <div>
-                            <Fgpw />
+                            <FgForgotyourPasswordpw />
                         </div>
                         <div>
                             <Buttonlg />
@@ -33,5 +32,4 @@ function Login() {
         </div>
     );
 }
-
 export default Login;

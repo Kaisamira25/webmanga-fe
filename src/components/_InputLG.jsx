@@ -2,7 +2,7 @@ import React from 'react';
 import PasswordIP  from '../apps/Login/componnents/PasswordInput'
 import EmailIP from '../apps/Login/componnents/Emaillogininput';
 
-function InputLG() {
+function InputLogin() {
   return (
     <div >
     <EmailIP placeholder={'Email'}/>
@@ -11,4 +11,4 @@ function InputLG() {
   );
 }
 
-export default InputLG;
+export default InputLogin;

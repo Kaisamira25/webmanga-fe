@@ -1,6 +1,6 @@
 import React from "react";
 
-function Fgpw() {
+function FgForgotyourPasswordpw() {
     return (
         <div className="flex justify-between">
             <button className="text-blue300 text-xs my-2 mx-2  hover:text-red-600 ">Forgot your Password ?</button>
@@ -8,4 +8,4 @@ function Fgpw() {
     );
 }
 
-export default Fgpw;
+export default FgForgotyourPasswordpw;

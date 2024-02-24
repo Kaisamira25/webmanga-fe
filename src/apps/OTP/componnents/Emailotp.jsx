@@ -1,14 +1,21 @@
-import React from "react";
-function EmailotP() {
+import React from 'react';
+
+function EmailotP({ value, onChange,placeholder }) {
+    const handleInputChange = (e) => {
+        const inputValue = e.target.value;
+        if (inputValue.length <= 6) {     
+            onChange(inputValue);
+        }
+    };
     return (
-        <div className="mb-4 shadow-md">
-            <input
-                type="email"
-                id="email"
-                name="email"
-                className="mt-1 p-2 w-full border rounded-md placeholder-opacity-50"
-                placeholder="Email"/>
-        </div>
+        <input
+            type="text"
+            value={value}
+            onChange={handleInputChange}
+            maxLength={6} 
+            className="p-3 text-lg border rounded-md"
+            placeholder={placeholder}
+        />
     );
 }
 

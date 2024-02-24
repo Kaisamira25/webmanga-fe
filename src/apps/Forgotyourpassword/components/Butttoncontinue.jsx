@@ -1,14 +1,14 @@
 import React from "react";
 
-function Buttonlg({type}) {
+function Buttoncontinue({ type }) {
     return (
         <div className="flex justify-between">
             <button type={type}
                 className="bg-white50 text-black py-2 px-4 rounded-md hover:bg-green600 w-full">
-                Login
+                Continue
             </button>
         </div>
     );
-}   
+}
 
-export default Buttonlg;
+export default Buttoncontinue;

@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EmailIP from './componnents/Emailresinput';
 import Username from './componnents/Username';
-import PasswordRS from './componnents/Passwordinput';
-import PasswordRP from './componnents/Passwordrepeat'
+import Passwordinput from './componnents/Passwordinputresgister';
+import Passwordrepeat from './componnents/Passwordrepeatresgister'
 import RESGISTER from './componnents/Resgisterbutton';
 import Lgform from './componnents/Gologinbutton';
+import Passwordinputall from '../../components/Passwordinput';
 function REGIS() {
+    const [errorMessage, setErrorMessage] = useState("");
+ 
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">
             <div className="bg-white100 p-8 rounded-lg shadow-lg w-96">
                 <div>
                     <form>
                         <div>
-                            <h2 className="text-4xl  mb-4 text-center font-pacifico ">REGISTER</h2>
+                            <h2 className="text-4xl  mb-4 text-center font-pacifico ">Resgirter</h2>
                         </div>
                         <div>
                             <form>
-                                <Username placeholder={'username'}  />
-                                <EmailIP placeholder={'Email'}/>
-                                <PasswordRS placeholder={'Mật khẩu '} type={'password'}/>
-                                <PasswordRP placeholder={'nhập lại mật khẩu'} type={'password'}/>
+                                <Username placeholder={'Username'} />
+                                <EmailIP placeholder={'Email'} />
+                               <Passwordinputall placeholder={'password'} type={'password'}/>
                             </form>
 
                         </div>
@@ -27,8 +30,8 @@ function REGIS() {
                             <RESGISTER />
                         </div>
                         <div className="flex flex-row">
-                            <p className="text-xs  my-2 mx-2">Already have an account ?</p> 
-                             <Lgform/>
+                            <p className="text-xs  my-2 mx-2">Already have an account ?</p>
+                            <Lgform />
                         </div>
 
                     </form>

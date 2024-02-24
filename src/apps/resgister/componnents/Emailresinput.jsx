@@ -1,15 +1,28 @@
-import React from "react";
 
-function EmailIP({ type, id, Username, placeholder }) {
+import React, { useState } from "react";
+function EmailIP({ type, id, Username, placeholder, validateInputs, }) {
+  const [errorMessage, setErrorMessage] = useState("");
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value;
+    let error = "";
+    if (!inputValue.includes('@')) {
+      error = "Email không hợp lệ.";
+    }
+    setErrorMessage(error);
+    validateInputs(inputValue,error);
+  };
   return (
     <div className="mb-4  relative">
       <input
         type={type}
         id={id}
         name={Username}
-        className="mt-1 p-2 w-full border rounded-md placeholder-opacity-50 pl-10"
+        className="mt-1 p-2 w-full border rounded-md placeholder-opacity-50 pl-10 "
         placeholder={placeholder}
+        onChange={handleInputChange}
+
       />
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       <svg
         fill="#000000"
         width="30"
