@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-function EmailIP({ type, id, Username, placeholder, validateInputs, }) {
+function EmailInput({ type, id, Username, placeholder, validateInputs, }) {
   const [errorMessage, setErrorMessage] = useState("");
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -37,4 +37,4 @@ function EmailIP({ type, id, Username, placeholder, validateInputs, }) {
   );
 }
 
-export default EmailIP;
+export default EmailInput;

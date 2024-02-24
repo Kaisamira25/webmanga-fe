@@ -1,8 +1,9 @@
 import React from 'react';
-import EmailIP from '../resgister/componnents/Emailresinput';
-import Buttoncontinue from './components/Butttoncontinue';
+import Buttoncontinue from './components/ButttonContinue';
+import Passwordrequired from './components/Passwordrequired';
 
-function Forgotpassword() {
+
+function ForgotyourPasswordconfirm() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">
             <div className="bg-white100 p-8 rounded-lg shadow-lg w-96">
@@ -12,13 +13,13 @@ function Forgotpassword() {
                             <h2 className="text-4xl font-pacifico mb-4 text-center ">Quên mật khẩu?</h2>
                         </div>
                         <div>
-                            <p className=' text-xs mb-1' >Nhập tên người dùng hoặc email  của bạn để chúng tôi có thể gửi cho bạn liên kết đặt lại mật khẩu. </p>
+                            <p className=' text-xs mb-1' > </p>
                         </div>
                         <div>
-                            <EmailIP placeholder={'Tên người dừng hoặc Email'} />
+                            <Passwordrequired />
                         </div>
                         <div>
-                            <Buttoncontinue/>
+                            <Buttoncontinue />
                         </div>
                     </form>
                 </div>
@@ -27,4 +28,4 @@ function Forgotpassword() {
         </div>
     );
 }
-export default Forgotpassword;
+export default ForgotyourPasswordconfirm;

@@ -7,8 +7,9 @@ function Passwordinputall({ type, id, password, placeholder }) {
                 type={type}
                 id={id}
                 name={password}
-                className="mt-1 p-2 w-full border rounded-md placeholder-opacity-50 pl-10"
+                className="mt-1 p-2 w-full border rounded-md placeholder-opacity-50 "
                 placeholder={placeholder}
+                
                 
             />
         </div>

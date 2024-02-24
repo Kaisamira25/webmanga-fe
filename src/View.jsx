@@ -1,18 +1,19 @@
-import Login from "./apps/Login/Login";
+import ForgotyourPasswordconfirm from "./apps/Forgotyourpassword/Forgotyourpasswordconfirm";
+import Login from './apps/Login/Login'
+import ForgotYourPassword from "./apps/Forgotyourpassword/ForgotyourPasswordrequired";
 import REGIS from "./apps/resgister/Resgitster";
-import OTP from "./apps/OTP/OTP"
-import Forgotpassword from "./apps/Forgotyourpassword/Forgotyourpassword";
-import Forgotpassword2 from "./apps/Forgotyourpassword/Forgotyourpassword2";
+import  OTP from "./apps/OTP/OTP"
 function Views() {
-    return ( 
-        <div className="bg-gradient-to-r from-[#DCEFE5] to-[#b7e9d3] h-screen">
-          {/* <REGIS/> */}
-         {/* <OTP/> */}
-          {/* <Login/>  */}
-          <Forgotpassword2/>
-
-        </div>
-     );
+  return (
+    <div className="bg-gradient-to-r from-[#DCEFE5] to-[#b7e9d3] h-screen">
+      
+      <Login/>
+      <REGIS/>
+      <ForgotYourPassword/>
+      <ForgotyourPasswordconfirm />
+      <OTP/>
+    </div>
+  );
 }
 
 export default Views;
