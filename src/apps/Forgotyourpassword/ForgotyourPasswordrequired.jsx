@@ -1,7 +1,6 @@
 import React from 'react';
-
-import Buttoncontinue from './components/ButttonContinue';
-import EmailInput from '../../components/EmailInput';
+import EmailRequired from './components/EmailRequired';
+import ButtonInputall from '../../components/ButtonInput';
 
 function Forgotpassword() {
     return (
@@ -13,13 +12,13 @@ function Forgotpassword() {
                             <h2 className="text-4xl font-pacifico mb-4 text-center ">Quên mật khẩu?</h2>
                         </div>
                         <div>
-                            <p className=' text-xs mb-1' >Nhập tên người dùng hoặc email  của bạn để chúng tôi có thể gửi cho bạn liên kết đặt lại mật khẩu. </p>
+                            <p className=' text-xs mb-1' >Nhập email của bạn để chúng tôi có thể gửi cho bạn liên kết đặt lại mật khẩu. </p>
                         </div>
                         <div>
-                           <EmailInput placeholder={'Email'}/>
+                            <EmailRequired />
                         </div>
                         <div>
-                            <Buttoncontinue/>
+                            <ButtonInputall  type={'button'} placeholder={'Continue'} />
                         </div>
                     </form>
                 </div>

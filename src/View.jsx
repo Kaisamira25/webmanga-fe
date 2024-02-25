@@ -2,16 +2,16 @@ import ForgotyourPasswordconfirm from "./apps/Forgotyourpassword/Forgotyourpassw
 import Login from './apps/Login/Login'
 import ForgotYourPassword from "./apps/Forgotyourpassword/ForgotyourPasswordrequired";
 import REGIS from "./apps/resgister/Resgitster";
-import  OTP from "./apps/OTP/OTP"
+import OTP from "./apps/OTP/OTP"
 function Views() {
   return (
     <div className="bg-gradient-to-r from-[#DCEFE5] to-[#b7e9d3] h-screen">
-      
-      <Login/>
-      <REGIS/>
-      <ForgotYourPassword/>
+
+      <Login />
+      <REGIS />
+      <ForgotYourPassword />
+      <OTP />
       <ForgotyourPasswordconfirm />
-      <OTP/>
     </div>
   );
 }

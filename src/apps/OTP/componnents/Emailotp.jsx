@@ -1,22 +1,27 @@
-import React from 'react';
+import React from "react";
+import Inputallpage from "../../../components/Inputall";
+import OtpIcon from "../../../assets/icons/MaterialOtpIcon";
 
-function EmailotP({ value, onChange,placeholder }) {
-    const handleInputChange = (e) => {
-        const inputValue = e.target.value;
-        if (inputValue.length <= 6) {     
-            onChange(inputValue);
-        }
-    };
+function OtpRequired() {
+    const passwordFields = [
+        { placeholder: "OTP", type: "text",svg:<OtpIcon/>},
+
+    ];
+
     return (
-        <input
-            type="text"
-            value={value}
-            onChange={handleInputChange}
-            maxLength={6} 
-            className="p-3 text-lg border rounded-md"
-            placeholder={placeholder}
-        />
+        <div className="grid grid-cols-1 md:flex md:flex-col w-auto ">
+            {passwordFields.map((field, index) => (
+                <Inputallpage
+                    key={index}
+                    placeholder={field.placeholder}
+                    type={field.type}
+                    svg={field.svg}
+                />
+
+            ))}
+
+        </div>
     );
 }
 
-export default EmailotP;
+export default OtpRequired;

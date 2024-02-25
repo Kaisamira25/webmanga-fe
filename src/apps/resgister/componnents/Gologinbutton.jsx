@@ -1,11 +1,11 @@
 import React from "react";
-
-function Lgform() {
+function GoLogin() {
     return (
-        <div className="flex justify-between">
-            <button className="text-blue300 text-xs my-2 mx-2 hover:text-red-600 ">Login In</button>
+        <div className="flex ">
+            <p className="text-sm">Đã có tài khoản ?</p>
+            <button className="text-blue300 text-sm   hover:text-red-600"> Đăng Nhập</button>
         </div>
     );
 }
 
-export default Lgform;
+export default GoLogin;

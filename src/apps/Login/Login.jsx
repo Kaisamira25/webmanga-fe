@@ -1,13 +1,10 @@
 import React from 'react';
-import EmailInput from '../../components/EmailInput';
-import Passwordinputall from '../../components/Passwordinput';
 import ButtonInputall from '../../components/ButtonInput';
 import Resform from './componnents/Goresgiterbutton';
+import LoginForm from './componnents/LoginForm';
 import ForgotYourPassword from './componnents/ForgotYourButton';
-function Login() {
-    const handleLoginClick = () => {
 
-    };
+function Login() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -15,21 +12,21 @@ function Login() {
                 <div>
                     <form>
                         <div>
-                            <h2 className="text-4xl font-pacifico mb-4 text-center ">Login</h2>
+                            <h2 className="text-4xl font-pacifico mb-4 text-center ">Đăng Nhập</h2>
                         </div>
                         <div>
-                            <EmailInput placeholder={'Email'} />
-                            <Passwordinputall placeholder={'password'}/>
+
+                            <LoginForm />
                         </div>
                         <div>
-                            <ForgotYourPassword/>
+                            <ForgotYourPassword />
                         </div>
                         <div >
-                            <ButtonInputall type={'button'} onClick={handleLoginClick}  placeholder={'đăng nhập'}/>
+                            <ButtonInputall type={'button'}  placeholder={'đăng nhập'} />
                         </div>
-                        
+
                         <div>
-                          <Resform/>
+                            <Resform />
                         </div>
                     </form>
                 </div>

@@ -3,8 +3,8 @@ import React from "react";
 function Resform() {
     return (
         <div className="flex ">
-            <p className="text-sm">you don't have an account? </p>
-             <button className="text-blue300 text-sm   hover:text-red-600">Register Now</button>
+            <p className="text-sm">Bạn không có tài khoản ?</p>
+            <button className="text-blue300 text-sm   hover:text-red-600"> Đăng ký ngay</button>
         </div>
     );
 }

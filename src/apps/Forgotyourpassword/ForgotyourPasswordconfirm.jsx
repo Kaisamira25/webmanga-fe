@@ -1,7 +1,7 @@
 import React from 'react';
-import Buttoncontinue from './components/ButttonContinue';
-import Passwordrequired from './components/Passwordrequired';
 
+import PasswordRequired from './components/PasswordRequired';
+import ButtonInputall from '../../components/ButtonInput';
 
 function ForgotyourPasswordconfirm() {
     return (
@@ -16,10 +16,10 @@ function ForgotyourPasswordconfirm() {
                             <p className=' text-xs mb-1' > </p>
                         </div>
                         <div>
-                            <Passwordrequired />
+                            <PasswordRequired />
                         </div>
                         <div>
-                            <Buttoncontinue />
+                            <ButtonInputall   type={'button'} placeholder={'Continue'} />
                         </div>
                     </form>
                 </div>

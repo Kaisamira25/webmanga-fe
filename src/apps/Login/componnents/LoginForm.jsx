@@ -1,12 +1,12 @@
 import React from "react";
 import Inputallpage from "../../../components/Inputall";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
-import IconRepeat from "../../../assets/icons/MaterialIconRepeat";
-function PasswordRequired() {
+import IconEmail from "../../../assets/icons/MaterialIconEmail";
+
+function LoginForm() {
     const passwordFields = [
-     
+        { placeholder: "Email", type: "Email", svg: <IconEmail /> },
         { placeholder: "password", type: "password", svg: <IconPassword /> },
-        { placeholder: "repeat password", type: "password", svg: <IconRepeat /> },
 
     ];
 
@@ -26,4 +26,4 @@ function PasswordRequired() {
     );
 }
 
-export default PasswordRequired;
+export default LoginForm;

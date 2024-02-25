@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
-import EmailotP from './componnents/Emailotp';
+import OtpRequired from './componnents/Emailotp';
+import ButtonInputall from '../../components/ButtonInput';
 
 function OTP() {
     const [otpValue, setOTPValue] = useState('');
@@ -16,16 +17,14 @@ function OTP() {
                             <h2 className='text-4xl font-Confortaa mb-4 text-center' >Xác minh</h2>
                         </div>
                         <div>
-                            <h1 className='text-base mb-1'>Nhập mã 6 số chúng tôi vừa gửi cho bạn  </h1>
-                        </div>
-                        <div className='text-base mb-1 mt-4'>
-                            <EmailotP value={otpValue} onChange={handleOTPChange} placeholder={'Nhập mã 6  chữ số '} />
+                            <h1 className='text-base mb-1'>Hãy nhập mã chúng tôi vừa gửi cho bạn  </h1>
                         </div>
                         <div>
-                            <div className="flex justify-between">
-                                <button type="submit"  className="bg-white50 text-black py-2 px-4 rounded-md hover:bg-green600 w-full mt-4">
-                                    Continue
-                                </button>
+                            <OtpRequired />
+                        </div>
+                        <div>
+                            <div >
+                             <ButtonInputall   type={'button'} placeholder={'Continue'}/>
                             </div>
                         </div>
                     </form>
