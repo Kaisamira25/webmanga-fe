@@ -1,17 +1,16 @@
-import ForgotyourPasswordconfirm from "./apps/Forgotyourpassword/Forgotyourpasswordconfirm";
-import Login from './apps/Login/Login'
-import ForgotYourPassword from "./apps/Forgotyourpassword/ForgotyourPasswordrequired";
-import REGIS from "./apps/resgister/Resgitster";
-import OTP from "./apps/OTP/OTP"
+import React from "react";
+import LoginPage from "./pages/Login/LoginPage";
+import RegisterPage from "./pages/Register/RegisterPage";
+import OTPPage from "./pages/OTP/OTPPage";
+import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
+
 function Views() {
   return (
     <div className="bg-gradient-to-r from-[#DCEFE5] to-[#b7e9d3] h-screen">
-
-      <Login />
-      <REGIS />
-      <ForgotYourPassword />
-      <OTP />
-      <ForgotyourPasswordconfirm />
+      {/* <LoginPage /> */}
+      {/* <RegisterPage /> */}
+      {/* <OTPPage /> */}
+      {/* <ForgotPasswordPage /> */}
     </div>
   );
 }
