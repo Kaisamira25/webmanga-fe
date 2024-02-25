@@ -1,7 +1,7 @@
 import React from 'react';
 import ResgisterFormRequired from './componnents/ResgisterFormRequired';
 import ButtonInputall from '../../components/ButtonInput';
-import GoLogin from './componnents/Gologinbutton';
+import GoLogin from './componnents/GoLoginButton';
 function REGIS() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-green400">

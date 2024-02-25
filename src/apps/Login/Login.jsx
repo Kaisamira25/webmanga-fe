@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonInputall from '../../components/ButtonInput';
-import Resform from './componnents/Goresgiterbutton';
+import Resform from './componnents/GoResgiterButton';
 import LoginForm from './componnents/LoginForm';
 import ForgotYourPassword from './componnents/ForgotYourButton';
 
