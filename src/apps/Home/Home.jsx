@@ -1,11 +1,15 @@
-import HeaderDemo from "../../components/Header";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import Content from "./component/Content";
 
-function HomePage() {
+function Home() {
     return ( 
-        <div>
-            <HeaderDemo/>
+        <div className="h-full bg-white100">
+            <Header/>
+            <Content/>
+            <Footer/>
         </div>
      );
 }
 
-export default HomePage;
+export default Home;

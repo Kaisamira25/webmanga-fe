@@ -1,28 +1,36 @@
-import BtnHeader from "./BtnDemo";
-import CharmHome from "../assets/icons/CharmHome";
-import IconBooks from '../assets/icons/MaterialSymbolsBook2Outline'
-import WebHook from "../assets/icons/IcBaselineWebhook";
-import AccountCircle from "../assets/icons/MaterialSymbolsAccountCircleFull";
-import ShoppingCart from "../assets/icons/MaterialSymbolsShoppingCartOutlineRounded";
-function HeaderDemo() {
+import LogoIcon from "../assets/icons/LogoIcon";
+import BtnHeader from "./BtnHeader";
+import IconHome from "../assets/icons/HomeIcon";
+import IconBook from '../assets/icons/BookIcon'
+import IconCart from '../assets/icons/CartIcon'
+import IconUser from '../assets/icons/AccountIcon'
+function Header() {
+  const btnList = [
+    { id: 1, iconName: <IconHome /> },
+    { id: 2, iconName: <IconBook /> },
+    { id: 3, iconName: <IconCart /> },
+    { id: 4, iconName: <IconUser /> },
+  ];
+  var depthArray = [1,2,[3,4],5,6,[7,8,9]];
+
+  var flatArray = depthArray.reduce(function (flat, depthArray){
+    return flat.concat(depthArray);
+  },[]);
+  
   return (
-    <header className="bg-gradient-to-r from-[#DCEFE5] to-[#c1e7d7]  text-center p-5 h-24 relative">
-      <span className="flex justify-center items-center space-x-2 text-2xl text-green400">
-        <WebHook />
-        <p>LAINOVO</p>
-      </span>
-      {/* flex justify-center space-x-8 absolute left-1/2 -translate-x-1/2 translate-y-1/2 */}
-      <div
-        className="flex justify-center space-x-8 absolute left-1/2 -translate-x-1/2 translate-y-1/2
-      md:space-x-28 lg:space-x-44"
-      >
-        <BtnHeader iconName={<CharmHome />} />
-        <BtnHeader iconName={<IconBooks/>} />
-        <BtnHeader iconName={<ShoppingCart />} />
-        <BtnHeader iconName={<AccountCircle />} />
+    <header className="h-24 bg-background400 text-center text-2xl flex justify-center items-center relative">
+      <a className="flex items-center" href="/">
+        <LogoIcon />
+        LAINOVO
+      </a>
+      <div className="absolute -bottom-6 flex gap-10 md:gap-24 lg:gap-52">
+        {btnList.map((iconName, index) => (
+          <BtnHeader btnIcon={iconName.iconName} key={index} />
+        ))}
+        
       </div>
     </header>
   );
 }
 
-export default HeaderDemo;
+export default Header;
