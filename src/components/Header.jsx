@@ -11,6 +11,12 @@ function Header() {
     { id: 3, iconName: <IconCart /> },
     { id: 4, iconName: <IconUser /> },
   ];
+  var depthArray = [1,2,[3,4],5,6,[7,8,9]];
+
+  var flatArray = depthArray.reduce(function (flat, depthArray){
+    return flat.concat(depthArray);
+  },[]);
+  
   return (
     <header className="h-24 bg-background400 text-center text-2xl flex justify-center items-center relative">
       <a className="flex items-center" href="/">
@@ -21,6 +27,7 @@ function Header() {
         {btnList.map((iconName, index) => (
           <BtnHeader btnIcon={iconName.iconName} key={index} />
         ))}
+        
       </div>
     </header>
   );
