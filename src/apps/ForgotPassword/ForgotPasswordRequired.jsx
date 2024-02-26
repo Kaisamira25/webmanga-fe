@@ -1,10 +1,8 @@
 import React from "react";
+import EmailRequired from "./components/EmailRequired";
 import ButtonInput from "../../components/ButtonInput";
-import LoginForm from "./Components/LoginForm";
-import ForgotYourPassword from "./Components/ForgotYourButton";
-import RegisterPrompt from "./Components/RegisterPrompt";
 
-function Login() {
+function ForgotPasswordRequired() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg  md:w-96 w-96">
@@ -12,21 +10,20 @@ function Login() {
           <form>
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
-                Đăng Nhập
+                Quên mật khẩu?
               </h2>
             </div>
             <div>
-              <LoginForm />
+              <p className=" text-xs mb-1">
+                Nhập email của bạn để chúng tôi có thể gửi cho bạn liên kết đặt
+                lại mật khẩu.
+              </p>
             </div>
-            <div >
-              <ForgotYourPassword />
+            <div>
+              <EmailRequired />
             </div>
-            <div className="mt-2">
-              <ButtonInput type={"button"} placeholder={"đăng nhập"} />
-            </div>
-
-            <div className="mt-2">
-              <RegisterPrompt />
+            <div>
+              <ButtonInput type={"button"} placeholder={"Continue"} />
             </div>
           </form>
         </div>
@@ -34,4 +31,4 @@ function Login() {
     </div>
   );
 }
-export default Login;
+export default ForgotPasswordRequired;
