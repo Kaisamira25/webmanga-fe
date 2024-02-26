@@ -8,8 +8,8 @@ function RegisterFormRequired() {
   const passwordFields = [
     { placeholder: "UserName", type: "text", svg: <IconUser /> },
     { placeholder: "Email", type: "Email", svg: <IconEmail /> },
-    { placeholder: "password", type: "password", svg: <IconPassword /> },
-    { placeholder: "repeat password", type: "password", svg: <IconRepeat /> },
+    { placeholder: "Password", type: "password", svg: <IconPassword /> },
+    { placeholder: "Repeat Password", type: "password", svg: <IconRepeat /> },
   ];
 
   return (

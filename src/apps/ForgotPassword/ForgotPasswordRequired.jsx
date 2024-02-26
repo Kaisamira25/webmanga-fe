@@ -5,7 +5,7 @@ import ButtonInput from "../../components/ButtonInput";
 function ForgotPasswordRequired() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
-      <div className="bg-white100 p-8 rounded-lg shadow-lg w-96">
+      <div className="bg-white100 p-8 rounded-lg shadow-lg  md:w-96 w-96">
         <div>
           <form>
             <div>

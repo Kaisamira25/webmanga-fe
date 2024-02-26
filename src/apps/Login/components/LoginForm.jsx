@@ -6,7 +6,7 @@ import IconEmail from "../../../assets/icons/MaterialIconEmail";
 function LoginForm() {
   const passwordFields = [
     { placeholder: "Email", type: "Email", svg: <IconEmail /> },
-    { placeholder: "password", type: "password", svg: <IconPassword /> },
+    { placeholder: "Password", type: "Password", svg: <IconPassword /> },
   ];
 
   return (

@@ -7,10 +7,10 @@ import ForgotPasswordPage from "./pages/ForgotPassword/ForgotPasswordPage";
 function Views() {
   return (
     <div className="bg-gradient-to-r from-[#DCEFE5] to-[#b7e9d3] h-screen">
-      {/* <LoginPage /> */}
-      {/* <RegisterPage /> */}
-      {/* <OTPPage /> */}
-      {/* <ForgotPasswordPage /> */}
+      <LoginPage />
+      <RegisterPage />
+      <OTPPage />
+      <ForgotPasswordPage />
     </div>
   );
 }

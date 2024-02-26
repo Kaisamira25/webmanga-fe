@@ -10,7 +10,7 @@ function OTP() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
-      <div className="bg-white100 p-8 rounded-lg shadow-lg h-80 w-96">
+      <div className="bg-white100 p-8 rounded-lg shadow-lg h-80  md:w-96 w-96">
         <div>
           <form className="flex flex-col w-auto h-auto items-center">
             <div>
