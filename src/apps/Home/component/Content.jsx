@@ -3,8 +3,6 @@ import SearchBar from "../../../components/Search";
 import Carousel from "./Carousel";
 import PopularView from "./PopularView";
 import ArrowIcon from "../../../assets/icons/ArrowIcon";
-import Products from "./Products";
-import Categories from "./Categories";
 
 function Content() {
   return (
@@ -34,10 +32,10 @@ function Content() {
           <PopularView />
         </div>
         <div className="mt-8">
-          <Categories />
+          
         </div>
         <div>
-          <Products />
+
         </div>
       </div>
     </div>

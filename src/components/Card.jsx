@@ -1,8 +1,6 @@
 import BtnCard from "./BtnCard";
 import CartIcon from "../assets/icons/CartIcon";
 import EyeIcon from "../assets/icons/EyeIcon";
-import ToolTip from "./ToolTip";
-import styles from '../apps/Home/css/ToolTip.module.css'
 function Card({
   avatarCard,
   bookName,

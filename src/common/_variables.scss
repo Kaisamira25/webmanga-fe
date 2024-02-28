@@ -1,13 +1,21 @@
-
 //Background color ($bg-color-color của ní)
 $bg-color-dark-red: #8B0000; 
 $bg-color-dark-orange: #FF8C00; 
 $bg-color-main: radial-gradient(#ffffff, #040404);
+$bg-color: #8FC6AF;
+$bg-btn-color: #3F8A70;
 
-//Margin ($margin-top/left/right/bottom-value) nhớ xếp thứ tự thấp -> cao
+//Margin
 $margin-left-1px: 1px;
 $margin-left-20px: 20px;
 $margin-left-100px: 100px;
 
+//Drop-shadow
+$drop-shadow: drop-shadow(1px 1px 1px #9b9c9b);
 
-//Thêm design mới thì nhớ comment định dạng 
+//Hover-mixin
+@mixin hoverBtnGreen {
+    &:hover {
+        background-color: #2D6E59;
+    }
+}
