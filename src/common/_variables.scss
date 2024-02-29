@@ -1,13 +1,140 @@
-
 //Background color ($bg-color-color của ní)
-$bg-color-dark-red: #8B0000; 
-$bg-color-dark-orange: #FF8C00; 
+$bg-color-dark-red: #8b0000;
+$bg-color-dark-orange: #ff8c00;
+$bg-color-gray: #808080;
 $bg-color-main: radial-gradient(#ffffff, #040404);
 
 //Margin ($margin-top/left/right/bottom-value) nhớ xếp thứ tự thấp -> cao
+$margin-auto: 0px auto;
+$margin-10px: 10px;
+$margin-20px: 20px;
+$margin-30px: 30px;
 $margin-left-1px: 1px;
 $margin-left-20px: 20px;
 $margin-left-100px: 100px;
+$margin-top-20px: 20px;
+$margin-top-50px: 50px;
 
+//padding
+$padding-20px: 20px;
+$padding-30px: 30px;
 
-//Thêm design mới thì nhớ comment định dạng 
+//border
+$border-1px-gray: 1px solid #808080;
+$border-2px-black: 2px solid #000000;
+$border-bottom-2px-black: 2px solid #000000;
+
+//border-radius
+$bd-radius-8px: 8px;
+
+//width (width-value)
+$width-30: 30%;
+$width-40: 40%;
+$width-60: 60%;
+$width-70: 70%;
+$width-90: 90%;
+$width-full: 100%;
+
+//height (height-value)
+$height-30px: 30px;
+$height-50px: 50px;
+$height-650px: 650px;
+$height-full: 100%;
+
+//text-align
+$text-center: center;
+
+//gap
+$gap-value-20px: 20px;
+
+//font-size
+$font-size-18px: 18px;
+$font-size-20px: 20px;
+$font-size-30px: 30px;
+
+//justify-content
+$justify-around: space-around;
+
+//align-items
+$items-center: center;
+
+//font
+@mixin apply-font($font-style) {
+  @if $font-style == bold-smaller {
+    font-weight: bold;
+    font-size: smaller;
+  }
+  @if $font-style == bold-medium {
+    font-weight: bold;
+    font-size: medium;
+  }
+  @if $font-style == bold-larger {
+    font-weight: bold;
+    font-size: larger;
+  }
+}
+
+//flex
+@mixin apply-flex($flex-style) {
+  //justify-content-center
+  @if $flex-style == center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @if $flex-style == center-start {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+  @if $flex-style == center-end {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+
+  //justify-content-start
+  @if $flex-style == start-center {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  @if $flex-style == start-start {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+  }
+  @if $flex-style == start-end {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+  }
+
+  //justify-content-end
+  @if $flex-style == end-center {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  @if $flex-style == end-start {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+  }
+  @if $flex-style == end-end {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  }
+}
+@mixin flex-column($flex-style) {
+  //justify-content-center
+  @if $flex-style == column {
+    display: flex;
+    flex-direction: column;
+  }
+  @if $flex-style == row {
+    display: flex;
+    flex-direction: row;
+  }
+}

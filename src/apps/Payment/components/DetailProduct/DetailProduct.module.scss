@@ -1,0 +1,9 @@
+@use "../../../../common/variables" as *;
+
+.container {
+  border: $border-2px-black;
+  border-radius: $bd-radius-8px;
+  .title {
+    margin-top: $margin-top-20px;
+  }
+}
