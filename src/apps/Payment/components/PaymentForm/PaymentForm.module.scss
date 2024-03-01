@@ -1,11 +1,13 @@
 @use "../../../../common/variables" as *;
 
 .container {
-  border: $border-2px-black;
+  // border: $border-2px-black;
   height: $height-full;
   border-radius: $bd-radius-8px;
+  box-shadow: $box-shadow-4px;
+  border-radius: $bd-radius-10px;
   .title {
-    margin: $margin-20px;
+    margin-left: $margin-left-20px;
   }
   .wrapper {
     @include flex-column(column);
@@ -26,8 +28,21 @@
           gap: $gap-value-20px;
         }
         @media (max-width: 768px) {
+          margin: $margin-auto;
+        }
+      }
+      .full {
+        @include flex-column(column);
+        gap: $gap-value-20px;
+        width: $width-60;
+        padding: $padding-30px;
+        .mapField {
+          @include flex-column(column);
+          gap: $gap-value-20px;
+        }
+        @media (max-width: 768px) {
           width: $width-full;
-          margin: 0px;
+          margin: $margin-auto;
         }
       }
       .right {
