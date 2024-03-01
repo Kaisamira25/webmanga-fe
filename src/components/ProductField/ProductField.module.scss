@@ -21,7 +21,7 @@
       font-size: $font-size-20px;
     }
     .productPrice {
-      @include apply-font(bold-smaller);
+      @include apply-font(bold-medium);
     }
   }
 }

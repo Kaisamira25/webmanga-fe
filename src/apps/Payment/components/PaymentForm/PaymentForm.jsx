@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../../../../components/Title/Title";
-import InputField from "../../../../components/InputField/InputField";
 import SelectField from "../../../../components/SelectField/SelectField";
 import MapField from "../MapField/MapField";
 import style from "./PaymentForm.module.scss";
 
 export default function PaymentForm() {
+  const [selectedOption, setSelectedOption] = useState("");
+
   const inputField = [
     { label: "Email", type: "email", placeholder: "Email" },
     {
@@ -29,6 +30,11 @@ export default function PaymentForm() {
     "Thanh toán mã QR",
     "Thanh toán Visa",
   ];
+
+  const handleSelectChange = (selectedValue) => {
+    setSelectedOption(selectedValue);
+  };
+
   return (
     <div className={style.container}>
       <div className={style.title}>
@@ -43,11 +49,16 @@ export default function PaymentForm() {
               label={"Phương thức thanh toán"}
               placeholder={"Mời chọn phương thức thanh toán"}
               options={options}
+              value={selectedOption}
+              onChange={handleSelectChange}
             />
           </div>
-          <div className={style.right}>
-            <MapField inputField={bankField} className={style.mapField} />
-          </div>
+          {(selectedOption === "Thanh toán thẻ ngân hàng" ||
+            selectedOption === "Thanh toán Visa") && (
+            <div className={style.right}>
+              <MapField inputField={bankField} className={style.mapField} />
+            </div>
+          )}
         </div>
       </div>
     </div>

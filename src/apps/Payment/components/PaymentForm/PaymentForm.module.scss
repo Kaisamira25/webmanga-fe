@@ -15,6 +15,7 @@
     }
     .inputField {
       @include flex-column(row);
+      justify-content: center;
       .left {
         @include flex-column(column);
         gap: $gap-value-20px;
@@ -23,6 +24,10 @@
         .mapField {
           @include flex-column(column);
           gap: $gap-value-20px;
+        }
+        @media (max-width: 768px) {
+          width: $width-full;
+          margin: 0px;
         }
       }
       .right {
