@@ -1,12 +1,13 @@
-import Home from "./pages/Home/Home";
+import Header from "./components/header/Header";
+import HomePage from "./pages/Home/HomePage";
 
 function Views() {
   return (
     <div>
       {/* a */}
       <Header />
-      <PaymentPage />
-      <Footer />
+      <HomePage />
+      {/* <Footer /> */}
     </div>
   );
 }
