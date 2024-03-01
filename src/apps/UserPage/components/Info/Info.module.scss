@@ -1,0 +1,31 @@
+@use '../../../../common/variables' as *;
+
+
+.column {
+    width: $width-95;
+    flex: 1;
+    margin: $margin-20px;
+    border: $border-1px-black;
+    padding: $padding-20px;
+    // padding-right: $padding-right-300px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    border-radius: $bd-radius-10px;
+
+    @media (max-width: 768px) {
+            width: $width-full;
+            margin: 0px;
+    }
+}
+
+
+.details {
+    h1 {
+        color: #333;
+        font-size: 32px;
+    }
+
+    p {
+        color: #666;
+        font-size: 16px;
+    }
+}
