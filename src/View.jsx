@@ -1,14 +1,17 @@
-import Home from "./apps/Home/Home";
+import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import PaymentPage from "./pages/Payment/PaymentPage";
+import routes from "./routers/Router";
 
 function Views() {
   return (
     <div>
-      {/* a */}
       <Header />
-      <PaymentPage />
+      <Routes>
+        {routes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
+      </Routes>
       <Footer />
     </div>
   );
