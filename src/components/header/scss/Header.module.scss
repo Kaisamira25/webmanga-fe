@@ -1,0 +1,26 @@
+@use "../../../common/variables" as *;
+
+.header {
+  position: relative;
+  background-color: $bg-color;
+  height: 6rem;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid white 2px;
+  p {
+    font-weight: bold;
+    font-size: larger;
+    z-index: 5;
+  }
+  .btnWrapper {
+    position: absolute;
+    display: flex;
+    width: 50%;
+    bottom: -1.5em;
+    height: 3em;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

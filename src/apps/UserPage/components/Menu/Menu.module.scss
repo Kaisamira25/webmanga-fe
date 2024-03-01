@@ -1,0 +1,21 @@
+@use '../../../../common/variables' as *;
+
+.container {
+    margin-top: $margin-top-40px;
+    .menu {
+            display: flex;
+            justify-content: $justify-around; 
+            padding: $padding-10px;
+            border: $border-2px-black;
+    
+            a {
+                margin: $margin-10px; 
+                text-decoration: none;
+                color: black;
+    
+                &:hover {
+                    color: blue;
+                }
+            }
+        }
+}

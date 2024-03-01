@@ -1,10 +1,8 @@
-import React from "react";
-import Home from "../../apps/Home/Home";
-
+import Body from "../../apps/Home/Body";
 function HomePage() {
   return (
-    <div>
-      <Home />
+    <div className="h-full bg-white100">
+      <Body />
     </div>
   );
 }
