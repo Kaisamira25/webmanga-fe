@@ -7,6 +7,8 @@ $bg-color-dark-orange: #ff8c00;
 $bg-color-gray: #808080;
 $bg-color-green-400: #8fc6af;
 $bg-color-main: radial-gradient(#ffffff, #040404);
+$bg-color: #8fc6af;
+$bg-btn-color: #3f8a70;
 
 // Color
 $color-white: white;
@@ -36,12 +38,14 @@ $margin-bottom-10px: 10px;
 $margin-bottom-15px: 15px;
 $margin-bottom-20px: 20px;
 $margin-bottom-50px: 50px;
+$margin-right-20px: 20px;
 
 //padding
 $padding-10px: 10px;
 $padding-20px: 20px;
 $padding-30px: 30px;
-$padding-right-300px:  300px;
+$padding-bottom-30px: 30px;
+$padding-right-300px: 300px;
 
 //border
 $border-1px-light-grey: 1px solid #ccc;
@@ -54,6 +58,7 @@ $border-bottom-2px-black: 2px solid #000000;
 $bd-radius-5px: 5px;
 $bd-radius-10px: 10px;
 $bd-radius-8px: 8px;
+$bd-radius-10px: 10px;
 $bd-radius-50px: 50px;
 $bd-radius-50: 50%;
 
@@ -80,6 +85,10 @@ $height-full: 100%;
 
 //text-align
 $text-center: center;
+
+//box-shadow
+$box-shadow-4px: 0 0 4px rgba(0, 0, 0, 0.5);
+$box-shadow-6px: 0 0 6px rgba(0, 0, 0, 0.5);
 
 //gap
 $gap-value-20px: 20px;
@@ -190,5 +199,15 @@ $items-center: center;
   @if $flex-style ==row {
     display: flex;
     flex-direction: row;
+  }
+}
+//Drop-shadow
+$drop-shadow: drop-shadow(1px 1px 1px #9b9c9b);
+
+//Hover-mixin
+@mixin hoverBtnGreen {
+  &:hover {
+    background-color: #60a78c;
+    transition-duration: 500ms;
   }
 }

@@ -43,7 +43,14 @@ export default function PaymentForm() {
       <div className={style.wrapper}>
         <p className={style.title}>Thông tin thanh toán</p>
         <div className={style.inputField}>
-          <div className={style.left}>
+          <div
+            className={`${
+              selectedOption === "Thanh toán thẻ ngân hàng" ||
+              selectedOption === "Thanh toán Visa"
+                ? style.left
+                : style.full
+            } `}
+          >
             <MapField inputField={inputField} className={style.mapField} />
             <SelectField
               label={"Phương thức thanh toán"}

@@ -1,15 +1,13 @@
-import Home from "./apps/Home/Home";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import PaymentPage from "./pages/Payment/PaymentPage";
+import Header from "./components/header/Header";
+import HomePage from "./pages/Home/HomePage";
 
 function Views() {
   return (
     <div>
       {/* a */}
       <Header />
-      <PaymentPage />
-      <Footer />
+      <HomePage />
+      {/* <Footer /> */}
     </div>
   );
 }
