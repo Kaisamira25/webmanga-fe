@@ -9,21 +9,30 @@ article {
   text-align: center;
   font-weight: bold;
   font-size: x-large;
+  margin-bottom: 1em;
 }
 .wrapper {
   position: relative;
   height: 30em;
   .cards {
-    position: absolute;
-    height: 20em;
+    position:absolute;
     left: 50%;
     transform: translateX(-50%);
+    height: 18em;
+    opacity: 2;
     z-index: 1;
-    &:nth-child(2) {
-      transform: translate(30% 10%);
-      opacity: 0.7;
+    &:nth-child(2){
+      transform: translateX(25%) translateY(7%);
+      height: 15em;
+      opacity: 0.6;
       z-index: 0;
-      height: 18em;
     }
+    &:nth-child(3){
+      transform: translateX(-125%) translateY(7%);
+      height: 15em;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
   }
 }
