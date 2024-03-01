@@ -1,0 +1,7 @@
+@use "../../../../common/variables" as *;
+
+.container {
+  .btn {
+    margin: $margin-20px;
+  }
+}
