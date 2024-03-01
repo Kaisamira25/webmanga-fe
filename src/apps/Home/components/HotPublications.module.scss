@@ -1,5 +1,9 @@
 @use "../../../common/variables" as *;
 
+article {
+  height: 50em;
+  background-color: #60A78C;
+}
 .title {
   padding-top: 5em;
   text-align: center;
@@ -8,7 +12,18 @@
 }
 .wrapper {
   position: relative;
+  height: 30em;
   .cards {
     position: absolute;
+    height: 20em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    &:nth-child(2) {
+      transform: translate(30% 10%);
+      opacity: 0.7;
+      z-index: 0;
+      height: 18em;
+    }
   }
 }

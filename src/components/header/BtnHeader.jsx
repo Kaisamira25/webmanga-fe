@@ -1,4 +1,4 @@
-import style from "./scss/btnHeader.module.scss";
+import style from "./scss/BtnHeader.module.scss";
 function BtnHeader({ btnIcon }) {
   return (
     <div className={style.buttonWrapper}>

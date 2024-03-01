@@ -1,6 +1,5 @@
 import Body from "../../apps/Home/Body";
-import Header from "../../components/Header/Header";
-import style from './Home.module.scss'
+import Header from "../../components/header/Header";
 function Home() {
   return (
     <div className="h-full bg-white100">
