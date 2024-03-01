@@ -3,6 +3,7 @@ function HomePage() {
   return (
     <div className="h-full bg-white100">
       <Body />
+      {/* Hello */}
     </div>
   );
 }
