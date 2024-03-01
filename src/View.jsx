@@ -6,6 +6,7 @@ import PaymentPage from "./pages/Payment/PaymentPage";
 function Views() {
   return (
     <div>
+      {/* a */}
       <Header />
       <PaymentPage />
       <Footer />
