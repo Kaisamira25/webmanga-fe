@@ -3,7 +3,6 @@ import Title from "../../../../components/Title/Title";
 import style from "./DetailProduct.module.scss";
 import ProductField from "../../../../components/ProductField/ProductField";
 import imgSrc from "../../../../assets/imgs/imgTest.svg";
-import TextInfo from "../../../../components/TextInfo/TextInfo";
 import TotalPayment from "../TotalPayment/TotalPayment";
 
 function DetailProduct() {
