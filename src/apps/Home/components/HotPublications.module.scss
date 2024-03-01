@@ -1,0 +1,14 @@
+@use "../../../common/variables" as *;
+
+.title {
+  padding-top: 5em;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+}
+.wrapper {
+  position: relative;
+  .cards {
+    position: absolute;
+  }
+}

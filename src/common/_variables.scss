@@ -16,6 +16,7 @@ $drop-shadow: drop-shadow(1px 1px 1px #9b9c9b);
 //Hover-mixin
 @mixin hoverBtnGreen {
     &:hover {
-        background-color: #2D6E59;
+        background-color: #60A78C;
+        transition-duration: 500ms;
     }
 }
