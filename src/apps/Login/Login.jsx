@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonInput from "../../components/ButtonInput";
+import ButtonInput from "../../components/BtnInput";
 import LoginForm from "./Components/LoginForm";
 import ForgotYourPassword from "./Components/ForgotYourButton";
 import RegisterPrompt from "./Components/RegisterPrompt";
