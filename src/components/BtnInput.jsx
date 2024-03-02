@@ -2,7 +2,7 @@ import React from "react";
 
 function ButtonInput({ type, onClick, placeholder }) {
   return (
-    <div className="flex justify-between">
+    <div >
       <button
         type={type}
         onClick={onClick}
