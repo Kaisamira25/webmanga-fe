@@ -1,0 +1,86 @@
+@use '../../../../common/variables' as *;
+
+.addressForm {
+    flex: 1;
+    width: $width-95 ;
+    margin: $margin-20px;
+    padding: $padding-20px;
+    border-radius: $bd-radius-8px;
+    box-shadow: $box-shadow-4px;
+
+    h2 {
+        font-size: $font-size-24px;
+        font-weight: bold;
+        margin-bottom: $margin-bottom-20px;
+    }
+
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+
+        .className,
+        .lowerAddressFields {
+            width: 60%;
+            flex: 1;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+
+        }
+
+        .upperAddressFields {
+            label {
+                    flex: 1;
+            
+            
+                    input {
+                        display: flex;
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 5px;
+                        border: 1px solid lightgrey;
+                    }
+                }
+        }
+
+
+        // .upperAddressFields,
+        // .lowerAddressFields {
+        //     display: flex;
+        //     justify-content: space-between;
+        //     gap: 15px;
+
+        //     label {
+        //         flex: 1; 
+        //         font-size: $font-size-16px;
+        //         margin-bottom: $margin-bottom-10px;
+
+        //         input, select {
+        //             width: 100%;
+        //             padding: 10px;
+        //             border-radius: 5px;
+        //             border: 1px solid lightgrey;
+        //             margin-bottom: 20px;
+        //         }
+        //     }
+        // }
+
+        button {
+            width: $width-20;
+            padding: $padding-10px;
+            background-color: $bg-color-green-400;
+            border-radius: $bd-radius-8px;
+            box-shadow: $box-shadow-4px;
+            cursor: pointer;
+            font-weight: bold;
+            align-self: flex-end;
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: $width-full;
+        margin: $margin-auto;
+    }
+}

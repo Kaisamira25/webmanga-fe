@@ -10,7 +10,14 @@ $bg-color-main: radial-gradient(#ffffff, #040404);
 $bg-color: #8fc6af;
 $bg-btn-color: #3f8a70;
 
+// Color
+$color-white: white;
+
 //Margin ($margin-top/left/right/bottom-value) nhớ xếp thứ tự thấp -> cao
+$margin-auto: 0px auto;
+$margin-10px: 10px;
+$margin-20px: 20px;
+$margin-30px: 30px;
 $margin-auto: 0px auto;
 $margin-10px: 10px;
 $margin-20px: 20px;
@@ -27,6 +34,7 @@ $margin-top-10px: 10px;
 $margin-top-20px: 20px;
 $margin-top-40px: 40px;
 $margin-top-50px: 50px;
+$margin-bottom-5px: 5px;
 $margin-bottom-10px: 10px;
 $margin-bottom-15px: 15px;
 $margin-bottom-20px: 20px;
@@ -85,7 +93,7 @@ $box-shadow-6px: 0 0 6px rgba(0, 0, 0, 0.5);
 
 //gap
 $gap-value-20px: 20px;
-$gap-15px: 15px;
+$gap-value-15px: 15px;
 
 //font-size
 $font-size-16px: 16px;
@@ -122,6 +130,7 @@ $items-center: center;
 
 //flex
 @mixin apply-flex($flex-style) {
+
   //justify-content-center
   @if $flex-style ==center-center {
     display: flex;
@@ -181,6 +190,7 @@ $items-center: center;
 }
 
 @mixin flex-column($flex-style) {
+
   //justify-content-center
   @if $flex-style ==column {
     display: flex;
