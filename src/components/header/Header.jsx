@@ -22,7 +22,6 @@ function Header() {
             <BtnHeader key={index} btnIcon={i.icon}/>
           </Link>
         ))}
-        
       </div>
     </header>
   );
