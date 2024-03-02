@@ -1,14 +1,13 @@
 // Menu.jsx
 import React from 'react';
-import Menu from './components/Menu/Menu';
 import Profile from './components/Profile/Profile';
-import styles from './urPage.module.scss';
+import styles from './User.module.scss';
 import Info from './components/Info/Info';
-import PasswordForm from './components/PasswordForm/PasswordForm';
-import AddressForm from './components/AddressForm/AddressForm';
+import ChangePassword from './components/ChangePassword/ChangePassword';
+import ChangeAddress from './components/ChangeAddress/ChangeAddress';
 import History from './components/History/History';
 
-function UserPage() {
+function User() {
   return (
 
         <div className={styles.wrapper}>
@@ -22,20 +21,20 @@ function UserPage() {
               </div>
             </div>
 
-            <hr className={styles.line} />  
+            {/* <hr className={styles.line} />   */}
             
-            <div className={styles.lowerContainer}>
+            <div className={styles.middleContainer}>
                 <History />
             </div>
 
-            <hr className={styles.line} />  
+            {/* <hr className={styles.line} />   */}
             
-            <div className={styles.middleContainer}>
+            <div className={styles.lowerContainer}>
               <div className={styles.left}>
-                <PasswordForm />
+                <ChangePassword />
               </div>
               <div className={styles.right}>
-                <AddressForm />
+                <ChangeAddress />
               </div>
             </div>
 
@@ -46,4 +45,4 @@ function UserPage() {
   );
 };
 
-export default UserPage;
+export default User;
