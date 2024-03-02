@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./SelectField.module.scss";
 
-function SelectField({ label, options, placeholder, value, onChange }) {
+function SelectField({ label, options, placeholder, value, onChange, className }) {
+  const selectClassName = `${style.input} ${className}`;
+  
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     onChange(selectedValue);
@@ -10,7 +12,7 @@ function SelectField({ label, options, placeholder, value, onChange }) {
     <div className={style.wrapper}>
       <label>{label}</label>
       <select
-        className={style.input}
+        className={selectClassName}
         value={value}
         onChange={handleSelectChange}
       >
