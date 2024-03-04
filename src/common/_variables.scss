@@ -92,8 +92,9 @@ $box-shadow-4px: 0 0 4px rgba(0, 0, 0, 0.5);
 $box-shadow-6px: 0 0 6px rgba(0, 0, 0, 0.5);
 
 //gap
-$gap-value-20px: 20px;
 $gap-value-15px: 15px;
+$gap-value-20px: 20px;
+$gap-value-40px: 40px;
 
 //font-size
 $font-size-16px: 16px;
@@ -130,7 +131,6 @@ $items-center: center;
 
 //flex
 @mixin apply-flex($flex-style) {
-
   //justify-content-center
   @if $flex-style ==center-center {
     display: flex;
@@ -190,7 +190,6 @@ $items-center: center;
 }
 
 @mixin flex-column($flex-style) {
-
   //justify-content-center
   @if $flex-style ==column {
     display: flex;

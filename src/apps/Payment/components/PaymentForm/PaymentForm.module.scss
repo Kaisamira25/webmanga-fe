@@ -20,12 +20,15 @@
       justify-content: center;
       .left {
         @include flex-column(column);
-        gap: $gap-value-20px;
+        gap: $gap-value-40px;
         width: $width-60;
         padding: $padding-30px;
+        .error {
+          background-color: red;
+        }
         .mapField {
           @include flex-column(column);
-          gap: $gap-value-20px;
+          gap: $gap-value-40px;
         }
         @media (max-width: 768px) {
           margin: $margin-auto;
@@ -33,12 +36,15 @@
       }
       .full {
         @include flex-column(column);
-        gap: $gap-value-20px;
+        gap: $gap-value-40px;
         width: $width-60;
         padding: $padding-30px;
+        .error {
+          background-color: red;
+        }
         .mapField {
           @include flex-column(column);
-          gap: $gap-value-20px;
+          gap: $gap-value-40px;
         }
         @media (max-width: 768px) {
           width: $width-full;
@@ -47,12 +53,12 @@
       }
       .right {
         @include flex-column(column);
-        gap: $gap-value-20px;
+        gap: $gap-value-40px;
         width: $width-40;
         padding: $padding-30px;
         .mapField {
           @include flex-column(column);
-          gap: $gap-value-20px;
+          gap: $gap-value-40px;
         }
       }
     }
