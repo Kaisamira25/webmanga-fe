@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductList from './ProductList';
+import PriceTotal from './PriceTotal';
 
 function ProductRe() {
     return (
@@ -7,19 +8,21 @@ function ProductRe() {
             <div className="border border-black rounded-md p-4">
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="title">
-                        <div className="flex justify-between">
-                            <p className="text-xl font-semibold">Product</p>
-                            <p className="text-xl font-semibold">Total</p>
+                        <div className="flex justify-between border-b-2 border-black">
+                            <p className="text-xl font-semibold pl-5">Product</p>
+                            <p className="text-xl font-semibold pr-5">Total</p>
                         </div>
-                        <div className="border-b border-black my-4"></div>
+
                         <div className="product">
                             <div>
                                 <ProductList />
+
                             </div>
                         </div>
                     </div>
-                    <div className="right-column">
-                        <h2 className="text-xl text-center font-semibold">Cart Total</h2>
+                    <div className="right-column ">
+                        <h2 className="text-xl text-center font-semibold border-b-2 border-black ">Cart Total</h2>
+                        <PriceTotal />
                     </div>
                 </form>
             </div>

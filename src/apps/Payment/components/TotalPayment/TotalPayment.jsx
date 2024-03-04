@@ -1,12 +1,12 @@
 import React from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
-import ButtonInput from "../../../../components/ButtonInput";
+import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
 
 export default function TotalPayment({ textInfo }) {
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.text}>
         {textInfo.map((text, index) => (
           <TextInfo index={index} title={text.title} text={text.text} />
         ))}

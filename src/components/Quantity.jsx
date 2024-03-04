@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function Quantity({ initialQuantity, onChange, type, id, name }) {
-    const [quantity, setQuantity] = useState(initialQuantity || 1); // Sử dụng giá trị mặc định là 1 nếu không có initialQuantity
+    const [quantity, setQuantity] = useState(initialQuantity || 1); 
 
     const increaseQuantity = () => {
         const newQuantity = quantity + 1;

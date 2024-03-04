@@ -32,7 +32,7 @@ function Product({
                             <p className="">{category}</p>
                         </div>
                         <div>
-                            <Quantity />
+                            <Quantity/>
                         </div>
                     </div>
                 </div>
