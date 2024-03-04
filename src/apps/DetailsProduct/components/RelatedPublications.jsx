@@ -4,36 +4,36 @@ function RelatedPublications() {
   const list = [
     {
       id: 1,
-      img: "https://m.media-amazon.com/images/I/51rmQvq8EtL._SY445_SX342_.jpg",
-      name: "Mushoku Tensei",
+      img: "https://imgs.search.brave.com/uOqzd81tPwEWaTpLsCkRPKJ0Mr61BQXzkLURY4h7TC8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFkWjd6dWQ2WEwu/anBn",
+      name: "Am I Actually The Strongest Vol.3",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 2,
-      img: "https://m.media-amazon.com/images/I/81ofOmVuBNL._SY466_.jpg",
-      name: "Blade & Bastard",
+      img: "https://imgs.search.brave.com/WL_hGJFu9uDRJqBraQwT3aBq7ChwFCh6txUml3HlerM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFYMkxrNHVsUUwu/anBn",
+      name: "That Time I Got Reincarnated as a Slime Vol.11",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 3,
-      img: "https://m.media-amazon.com/images/I/81nFEx6upFL._AC_UF1000,1000_QL80_.jpg",
-      name: "Reincarnated as a  SWORD",
+      img: "https://imgs.search.brave.com/YYNBo_UaIK5K6JeOoWFnC4-d403heywC6khJYIP1TZc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9leHRl/cm5hbC1wcmV2aWV3/LnJlZGQuaXQvYXJ0/LW11c2hva3UtdGVu/c2VpLWpvYmxlc3Mt/cmVpbmNhcm5hdGlv/bi12b2x1bWUtMjYt/ZW5nbGlzaC12MC1S/cEoyUk80dk1wZGhJ/NXB5MTZYYkN6MjhT/aTl4ZlRFVE1RX3M0/ZHg0dURvLmpwZz93/aWR0aD02NDAmY3Jv/cD1zbWFydCZhdXRv/PXdlYnAmcz1kN2Y0/MzI4MWJmOGVhOWQz/ZmIzMjU5Y2RlM2U2/MzFmMTJmZDhmN2Vi",
+      name: "Mushoku Tensei Vol.26",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 4,
-      img: "https://m.media-amazon.com/images/I/51dJgNJJOsL.jpg",
-      name: "86 - EIGHTY SIX",
+      img: "https://imgs.search.brave.com/GxxhAsQVvf8u3w1b1PAU-loOiPMj-fqiO-BiNItx7jU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzE3MmtJYWg0OEwu/anBn",
+      name: "The Eminence In Shadow Vol.4",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 5,
-      img: "https://m.media-amazon.com/images/I/81gvhVhd9wL._AC_UF1000,1000_QL80_.jpg",
-      name: "Date a live",
+      img: "https://imgs.search.brave.com/3mEeQ2HvYs_jE6exYklJYPOMh2gpAYSxmP8hRnl4cOE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFXYmd5ZWMxbkwu/anBn",
+      name: "The Eminence In Shadow Vol.7",
       price: "100.000",
       discountPrice: "50.000",
     },
@@ -55,6 +55,17 @@ function RelatedPublications() {
         ))}
       </div>
     </div>
+    // <div className={style.container}>
+    //   {list.map((item, index) => (
+    //     <Card
+    //       key={index}
+    //       imgUrl={item.img}
+    //       name={item.name}
+    //       beforeDiscount={"100,000VND"}
+    //       afterDiscount={"99,000VND"}
+    //     />
+    //   ))}
+    // </div>
   );
 }
 

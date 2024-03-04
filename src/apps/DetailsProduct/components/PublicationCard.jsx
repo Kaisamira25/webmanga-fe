@@ -19,7 +19,7 @@ function PublicationCard({
   const [quantity, setQuantity] = useState(0);
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {
-      quantity = 0;
+      setQuantity(0);
     } else {
       setQuantity(quantity - 1);
     }
