@@ -40,7 +40,7 @@ function RelatedPublications() {
   ];
   return (
     <div className="w-full">
-      <p className="text-center font-bold text-2xl mb-6">Tác phẩm liên quangi</p>
+      <p className="text-center font-bold text-2xl mb-6">Tác phẩm liên quan</p>
       <div className="grid grid-cols-2 gap-4 px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {list.map((item, index) => (
           <div className="w-full h-80">
