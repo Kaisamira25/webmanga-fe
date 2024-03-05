@@ -1,42 +1,46 @@
 import React from 'react';
 import styles from '../ChangeAddress/ChangeAddress.module.scss'
 import SelectField from '../../../../components/SelectField/SelectField'
+import InputField from '../../../../components/InputField/InputField';
 
 
 function ChangeAddress() {
-  const wards = [" Lộc Thọ", "Phường Ngọc Hiệp", "Phường 10", "Phường 15", "Phường Trúc Bạch", "Phường Cống Vị"];
-  const districts = ["Quận 1", "Quận Bình Thạnh", "Quận Gò Vấp,"];
-  const cities = ["Hồ Chí Minh", "Nha Trang", "Hà Nội", "Đà Nẵng"];
-
+  const wards = ["Chọn", " Lộc Thọ", "Phường Ngọc Hiệp", "Phường 10", "Phường 15", "Phường Trúc Bạch", "Phường Cống Vị"];
+  const districts = ["Chọn","Quận 1", "Quận Bình Thạnh", "Quận Gò Vấp,"];
+  const cities = ["Chọn","Hồ Chí Minh", "Nha Trang", "Hà Nội", "Đà Nẵng"];
+  const field = { label: 'Địa chỉ *', type: 'address', placeholder: 'Nhập địa chỉ của bạn' }
+    
   
   return (
     <div className={styles.addressForm}>
       <h2>Cập nhật địa chỉ</h2>
       <form>
-        <div className={styles.upperAddressFields}>
-          <label>
-            Địa chỉ*
-            <input type="address" placeholder="Nhập vào địa chỉ của bạn" />
-          </label>
-        </div>
-        <div className={styles.lowerAddressFields}> 
+        <div className={styles.upper}>
           <SelectField
-            label="Thành Phố*"
+            label="Thành Phố *"
             options={cities}
             placeholder="Chọn"
-            className={styles.className}
+            className={styles.className} 
           />          
           <SelectField
-              label="Phường*"
-              options={wards}
-              placeholder="Chọn"
-              className={styles.className}
+            label="Phường *"
+            options={wards}
+            placeholder="Chọn"
+            className={styles.className}
           />
+        </div>
+        <div className={styles.lower}>
           <SelectField
-            label="Quận*"
+            label="Quận *"
             options={districts}
             placeholder="Chọn"
             className={styles.className}
+          />
+          <InputField
+            label={field.label} 
+            type={field.type} 
+            placeholder={field.placeholder} 
+            className={styles.className} 
           />
         </div>
         <button type="submit">Lưu</button>
