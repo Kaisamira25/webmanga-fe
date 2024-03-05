@@ -1,5 +1,4 @@
 import React from "react";
-import Quantity from "./Quantity";
 
 function Product({
     Imgbook,
@@ -7,7 +6,19 @@ function Product({
     bookPrice,
     author,
     category,
+    quantity,
+    setQuantity,
 }) {
+    const handleDecreaseQuantity = () => {
+        if (quantity > 0) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const handleIncreaseQuantity = () => {
+        setQuantity(quantity + 1);
+    };
+
     return (
         <div className="border border-gray-200 p-4 rounded-md shadow-md flex">
             <div className="mr-4">
@@ -28,8 +39,10 @@ function Product({
                 <div>
                     <p className="">{category}</p>
                 </div>
-                <div>
-                    <Quantity />
+                <div className="flex items-center">
+                    <button className="px-3 py-2 bg-green-500  text-gray-700 rounded-md" onClick={handleDecreaseQuantity}>-</button>
+                    <p className="border border-gray-100 px-2 py-1 rounded-md mx-2">{quantity}</p>
+                    <button className="px-3 py-2 bg-green-500  text-gray-700 rounded-md" onClick={handleIncreaseQuantity}>+</button>
                 </div>
             </div>
         </div>
