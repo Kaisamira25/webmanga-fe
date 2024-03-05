@@ -2,13 +2,13 @@
 
 .header {
   position: relative;
-  background-color: $bg-color;
+  background-color: $bg-btn-color;
   height: 6rem;
   justify-content: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: solid white 2px;
+  border-bottom: solid $bg-color-green-400 2px;
   p {
     font-weight: bold;
     font-size: larger;
