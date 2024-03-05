@@ -30,52 +30,39 @@ function PublicationCard({
   return (
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
-        <img src={img} alt="" />
-        <p className={style.status}>{publicationsStatus}</p>
+        <div>
+          <img src={img} alt="" />
+          <p className={style.status}>{publicationsStatus}</p>
+        </div>
       </div>
       <div className={style.publicationInfo}>
-        <p className={style.status}>{publicationsStatus}</p>
+        {/* <p className={style.status}>{publicationsStatus}</p> */}
         <p className={style.name}>{name}</p>
-        <div className={style.infoPublicationsMedium}>
-          <div>
-            <div>
-              <Info label={"Tác giả:"} content={" Hiếu Đỗ"} />
-            </div>
-            <div>
-              <Info label={"Nhà xuất bản:"} content={" Hiếu Đỗ"} />
-            </div>
-          </div>
-          <div>
-            <div>
-              <Info label={"Loại:"} content={" Bìa cứng"} />
-            </div>
-            <div>
-              <Info label={"Năm xuất bản:"} content={" 2024"} />
-            </div>
-          </div>
-        </div>
-        <div className={style.price}>
-          <span>{priceBeforeDiscount}</span>
-          <span>{priceAfterDiscount}</span>
-        </div>
         <div className={style.infoPublications}>
-          <div>
-            <div>
-              <Info label={"Tác giả:"} content={" Hiếu Đỗ"} />
-            </div>
-            <div>
-              <Info label={"Nhà xuất bản:"} content={" Hiếu Đỗ"} />
-            </div>
+          <div className={style.price}>
+            <span>{priceBeforeDiscount}</span>
+            <span>{priceAfterDiscount}</span>
           </div>
-          <div>
+          <div className={style.info}>
             <div>
-              <Info label={"Loại:"} content={" Bìa cứng"} />
+              <div>
+                <Info label={"Tác giả:"} content={" Hiếu Đỗ"} />
+              </div>
+              <div>
+                <Info label={"Nhà xuất bản:"} content={" Hiếu Đỗ"} />
+              </div>
             </div>
             <div>
-              <Info label={"Năm xuất bản:"} content={" 2024"} />
+              <div>
+                <Info label={"Loại:"} content={" Bìa cứng"} />
+              </div>
+              <div>
+                <Info label={"Năm xuất bản:"} content={" 2024"} />
+              </div>
             </div>
           </div>
         </div>
+
         <div className={style.decription}>
           <label htmlFor="">Nội dung</label>
           <p>
