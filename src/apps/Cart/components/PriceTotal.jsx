@@ -1,6 +1,6 @@
 import React from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwin";
-
+import style from "./PriceTotal.module.scss"
 import TotalPayment from "../../Payment/components/TotalPayment/TotalPayment";
 function PriceTotal() {
     const productField = [
@@ -41,8 +41,8 @@ function PriceTotal() {
                     />
                 ))}
             </div>
-            <div className="Total" >
-                <TotalPayment textInfo={textInfo} />
+            <div >
+                <TotalPayment  className={style.Total} textInfo={textInfo} />
             </div>
         </div>
     );
