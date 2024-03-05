@@ -1,6 +1,6 @@
 @use "../../../common/variables" as *;
-.Total{
-    display: flex;
- justify-content:  unset;
- 
+
+.total {
+  display: flex;
+  justify-content: space-between !important;
 }
