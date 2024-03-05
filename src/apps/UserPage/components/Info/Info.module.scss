@@ -2,9 +2,10 @@
 
 
 .column {
-    width: $width-95;
+    width: $width-full;
+    height:  25em;
     flex: 1;
-    margin: $margin-20px;
+    margin: 20px 20px 20px 0px;
     padding: $padding-20px;
     border-radius: $bd-radius-8px;
         box-shadow: $box-shadow-4px;
@@ -22,8 +23,21 @@
         font-size: 32px;
     }
 
+    .line {
+        margin-top: $margin-top-10px;
+        margin-bottom: $margin-bottom-20px;
+        width: $width-full;
+        border: $border-1px-black;
+    }
+
     p {
+        margin-top: $margin-top-10px;
         color: #666;
         font-size: 16px;
+
+        span {
+            font-weight: bold;
+            color: black;
+        }
     }
 }

@@ -9,40 +9,27 @@ import History from './components/History/History';
 
 function User() {
   return (
-
-        <div className={styles.wrapper}>
-          <div className={styles.container}>
-            <div className={styles.upperContainer}>
-              <div className={styles.left}>
-                <Profile />
-              </div>
-              <div className={styles.right}>
-                <Info />
-              </div>
-            </div>
-
-            {/* <hr className={styles.line} />   */}
-            
-            <div className={styles.middleContainer}>
-                <History />
-            </div>
-
-            {/* <hr className={styles.line} />   */}
-            
-            <div className={styles.lowerContainer}>
-              <div className={styles.left}>
-                <ChangePassword />
-              </div>
-              <div className={styles.right}>
-                <ChangeAddress />
-              </div>
-            </div>
-
-            
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.upperContainer}>
+          <div className={styles.left}>
+            <Info />
+          </div>
+          <div className={styles.center}>
+            <ChangePassword />
+          </div>
+          <div className={styles.right}>
+            <ChangeAddress />
           </div>
         </div>
-
+        {/* <hr className={styles.line}/> */}
+        <div className={styles.lowerContainer}>
+          <History />
+        </div>
+      </div>
+    </div>
   );
 };
+
 
 export default User;
