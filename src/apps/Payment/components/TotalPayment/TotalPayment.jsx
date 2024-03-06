@@ -6,6 +6,11 @@ import FinishPayment from "../../../../components/Models/FinishPayment/FinishPay
 import { useState } from "react";
 
 export default function TotalPayment({ textInfo, className }) {
+  const [showFinishModal, setShowFinishModal] = useState(false);
+
+  const handleOpenFinishModal = () => {
+    setShowFinishModal(true);
+  };
   return (
     <div className={style.container}>
       <div className={style.text}>
