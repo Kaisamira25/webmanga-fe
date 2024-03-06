@@ -1,31 +1,62 @@
-import React from 'react';
-import Product from '../../../components/Product';
+import React, { useState } from "react";
+import Product from "../../../components/ProductCart/Product";
 import img from "../../../assets/imgs/ShadowGarden.jpg";
-import Quantity from '../../../components/Quantity';
+import img86 from "../../../assets/imgs/86.jpg";
 
 function ProductList() {
-    const products = [
-        { id: "1" },
-    ];
+  const [products, setProducts] = useState([
+    {
+      id: "1",
+      bookName: "The Eminence In Shadow",
+      img: img,
+      bookPrice: 100000,
+      author: "Aizawa Daisuke",
+      category: "Fantasy",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      bookName: "86 eighty six",
+      img: img86,
+      bookPrice: 80000,
+      author: "Asato Asato",
+      category: "Fantasy",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      bookName: "86 eighty six",
+      img: img86,
+      bookPrice: 80000,
+      author: "Asato Asato",
+      category: "Fantasy",
+      quantity: 1,
+    },
+  ]);
 
-    return (
-        <form className=''>
-            <div className="product-list">
-                {products.map((product, index) => (
-                    <div key={index}>
-                        <Product
-                            key={index}
-                            bookName={"The Eminence In Shadow"}
-                            Imgbook={img}
-                            bookPrice={"100.000 VND"}
-                            author={"Aizawa Daisuke"}
-                            category={"Fantasy"}
-                        />
-                    </div>
-                ))}
-            </div>
-        </form>
-    );
+  const calculateTotal = (price, quantity) => {
+    return price * quantity;
+  };
+
+  return (
+    <div className="product-list">
+      {products.map((product, index) => (
+        <div key={index}>
+          <Product
+            index={index}
+            bookName={product.bookName}
+            imgBook={product.img}
+            bookPrice={product.bookPrice}
+            author={product.author}
+            category={product.category}
+            total={calculateTotal(product.bookPrice, product.quantity)}
+            initialQuantity={product.quantity}
+            setProducts={setProducts}
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default ProductList;

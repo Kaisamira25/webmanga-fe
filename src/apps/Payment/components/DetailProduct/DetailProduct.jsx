@@ -48,9 +48,8 @@ function DetailProduct() {
           />
         ))}
       </div>
-      <div className={style.totalWrapper}>
-        
-        <TotalPayment textInfo={textInfo} />
+      <div>
+        <TotalPayment  className={style.TotalPayment} textInfo={textInfo} />
       </div>
     </div>
   );

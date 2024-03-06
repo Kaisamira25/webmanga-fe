@@ -5,17 +5,17 @@ import style from "./TotalPayment.module.scss";
 import FinishPayment from "../../../../components/Models/FinishPayment/FinishPayment";
 import { useState } from "react";
 
-export default function TotalPayment({ textInfo }) {
-  const [showFinishModal, setShowFinishModal] = useState(false);
-
-  const handleOpenFinishModal = () => {
-    setShowFinishModal(true);
-  };
+export default function TotalPayment({ textInfo, className }) {
   return (
     <div className={style.container}>
-      <div>
+      <div className={style.text}>
         {textInfo.map((text, index) => (
-          <TextInfo index={index} title={text.title} text={text.text} />
+          <TextInfo
+            className={className}
+            index={index}
+            title={text.title}
+            text={text.text}
+          />
         ))}
       </div>
       <div className={style.btn}>
