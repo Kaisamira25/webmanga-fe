@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductList from "./ProductList";
 import PriceTotal from "./PriceTotal";
+import style from "./ProductInput.module.scss";
 
 function ProductRe() {
   return (
@@ -14,10 +15,8 @@ function ProductRe() {
               <p className="text-xl font-semibold pr-5">Total</p>
             </div>
 
-            <div className="product">
-              <div>
-                <ProductList />
-              </div>
+            <div className={style.table}>
+              <ProductList />
             </div>
           </div>
 

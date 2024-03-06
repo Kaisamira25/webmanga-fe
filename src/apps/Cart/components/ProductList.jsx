@@ -1,51 +1,62 @@
 import React, { useState } from "react";
-import Product from "../../../components/Product";
+import Product from "../../../components/ProductCart/Product";
 import img from "../../../assets/imgs/ShadowGarden.jpg";
 import img86 from "../../../assets/imgs/86.jpg";
 
 function ProductList() {
-    const [products, setProducts] = useState([
-        {
-            id: "1",
-            bookName: "The Eminence In Shadow",
-            img: img,
-            bookPrice: "100.000 VND ",
-            author: "Aizawa Daisuke",
-            category: "Fantasy",
-            quantity: 0,
-        },
-        {
-            id: "2",
-            bookName: "86 eighty six",
-            img: img86,
-            bookPrice: "80.000 VND ",
-            author: "Asato Asato",
-            category: "Fantasy",
-            quantity: 0,
-        },
-    ]);
+  const [products, setProducts] = useState([
+    {
+      id: "1",
+      bookName: "The Eminence In Shadow",
+      img: img,
+      bookPrice: 100000,
+      author: "Aizawa Daisuke",
+      category: "Fantasy",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      bookName: "86 eighty six",
+      img: img86,
+      bookPrice: 80000,
+      author: "Asato Asato",
+      category: "Fantasy",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      bookName: "86 eighty six",
+      img: img86,
+      bookPrice: 80000,
+      author: "Asato Asato",
+      category: "Fantasy",
+      quantity: 1,
+    },
+  ]);
 
-    return (
-        <div className="product-list">
-            {products.map((product, index) => (
-                <div key={index}>
-                    <Product
-                        bookName={product.bookName}
-                        Imgbook={product.img}
-                        bookPrice={product.bookPrice}
-                        author={product.author}
-                        category={product.category}
-                        quantity={product.quantity}
-                        setQuantity={(newQuantity) => {
-                            const updatedProducts = [...products];
-                            updatedProducts[index].quantity = newQuantity;
-                            setProducts(updatedProducts);
-                        }}
-                    />
-                </div>
-            ))}
+  const calculateTotal = (price, quantity) => {
+    return price * quantity;
+  };
+
+  return (
+    <div className="product-list">
+      {products.map((product, index) => (
+        <div key={index}>
+          <Product
+            index={index}
+            bookName={product.bookName}
+            imgBook={product.img}
+            bookPrice={product.bookPrice}
+            author={product.author}
+            category={product.category}
+            total={calculateTotal(product.bookPrice, product.quantity)}
+            initialQuantity={product.quantity}
+            setProducts={setProducts}
+          />
         </div>
-    );
+      ))}
+    </div>
+  );
 }
 
 export default ProductList;

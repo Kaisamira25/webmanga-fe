@@ -6,12 +6,12 @@ function PriceTotal() {
   const productField = [
     {
       name: "The Eminence In Shadow",
-      quatily: "x1",
+      quantity: "x1",
       price: "100.000",
     },
     {
       name: "86 eighty six",
-      quatily: "x2",
+      quantity: "x2",
       price: "80.000",
     },
   ];
@@ -32,7 +32,7 @@ function PriceTotal() {
           <ProductField
             key={index}
             name={product.name}
-            quality={product.quatily}
+            quantity={product.quatily}
             price={product.price}
           />
         ))}

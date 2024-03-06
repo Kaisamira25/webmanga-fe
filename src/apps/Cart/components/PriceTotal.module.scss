@@ -3,4 +3,6 @@
 .total {
   display: flex;
   justify-content: space-between !important;
+  flex-direction: column;
+  margin-top: 0.8em;
 }
