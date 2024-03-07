@@ -1,6 +1,6 @@
 import React from "react";
 import RegisterFormRequired from "./Components/RegisterFormRequired";
-import ButtonInput from "../../components/ButtonInput";
+import ButtonInput from "../../components/BtnInput";
 import SignInPrompt from "./Components/SignInPrompt";
 function Register() {
   return (

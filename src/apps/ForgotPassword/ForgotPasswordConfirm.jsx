@@ -1,6 +1,6 @@
 import React from "react";
 
-import ButtonInput from "../../components/ButtonInput";
+import ButtonInput from "../../components/BtnInput";
 import PasswordRequired from "./Components/PasswordRequired";
 
 function ForgotPasswordConfirm() {

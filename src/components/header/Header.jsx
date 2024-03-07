@@ -8,21 +8,20 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const btnHeaderList = [
-    { icon: <IconHome />, path:"/Home" },
+    { icon: <IconHome />, path: "/Home" },
     { icon: <IconBook /> },
-    { icon: <IconCart /> },
-    { icon: <IconUser />, path: "/UserPage" },
+    { icon: <IconCart />, path: "/Cart" },
+    { icon: <IconUser />, path: "/User" },
   ];
   return (
     <header className={style.header}>
       <p>LAINOVO</p>
       <div className={style.btnWrapper}>
-        {btnHeaderList.map((i,index) => (
+        {btnHeaderList.map((i, index) => (
           <Link to={i.path}>
-            <BtnHeader key={index} btnIcon={i.icon}/>
+            <BtnHeader key={index} btnIcon={i.icon} />
           </Link>
         ))}
-        
       </div>
     </header>
   );

@@ -3,7 +3,7 @@
 .container {
   @include flex-column(row);
   justify-content: $justify-around;
-  align-items: $items-center;
+  // align-items: $items-center;
   .title {
     @include apply-font(bold-larger);
   }

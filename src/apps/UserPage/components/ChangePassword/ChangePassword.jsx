@@ -5,7 +5,7 @@ import InputField from '../../../../components/InputField/InputField';
 
 function ChangePassword() {
   const fields = [
-    { label: 'Mật Khẩu Cũ *', type: 'password', placeholder: 'Nhập vào mật khẩu cũ của bạn' },
+    { label: 'Mật Khẩu Cũ *', type: 'password', placeholder: 'Mật khẩu cũ' },
     { label: 'Mật Khẩu Mới *', type: 'password', placeholder: 'Mật khẩu mới' },
     { label: 'Nhập Lại Mật Khẩu *', type: 'password', placeholder: 'Nhập lại mật khẩu' },
   ];

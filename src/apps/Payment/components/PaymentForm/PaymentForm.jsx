@@ -1,28 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../../../components/Title/Title";
 import SelectField from "../../../../components/SelectField/SelectField";
-import MapField from "../MapField/MapField";
 import style from "./PaymentForm.module.scss";
+import InputValidate from "../InputValidate/InputValidate";
+import BankValidate from "../InputValidate/BankValidate";
 
 export default function PaymentForm() {
   const [selectedOption, setSelectedOption] = useState("");
-
-  const inputField = [
-    { label: "Email", type: "email", placeholder: "Email" },
-    {
-      label: "Địa chỉ",
-      type: "text",
-      placeholder: "Địa chỉ (VD: 123 đường số 3)",
-    },
-    { label: "SĐT", type: "text", placeholder: "Số điện thoại" },
-  ];
-
-  const bankField = [
-    { label: "Số thẻ", type: "text", placeholder: "1231 1313 1321" },
-    { label: "Tên chủ thẻ", type: "text", placeholder: "Nguyễn Văn A" },
-    { label: "Ngày hết hạn", type: "month" },
-    { label: "CVV/CVC", type: "text", placeholder: "CVV/CVC" },
-  ];
 
   const options = [
     "Trả tiền trực tiếp",
@@ -51,7 +35,8 @@ export default function PaymentForm() {
                 : style.full
             } `}
           >
-            <MapField inputField={inputField} className={style.mapField} />
+            <InputValidate className={style.mapField} />
+
             <SelectField
               label={"Phương thức thanh toán"}
               placeholder={"Mời chọn phương thức thanh toán"}
@@ -63,7 +48,7 @@ export default function PaymentForm() {
           {(selectedOption === "Thanh toán thẻ ngân hàng" ||
             selectedOption === "Thanh toán Visa") && (
             <div className={style.right}>
-              <MapField inputField={bankField} className={style.mapField} />
+              <BankValidate className={style.mapField} />
             </div>
           )}
         </div>
