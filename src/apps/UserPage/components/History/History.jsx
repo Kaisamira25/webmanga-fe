@@ -13,15 +13,15 @@ function History() {
 
   return (
     <div className={styles.history}>
-      <h1>Lịch sử mua hàng</h1>
+      <h1>Purchase History</h1>
       <table>
         <thead>
           <tr>
-            <th>Mã sản phẩm</th>
-            <th>Tên</th>
-            <th>Giá</th>
-            <th>Trạng thái</th>
-            <th>Ngày mua</th>
+            <th>Product Code</th>
+            <th>Name Product</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Purchase Date</th>
           </tr>
         </thead>
         <tbody>
