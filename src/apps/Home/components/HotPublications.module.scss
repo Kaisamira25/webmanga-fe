@@ -1,38 +1,38 @@
 @use "../../../common/variables" as *;
+@use '../../../common/responsive' as *;
 
 article {
-  height: 50em;
-  background-color: #60A78C;
-}
-.title {
-  padding-top: 5em;
-  text-align: center;
-  font-weight: bold;
-  font-size: x-large;
-  margin-bottom: 1em;
-}
-.wrapper {
-  position: relative;
-  height: 30em;
-  .cards {
-    position:absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 18em;
-    opacity: 2;
-    z-index: 1;
-    &:nth-child(2){
-      transform: translateX(25%) translateY(7%);
-      height: 15em;
-      opacity: 0.6;
-      z-index: 0;
+  margin-bottom: 5em;
+  > p {
+    text-align: center;
+    margin-bottom: 2em;
+    font-weight: 500;
+    font-size: large;
+  }
+  > div {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    row-gap: 2em;
+    @include break(md) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr)
     }
-    &:nth-child(3){
-      transform: translateX(-125%) translateY(7%);
-      height: 15em;
-      opacity: 0.6;
-      z-index: 0;
+    @include break(lg) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
     }
-
+    @include break(xl) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    @include break(xxl) {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: none;
+    }
+    > div {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
