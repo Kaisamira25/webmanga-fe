@@ -1,13 +1,21 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import routes from "./routers/Router";
 import Header from "./components/header/Header";
 import { Suspense } from "react";
 
 function Views() {
+  const location = useLocation();
+
+  const shouldDisplayHeaderFooter = ![
+    "/Login",
+    "/Register",
+    "/Otp",
+    "/ForgotPassword",
+  ].includes(location.pathname);
   return (
     <div>
-      <Header />
+      {shouldDisplayHeaderFooter && <Header />}
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           {routes.map(({ path, element }) => (
@@ -15,7 +23,7 @@ function Views() {
           ))}
         </Routes>
       </Suspense>
-      <Footer />
+      {shouldDisplayHeaderFooter && <Footer />}
     </div>
   );
 }

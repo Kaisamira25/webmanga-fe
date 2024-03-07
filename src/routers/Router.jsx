@@ -18,11 +18,11 @@ const routes = [
   { path: "/Detail", element: <DetailsProductPage /> },
   { path: "/Cart", element: <CartPage /> },
   { path: "/Cart/Payment", element: <PaymentPage /> },
-  { path: "/UserPage", element: <UserPage /> },
-  { path: "/LoginPage", element: <LoginPage /> },
-  { path: "/RegisterPage", element: <RegisterPage /> },
-  { path: "/OtpPage", element: <OtpPage /> },
-  { path: "/ForgotPasswordPage", element: <ForgotPasswordPage /> },
+  { path: "/User", element: <UserPage /> },
+  { path: "/Login", element: <LoginPage /> },
+  { path: "/Register", element: <RegisterPage /> },
+  { path: "/Otp", element: <OtpPage /> },
+  { path: "/ForgotPassword", element: <ForgotPasswordPage /> },
   { path: "*", element: <ErrorPage /> },
 ];
 export default routes;

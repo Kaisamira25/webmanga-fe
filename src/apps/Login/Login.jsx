@@ -9,7 +9,7 @@ function Login() {
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg  md:w-96 w-96">
         <div>
-          <form>
+          <form className="gap-16">
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
                 Đăng Nhập
@@ -18,7 +18,7 @@ function Login() {
             <div>
               <LoginForm />
             </div>
-            <div >
+            <div>
               <ForgotYourPassword />
             </div>
             <div className="mt-2">

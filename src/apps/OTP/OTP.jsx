@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import OTPRequired from "./components/EmailOTP";
-import ButtonInput from "../../components/ButtonInput";
+import ButtonInput from "../../components/BtnInput";
 
 function OTP() {
   const [otpValue, setOTPValue] = useState("");
@@ -15,12 +15,12 @@ function OTP() {
           <form className="flex flex-col w-auto h-auto items-center">
             <div>
               <h2 className="text-4xl font-Confortaa mb-4 text-center">
-                Xác minh
+                Xác minh OTP
               </h2>
             </div>
             <div>
               <h1 className="text-base mb-1">
-                Hãy nhập mã chúng tôi vừa gửi cho bạn{" "}
+                Hãy nhập mã chúng tôi vừa gửi cho bạn
               </h1>
             </div>
             <div>

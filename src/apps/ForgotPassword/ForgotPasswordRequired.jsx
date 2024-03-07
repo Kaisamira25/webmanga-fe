@@ -1,6 +1,6 @@
 import React from "react";
 import EmailRequired from "./components/EmailRequired";
-import ButtonInput from "../../components/ButtonInput";
+import ButtonInput from "../../components/BtnInput";
 
 function ForgotPasswordRequired() {
   return (
