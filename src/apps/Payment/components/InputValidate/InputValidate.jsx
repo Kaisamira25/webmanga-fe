@@ -33,14 +33,14 @@ function InputValidate({ className }) {
         setEmailError(
           value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
             ? ""
-            : "Email không đúng"
+            : "Invalid email format"
         );
         break;
       case "address":
-        setAddressError(value.trim() ? "" : "Thiếu địa chỉ");
+        setAddressError(value.trim() ? "" : "Address is required");
         break;
       case "phone":
-        setPhoneError(value.match(/^[0-9]{10}$/) ? "" : "SĐT không đúng");
+        setPhoneError(value.match(/^[0-9]{10}$/) ? "" : "Invalid phone number");
         break;
       default:
         break;
@@ -61,9 +61,9 @@ function InputValidate({ className }) {
       </div>
       <div>
         <InputField
-          label={"Địa chỉ"}
+          label={"Address"}
           type={"text"}
-          placeholder={"Địa chỉ (VD: 123 đường số 3)"}
+          placeholder={"Address (e.g., 123 Street)"}
           value={address}
           onChange={(e) => handleChange("address", e.target.value)}
         />
@@ -71,9 +71,9 @@ function InputValidate({ className }) {
       </div>
       <div>
         <InputField
-          label={"SĐT"}
+          label={"Phone"}
           type={"text"}
-          placeholder={"Số điện thoại"}
+          placeholder={"Phone number"}
           value={phone}
           onChange={(e) => handleChange("phone", e.target.value)}
         />

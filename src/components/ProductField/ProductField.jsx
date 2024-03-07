@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./ProductField.module.scss";
+import formatCurrency from "../../common/FormatCurrency";
 
 export default function ProductField({ src, alt, name, price }) {
   return (
@@ -9,7 +10,7 @@ export default function ProductField({ src, alt, name, price }) {
       </div>
       <div className={style.textField}>
         <div className={style.productName}>{name}</div>
-        <div className={style.productPrice}>{price} VNĐ</div>
+        <div className={style.productPrice}>{formatCurrency(price)}</div>
       </div>
     </div>
   );

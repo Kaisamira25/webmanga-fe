@@ -24,10 +24,7 @@ export default function TotalPayment({ textInfo, className }) {
         ))}
       </div>
       <div className={style.btn}>
-        <ButtonInput
-          placeholder={"Thanh toán"}
-          onClick={handleOpenFinishModal}
-        />
+        <ButtonInput placeholder={"Pay"} onClick={handleOpenFinishModal} />
       </div>
       {showFinishModal && (
         <FinishPayment onClose={() => setShowFinishModal(false)} />
