@@ -10,26 +10,26 @@ function DetailProduct() {
     {
       src: imgSrc,
       alt: "test",
-      name: "Khẻ hát lời yêu",
-      price: "300.000",
+      name: "Whispering you a love song",
+      price: "30000",
     },
     {
       src: imgSrc,
       alt: "test",
-      name: "Khẻ hát lời yêu",
-      price: "300.000",
+      name: "Whispering you a love song",
+      price: "30000",
     },
     {
       src: imgSrc,
       alt: "test",
-      name: "Khẻ hát lời yêu",
-      price: "300.000",
+      name: "Whispering you a love song",
+      price: "30000",
     },
   ];
 
   const textInfo = [
-    { title: "Mã hóa đơn", text: "123456789" },
-    { title: "Tổng hóa đơn", text: "900.000 VNĐ" },
+    { title: "Invoice ID", text: "123456789" },
+    { title: "Total payment", text: "90.000 VNĐ" },
   ];
 
   return (
@@ -48,8 +48,8 @@ function DetailProduct() {
           />
         ))}
       </div>
-      <div className={style.totalWrapper}>
-        <TotalPayment textInfo={textInfo} />
+      <div>
+        <TotalPayment className={style.TotalPayment} textInfo={textInfo} />
       </div>
     </div>
   );

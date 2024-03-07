@@ -1,0 +1,9 @@
+@use "../../../common/variables" as *;
+
+.table {
+  overflow-y: auto;
+  max-height: 45em;
+  &::-webkit-scrollbar {
+    width: 0em;
+  }
+}
