@@ -5,10 +5,10 @@ import styles from '../Info/Info.module.scss';
 function Info() {
 
   const userInfo = [
-    { field: "Full Name", value: "Đỗ Thành Phú" },
+    { field: "Full Name", value: "Do Thanh Phu" },
     { field: "Email", value: "dothanhphu01012002@gmail.com" },
     { field: "Phone Number", value: "0945055792" },
-    { field: "Address", value: "86/52 Tân Chánh Hiệp, phường Tân Chánh Hiệp, quận 12, Thành phố Hồ Chí Minh" }
+    { field: "Address", value: "86/52 Tan Chanh Hiep, Tan Chanh Hiep Ward, District 12, Ho Chi Minh City" }
   ];
 
   return (

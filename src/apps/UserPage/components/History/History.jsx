@@ -3,12 +3,12 @@ import styles from '../History/History.module.scss';
 
 function History() {
   const purchaseHistory = [
-    { ID: "SP01", productName: "Sản phẩm 1", price: "200,000đ", status: "Đã giao", date: "01/01/2024" },
-    { ID: "SP02", productName: "Sản phẩm 2", price: "300,000đ", status: "Đang giao", date: "02/02/2024" },
-    { ID: "SP03", productName: "Sản phẩm 3", price: "400,000đ", status: "Đã giao", date: "02/02/2024" },
-    { ID: "SP04", productName: "Sản phẩm 4", price: "500,000đ", status: "Đã giao", date: "02/02/2024" },
-    { ID: "SP05", productName: "Sản phẩm 5", price: "600,000đ", status: "Đang giao", date: "02/02/2024" },
-    // Thêm các mục khác vào đây
+    { ID: "SP01", productName: "Product 1", price: "200,000$", status: "In transit", date: "01/01/2024" },
+    { ID: "SP02", productName: "Product 2", price: "300,000$", status: "Delivered", date: "02/02/2024" },
+    { ID: "SP03", productName: "Product 3", price: "400,000$", status: "In transit", date: "02/02/2024" },
+    { ID: "SP04", productName: "Product 4", price: "500,000$", status: "Delivered", date: "02/02/2024" },
+    { ID: "SP05", productName: "Product 5", price: "600,000$", status: "In transit", date: "02/02/2024" },
+    // Thêm các mục khác vào $ây
   ];
 
   return (
