@@ -11,7 +11,7 @@ function Header() {
     { icon: <IconHome />, path: "/Home" },
     { icon: <IconBook /> },
     { icon: <IconCart />, path: "/Cart" },
-    { icon: <IconUser />, path: "/UserPage" },
+    { icon: <IconUser />, path: "/User" },
   ];
   return (
     <header className={style.header}>
