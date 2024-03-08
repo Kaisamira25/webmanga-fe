@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import style from "./Product.module.scss";
 import formatCurrency from "../../common/FormatCurrency";
 

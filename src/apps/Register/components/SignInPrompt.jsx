@@ -9,12 +9,12 @@ function SignInPrompt() {
   };
   return (
     <div className="flex ">
-      <p className="text-sm">Đã có tài khoản ?</p>
+      <p className="text-sm">Already have an account?</p>
       <button
         className="text-blue300 text-sm   hover:text-red-600"
         onClick={handleToLogin}
       >
-        {"\u00a0"}Đăng Nhập
+        {"\u00a0"}Login
       </button>
     </div>
   );
