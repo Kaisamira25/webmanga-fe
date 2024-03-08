@@ -1,8 +1,9 @@
 @use "../../../common/variables" as *;
 @use "../../../common/responsive" as *;
 
-article {
-  margin-bottom: 5em;
+.container {
+  margin-bottom: 3em;
+  width: 100%;
   > p {
     color: $bg-btn-color;
     text-align: center;
@@ -14,28 +15,25 @@ article {
   > div {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    row-gap: 2em;
+    grid-template-rows: repeat(auto auto);
+    row-gap: 1em;
+    place-items: center;
     padding: 0px 1em 0px 1em;
     @include break(md) {
       grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: repeat(auto auto);
     }
     @include break(lg) {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-rows: repeat(auto auto);
     }
     @include break(xl) {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-rows: repeat(auto auto);
     }
     @include break(xxl) {
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: none;
-    }
-    > div {
-      display: flex;
-      justify-content: center;
+      grid-template-rows: repeat(auto auto);
     }
   }
 }

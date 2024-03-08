@@ -25,9 +25,6 @@
 //   }
 // }
 
-
-
-
 // header {
 //   background-color: $bg-btn-color;
 //   width: 100%;
@@ -41,45 +38,77 @@
 //   p {
 //     font-size: x-large;
 //     font-weight: 700;
-//   }  
+//   }
 // }
 
-
-header { 
+header {
+  width: 100%;
   background-color: $bg-btn-color;
   height: 5em;
-  display: flex;
-  align-items: center;
-  margin-bottom: 5em;
-  > p {
-    padding-left: 2em;
-    font-weight: 600;
-    font-size: large;
-  }
+  margin-bottom: 4em;
   > div {
-    display: flex;
     height: 100%;
-    width: 100%;
-    padding-left: 2em;
-    justify-content: space-around;
-    @include break(md) {
-      padding-left: 7em;
-    }
-    @include break(lg) {
-      padding-left: 10em;
-    }
-    @include break(xl) {
-      padding-left: 20em;
-    }
-    > div {
-      height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 1em 0px 1em;
+    position: relative;
+    align-items: center;
+    .brandName {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 0.5em;
-      padding: 1em;
-      &:hover {
-        background-color: $bg-color;
+      height: 100%;
+      z-index: 4;
+
+      a {
+        p {
+          font-weight: 700;
+          font-size: x-large;
+        }
+      }
+    }
+    .link {
+      display: flex;
+      //  justify-content: center;
+      align-items: center;
+      column-gap: 1.5em;
+      position: absolute;
+      width: 100%;
+      left: 0px;
+      justify-content: space-around;
+      gap: 2em;
+      opacity: 0;
+      transform: translateY(0);
+      transition: transform 0.5s, opacity 1s;
+      background-color: $bg-btn-color;
+      bottom: 0px;
+      // z-index: 4;
+      // transform: translateY(100%);
+      a {
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s linear;
+        p {
+          text-align: center;
+          font-size: large;
+          font-weight: 500;
+        }
+      }
+      :hover {
+        border-bottom: 1px solid black;
+      }
+      
+
+      @include break(md) {
+        position: static;
+        opacity: 1;
+      }
+    }
+    .linkSlide {
+      opacity: 1;
+      transform: translateY(100%);
+    }
+    .buttonHeader {
+      @include break(md) {
+        display: none;
       }
     }
   }

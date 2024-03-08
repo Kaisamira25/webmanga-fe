@@ -23,9 +23,11 @@ function Categories() {
   ];
   return (
     <div className={style.container}>
-      {genreList.map((item) => 
-        <button key={item.id}>{item.name}</button>
-      )}
+      <div className={style.wrapper}>
+        {genreList.map((item) => (
+          <button key={item.id}>{item.name}</button>
+        ))}
+      </div>
     </div>
   );
 }

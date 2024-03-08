@@ -108,7 +108,7 @@ function Content() {
     },
     {
       id: 14,
-      name: "7th Time Loop: The Villainess Enjoys a Carefree Life Married to Her Worst Enemy! Vol. 2",
+      name: "The Villainess Enjoys a Carefree Life Married to Her Worst Enemy! Vol. 2",
       imgURL:
         "https://m.media-amazon.com/images/I/815STNVDERL._AC_UF1000,1000_QL80_.jpg",
         price: '100,000',

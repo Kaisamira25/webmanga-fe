@@ -6,18 +6,22 @@ import IconLogOut from "../../assets/icons/LogOut";
 import IconCart from "../../assets/icons/CartIcon";
 import IconUser from "../../assets/icons/AccountIcon";
 import style from "./scss/BtnHeader.module.scss";
-function BtnHeader() {
+function BtnHeader({onOpen, icon}) {
   // const [check, setCheck] = useState(false);
   // const rotate = () => {
   //   setCheck(!check);
   //   console.log(check);
   // };
+  const handleOpen = () => {
+    if(onOpen){
+      onOpen();
+    }
+  }
   return (
     // <div className={style.buttonWrapper}>
     //   <button className={style.fakeBtn}></button>
     //   <button className={style.btnHeader}>{btnIcon}</button>
     // </div>
-
 
     // <div className={style.container}>
     //   <button
@@ -51,7 +55,9 @@ function BtnHeader() {
     //   </div>
     // </div>
     <div>
-      {/* // dont use   */}
+      <button onClick={handleOpen}>
+        {icon}
+      </button>
     </div>
   );
 }
