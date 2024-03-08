@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "./componnents/SideBar-Ul";
+import SideBar from "../componnents/SideBar-Ul";
 function MenuAdmin() {
     return (
         <div className="w-auto min-h-screen border-r-2 border-black">

@@ -12,6 +12,9 @@ function Views() {
     "/Register",
     "/Otp",
     "/ForgotPassword",
+    "/Admin",
+    "/Admin/Genre",
+    "/Admin/Cover",
   ].includes(location.pathname);
   return (
     <div>

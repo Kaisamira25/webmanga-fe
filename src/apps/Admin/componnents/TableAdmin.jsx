@@ -16,7 +16,7 @@ function TableAdmin({ arraysTH, arraysTD }) {
                 </thead>
                 <tbody>
                     {arraysTD.map((items, rowIndex) => (
-                        <tr key={rowIndex} name={rowIndex} class="cursor-pointer border-b  border-black hover:bg-gray-400">
+                        <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
                             {Object.values(items).map((value, colIndex) => (
                                 <td className="text-center border-r border-black" key={colIndex}>{value}</td>
                             ))}
