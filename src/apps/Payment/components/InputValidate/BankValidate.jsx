@@ -38,21 +38,23 @@ function BankValidate({ className }) {
   const validateInput = (key, value) => {
     switch (key) {
       case "ownerName":
-        setOwnerNameError(value.trim() ? "" : "Thiếu tên chủ thẻ");
+        setOwnerNameError(value.trim() ? "" : "Missing cardholder's name");
         break;
       case "cardNumber":
         setCardNumberError(
-          value.trim() && /^\d{16}$/.test(value) ? "" : "Số thẻ phải là 16 số"
+          value.trim() && /^\d{16}$/.test(value)
+            ? ""
+            : "Card number must be 16 digits"
         );
         break;
       case "expiryDate":
-        setExpiryDateError(value.trim() ? "" : "Thiếu ngày hết hạn");
+        setExpiryDateError(value.trim() ? "" : "Missing expiration date");
         break;
       case "cvv":
         setCvvError(
           value.trim() && /^\d{3,4}$/.test(value)
             ? ""
-            : "CVV phải là 3 hoặc 4 số"
+            : "CVV must be 3 or 4 digits"
         );
         break;
       default:
@@ -64,9 +66,9 @@ function BankValidate({ className }) {
     <div className={className}>
       <div>
         <InputField
-          label={"Tên chủ thẻ"}
+          label={"Cardholder's Name"}
           type={"text"}
-          placeholder={"Nguyễn Văn A"}
+          placeholder={"Do Nguyen Trong Kiet"}
           value={ownerName}
           onChange={(e) => handleChange("ownerName", e.target.value)}
         />
@@ -74,7 +76,7 @@ function BankValidate({ className }) {
       </div>
       <div>
         <InputField
-          label={"Số thẻ"}
+          label={"Card Number"}
           type={"text"}
           placeholder={"1231 1313 1321"}
           value={cardNumber}
@@ -84,7 +86,7 @@ function BankValidate({ className }) {
       </div>
       <div>
         <InputField
-          label={"Ngày hết hạn"}
+          label={"Expiration Date"}
           type={"month"}
           value={expiryDate}
           onChange={(e) => handleChange("expiryDate", e.target.value)}

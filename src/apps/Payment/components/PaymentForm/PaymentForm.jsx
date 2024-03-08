@@ -9,10 +9,10 @@ export default function PaymentForm() {
   const [selectedOption, setSelectedOption] = useState("");
 
   const options = [
-    "Trả tiền trực tiếp",
-    "Thanh toán thẻ ngân hàng",
-    "Thanh toán mã QR",
-    "Thanh toán Visa",
+    "Cash payment",
+    "Bank card payment",
+    "QR code payment",
+    "Visa payment",
   ];
 
   const handleSelectChange = (selectedValue) => {
@@ -25,12 +25,12 @@ export default function PaymentForm() {
         <Title title={"Payments"} />
       </div>
       <div className={style.wrapper}>
-        <p className={style.title}>Thông tin thanh toán</p>
+        <p className={style.title}>Payment information</p>
         <div className={style.inputField}>
           <div
             className={`${
-              selectedOption === "Thanh toán thẻ ngân hàng" ||
-              selectedOption === "Thanh toán Visa"
+              selectedOption === "Bank card payment" ||
+              selectedOption === "Visa payment"
                 ? style.left
                 : style.full
             } `}
@@ -38,15 +38,15 @@ export default function PaymentForm() {
             <InputValidate className={style.mapField} />
 
             <SelectField
-              label={"Phương thức thanh toán"}
-              placeholder={"Mời chọn phương thức thanh toán"}
+              label={"Payment methods"}
+              placeholder={"Please select a payment method"}
               options={options}
               value={selectedOption}
               onChange={handleSelectChange}
             />
           </div>
-          {(selectedOption === "Thanh toán thẻ ngân hàng" ||
-            selectedOption === "Thanh toán Visa") && (
+          {(selectedOption === "Bank card payment" ||
+            selectedOption === "Visa payment") && (
             <div className={style.right}>
               <BankValidate className={style.mapField} />
             </div>
