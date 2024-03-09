@@ -10,14 +10,14 @@ function Register() {
           <form>
             <div>
               <h2 className="text-4xl  mb-4 text-center font-pacifico ">
-                Đăng ký
+              Resgister
               </h2>
             </div>
             <div>
               <RegisterFormRequired />
             </div>
             <div>
-              <ButtonInput type={"button"} placeholder={"Đăng Ký"}  />
+              <ButtonInput type={"button"} placeholder={"Resgister"}  />
             </div>
             <div className="mt-2">
               <SignInPrompt />

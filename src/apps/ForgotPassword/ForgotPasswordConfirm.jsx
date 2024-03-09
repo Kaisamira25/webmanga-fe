@@ -11,7 +11,7 @@ function ForgotPasswordConfirm() {
           <form>
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
-                Quên mật khẩu?
+              Forgot your password ?
               </h2>
             </div>
             <div>

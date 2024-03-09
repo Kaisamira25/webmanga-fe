@@ -12,7 +12,7 @@ function Login() {
           <form className="gap-16">
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
-                Đăng Nhập
+                Login
               </h2>
             </div>
             <div>
@@ -22,7 +22,7 @@ function Login() {
               <ForgotYourPassword />
             </div>
             <div className="mt-2">
-              <ButtonInput type={"button"} placeholder={"đăng nhập"} />
+              <ButtonInput type={"button"} placeholder={"Login"} />
             </div>
 
             <div className="mt-2">

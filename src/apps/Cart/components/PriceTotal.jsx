@@ -1,7 +1,7 @@
 import React from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwind";
 import style from "./PriceTotal.module.scss";
-import Inputall from "../../../components/Inputall"
+import Inputall from "../../../components/Inputall";
 import TotalPayment from "../../Payment/components/TotalPayment/TotalPayment";
 function PriceTotal() {
   const productField = [
@@ -18,12 +18,12 @@ function PriceTotal() {
   ];
 
   const textInfo = [
-    { title: "Tống tiền giỏ hàng ", text: "180000 VND" },
-    { title: " Phí Ship ", text: "10000 VND" },
+    { title: "Cart blackmail ", text: "180000 VND" },
+    { title: " Shipping Fee", text: "10000 VND" },
 
-    { title: "Mã giảm giá ", text: "-20000 VND" },
+    { title: "Discount code ", text: "-20000 VND" },
 
-    { title: "Tổng hóa đơn", text: "170000 VNĐ" },
+    { title: "Total bill", text: "170000 VNĐ" },
   ];
 
   return (

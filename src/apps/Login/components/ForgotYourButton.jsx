@@ -6,7 +6,7 @@ function ForgotYourPassword() {
     <div className="flex justify-between">
       <Link to={"/ForgotPassword"}>
         <button className="text-blue300 text-sm  hover:text-red-600 ">
-          Quên mật khẩu ?
+          Forgot your password ?
         </button>
       </Link>
     </div>

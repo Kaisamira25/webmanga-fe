@@ -15,12 +15,12 @@ function OTP() {
           <form className="flex flex-col w-auto h-auto items-center">
             <div>
               <h2 className="text-4xl font-Confortaa mb-4 text-center">
-                Xác minh OTP
+              OTP verification
               </h2>
             </div>
             <div>
               <h1 className="text-base mb-1">
-                Hãy nhập mã chúng tôi vừa gửi cho bạn
+               enter the code we just sent you
               </h1>
             </div>
             <div>
