@@ -5,14 +5,14 @@ import InputField from '../../../../components/InputField/InputField';
 
 function ChangePassword() {
   const fields = [
-    { label: 'Mật Khẩu Cũ *', type: 'password', placeholder: 'Mật khẩu cũ' },
-    { label: 'Mật Khẩu Mới *', type: 'password', placeholder: 'Mật khẩu mới' },
-    { label: 'Nhập Lại Mật Khẩu *', type: 'password', placeholder: 'Nhập lại mật khẩu' },
+    { label: 'Old Password *', type: 'password', placeholder: 'Enter Old Password' },
+    { label: 'New Password *', type: 'password', placeholder: 'Enter New Password' },
+    { label: 'Re-enter Password *', type: 'password', placeholder: 'Re-enter Password' },
   ];
 
   return (
     <div className={styles.passwordForm}>
-      <h2>Đổi mật khẩu</h2>
+      <h2>Change Password</h2>
       <form>
         {fields.map((field, index) => (
           <InputField
@@ -23,7 +23,7 @@ function ChangePassword() {
             className={styles.className} 
           />
         ))}
-        <button type="submit">Lưu</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );

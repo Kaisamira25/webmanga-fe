@@ -5,35 +5,35 @@ import InputField from '../../../../components/InputField/InputField';
 
 
 function ChangeAddress() {
-  const wards = ["Chọn", " Lộc Thọ", "Phường Ngọc Hiệp", "Phường 10", "Phường 15", "Phường Trúc Bạch", "Phường Cống Vị"];
-  const districts = ["Chọn","Quận 1", "Quận Bình Thạnh", "Quận Gò Vấp,"];
-  const cities = ["Chọn","Hồ Chí Minh", "Nha Trang", "Hà Nội", "Đà Nẵng"];
-  const field = { label: 'Địa chỉ *', type: 'address', placeholder: 'Nhập địa chỉ của bạn' }
+  const wards = ["--Choose--", " Lộc Thọ", "Phường Ngọc Hiệp", "Phường 10", "Phường 15", "Phường Trúc Bạch", "Phường Cống Vị"];
+  const districts = ["--Choose--","Quận 1", "Quận Bình Thạnh", "Quận Gò Vấp,"];
+  const cities = ["--Choose--","Hồ Chí Minh", "Nha Trang", "Hà Nội", "Đà Nẵng"];
+  const field = { label: 'Address *', type: 'address', placeholder: 'Enter your address' }
     
   
   return (
     <div className={styles.addressForm}>
-      <h2>Cập nhật địa chỉ</h2>
+      <h2>Update address</h2>
       <form>
         <div className={styles.upper}>
           <SelectField
-            label="Thành Phố *"
+            label="City *"
             options={cities}
-            placeholder="Chọn"
+            placeholder="--Choose--"
             className={styles.className} 
           />          
           <SelectField
-            label="Phường *"
+            label="Ward *"
             options={wards}
-            placeholder="Chọn"
+            placeholder="--Choose--"
             className={styles.className}
           />
         </div>
         <div className={styles.lower}>
           <SelectField
-            label="Quận *"
+            label="District *"
             options={districts}
-            placeholder="Chọn"
+            placeholder="--Choose--"
             className={styles.className}
           />
           <InputField
@@ -43,7 +43,7 @@ function ChangeAddress() {
             className={styles.className} 
           />
         </div>
-        <button type="submit">Lưu</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
