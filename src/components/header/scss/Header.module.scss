@@ -60,7 +60,9 @@ header {
       z-index: 4;
 
       a {
+        text-decoration: none;
         p {
+          color: black;
           font-weight: 700;
           font-size: x-large;
         }
@@ -90,12 +92,12 @@ header {
           text-align: center;
           font-size: large;
           font-weight: 500;
+          color: black;
         }
       }
       :hover {
         border-bottom: 1px solid black;
       }
-      
 
       @include break(md) {
         position: static;
