@@ -5,7 +5,7 @@ function SearchBar() {
     return (
         <div className="w-12/12 h-1/12 mb-2 mt-1">
             <form className="max-w-sm w-7/12">
-                <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     </div>

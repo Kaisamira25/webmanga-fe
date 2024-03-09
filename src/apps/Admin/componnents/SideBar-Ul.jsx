@@ -2,8 +2,7 @@ import React from "react";
 import BookIcon from "../../../assets/icons/Book"
 import AdminIcon from "../../../assets/icons/Admin";
 import StatisIcon from "../../../assets/icons/Statis";
-import Li from "./SideBar-Li";
-import { Routes,Route } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 function SideBar() {
@@ -11,12 +10,12 @@ function SideBar() {
         {
             name: "Sản Phẩm", svg: <BookIcon />,
             LiField: [
-                { name: "Quản lý thể loại",link:"/AdminGenre"},
-                { name: "Quản lý loại bìa",link:"/AdminCover"},
-                { name: "Quản lý quà tặng",link:"/AdminGift" },
-                { name: "Quản lý sản phẩm" ,link:"/AdminProduct"},
-                { name: "Quản lý bản sản phẩm" ,link:"/AdminType"},
-                { name: "Quản lý mã giảm giá" ,link:"/AdminDiscount"},
+                { name: "Quản lý thể loại",link:"/Admin/Genre"},
+                { name: "Quản lý loại bìa",link:"/Admin/Cover"},
+                { name: "Quản lý quà tặng",link:"/Admin/Gift" },
+                { name: "Quản lý sản phẩm" ,link:"/Admin/Product"},
+                { name: "Quản lý bản sản phẩm" ,link:"/Admin/Type"},
+                { name: "Quản lý mã giảm giá" ,link:"/Admin/Discount"},
             ]
         },
         {
@@ -43,7 +42,9 @@ function SideBar() {
                             <span className="ms-6">{field.svg} {field.name}</span>
                         </h6>
                         {field.LiField.map((liFields, index) => (
-                            Li(liFields.link,liFields.name)
+                            <div className="text-start ps-8 py-1 hover:text-blue-400">
+                                <Link to={liFields.link} ><span>{liFields.name}</span></Link> 
+                            </div>
                         ))}
                     </ul>
                 </div>

@@ -22,12 +22,5 @@ export default function ProductGenre() {
         };
         fetchGenres();
     }, []);
-    
-    return (
-        <div>
-            <MultiSelect options={genres} />
-        </div>
-        
-    );
 }
 

@@ -1,10 +1,10 @@
 import React from "react";
-import InputAdmin from "./componnents/InputAdmin";
-import BtnAdmin from "./componnents/BtnAdmin";
-import TableAdmin from "./componnents/TableAdmin";
-import Padgina from "./componnents/Padgination";
-import SearchBar from "./componnents/SearchBar";
-import TextArea from "./componnents/TextArea";
+import InputAdmin from "../componnents/InputAdmin";
+import BtnAdmin from "../componnents/BtnAdmin";
+import TableAdmin from "../componnents/TableAdmin";
+import Padgina from "../componnents/Padgination";
+import SearchBar from "../componnents/SearchBar";
+import TextArea from "../componnents/TextArea";
 
 
 function AdminDiscount() {

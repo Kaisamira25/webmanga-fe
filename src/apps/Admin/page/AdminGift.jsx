@@ -1,9 +1,9 @@
 import * as React from "react";
-import InputAdmin from "./componnents/InputAdmin";
-import BtnAdmin from "./componnents/BtnAdmin";
-import TableAdmin from "./componnents/TableAdmin";
-import Padgina from "./componnents/Padgination";
-import SearchBar from "./componnents/SearchBar";
+import InputAdmin from "../componnents/InputAdmin";
+import BtnAdmin from "../componnents/BtnAdmin";
+import TableAdmin from "../componnents/TableAdmin";
+import Padgina from "../componnents/Padgination";
+import SearchBar from "../componnents/SearchBar";
 
 function AdminGift() {
     const gift = [
