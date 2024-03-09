@@ -22,7 +22,7 @@
         grid-template-rows: repeat(auto auto);
     }
     @include break(xxl) {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(auto auto);
     }
     > div {
