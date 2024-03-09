@@ -8,7 +8,8 @@ const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/OTP/OTPPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
-const ForgotPasswordPage = lazy(() => import("../pages/ForgotPassword/ForgotPasswordPage")
+const ForgotPasswordPage = lazy(() =>
+  import("../pages/ForgotPassword/ForgotPasswordPage")
 );
 
 const routes = [
