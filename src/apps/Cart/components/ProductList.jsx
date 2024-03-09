@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Product from "../../../components/ProductCart/Product";
 import img from "../../../assets/imgs/ShadowGarden.jpg";
 import img86 from "../../../assets/imgs/86.jpg";
-
+import style from"./ProductList.module.scss"
 function ProductList() {
   const [products, setProducts] = useState([
     {
@@ -39,7 +39,7 @@ function ProductList() {
   };
 
   return (
-    <div className="product-list">
+    <div className={style.productlist}>
       {products.map((product, index) => (
         <div key={index}>
           <Product

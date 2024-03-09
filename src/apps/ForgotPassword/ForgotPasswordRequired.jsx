@@ -6,29 +6,42 @@ function ForgotPasswordRequired() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg  md:w-96 w-96">
-        <div>
-          <form>
-            <div>
-              <h2 className="text-4xl font-pacifico mb-4 text-center ">
-                Quên mật khẩu?
-              </h2>
+        <table>
+          <div>
+            <h3 className="text-xl font-pacifico mb-4 text-center ">
+              Forgot Your Password ?
+            </h3>
+          </div>
+          <div>
+            <p className=" text-xs mb-1">
+              Enter your email so we can send you a link to re-enter your password.
+            </p>
+          </div>
+          <div>
+            <EmailRequired />
+          </div>
+          <div className="flex gap-4 ">
+            <div className="flex-1 ml-2">
+              <ButtonInput
+                type={"button"}
+                placeholder={"Cancel "}
+
+              />
             </div>
-            <div>
-              <p className=" text-xs mb-1">
-                Nhập email của bạn để chúng tôi có thể gửi cho bạn liên kết đặt
-                lại mật khẩu.
-              </p>
+            <div className="flex-1 mr-2">
+              <ButtonInput
+                type={"button"}
+                placeholder={"Continue "}
+
+              />
             </div>
-            <div>
-              <EmailRequired />
-            </div>
-            <div>
-              <ButtonInput type={"button"} placeholder={"Continue"} />
-            </div>
-          </form>
-        </div>
+
+
+          </div>
+        </table>
       </div>
     </div>
+
   );
 }
 export default ForgotPasswordRequired;

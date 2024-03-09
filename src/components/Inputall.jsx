@@ -7,7 +7,7 @@ function InputAll({ type, id, name, placeholder, svg }) {
         type={type}
         id={id}
         name={name}
-        className="mt-1 px-9 py-2 w-full outline-none border border-gray-300 rounded-full text-center flex justify-center placeholder-opacity-50  "
+        className="mt-1 px-9 py-2 w-full outline-none border border-gray-300 rounded-xl text-center flex justify-center placeholder-opacity-50  "
         placeholder={placeholder}
       />
       <div className="absolute left-4 top-4 text-gray-400">

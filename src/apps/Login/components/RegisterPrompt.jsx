@@ -9,13 +9,13 @@ function RegisterPrompt() {
   };
   return (
     <div className="flex ">
-      <p className="text-sm">Bạn không có tài khoản ? {"\u00a0"}</p>
+      <p className="text-sm">no acccount? {"\u00a0"}</p>
 
       <button
         className="text-blue300 text-sm   hover:text-red-600"
         onClick={handleToRegister}
       >
-        Đăng ký ngay
+       Resgister Now!
       </button>
     </div>
   );
