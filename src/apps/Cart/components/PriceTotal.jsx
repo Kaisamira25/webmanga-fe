@@ -8,24 +8,20 @@ function PriceTotal() {
     {
       name: "The Eminence In Shadow",
       quantity: "x1",
-      price: "100.000",
+      price: "50.000",
     },
-    {
-      name: "86 eighty six",
-      quantity: "x2",
-      price: "80.000",
-    },
+    // {
+    //   name: "86 eighty six",
+    //   quantity: "x2",
+    //   price: "80.000",
+    // },
   ];
-
   const textInfo = [
-    { title: "Cart blackmail ", text: "180000 VND" },
-    { title: " Shipping Fee", text: "10000 VND" },
-
-    { title: "Discount code ", text: "-20000 VND" },
-
-    { title: "Total bill", text: "170000 VNĐ" },
+    { title: "Subtotal ", text: "50.000 VND" },
+    { title: " Shipping", text: "10.000 VND" },
+    { title: "Discount ", text: "-20.000 VND" },
+    { title: "Total bill", text: "40.000 VNĐ" },
   ];
-
   return (
     <div>
       <div className=" product  border-b-2 border-black ">
@@ -37,14 +33,11 @@ function PriceTotal() {
             price={product.price}
           />
         ))}
-      </div >
-    
-
+      </div>
       <div>
         <GoCartpayment className={style.total} textInfo={textInfo} />
       </div>
     </div>
   );
 }
-
 export default PriceTotal;

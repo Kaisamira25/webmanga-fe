@@ -52,11 +52,11 @@ function Header() {
             {/* <IconCart /> */}
             <p>Cart</p>
           </Link>
-          <Link href="/">
+          <Link to={'/User'}>
             {/* <IconUser /> */}
             <p>Account</p>
           </Link>
-          <Link href="/">
+          <Link to={'/Login'}>
             {/* <IconLogout /> */}
             <p>Login</p>
           </Link>
