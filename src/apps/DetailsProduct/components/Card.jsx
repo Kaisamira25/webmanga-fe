@@ -1,17 +1,18 @@
 import style from "../scss/Card.module.scss";
+import IconEye from "../../../assets/icons/EyeIcon";
+import { Link } from "react-router-dom";
 function Card({ imgUrl, name, beforeDiscount, afterDiscount }) {
   return (
-    <article className='h-full'>
-        <div className='h-5/6 flex justify-center'>
-            <img className='h-full' src={imgUrl} alt="" />
-        </div>
-        <div className='h-1/6 text-wrap break-words font-semibold'>
-            <p className='text-center'>{name}</p>
-            <div className='flex justify-center gap-x-4'>
-                <span>{beforeDiscount}</span>
-                <span className='line-through'>{afterDiscount}</span>
-            </div>
-        </div>
+    <article className={style.container}>
+      <div className={style.imageWrapper}>
+        <img src={imgUrl} alt="" />
+      </div>
+      <div className={style.viewDetail}>
+        <Link to={'/Detail'}>
+          <IconEye />
+          <span>More detail</span>
+        </Link>
+      </div>
     </article>
     // <article className={style.container}>
     //   <img src={imgUrl} alt="" />
