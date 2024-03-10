@@ -55,9 +55,7 @@ export default function GoCartpayment({ textInfo, className }) {
         {!isDiscountValid && isInputFilled && (
           <p className={style.invalidMessage}>Mã giảm giá không hợp lệ!</p>
         )}
-
       </div>
-
       <div className={style.btn}>
         <Link to={"/Cart/Payment"}> 
         <ButtonInput

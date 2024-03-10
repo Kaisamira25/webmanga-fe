@@ -3,17 +3,37 @@ import Product from "../../../components/ProductCart/Product";
 import img from "../../../assets/imgs/ShadowGarden.jpg";
 import img86 from "../../../assets/imgs/86.jpg";
 import style from"./ProductList.module.scss"
-function ProductList() {
+function `ProductList() {
   const [products, setProducts] = useState([
     {
       id: "1",
       bookName: "The Eminence In Shadow",
       img: img,
-      bookPrice: 100000,
+      bookPrice: 50000,
       author: "Aizawa Daisuke",
       category: "Fantasy",
       quantity: 1,
     },
+
+    // {
+    //   id: "2",
+    //   bookName: "86 eighty six",
+    //   img: img86,
+    //   bookPrice: 80000,
+    //   author: "Asato Asato",
+    //   category: "Fantasy",
+    //   quantity: 1,
+    // },
+    // {
+    //   id: "2",
+    //   bookName: "86 eighty six",
+    //   img: img86,
+    //   bookPrice: 80000,
+    //   author: "Asato Asato",
+    //   category: "Fantasy",
+    //   quantity: 1,
+    // },
+
   ]);
 
   const calculateTotal = (price, quantity) => {

@@ -1,6 +1,7 @@
 import style from "./CardPublications.module.scss";
 import EyeIcon from "../../../assets/icons/EyeIcon";
 import IconCart from "../../../assets/icons/CartIcon";
+import { useNavigate } from "react-router-dom";
 function Card({
   imgSrc,
   name,
@@ -8,6 +9,14 @@ function Card({
   priceAfterDiscount,
   summary,
 }) {
+  const navigay = useNavigate();
+  const handleAddCart = () => {
+    navigay("/Cart");
+  };
+  const handleViewDetail = () => {
+    navigay("/Detail");
+  };
+
   return (
     <div className={style.container}>
       <div className={style.image}>
@@ -23,19 +32,19 @@ function Card({
             <span>{priceAfterDiscount}</span>
           </div>
           <div className={style.btn}>
-            <button>
+            <button onClick={handleAddCart}>
               <IconCart />
             </button>
-            <button>
+            <button onClick={handleViewDetail}>
               <EyeIcon />
             </button>
           </div>
           <div className={style.summary}>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi
-              accusamus ipsum, cum a facilis tenetur doloremque quos qui
-              corporis labore. Est perferendis ducimus placeat et modi delectus
-              blanditiis soluta quos?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+              harum perferendis provident mollitia ut, asperiores dolorem
+              consequatur neque nesciunt repellendus dolor minima accusamus
+              nulla odio, voluptate nihil nemo quos. Architecto.
             </p>
           </div>
         </div>

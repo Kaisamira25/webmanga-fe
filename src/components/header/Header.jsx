@@ -5,7 +5,9 @@ import IconMenu from "../../assets/icons/Menu";
 import IconUser from "../../assets/icons/User";
 import IconLogout from "../../assets/icons/Login";
 import BtnHeader from "./BtnHeader";
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
 function Header() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -37,27 +39,27 @@ function Header() {
     <header>
       <div>
         <div className={style.brandName}>
-          <a href="/">
+          <Link  to={'/Home'}>
             <p>LAINOVO</p>
-          </a>
+          </Link>
         </div>
         <div className={`${style.link} ${open ? `${style.linkSlide}` : ""}`}>
-          <a href="/">
+          <Link to={'/Home'}>
             {/* <IconHome /> */}
             <p>Home</p>
-          </a>
-          <a href="/">
+          </Link>
+          <Link to={'/Cart'}>
             {/* <IconCart /> */}
             <p>Cart</p>
-          </a>
-          <a href="/">
+          </Link>
+          <Link to={'/User'}>
             {/* <IconUser /> */}
             <p>Account</p>
-          </a>
-          <a href="/">
+          </Link>
+          <Link to={'/Login'}>
             {/* <IconLogout /> */}
             <p>Login</p>
-          </a>
+          </Link>
         </div>
         <div className={style.buttonHeader}>
           <BtnHeader onOpen={handleOpen} icon={<IconMenu />} />

@@ -12,18 +12,16 @@ function PriceTotal() {
       quantity: "x1",
       price: "50.000",
     },
-
+   
   ];
-
   const textInfo = [
-    { title: "Subtotal", text: "50.000 VND" },
-    { title: " Shipping ", text: "10.000 VND" },
+    { title: "Cart blackmail ", text: "50.000 VND" },
+    { title: " Shipping Fee", text: "10.000 VND" },
 
-    { title: "Discount  ", text: "-20.000 VND" },
+    { title: "Discount code ", text: "-20.000 VND" },
 
     { title: "Total bill", text: "40.000 VNĐ" },
   ];
-
   return (
     <div>
       <div className=" product  border-b-2 border-black ">
@@ -36,11 +34,12 @@ function PriceTotal() {
           />
         ))}
       </div >
+    
+
       <div>
         <GoCartpayment className={style.total} textInfo={textInfo} />
       </div>
     </div>
   );
 }
-
 export default PriceTotal;

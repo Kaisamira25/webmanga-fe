@@ -39,19 +39,11 @@ function RelatedPublications() {
     },
   ];
   return (
-    <div className="w-full">
-      <p className="text-center font-bold text-2xl mb-6">Tác phẩm liên quan</p>
-      <div className="grid grid-cols-2 gap-4 px-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className={style.container}>
+      <p>Related Publicatinos</p>
+      <div className={style.productContainer}>
         {list.map((item, index) => (
-          <div className="w-full h-80">
-            <Card
-              key={index}
-              imgUrl={item.img}
-              name={"Demo Test"}
-              beforeDiscount={"100.000"}
-              afterDiscount={"50.000"}
-            />
-          </div>
+          <Card key={index} imgUrl={item.img}/>
         ))}
       </div>
     </div>
