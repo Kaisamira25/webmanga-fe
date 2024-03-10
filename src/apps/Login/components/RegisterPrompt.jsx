@@ -9,9 +9,9 @@ function RegisterPrompt() {
   };
   return (
     <div className="flex ">
-      <p className="text-sm">no acccount? {"\u00a0"}</p>
+      <p className="text-sm"> Didn't have a account ? {"\u00a0"}</p>
 
-      <button
+      <button 
         className="text-blue300 text-sm   hover:text-red-600"
         onClick={handleToRegister}
       >

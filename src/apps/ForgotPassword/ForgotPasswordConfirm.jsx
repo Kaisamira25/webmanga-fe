@@ -2,6 +2,7 @@ import React from "react";
 
 import ButtonInput from "../../components/BtnInput";
 import PasswordRequired from "./Components/PasswordRequired";
+import { Link } from "react-router-dom";
 
 function ForgotPasswordConfirm() {
   return (
@@ -21,7 +22,9 @@ function ForgotPasswordConfirm() {
               <PasswordRequired />
             </div>
             <div>
+              <Link to={"/Login"}>
               <ButtonInput type={"button"} placeholder={"Continue"} />
+              </Link>
             </div>
           </form>
         </div>

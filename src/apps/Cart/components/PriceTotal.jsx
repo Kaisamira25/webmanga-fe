@@ -1,8 +1,8 @@
 import React from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwind";
 import style from "./PriceTotal.module.scss";
-import Inputall from "../../../components/Inputall";
-import TotalPayment from "../../Payment/components/TotalPayment/TotalPayment";
+import Inputall from "../../../components/InputAll";
+import GoCartpayment from "./TotalPayment/TotalPayment";
 function PriceTotal() {
   const productField = [
     {
@@ -38,12 +38,10 @@ function PriceTotal() {
           />
         ))}
       </div >
-      <div className="   mb-1 mt-3 mx-4">
-      <Inputall  type={"text"} placeholder={"nhập mã giảm giá "} className={"rounded-lg"}/>
-      </div>
+    
 
       <div>
-        <TotalPayment className={style.total} textInfo={textInfo} />
+        <GoCartpayment className={style.total} textInfo={textInfo} />
       </div>
     </div>
   );

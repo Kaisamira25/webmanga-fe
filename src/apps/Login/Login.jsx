@@ -3,7 +3,7 @@ import ButtonInput from "../../components/BtnInput";
 import LoginForm from "./Components/LoginForm";
 import ForgotYourPassword from "./Components/ForgotYourButton";
 import RegisterPrompt from "./Components/RegisterPrompt";
-
+import { Link } from "react-router-dom";
 function Login() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -22,9 +22,10 @@ function Login() {
               <ForgotYourPassword />
             </div>
             <div className="mt-2">
-              <ButtonInput type={"button"} placeholder={"Login"} />
+              <Link to={"/Home"}>
+                <ButtonInput type={"button"} placeholder={"Login"} />
+              </Link>
             </div>
-
             <div className="mt-2">
               <RegisterPrompt />
             </div>

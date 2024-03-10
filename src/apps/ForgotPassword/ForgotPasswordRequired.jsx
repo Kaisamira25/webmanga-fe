@@ -1,6 +1,7 @@
 import React from "react";
 import EmailRequired from "./components/EmailRequired";
 import ButtonInput from "../../components/BtnInput";
+import { Link } from "react-router-dom";
 
 function ForgotPasswordRequired() {
   return (
@@ -22,18 +23,24 @@ function ForgotPasswordRequired() {
           </div>
           <div className="flex gap-4 ">
             <div className="flex-1 ml-2">
+              <Link to={"/Login"}>
               <ButtonInput
                 type={"button"}
                 placeholder={"Cancel "}
 
               />
+              </Link>
+              
             </div>
             <div className="flex-1 mr-2">
+              <Link to={"/OTPFGPW"}>
               <ButtonInput
                 type={"button"}
                 placeholder={"Continue "}
 
               />
+              </Link>
+              
             </div>
 
 

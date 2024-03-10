@@ -3,7 +3,7 @@ import OTPRequired from "./components/EmailOTP";
 import ButtonInput from "../../components/BtnInput";
 import { Link } from "react-router-dom";
 
-function OTP () {
+function OTPFGPW() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg h-80 md:w-96 w-96">
@@ -24,7 +24,7 @@ function OTP () {
             </div>
             <div>
               <div>
-                <Link to={"/Login"}>
+                <Link to={"/ForgotPasswordConfirm"}>
                 <ButtonInput
                   type={"button"}
                   placeholder={"Continue"}
@@ -40,4 +40,4 @@ function OTP () {
   );
 }
 
-export default OTP;
+export default OTPFGPW;

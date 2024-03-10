@@ -2,6 +2,7 @@ import React from "react";
 import RegisterFormRequired from "./Components/RegisterFormRequired";
 import ButtonInput from "../../components/BtnInput";
 import SignInPrompt from "./Components/SignInPrompt";
+import { Link } from "react-router-dom";
 function Register() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -17,7 +18,10 @@ function Register() {
               <RegisterFormRequired />
             </div>
             <div>
+              <Link to={"/Otp"}>
               <ButtonInput type={"button"} placeholder={"Resgister"}  />
+              </Link>
+            
             </div>
             <div className="mt-2">
               <SignInPrompt />

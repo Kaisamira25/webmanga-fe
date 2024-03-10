@@ -1,5 +1,5 @@
 import React from "react";
-import InputAll from "../../../components/Inputall";
+import InputAll from "../../../components/InputAll";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconRepeat from "../../../assets/icons/MaterialIconRepeat";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
