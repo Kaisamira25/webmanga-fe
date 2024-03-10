@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
+import { Link } from "react-router-dom";
 
 export default function GoCartpayment({ textInfo, className }) {
   const [discountCode, setDiscountCode] = useState(""); 
@@ -58,10 +59,13 @@ export default function GoCartpayment({ textInfo, className }) {
       </div>
 
       <div className={style.btn}>
+        <Link to={"/Cart/Payment"}> 
         <ButtonInput
           placeholder={"Continue"}
           onClick={handleOpenFinishModal}
         />
+        </Link>
+      
       </div>
 
     </div>

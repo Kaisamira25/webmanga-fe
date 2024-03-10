@@ -3,27 +3,25 @@ import ProductField from "../../../components/ProductField/ProductFieldTailwind"
 import style from "./PriceTotal.module.scss";
 import Inputall from "../../../components/InputAll";
 import GoCartpayment from "./TotalPayment/TotalPayment";
+import { Link } from "react-router-dom";
 function PriceTotal() {
+  
   const productField = [
     {
       name: "The Eminence In Shadow",
       quantity: "x1",
-      price: "100.000",
+      price: "50.000",
     },
-    {
-      name: "86 eighty six",
-      quantity: "x2",
-      price: "80.000",
-    },
+
   ];
 
   const textInfo = [
-    { title: "Cart blackmail ", text: "180000 VND" },
-    { title: " Shipping Fee", text: "10000 VND" },
+    { title: "Subtotal", text: "50.000 VND" },
+    { title: " Shipping ", text: "10.000 VND" },
 
-    { title: "Discount code ", text: "-20000 VND" },
+    { title: "Discount  ", text: "-20.000 VND" },
 
-    { title: "Total bill", text: "170000 VNĐ" },
+    { title: "Total bill", text: "40.000 VNĐ" },
   ];
 
   return (
@@ -38,8 +36,6 @@ function PriceTotal() {
           />
         ))}
       </div >
-    
-
       <div>
         <GoCartpayment className={style.total} textInfo={textInfo} />
       </div>
