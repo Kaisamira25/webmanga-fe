@@ -11,7 +11,6 @@ const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/OTP/OTPPage"));
-const OTPFGPW = lazy(() => import("../apps/OTP fgpw/OTPFGPW"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
 const ForgotPasswordPage = lazy(() =>
