@@ -12,7 +12,7 @@ function ForgotPasswordConfirm() {
           <form>
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
-              Forgot your password ?
+                Reset Passwword
               </h2>
             </div>
             <div>
@@ -23,7 +23,7 @@ function ForgotPasswordConfirm() {
             </div>
             <div>
               <Link to={"/Login"}>
-              <ButtonInput type={"button"} placeholder={"Continue"} />
+                <ButtonInput type={"button"} placeholder={"Continue"} />
               </Link>
             </div>
           </form>

@@ -15,7 +15,7 @@ function ForgotPasswordRequired() {
         <table>
           <div>
             <h3 className="text-xl font-pacifico mb-4 text-center ">
-              Forgot Your Password ?
+              Forgot Your Password 
             </h3>
           </div>
           <div>
