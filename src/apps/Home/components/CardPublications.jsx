@@ -9,12 +9,12 @@ function Card({
   priceAfterDiscount,
   summary,
 }) {
-  const navigay = useNavigate();
+  const navigate = useNavigate();
   const handleAddCart = () => {
-    navigay("/Cart");
+    navigate("/Cart");
   };
   const handleViewDetail = () => {
-    navigay("/Detail");
+    navigate("/Detail");
   };
 
   return (

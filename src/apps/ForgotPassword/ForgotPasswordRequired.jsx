@@ -1,9 +1,14 @@
 import React from "react";
 import EmailRequired from "./components/EmailRequired";
 import ButtonInput from "../../components/BtnInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ForgotPasswordRequired() {
+  const navigate = useNavigate();
+
+  const handleForgotPassword = () => {
+    navigate("/Otp", { state: { from: "/ForgotPassword" } });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg  md:w-96 w-96">
@@ -15,7 +20,8 @@ function ForgotPasswordRequired() {
           </div>
           <div>
             <p className=" text-xs mb-1">
-              Enter your email so we can send you a link to re-enter your password.
+              Enter your email so we can send you a link to re-enter your
+              password.
             </p>
           </div>
           <div>
@@ -24,31 +30,20 @@ function ForgotPasswordRequired() {
           <div className="flex gap-4 ">
             <div className="flex-1 ml-2">
               <Link to={"/Login"}>
-              <ButtonInput
-                type={"button"}
-                placeholder={"Cancel "}
-
-              />
+                <ButtonInput type={"button"} placeholder={"Cancel "} />
               </Link>
-              
             </div>
             <div className="flex-1 mr-2">
-              <Link to={"/OTPFGPW"}>
               <ButtonInput
                 type={"button"}
-                placeholder={"Continue "}
-
+                placeholder={"Continue"}
+                onClick={handleForgotPassword}
               />
-              </Link>
-              
             </div>
-
-
           </div>
         </table>
       </div>
     </div>
-
   );
 }
 export default ForgotPasswordRequired;

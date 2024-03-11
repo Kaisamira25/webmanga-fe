@@ -15,7 +15,7 @@ function RegisterPrompt() {
         className="text-blue300 text-sm   hover:text-red-600"
         onClick={handleToRegister}
       >
-       Resgister Now!
+       Register Now!
       </button>
     </div>
   );

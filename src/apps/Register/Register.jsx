@@ -2,8 +2,14 @@ import React from "react";
 import RegisterFormRequired from "./Components/RegisterFormRequired";
 import ButtonInput from "../../components/BtnInput";
 import SignInPrompt from "./Components/SignInPrompt";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Register() {
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    navigate("/Otp", { state: { from: "/Register" } });
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
       <div className="bg-white100 p-8 rounded-lg shadow-lg md:w-96 w-96">
@@ -11,17 +17,18 @@ function Register() {
           <form>
             <div>
               <h2 className="text-4xl  mb-4 text-center font-pacifico ">
-              Resgister
+                Register
               </h2>
             </div>
             <div>
               <RegisterFormRequired />
             </div>
             <div>
-              <Link to={"/Otp"}>
-              <ButtonInput type={"button"} placeholder={"Resgister"}  />
-              </Link>
-            
+              <ButtonInput
+                type={"button"}
+                placeholder={"Register"}
+                onClick={handleRegister}
+              />
             </div>
             <div className="mt-2">
               <SignInPrompt />
