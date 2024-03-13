@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5173",
+  baseURL: "http://localhost:3000",
 });
 instance.interceptors.request.use(
   function (config) {
@@ -19,3 +19,9 @@ instance.interceptors.request.use(
 );
 
 export default instance;
+
+const fetchAllProduct = () => {
+  return instance.get("/api/products");
+};
+
+export { fetchAllProduct };

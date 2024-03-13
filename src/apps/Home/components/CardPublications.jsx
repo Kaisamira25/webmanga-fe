@@ -40,12 +40,7 @@ function Card({
             </button>
           </div>
           <div className={style.summary}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-              harum perferendis provident mollitia ut, asperiores dolorem
-              consequatur neque nesciunt repellendus dolor minima accusamus
-              nulla odio, voluptate nihil nemo quos. Architecto.
-            </p>
+            <p>{summary}</p>
           </div>
         </div>
       </div>
