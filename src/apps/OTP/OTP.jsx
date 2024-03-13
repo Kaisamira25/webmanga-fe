@@ -35,7 +35,7 @@ function OTP() {
             </div>
             <div>
               <h1 className="text-base mb-1">
-                enter the code we just sent you
+                Enter the code we just sent you
               </h1>
             </div>
             <div>
