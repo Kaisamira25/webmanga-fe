@@ -23,5 +23,8 @@ export default instance;
 const fetchAllProduct = () => {
   return instance.get("/api/products");
 };
+const fetchAllCategories = () => {
+  return instance.get("/api/categories");
+};
 
-export { fetchAllProduct };
+export { fetchAllProduct, fetchAllCategories };
