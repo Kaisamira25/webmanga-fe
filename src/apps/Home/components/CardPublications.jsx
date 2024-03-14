@@ -3,18 +3,18 @@ import EyeIcon from "../../../assets/icons/EyeIcon";
 import IconCart from "../../../assets/icons/CartIcon";
 import { useNavigate } from "react-router-dom";
 function Card({
+  id,
   imgSrc,
   name,
   priceBeforeDiscount,
   priceAfterDiscount,
   summary,
+  onViewDetail,
+  onAddToCart,
 }) {
   const navigate = useNavigate();
   const handleAddCart = () => {
     navigate("/Cart");
-  };
-  const handleViewDetail = () => {
-    navigate("/Detail");
   };
 
   return (
@@ -32,10 +32,10 @@ function Card({
             <span>{priceAfterDiscount}</span>
           </div>
           <div className={style.btn}>
-            <button onClick={handleAddCart}>
+            <button onClick={onAddToCart}>
               <IconCart />
             </button>
-            <button onClick={handleViewDetail}>
+            <button onClick={() => onViewDetail(id)}>
               <EyeIcon />
             </button>
           </div>

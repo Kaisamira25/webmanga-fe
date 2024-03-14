@@ -27,4 +27,8 @@ const fetchAllCategories = () => {
   return instance.get("/api/categories");
 };
 
-export { fetchAllProduct, fetchAllCategories };
+const fetchProductById = (productId) => {
+  return instance.get(`/api/products/${productId}`);
+};
+
+export { fetchAllProduct, fetchAllCategories, fetchProductById };

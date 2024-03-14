@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Card from "./CardPublications";
 import style from "./Content.module.scss";
 import { fetchAllProduct } from "../../../services/Service";
+import { useNavigate } from "react-router-dom";
 function Content({ categoryId }) {
   const [listProduct, setListProduct] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     getProduct();
   }, [categoryId]);
@@ -21,16 +23,35 @@ function Content({ categoryId }) {
       console.error("Error fetching products:", error);
     }
   };
+
+  const handleViewDetail = (id) => {
+    navigate(`/Detail/${id}`);
+  };
+
+  const handleAddToCart = (id) => {
+    const selectedProduct = listProduct.find((product) => product.id === id);
+    setCart((prevCart) => [...prevCart, selectedProduct]);
+  };
   return (
     <div className={style.container}>
       {listProduct.map((product) => (
         <div key={product.id}>
           <Card
+            id={product.id}
             imgSrc={product.img}
             name={product.name}
             priceBeforeDiscount={product.price}
             priceAfterDiscount={""}
             summary={product.description}
+            onViewDetail={() => handleViewDetail(product.id)}
+            onAddToCart={() =>
+              handleAddToCart(
+                product.id,
+                product.name,
+                product.img,
+                product.price
+              )
+            }
           />
         </div>
       ))}

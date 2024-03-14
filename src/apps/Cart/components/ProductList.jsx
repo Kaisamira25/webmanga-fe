@@ -14,25 +14,6 @@ function ProductList() {
       category: "Fantasy",
       quantity: 1,
     },
-
-    // {
-    //   id: "2",
-    //   bookName: "86 eighty six",
-    //   img: img86,
-    //   bookPrice: 80000,
-    //   author: "Asato Asato",
-    //   category: "Fantasy",
-    //   quantity: 1,
-    // },
-    // {
-    //   id: "2",
-    //   bookName: "86 eighty six",
-    //   img: img86,
-    //   bookPrice: 80000,
-    //   author: "Asato Asato",
-    //   category: "Fantasy",
-    //   quantity: 1,
-    // },
   ]);
 
   const calculateTotal = (price, quantity) => {
@@ -40,7 +21,7 @@ function ProductList() {
   };
 
   return (
-    <div className={style.productlist}>
+    <div className={style.productList}>
       {products.map((product, index) => (
         <div key={index}>
           <Product
