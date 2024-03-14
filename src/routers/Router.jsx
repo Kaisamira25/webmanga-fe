@@ -28,6 +28,15 @@ const routes = [
   { path: "/Admin", element: <HomeAdmin /> },
   { path: "/Admin/Genre", element: <HomeAdmin /> },
   { path: "/Admin/Cover", element: <HomeAdmin /> },
+  { path: "/Admin/Gift", element: <HomeAdmin /> },
+  { path: "/Admin/Discount", element: <HomeAdmin /> },
+  { path: "/Admin/Product", element: <HomeAdmin /> },
+  { path: "/Admin/Statis", element: <HomeAdmin /> },
+  { path: "/Admin/Type", element: <HomeAdmin /> },
+  { path: "/Admin/Account", element: <HomeAdmin /> },
+  { path: "/Admin/Order", element: <HomeAdmin /> },
+  { path: "/Admin/Stock", element: <HomeAdmin /> },
+  { path: "/Admin/Sales", element: <HomeAdmin /> },
   { path: "*", element: <ErrorPage /> },
 ];
 export default routes;

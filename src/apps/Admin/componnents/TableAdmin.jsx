@@ -5,8 +5,8 @@ import Padgina from "./Padgination";
 function TableAdmin({ arraysTH, arraysTD }) {
 
     return (
-        <div className="w-12/12 h-1/3 mb-2 mt-1 ">
-            <table className="w-full h-full overflow-y-scroll border-s border-black">
+        <div className="w-12/12 mb-2 mt-1 ">
+            <table className="w-full overflow-y-scroll border-s border-black">
                 <thead className="border-b border-black bg-gray-500 uppercase ">
                     <tr>
                         {arraysTH.map((item, index) => (
@@ -14,7 +14,7 @@ function TableAdmin({ arraysTH, arraysTD }) {
                         ))}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="overflow-y-scroll">
                     {arraysTD.map((items, rowIndex) => (
                         <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
                             {Object.values(items).map((value, colIndex) => (
@@ -24,7 +24,7 @@ function TableAdmin({ arraysTH, arraysTD }) {
                     ))}
                 </tbody>
             </table>
-            <Padgina/>
+            
         </div>
     )
 

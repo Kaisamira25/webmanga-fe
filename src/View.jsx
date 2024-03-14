@@ -15,6 +15,14 @@ function Views() {
     "/Admin",
     "/Admin/Genre",
     "/Admin/Cover",
+    "/Admin/Discount",
+    "/Admin/Gift",
+    "/Admin/Product",
+    "/Admin/Type",
+    "/Admin/Account",
+    "/Admin/Order",
+    "/Admin/Stock",
+    "/Admin/Sales"
   ].includes(location.pathname);
   return (
     <div>
