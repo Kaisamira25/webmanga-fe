@@ -22,7 +22,7 @@ function GenreData() {
     const addGenres = async (data) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8080/api/v1/genre/add', data);
+            const response = await axios.post('http://localhost:8080/api/v1/genre', data);
             console.log('Genre added successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGenres để cập nhật danh sách thể loại
             fetchGenres();

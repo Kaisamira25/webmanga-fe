@@ -14,12 +14,10 @@ function ProductRe() {
               <p className={style.fonta}>Product</p>
               <p className={style.fontb}>Total</p>
             </div>
-
             <div className={style.table}>
               <ProductList />
             </div>
           </div>
-
           {/* title right */}
           <div className={style.titleright}>
             <div className=" border-b-2 border-black">
