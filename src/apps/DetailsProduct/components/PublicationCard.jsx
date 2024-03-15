@@ -89,8 +89,8 @@ console.log(listproduct);
         
         <div className={style.categories}>
        
-        {item.categories.map((category, Index) => (
-            <a key={Index} href="/" style={{ marginRight: '5px' }}>
+        {item.categories.map((category, index) => (
+            <a key={index} href="/" style={{ marginRight: '5px' }}>
               {category}
             </a>
           ))}
