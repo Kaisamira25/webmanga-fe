@@ -24,12 +24,12 @@ function Content({ categoryId }) {
     }
   };
 
-  const handleViewDetail = (id) => {
-    navigate(`/Detail/${id}`);
+  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author) => {
+    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author}});
   };
 
   const handleAddToCart = (id) => {
-    const selectedProduct = listProduct.find((product) => product.id === id);
+    const selectedProduct = listProduct.find((product) => product.id === id );
     setCart((prevCart) => [...prevCart, selectedProduct]);
   };
   return (
@@ -43,7 +43,7 @@ function Content({ categoryId }) {
             priceBeforeDiscount={product.price}
             priceAfterDiscount={""}
             summary={product.description}
-            onViewDetail={() => handleViewDetail(product.id)}
+            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author)}
             onAddToCart={() =>
               handleAddToCart(
                 product.id,

@@ -1,21 +1,31 @@
 import style from "../scss/PublicationCard.module.scss";
-import img from "../../../assets/imgs/SAOUnitalRing.jpg";
 import Info from "./InfoSquare";
+import {useLocation} from 'react-router-dom';
 import { useState } from "react";
-function PublicationCard({
-  publicationsStatus,
-  name,
-  priceBeforeDiscount,
-  priceAfterDiscount,
-}) {
-  const categorieList = [
-    { id: 1, name: "Light Novel" },
-    { id: 2, name: "Fantasy" },
-    { id: 3, name: "Manga - Comic" },
-    { id: 4, name: "Detective" },
-    { id: 5, name: "Action" },
-    { id: 6, name: "Romance" },
-  ];
+function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDiscount,}) {
+  // const categorieList = [
+  //   { id: 1, name: "Light Novel" },
+  //   { id: 2, name: "Fantasy" },
+  //   { id: 3, name: "Manga - Comic" },
+  //   { id: 4, name: "Detective" },
+  //   { id: 5, name: "Action" },
+  //   { id: 6, name: "Romance" },
+  // ];
+  const location = useLocation();
+  const { id, name ,description,img,publishYear,publisher,categories,author} = location.state;
+  const Nlistproduct = {
+    "id": id,
+    "name": name,
+    "description": description,
+    "img": img,
+    "publishYear":publishYear,
+    "publisher": publisher,
+    "categories" : categories,
+    "author":author
+  }
+  const listproduct = [];
+  listproduct.push(Nlistproduct);
+console.log(listproduct);
   const [quantity, setQuantity] = useState(0);
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {
@@ -28,16 +38,23 @@ function PublicationCard({
     setQuantity(quantity + 1);
   };
   return (
+   
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
+      {listproduct.map((item) => (
         <div>
-          <img src={img} alt="" />
+       
+        <img src={item.img} alt="" />
+       
           <p className={style.status}>{publicationsStatus}</p>
         </div>
+         ))}
       </div>
+      {listproduct.map((item) => (
       <div className={style.publicationInfo}>
-        {/* <p className={style.status}>{publicationsStatus}</p> */}
-        <p className={style.name}>{name}</p>
+    
+        <p className={style.name}>{item.name}</p>
+    
         <div className={style.infoPublications}>
           <div className={style.price}>
             <span>{priceBeforeDiscount}</span>
@@ -46,18 +63,18 @@ function PublicationCard({
           <div className={style.info}>
             <div>
               <div>
-                <Info label={"Tác giả:"} content={" Hiếu Đỗ"} />
+                <Info label={"Tên tác giả:"} content={" " +item.author} />
               </div>
               <div>
-                <Info label={"Nhà xuất bản:"} content={" Hiếu Đỗ"} />
+                <Info label={"Nhà xuất bản:"} content={" " +item.publisher} />
               </div>
             </div>
             <div>
               <div>
-                <Info label={"Loại:"} content={" Bìa cứng"} />
+                <Info label={"Loại:"} content={ " " +item.categories.join(', ')} />
               </div>
               <div>
-                <Info label={"Năm xuất bản:"} content={" 2024"} />
+                <Info label={"Năm xuất bản:"} content={" " +item.publishYear} />
               </div>
             </div>
           </div>
@@ -65,17 +82,16 @@ function PublicationCard({
 
         <div className={style.decription}>
           <label htmlFor="">Nội dung</label>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum,
-            ipsam nesciunt atque expedita voluptatum repellendus ab suscipit
-            nihil labore repellat dolore accusantium quod, dolor, tempora
-            corrupti totam perspiciatis earum impedit! lo
-          </p>
+         
+        <p >{item.description}</p>
+    
         </div>
+        
         <div className={style.categories}>
-          {categorieList.map((item, index) => (
-            <a key={index} href="/">
-              {item.name}
+       
+        {item.categories.map((category, Index) => (
+            <a key={Index} href="/" style={{ marginRight: '5px' }}>
+              {category}
             </a>
           ))}
         </div>
@@ -96,6 +112,7 @@ function PublicationCard({
           </div>
         </div>
       </div>
+          ))}
     </div>
   );
 }

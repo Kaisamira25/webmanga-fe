@@ -4,35 +4,35 @@ function RelatedPublications() {
   const list = [
     {
       id: 1,
-      img: "https://imgs.search.brave.com/uOqzd81tPwEWaTpLsCkRPKJ0Mr61BQXzkLURY4h7TC8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFkWjd6dWQ2WEwu/anBn",
+      imgs: "https://imgs.search.brave.com/uOqzd81tPwEWaTpLsCkRPKJ0Mr61BQXzkLURY4h7TC8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODFkWjd6dWQ2WEwu/anBn",
       name: "Am I Actually The Strongest Vol.3",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 2,
-      img: "https://imgs.search.brave.com/WL_hGJFu9uDRJqBraQwT3aBq7ChwFCh6txUml3HlerM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFYMkxrNHVsUUwu/anBn",
+      imgs: "https://imgs.search.brave.com/WL_hGJFu9uDRJqBraQwT3aBq7ChwFCh6txUml3HlerM/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFYMkxrNHVsUUwu/anBn",
       name: "That Time I Got Reincarnated as a Slime Vol.11",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 3,
-      img: "https://imgs.search.brave.com/YYNBo_UaIK5K6JeOoWFnC4-d403heywC6khJYIP1TZc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9leHRl/cm5hbC1wcmV2aWV3/LnJlZGQuaXQvYXJ0/LW11c2hva3UtdGVu/c2VpLWpvYmxlc3Mt/cmVpbmNhcm5hdGlv/bi12b2x1bWUtMjYt/ZW5nbGlzaC12MC1S/cEoyUk80dk1wZGhJ/NXB5MTZYYkN6MjhT/aTl4ZlRFVE1RX3M0/ZHg0dURvLmpwZz93/aWR0aD02NDAmY3Jv/cD1zbWFydCZhdXRv/PXdlYnAmcz1kN2Y0/MzI4MWJmOGVhOWQz/ZmIzMjU5Y2RlM2U2/MzFmMTJmZDhmN2Vi",
+      imgs: "https://imgs.search.brave.com/YYNBo_UaIK5K6JeOoWFnC4-d403heywC6khJYIP1TZc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9leHRl/cm5hbC1wcmV2aWV3/LnJlZGQuaXQvYXJ0/LW11c2hva3UtdGVu/c2VpLWpvYmxlc3Mt/cmVpbmNhcm5hdGlv/bi12b2x1bWUtMjYt/ZW5nbGlzaC12MC1S/cEoyUk80dk1wZGhJ/NXB5MTZYYkN6MjhT/aTl4ZlRFVE1RX3M0/ZHg0dURvLmpwZz93/aWR0aD02NDAmY3Jv/cD1zbWFydCZhdXRv/PXdlYnAmcz1kN2Y0/MzI4MWJmOGVhOWQz/ZmIzMjU5Y2RlM2U2/MzFmMTJmZDhmN2Vi",
       name: "Mushoku Tensei Vol.26",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 4,
-      img: "https://imgs.search.brave.com/GxxhAsQVvf8u3w1b1PAU-loOiPMj-fqiO-BiNItx7jU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzE3MmtJYWg0OEwu/anBn",
+      imgs: "https://imgs.search.brave.com/GxxhAsQVvf8u3w1b1PAU-loOiPMj-fqiO-BiNItx7jU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzE3MmtJYWg0OEwu/anBn",
       name: "The Eminence In Shadow Vol.4",
       price: "100.000",
       discountPrice: "50.000",
     },
     {
       id: 5,
-      img: "https://imgs.search.brave.com/3mEeQ2HvYs_jE6exYklJYPOMh2gpAYSxmP8hRnl4cOE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFXYmd5ZWMxbkwu/anBn",
+      imgs: "https://imgs.search.brave.com/3mEeQ2HvYs_jE6exYklJYPOMh2gpAYSxmP8hRnl4cOE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFXYmd5ZWMxbkwu/anBn",
       name: "The Eminence In Shadow Vol.7",
       price: "100.000",
       discountPrice: "50.000",
@@ -43,7 +43,7 @@ function RelatedPublications() {
       <p>Related Publicatinos</p>
       <div className={style.productContainer}>
         {list.map((item, index) => (
-          <Card key={index} imgUrl={item.img}/>
+          <Card key={index} imgUrl={item.imgs}/>
         ))}
       </div>
     </div>
