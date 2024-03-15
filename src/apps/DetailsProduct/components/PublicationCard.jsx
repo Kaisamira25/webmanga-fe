@@ -15,7 +15,7 @@ function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDisco
   const { id, name ,description,img,publishYear,publisher,categories,author} = location.state;
   const Nlistproduct = {
     "id": id,
-    "name": name,
+    'name': name,
     "description": description,
     "img": img,
     "publishYear":publishYear,
@@ -25,7 +25,6 @@ function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDisco
   }
   const listproduct = [];
   listproduct.push(Nlistproduct);
-console.log(listproduct);
   const [quantity, setQuantity] = useState(0);
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {

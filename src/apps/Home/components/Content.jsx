@@ -15,17 +15,19 @@ function Content({ categoryId }) {
       if (res.data) {
         setListProduct(
           categoryId
-            ? res.data.filter((product) => product.categoryId === categoryId)
+            ? res.data.filter((product) => product.categoryId === 3)
             : res.data
+            
         );
-      }
+      }  
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
-  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author) => {
-    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author}});
+
+  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author,categoryId) => {
+    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author,categoryId:categoryId}});
   };
 
   const handleAddToCart = (id) => {
@@ -43,7 +45,7 @@ function Content({ categoryId }) {
             priceBeforeDiscount={product.price}
             priceAfterDiscount={""}
             summary={product.description}
-            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author)}
+            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author,product.categoryId)}
             onAddToCart={() =>
               handleAddToCart(
                 product.id,
