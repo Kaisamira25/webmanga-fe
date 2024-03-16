@@ -38,11 +38,11 @@ function AdminDiscount() {
     ]
     return (
         <div className="h-screen pt-12">
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
                     <h3 className="font-bold">Manage Discount</h3>
                 </div>
-            </header>
+            </div>
             <div className="h-8/12">
                 <div className="py-4 h-auto flex">
                     {discount_ip.map((field, index) => (

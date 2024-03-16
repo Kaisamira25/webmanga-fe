@@ -52,11 +52,11 @@ function Reveneu() {
 
     return (
         <div>
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
                     <h3 className="font-bold">Reveneu Statistics</h3>
                 </div>
-            </header>
+            </div>
             <div>
                 <div className="w-full">
                     <div className=" w-12/12 py-4  ">

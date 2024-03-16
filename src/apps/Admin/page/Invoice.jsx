@@ -70,11 +70,11 @@ function AdminCover() {
 
     return (
         <div className="h-screen pt-12">
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
-                    <h3 className="font-bold">Invoice</h3>
+                    <h3 className="font-bold">Manage Invoice</h3>
                 </div>
-            </header>
+            </div>
             <div className="w-12/12 h-10 flex py-5">
                 <div className="w-8/12 me-24 h-96 border-2 border-black rounded-lg overflow-y-scroll">
                     <div className="text-center bg-slate-500 font-bold">

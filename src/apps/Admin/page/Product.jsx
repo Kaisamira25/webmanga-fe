@@ -65,11 +65,11 @@ function AdminProduct() {
     ]
     return (
         <div className="h-screen pt-12">
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
                     <h3 className="font-bold">Manage Book</h3>
                 </div>
-            </header>
+            </div>
             <div>
                 <div>
                     {product.map((field) => (

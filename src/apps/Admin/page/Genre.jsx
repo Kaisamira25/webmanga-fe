@@ -46,11 +46,11 @@ function Genre() {
     };
     return (
         <div className="h- pt-12">
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
                     <h3 className="font-bold">Manage Genre</h3>
                 </div>
-            </header>
+            </div>
             <div>
                 <div className=" w-12/12 py-4 flex-col inline-block w-3/12 px-2">
                     <div className="relative w-full h-10 ">

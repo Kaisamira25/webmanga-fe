@@ -29,11 +29,9 @@ function Account() {
     ]
     return (
         <div className="h-screen pt-12">
-            <header className="mt-4">
-                <div className="text-black text-start">
+                <div className="text-black text-start mt-4">
                     <h3 className="font-bold">Manage Account</h3>
                 </div>
-            </header>
             <div>
                 <div>
                     {AccountIP.map((field, index) => (
