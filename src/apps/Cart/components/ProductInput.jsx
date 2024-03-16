@@ -20,12 +20,10 @@ function ProductRe() {
               <p className={style.fontA}>Product</p>
               <p className={style.fontB}>Total</p>
             </div>
-
             <div className={style.table}>
               <ProductList onCartUpdate={handleCartUpdate} />
             </div>
           </div>
-
           {/* title right */}
           <div className={style.titleRight}>
             <div className=" border-b-2 border-black">
