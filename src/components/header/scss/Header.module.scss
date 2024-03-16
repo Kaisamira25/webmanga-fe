@@ -40,12 +40,22 @@
 //     font-weight: 700;
 //   }
 // }
-
-header {
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.header {
   width: 100%;
   background-color: $bg-btn-color;
   height: 5em;
   margin-bottom: 4em;
+  position: relative;
+  transition: top 0.3s;
+
   > div {
     height: 100%;
     display: flex;
@@ -114,6 +124,13 @@ header {
       }
     }
   }
+}
+.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  transition: top 0.3s;
+  animation: slideDown 1.5s forwards;
 }
 a {
   text-decoration: none !important;

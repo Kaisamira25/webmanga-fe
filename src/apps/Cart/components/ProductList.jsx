@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../../components/ProductCart/Product";
 import style from "./ProductList.module.scss";
-import { fetchCart, fetchUpdateCart } from "../../../services/Service";
+import {
+  fetchCart,
+  fetchDeleteCart,
+  fetchUpdateCart,
+} from "../../../services/Service";
 import axios from "axios";
 function ProductList({ onCartUpdate }) {
   const [cart, setCart] = useState([]);
@@ -24,10 +28,9 @@ function ProductList({ onCartUpdate }) {
 
   const incDec = async (qty, id, dec, name, img, price, author) => {
     if (dec === "dec") {
-      if (qty === 1) {
-        qty = 1;
-      } else {
-        qty -= 1;
+      qty -= 1;
+      if (qty === 0) {
+        fetchDeleteCart(id);
       }
     } else {
       qty += 1;

@@ -45,9 +45,10 @@ function DetailProduct() {
           <ProductField
             key={index}
             src={product.img}
+            qty={product.qty}
             alt={""}
             name={product.name}
-            price={product.price}
+            price={product.price * product.qty}
           />
         ))}
       </div>

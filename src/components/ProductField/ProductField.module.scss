@@ -5,6 +5,7 @@
   margin: $margin-10px;
   margin-top: $margin-top-50px;
   border-bottom: $border-bottom-2px-black;
+  padding-bottom: 2em;
   .imgField {
     width: $width-40;
     @include apply-flex(center-center);

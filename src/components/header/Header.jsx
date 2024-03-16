@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 function Header() {
   const [open, setOpen] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -19,7 +20,16 @@ function Header() {
   //   { icon: <IconCart /> },
   //   { icon: <IconUser />, path: "/UserPage" },
   // ];
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    const scrollPosition = window.scrollY;
 
+    if (scrollPosition > 0) {
+      setIsFixed(true);
+    } else {
+      setIsFixed(false);
+    }
+  });
   return (
     // <header className={style.header}>
     //   <p>LAINOVO</p>
@@ -36,27 +46,29 @@ function Header() {
     //   <p>LAINOVO</p>
     //   <BtnHeader/>
     // </header>
-    <header>
+    <header
+      className={isFixed ? `${style.header} ${style.fixed}` : style.header}
+    >
       <div>
         <div className={style.brandName}>
-          <Link  to={'/Home'}>
+          <Link to={"/Home"}>
             <p>LAINOVO</p>
           </Link>
         </div>
         <div className={`${style.link} ${open ? `${style.linkSlide}` : ""}`}>
-          <Link to={'/Home'}>
+          <Link to={"/Home"}>
             {/* <IconHome /> */}
             <p>Home</p>
           </Link>
-          <Link to={'/Cart'}>
+          <Link to={"/Cart"}>
             {/* <IconCart /> */}
             <p>Cart</p>
           </Link>
-          <Link to={'/User'}>
+          <Link to={"/User"}>
             {/* <IconUser /> */}
             <p>Account</p>
           </Link>
-          <Link to={'/Login'}>
+          <Link to={"/Login"}>
             {/* <IconLogout /> */}
             <p>Login</p>
           </Link>

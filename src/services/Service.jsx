@@ -43,6 +43,9 @@ const fetchCartById = (orderItem) => {
 const fetchUpdateCart = (orderId, order) => {
   return instance.put(`/api/cart/${orderId}`, order);
 };
+const fetchDeleteCart = (orderId, order) => {
+  return instance.delete(`/api/cart/${orderId}`, order);
+};
 
 export {
   fetchAllProduct,
@@ -52,4 +55,5 @@ export {
   fetchCartById,
   fetchAddToCart,
   fetchUpdateCart,
+  fetchDeleteCart,
 };

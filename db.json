@@ -314,54 +314,12 @@
   ],
   "cart": [
     {
-      "name": "Berserk",
-      "img": "https://upload.wikimedia.org/wikipedia/en/4/4a/Berserk_vol01.png",
-      "price": 100000,
-      "author": "Miura Kentaro",
-      "qty": 15,
-      "id": 4
-    },
-    {
-      "name": "Vinland Saga",
-      "img": "https://m.media-amazon.com/images/I/910JohjM6WL._AC_UF1000,1000_QL80_.jpg",
-      "price": 100000,
-      "author": "Yukimura Makoto",
-      "qty": 6,
-      "id": 5
-    },
-    {
-      "name": "Fullmetal Alchemist",
-      "img": "https://dyn.media.forbiddenplanet.com/ZT90gzjEKhoUmY60tJUscenuKJo=/fit-in/1500x1500/https://media.forbiddenplanet.com/products/2757407.jpg",
-      "price": 100000,
-      "author": "Arakawa Hiromu",
-      "qty": 3,
-      "id": 6
-    },
-    {
-      "name": "Fire Force",
-      "img": "https://moshibookstore.com/wp-content/uploads/2022/12/9781646516940_manga-fire-force-volume-32-primary.jpeg",
-      "price": 100000,
-      "author": "Atsushi Okubo",
-      "qty": 16,
-      "id": 3
-    },
-    {
-      "id": 2,
-      "name": "Blue Exorcist",
-      "price": 100000,
-      "author": "Kazue Kato",
-      "img": "https://cdn.kobo.com/book-images/b3fe2adf-f80b-47b7-9b19-916b2f119405/1200/1200/False/blue-exorcist-vol-2.jpg",
-      "qty": 8
-    },
-    {
-      "id": 1,
       "name": "Seraph of the End",
+      "img": "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B600%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&source=url%5Bhttps://prodimage.images-bn.com/pimages/9781421571522_p0_v1_s600x595.jpg%5D&scale=options%5Blimit%5D,size%5B600x10000%5D&sink=format%5Bwebp%5D",
       "price": 100000,
       "author": "Takaya Kagami",
-      "img": "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B600%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&source=url%5Bhttps://prodimage.images-bn.com/pimages/9781421571522_p0_v1_s600x595.jpg%5D&scale=options%5Blimit%5D,size%5B600x10000%5D&sink=format%5Bwebp%5D",
       "qty": 1,
-      "createdAt": 1710492767898,
-      "updatedAt": 1710492767898
+      "id": 1
     }
   ]
 }
