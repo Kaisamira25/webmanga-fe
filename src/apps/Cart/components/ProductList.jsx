@@ -1,39 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../../../components/ProductCart/Product";
-import img from "../../../assets/imgs/ShadowGarden.jpg";
-import img86 from "../../../assets/imgs/86.jpg";
 import style from "./ProductList.module.scss";
-function ProductList() {
-  const [products, setProducts] = useState([
-    {
-      id: "1",
-      bookName: "The Eminence In Shadow",
-      img: img,
-      bookPrice: 50000,
-      author: "Aizawa Daisuke",
-      category: "Fantasy",
-      quantity: 1,
-    },
-  ]);
+import { fetchCart, fetchUpdateCart } from "../../../services/Service";
+import axios from "axios";
+function ProductList({ onCartUpdate }) {
+  const [cart, setCart] = useState([]);
 
-  const calculateTotal = (price, quantity) => {
-    return price * quantity;
+  useEffect(() => {
+    fetchCartData();
+  }, []);
+
+  const fetchCartData = async () => {
+    try {
+      const res = await fetchCart();
+      if (res.data) {
+        setCart(res.data);
+        onCartChange();
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  const incDec = async (qty, id, dec, name, img, price, author) => {
+    if (dec === "dec") {
+      if (qty === 1) {
+        qty = 1;
+      } else {
+        qty -= 1;
+      }
+    } else {
+      qty += 1;
+    }
+    const order = {
+      name: name,
+      img: img,
+      price: price,
+      author: author,
+      qty: qty,
+    };
+    await axios.put(`http://localhost:3000/api/cart/${id}`, order);
+    fetchCartData();
+    onCartUpdate();
   };
 
   return (
     <div className={style.productList}>
-      {products.map((product, index) => (
+      {cart.map((product, index) => (
         <div key={index}>
           <Product
-            index={index}
-            bookName={product.bookName}
+            bookName={product.name}
             imgBook={product.img}
-            bookPrice={product.bookPrice}
+            bookPrice={product.price}
             author={product.author}
-            category={product.category}
-            total={calculateTotal(product.bookPrice, product.quantity)}
-            initialQuantity={product.quantity}
-            setProducts={setProducts}
+            total={product.price * product.qty}
+            quantity={product.qty}
+            handleDecrease={() =>
+              incDec(
+                product.qty,
+                product.id,
+                "dec",
+                product.name,
+                product.img,
+                product.price,
+                product.author
+              )
+            }
+            handleIncrease={() =>
+              incDec(
+                product.qty,
+                product.id,
+                "inc",
+                product.name,
+                product.img,
+                product.price,
+                product.author
+              )
+            }
           />
         </div>
       ))}

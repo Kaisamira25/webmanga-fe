@@ -2,6 +2,7 @@ import style from "./CardPublications.module.scss";
 import EyeIcon from "../../../assets/icons/EyeIcon";
 import IconCart from "../../../assets/icons/CartIcon";
 import { useNavigate } from "react-router-dom";
+import formatCurrency from "../../../common/FormatCurrency";
 function Card({
   id,
   imgSrc,
@@ -28,8 +29,8 @@ function Card({
         </a>
         <div>
           <div className={style.price}>
-            <span>{priceBeforeDiscount}</span>
-            <span>{priceAfterDiscount}</span>
+            <span>{formatCurrency(priceBeforeDiscount)}</span>
+            {/* <span>{priceAfterDiscount}</span> */}
           </div>
           <div className={style.btn}>
             <button onClick={onAddToCart}>

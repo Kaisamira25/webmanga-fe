@@ -14,12 +14,13 @@ export default function TotalPayment({ textInfo, className }) {
   return (
     <div className={style.container}>
       <div className={style.text}>
-        {textInfo.map((text, index) => (
+        {textInfo.map((item, index) => (
           <TextInfo
             className={className}
             index={index}
-            title={text.title}
-            text={text.text}
+            title={item.title}
+            price={item.price ? item.price : null}
+            text={item.text ? item.text : null}
           />
         ))}
       </div>

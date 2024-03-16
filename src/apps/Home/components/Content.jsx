@@ -3,12 +3,16 @@ import Card from "./CardPublications";
 import style from "./Content.module.scss";
 import { fetchAllProduct } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
-function Content({ categoryId }) {
+import axios from "axios";
+function Content({ categoryId, setCart }) {
   const [listProduct, setListProduct] = useState([]);
   const navigate = useNavigate();
+  let qty = 1;
   useEffect(() => {
     getProduct();
+    window.scrollTo(0, 0);
   }, [categoryId]);
+
   const getProduct = async () => {
     try {
       const res = await fetchAllProduct();
@@ -28,9 +32,47 @@ function Content({ categoryId }) {
     navigate(`/Detail/${id}`);
   };
 
-  const handleAddToCart = (id) => {
-    const selectedProduct = listProduct.find((product) => product.id === id);
-    setCart((prevCart) => [...prevCart, selectedProduct]);
+  const handleAddToCart = async (id, name, price, author, img) => {
+    let isExisting = false;
+    const res = await axios.get("http://localhost:3000/api/cart");
+    if (res.data.length === 0) {
+      const order = {
+        id: id,
+        name: name,
+        price: price,
+        author: author,
+        img: img,
+        qty: qty,
+      };
+      axios.post("http://localhost:3000/api/cart", order);
+    } else {
+      res.data.map((orderItem) => {
+        if (id === orderItem.id) {
+          orderItem.qty += 1;
+          const order = {
+            id: id,
+            name: name,
+            price: price,
+            author: author,
+            img: img,
+            qty: orderItem.qty,
+          };
+          axios.put(`http://localhost:3000/api/cart/${orderItem.id}`, order);
+          isExisting = true;
+        }
+      });
+      if (isExisting == false) {
+        const order = {
+          id: id,
+          name: name,
+          price: price,
+          author: author,
+          img: img,
+          qty: qty,
+        };
+        axios.post("http://localhost:3000/api/cart", order);
+      }
+    }
   };
   return (
     <div className={style.container}>
@@ -48,8 +90,9 @@ function Content({ categoryId }) {
               handleAddToCart(
                 product.id,
                 product.name,
-                product.img,
-                product.price
+                product.price,
+                product.author,
+                product.img
               )
             }
           />

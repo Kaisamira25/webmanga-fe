@@ -97,11 +97,6 @@
         color: $bg-btn-color;
         column-gap: 1em;
         margin-bottom: 1em;
-        span {
-          &:first-child {
-            text-decoration: line-through;
-          }
-        }
       }
       .btn {
         display: flex;

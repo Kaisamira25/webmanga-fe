@@ -30,5 +30,26 @@ const fetchAllCategories = () => {
 const fetchProductById = (productId) => {
   return instance.get(`/api/products/${productId}`);
 };
+const fetchCart = () => {
+  return instance.get("/api/cart");
+};
+const fetchAddToCart = () => {
+  return instance.post("/api/cart");
+};
+const fetchCartById = (orderItem) => {
+  return instance.get(`/api/cart/${orderItem}`);
+};
 
-export { fetchAllProduct, fetchAllCategories, fetchProductById };
+const fetchUpdateCart = (orderId, order) => {
+  return instance.put(`/api/cart/${orderId}`, order);
+};
+
+export {
+  fetchAllProduct,
+  fetchAllCategories,
+  fetchProductById,
+  fetchCart,
+  fetchCartById,
+  fetchAddToCart,
+  fetchUpdateCart,
+};

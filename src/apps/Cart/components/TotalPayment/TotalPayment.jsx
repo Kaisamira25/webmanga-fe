@@ -4,31 +4,28 @@ import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
 import { Link } from "react-router-dom";
 
-export default function GoCartpayment({ textInfo, className }) {
-  const [discountCode, setDiscountCode] = useState(""); 
-  const [isDiscountValid, setIsDiscountValid] = useState(false); 
-  const [isInputFilled, setIsInputFilled] = useState(false); 
+export default function GoCartPayment({ textInfo, className }) {
+  const [discountCode, setDiscountCode] = useState("");
+  const [isDiscountValid, setIsDiscountValid] = useState(false);
+  const [isInputFilled, setIsInputFilled] = useState(false);
   const handleDiscountCodeChange = (event) => {
     const inputDiscountCode = event.target.value;
-    setDiscountCode(inputDiscountCode); 
-    setIsInputFilled(!!inputDiscountCode.trim()); 
+    setDiscountCode(inputDiscountCode);
+    setIsInputFilled(!!inputDiscountCode.trim());
   };
 
   const handleOpenFinishModal = () => {
-    
     if (!isInputFilled) {
       console.log("Bạn chưa nhập mã giảm giá!");
-      return; 
+      return;
     }
-
 
     if (discountCode === "DISCOUNT20") {
       console.log("Mã giảm giá đã được áp dụng!");
-      setIsDiscountValid(true); 
-     
+      setIsDiscountValid(true);
     } else {
       console.log("Mã giảm giá không hợp lệ!");
-      setIsDiscountValid(false); 
+      setIsDiscountValid(false);
     }
   };
 
@@ -40,7 +37,7 @@ export default function GoCartpayment({ textInfo, className }) {
             className={className}
             index={index}
             title={text.title}
-            text={text.text}
+            price={text.price}
           />
         ))}
       </div>
@@ -57,15 +54,13 @@ export default function GoCartpayment({ textInfo, className }) {
         )}
       </div>
       <div className={style.btn}>
-        <Link to={"/Cart/Payment"}> 
-        <ButtonInput
-          placeholder={"Continue"}
-          onClick={handleOpenFinishModal}
-        />
+        <Link to={"/Cart/Payment"}>
+          <ButtonInput
+            placeholder={"Continue"}
+            onClick={handleOpenFinishModal}
+          />
         </Link>
-      
       </div>
-
     </div>
   );
 }

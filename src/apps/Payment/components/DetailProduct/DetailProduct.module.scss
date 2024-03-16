@@ -10,4 +10,14 @@
     // margin: $margin-top-20px;
     margin-right: $margin-right-20px;
   }
+  .productField {
+    overflow-y: auto;
+    max-height: 24em;
+    &::-webkit-scrollbar {
+      width: 0em;
+    }
+  }
+  .TotalPayment {
+    margin-top: 1em;
+  }
 }

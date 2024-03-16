@@ -1,12 +1,13 @@
 import React from "react";
+import formatCurrency from "../../common/FormatCurrency";
 
 function ProductField({ name, price, quantity }) {
   return (
     <div className="flex items-center justify-between my-2">
       <p className="font-bold">
-        {name} {quantity}
+        {name} &nbsp; x{quantity}
       </p>
-      <p>{price} VNĐ</p>
+      <p>{formatCurrency(price * quantity)} </p>
     </div>
   );
 }

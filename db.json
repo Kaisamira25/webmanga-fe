@@ -31,13 +31,16 @@
       "updateAt": 3132024
     }
   ],
-
   "products": [
     {
       "id": 1,
       "name": "Seraph of the End",
       "categoryId": 1,
-      "categories": ["Action", "Fantasy", "Horror"],
+      "categories": [
+        "Action",
+        "Fantasy",
+        "Horror"
+      ],
       "price": 100000,
       "description": "Seraph of the Ends world was ravaged by a virus which only left a tenth of the population. But as if that wasn’t bad enough, this allowed the rise of a civilization of vampires from beneath the Earth, who now terrorize the surface.",
       "author": "Takaya Kagami",
@@ -51,7 +54,11 @@
       "id": 2,
       "name": "Blue Exorcist",
       "categoryId": 1,
-      "categories": ["Action", "Fantasy", "Horror"],
+      "categories": [
+        "Action",
+        "Fantasy",
+        "Horror"
+      ],
       "price": 100000,
       "description": "The twist lies in the fact that Rin and his twin, Yukio, are the sons of Satan. Yeah, that Satan. But that doesn’t stop them from joining the Vatican’s True Cross Order to defend the human realm against the underworld. Noble intentions for teenagers of literal satanic origins… Will their blood be a hindrance or an aid in their quest? Only one way to find out!",
       "author": "Kazue Kato",
@@ -65,7 +72,11 @@
       "id": 3,
       "name": "Fire Force",
       "categoryId": 1,
-      "categories": ["Action", "Fantasy", "Horror"],
+      "categories": [
+        "Action",
+        "Fantasy",
+        "Horror"
+      ],
       "price": 100000,
       "description": "Fire Force takes place in a fictional Tokyo where arson has reached a whole other level. And in this deranged world of flaming monsters is our MC Shinra. Able to ignite his feet and fly, the guy is hell-bent on joining the Fire Force brigade, made of individuals with fire powers. Their job?",
       "author": "Atsushi Okubo",
@@ -100,7 +111,11 @@
       "id": 5,
       "name": "Vinland Saga",
       "categoryId": 2,
-      "categories": ["Action", "Adventure", "Drama"],
+      "categories": [
+        "Action",
+        "Adventure",
+        "Drama"
+      ],
       "price": 100000,
       "description": "As a child, Thorfinn sat at the feet of the great Leif Ericson and thrilled to wild tales of a land far to the west. But his youthful fantasies were shattered by a mercenary raid. ",
       "author": "Yukimura Makoto",
@@ -114,7 +129,13 @@
       "id": 6,
       "name": "Fullmetal Alchemist",
       "categoryId": 2,
-      "categories": ["Action", "Fantasy", "Adventure", "Comedy", "Drama"],
+      "categories": [
+        "Action",
+        "Fantasy",
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
       "price": 100000,
       "description": "In this world, alchemists are those who study and perform the art of alchemical transmutation—the science of manipulating and transforming matter. They are bounded by the Law of Equivalent Exchange: in order to gain something, one must sacrifice something of equal value",
       "author": "Arakawa Hiromu",
@@ -128,7 +149,12 @@
       "id": 7,
       "name": "Gin Tama",
       "categoryId": 3,
-      "categories": ["Action", "Comedy", "Drama", "Sci-Fi"],
+      "categories": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Sci-Fi"
+      ],
       "price": 100000,
       "description": "The samurai didn't stand a chance. First, the aliens invaded Japan. Next, they took all the jobs. And then they confiscated everyone's swords. So what does a hotheaded former samurai like Sakata 'Gin' Gintoki do to make ends meet? Take any odd job that comes his way, even if it means losing his dignity.",
       "author": "Hideaki Sorachi",
@@ -142,7 +168,12 @@
       "id": 8,
       "name": "One-Punch Man",
       "categoryId": 3,
-      "categories": ["Action", "Comedy", "Sci-Fi", "Supernatural"],
+      "categories": [
+        "Action",
+        "Comedy",
+        "Sci-Fi",
+        "Supernatural"
+      ],
       "price": 100000,
       "description": "Can Saitama finally find an evil villain strong enough to challenge him? Follow Saitama through his hilarious romps as he searches for new bad guys to challenge!",
       "author": "ONE",
@@ -156,7 +187,13 @@
       "id": 9,
       "name": "Made in Abyss",
       "categoryId": 3,
-      "categories": ["Adventure", "Fantasy", "Horror", "Drama", "Sci-Fi"],
+      "categories": [
+        "Adventure",
+        "Fantasy",
+        "Horror",
+        "Drama",
+        "Sci-Fi"
+      ],
       "price": 100000,
       "description": " A young orphan named Riko dreams of following in her mother’s footsteps as a Cave Raider, and when she meets a strange robot when exploring the Abyss, she’s one step closer to achieving her goal!",
       "author": "Akihito Tsukushi",
@@ -170,7 +207,10 @@
       "id": 10,
       "name": "Komi Can't Communicate",
       "categoryId": 4,
-      "categories": ["Romance", "School"],
+      "categories": [
+        "Romance",
+        "School"
+      ],
       "price": 100000,
       "description": "Socially anxious high school student Shoko Komi’s greatest dream is to make some friends, but everyone at school mistakes her crippling social anxiety for cool reserve. With the whole student body keeping its distance and Komi unable to utter a single word, friendship might be forever beyond her reach.",
       "author": "Tomohito Oda",
@@ -184,7 +224,10 @@
       "id": 11,
       "name": "Kaguya-Sama: Love Is War",
       "categoryId": 4,
-      "categories": ["Romance", "School"],
+      "categories": [
+        "Romance",
+        "School"
+      ],
       "price": 100000,
       "description": "The proudly privileged top two students of an elite school each makes it their mission to be the first to extract a confession of love from the other.",
       "author": "Aka Akasaka",
@@ -198,7 +241,10 @@
       "id": 12,
       "name": "My Dress-Up Darling",
       "categoryId": 4,
-      "categories": ["Romance", "School"],
+      "categories": [
+        "Romance",
+        "School"
+      ],
       "price": 100000,
       "description": "The high school boy, skilled in sewing and passionate about traditional dolls, reluctantly becomes involved in creating cosplay outfits for one of the most attractive and popular girls in his class.",
       "author": "Shinichi fukuda",
@@ -233,7 +279,12 @@
       "id": 14,
       "name": "Bungo Stray Dogs",
       "categoryId": 5,
-      "categories": ["Action", "Drama", "Mystery", "Supernatural"],
+      "categories": [
+        "Action",
+        "Drama",
+        "Mystery",
+        "Supernatural"
+      ],
       "price": 100000,
       "description": "Having been kicked out of the orphanage, a despairing young man by the name of Atsushi Nakajima rescues a strange man from a suicide attempt--Osamu Dazai. Turns out that Dazai is part of an armed-detective agency staffed by individuals whose supernatural powers take on a literary bent!",
       "author": "Kafka Asagiri",
@@ -247,7 +298,10 @@
       "id": 15,
       "name": "The Apothecary Diaries",
       "categoryId": 5,
-      "categories": ["Drama", "Mystery"],
+      "categories": [
+        "Drama",
+        "Mystery"
+      ],
       "price": 100000,
       "description": "Maomao, a young woman trained in the art of herbal medicine, is forced to work as a lowly servant in the inner palace. Though she yearns for life outside its perfumed halls, she isn’t long for a life of drudgery! Using her wits to break a “curse” afflicting the imperial heirs, Maomao attracts the attentions of the handsome eunuch Jinshi and is promoted to attendant food taster. But Jinshi has other plans for the erstwhile apothecary, and soon Maomao is back to brewing potions and…solving mysteries?!",
       "author": "Hyūga natsu",
@@ -256,6 +310,58 @@
       "publishYear": 2022,
       "createdAt": 3132024,
       "updatedAt": 3132024
+    }
+  ],
+  "cart": [
+    {
+      "name": "Berserk",
+      "img": "https://upload.wikimedia.org/wikipedia/en/4/4a/Berserk_vol01.png",
+      "price": 100000,
+      "author": "Miura Kentaro",
+      "qty": 15,
+      "id": 4
+    },
+    {
+      "name": "Vinland Saga",
+      "img": "https://m.media-amazon.com/images/I/910JohjM6WL._AC_UF1000,1000_QL80_.jpg",
+      "price": 100000,
+      "author": "Yukimura Makoto",
+      "qty": 6,
+      "id": 5
+    },
+    {
+      "name": "Fullmetal Alchemist",
+      "img": "https://dyn.media.forbiddenplanet.com/ZT90gzjEKhoUmY60tJUscenuKJo=/fit-in/1500x1500/https://media.forbiddenplanet.com/products/2757407.jpg",
+      "price": 100000,
+      "author": "Arakawa Hiromu",
+      "qty": 3,
+      "id": 6
+    },
+    {
+      "name": "Fire Force",
+      "img": "https://moshibookstore.com/wp-content/uploads/2022/12/9781646516940_manga-fire-force-volume-32-primary.jpeg",
+      "price": 100000,
+      "author": "Atsushi Okubo",
+      "qty": 16,
+      "id": 3
+    },
+    {
+      "id": 2,
+      "name": "Blue Exorcist",
+      "price": 100000,
+      "author": "Kazue Kato",
+      "img": "https://cdn.kobo.com/book-images/b3fe2adf-f80b-47b7-9b19-916b2f119405/1200/1200/False/blue-exorcist-vol-2.jpg",
+      "qty": 8
+    },
+    {
+      "id": 1,
+      "name": "Seraph of the End",
+      "price": 100000,
+      "author": "Takaya Kagami",
+      "img": "https://prodimage.images-bn.com/lf?set=key%5Bresolve.pixelRatio%5D,value%5B1%5D&set=key%5Bresolve.width%5D,value%5B600%5D&set=key%5Bresolve.height%5D,value%5B10000%5D&set=key%5Bresolve.imageFit%5D,value%5Bcontainerwidth%5D&set=key%5Bresolve.allowImageUpscaling%5D,value%5B0%5D&set=key%5Bresolve.format%5D,value%5Bwebp%5D&source=url%5Bhttps://prodimage.images-bn.com/pimages/9781421571522_p0_v1_s600x595.jpg%5D&scale=options%5Blimit%5D,size%5B600x10000%5D&sink=format%5Bwebp%5D",
+      "qty": 1,
+      "createdAt": 1710492767898,
+      "updatedAt": 1710492767898
     }
   ]
 }
