@@ -6,11 +6,12 @@ import IconUser from "../../assets/icons/User";
 import IconLogout from "../../assets/icons/Login";
 import BtnHeader from "./BtnHeader";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 function Header() {
   const [open, setOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -20,16 +21,43 @@ function Header() {
   //   { icon: <IconCart /> },
   //   { icon: <IconUser />, path: "/UserPage" },
   // ];
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector("header");
-    const scrollPosition = window.scrollY;
 
-    if (scrollPosition > 0) {
-      setIsFixed(true);
-    } else {
-      setIsFixed(false);
+  const storedCartItemCount = localStorage.getItem("cartItemCount");
+
+  useEffect(() => {
+    if (storedCartItemCount !== null) {
+      setCartItemCount(parseInt(storedCartItemCount));
     }
-  });
+  }, [storedCartItemCount]);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedCartItemCount = localStorage.getItem("cartItemCount");
+      if (updatedCartItemCount !== null) {
+        setCartItemCount(parseInt(updatedCartItemCount));
+      }
+    };
+
+    window.addEventListener("cartItemCount", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("cartItemCount", handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsFixed(scrollPosition > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     // <header className={style.header}>
     //   <p>LAINOVO</p>
@@ -60,9 +88,12 @@ function Header() {
             {/* <IconHome /> */}
             <p>Home</p>
           </Link>
-          <Link to={"/Cart"}>
+          <Link to={"/Cart"} className={style.cartLink}>
             {/* <IconCart /> */}
             <p>Cart</p>
+            {cartItemCount > 0 && (
+              <span className={style.cartCount}>{cartItemCount}</span>
+            )}
           </Link>
           <Link to={"/User"}>
             {/* <IconUser /> */}

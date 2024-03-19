@@ -50,7 +50,7 @@ function ProductList({ onCartUpdate }) {
   return (
     <div className={style.productList}>
       {cart.map((product, index) => (
-        <div key={index}>
+        <div key={index} className={style.productField}>
           <Product
             bookName={product.name}
             imgBook={product.img}

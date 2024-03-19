@@ -4,13 +4,18 @@ import style from "./Content.module.scss";
 import { fetchAllProduct } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-function Content({ categoryId, setCart }) {
+function Content({ categoryId }) {
   const [listProduct, setListProduct] = useState([]);
+  const [cartItemCount, setCartItemCount] = useState(0);
   const navigate = useNavigate();
   let qty = 1;
   useEffect(() => {
     getProduct();
     window.scrollTo(0, 0);
+    const storedCartItemCount = localStorage.getItem("cartItemCount");
+    if (storedCartItemCount !== null) {
+      setCartItemCount(parseInt(storedCartItemCount));
+    }
   }, [categoryId]);
 
   const getProduct = async () => {
@@ -21,17 +26,37 @@ function Content({ categoryId, setCart }) {
           categoryId
             ? res.data.filter((product) => product.categoryId === 3)
             : res.data
-            
         );
-      }  
+      }
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
-
-  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author,categoryId) => {
-    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author,categoryId:categoryId}});
+  const handleViewDetail = (
+    id,
+    name,
+    description,
+    img,
+    publishYear,
+    publisher,
+    categories,
+    author,
+    categoryId
+  ) => {
+    navigate(`/Detail/${id}`, {
+      state: {
+        id: id,
+        name: name,
+        description: description,
+        img: img,
+        publishYear: publishYear,
+        publisher: publisher,
+        categories: categories,
+        author: author,
+        categoryId: categoryId,
+      },
+    });
   };
 
   const handleAddToCart = async (id, name, price, author, img) => {
@@ -47,6 +72,10 @@ function Content({ categoryId, setCart }) {
         qty: qty,
       };
       axios.post("http://localhost:3000/api/cart", order);
+      setCartItemCount((prevCount) => {
+        localStorage.setItem("cartItemCount", prevCount + 1);
+        return prevCount + 1;
+      });
     } else {
       res.data.map((orderItem) => {
         if (id === orderItem.id) {
@@ -73,9 +102,14 @@ function Content({ categoryId, setCart }) {
           qty: qty,
         };
         axios.post("http://localhost:3000/api/cart", order);
+        setCartItemCount((prevCount) => {
+          localStorage.setItem("cartItemCount", prevCount + 1);
+          return prevCount + 1;
+        });
       }
     }
   };
+
   return (
     <div className={style.container}>
       {listProduct.map((product) => (
@@ -87,7 +121,19 @@ function Content({ categoryId, setCart }) {
             priceBeforeDiscount={product.price}
             priceAfterDiscount={""}
             summary={product.description}
-            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author,product.categoryId)}
+            onViewDetail={() =>
+              handleViewDetail(
+                product.id,
+                product.name,
+                product.description,
+                product.img,
+                product.publishYear,
+                product.publisher,
+                product.categories,
+                product.author,
+                product.categoryId
+              )
+            }
             onAddToCart={() =>
               handleAddToCart(
                 product.id,
