@@ -34,7 +34,9 @@
     "react-select": "^5.8.0",
     "react-simple-image-viewer": "^1.2.2",
     "react-tailwindcss-select": "^1.8.5",
-    "sass": "^1.71.1"
+    "react-toastify": "^10.0.5",
+    "sass": "^1.71.1",
+    "toastify": "^2.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

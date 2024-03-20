@@ -1,5 +1,5 @@
 import React from "react";
-import InputAll from "../../../components/InputAll";
+import InputAll from "../../../components/Inputall";
 import OtpIcon from "../../../assets/icons/MaterialOtpIcon";
 
 function OtpRequired() {

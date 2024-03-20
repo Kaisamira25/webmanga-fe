@@ -1,8 +1,8 @@
 import React from "react";
 
 import ButtonInput from "../../components/BtnInput";
-import PasswordRequired from "./Components/PasswordRequired";
 import { Link } from "react-router-dom";
+import PasswordRequired from "./components/PasswordRequired";
 
 function ForgotPasswordConfirm() {
   return (
@@ -19,7 +19,7 @@ function ForgotPasswordConfirm() {
               <p className=" text-xs mb-1"> </p>
             </div>
             <div>
-              <PasswordRequired />
+              <PasswordRequired  />
             </div>
             <div>
               <Link to={"/Login"}>

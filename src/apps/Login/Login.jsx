@@ -1,9 +1,6 @@
 import React from "react";
-import ButtonInput from "../../components/BtnInput";
+import RegisterPrompt from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
-import ForgotYourPassword from "./components/ForgotYourButton";
-import RegisterPrompt from "./components/RegisterPrompt";
-import { Link } from "react-router-dom";
 function Login() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-green400">
@@ -17,14 +14,6 @@ function Login() {
             </div>
             <div>
               <LoginForm />
-            </div>
-            <div>
-              <ForgotYourPassword />
-            </div>
-            <div className="mt-2">
-              <Link to={"/Home"}>
-                <ButtonInput type={"button"} placeholder={"Login"} />
-              </Link>
             </div>
             <div className="mt-2">
               <RegisterPrompt />
