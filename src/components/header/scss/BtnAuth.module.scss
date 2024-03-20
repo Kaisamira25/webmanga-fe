@@ -1,0 +1,10 @@
+@use "../../../common/variables" as *;
+@use "../../../common/responsive" as *;
+.btnAuthWrapper {
+  > button {
+    > p {
+font-weight: 500;
+font-size: large;
+    }
+  }
+}

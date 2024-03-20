@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Mulish: '"Mulish", sans-serif',
+        Mandali: '"Mandali", sans-serif',
         Confortaa: '"Comfortaa", sans-serif',
         pacifico: '"Pacifico", Roboto',
       },

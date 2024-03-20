@@ -62,61 +62,6 @@
 //     }
 //   }
 // }
-.container {
-  // background-color: $bg-btn-color;
-  width: 28em;
-  height: 24em;
-  display: flex;
-  border-bottom: 3px double $bg-btn-color;
-  .image {
-    // background-color: $bg-color;
-    width: 13em;
-    height: 100%;
-    display: flex;
-    align-items: flex-start;
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-  .info {
-    // background-color: #63b46e;
-    width: calc(100% - 13em);
-    height: 24em;
-    padding: 0px 0.4em 0px 0.4em;
-    a {
-      margin-bottom: 0.7em;
-      p {
-        font-size: large;
-        font-weight: 700;
-      }
-    }
-    > div {
-      .price {
-        display: flex;
-        color: $bg-btn-color;
-        column-gap: 1em;
-        margin-bottom: 1em;
-      }
-      .btn {
-        display: flex;
-        justify-content: flex-start;
-        column-gap: 2em;
-        margin-bottom: 1em;
-        button {
-          // transition: background-color 0.5s ease-in-out;
-          background-color: $bg-color;
-          width: 3em;
-          height: 2em;
-          border-radius: 4px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        :hover {
-          background-color: $bg-btn-color;
-        }
-      }
-    }
-  }
+.containerCard {
+  width: 100%;
 }

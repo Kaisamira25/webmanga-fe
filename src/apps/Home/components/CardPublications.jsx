@@ -19,31 +19,9 @@ function Card({
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.image}>
+    <div className={style.containerCard}>
+      <div className={style.imgWrapper}>
         <img src={imgSrc} alt="" />
-      </div>
-      <div className={style.info}>
-        <a href="/">
-          <p>{name}</p>
-        </a>
-        <div>
-          <div className={style.price}>
-            <span>{formatCurrency(priceBeforeDiscount)}</span>
-            {/* <span>{priceAfterDiscount}</span> */}
-          </div>
-          <div className={style.btn}>
-            <button onClick={onAddToCart}>
-              <IconCart />
-            </button>
-            <button onClick={() => onViewDetail(id)}>
-              <EyeIcon />
-            </button>
-          </div>
-          <div className={style.summary}>
-            <p>{summary}</p>
-          </div>
-        </div>
       </div>
     </div>
   );

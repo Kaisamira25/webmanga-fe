@@ -4,6 +4,7 @@ import Categories from "./components/Categories";
 import Content from "./components/Content";
 import HotPublications from "./components/HotPublications";
 import NewPublications from "./components/NewPublications";
+import SearchBar from "./components/SearchBar";
 function Body() {
   const [selectedCategoryId, setSelectedCategoryId] = useState();
 
@@ -12,10 +13,11 @@ function Body() {
   };
   return (
     <div>
+      <Categories />
+      <SearchBar />
       <NewPublications />
+      <Content />
       <HotPublications />
-      <Categories onCategorySelect={handleCategorySelect} />
-      <Content categoryId={selectedCategoryId} />
     </div>
   );
 }
