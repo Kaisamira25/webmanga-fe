@@ -36,11 +36,6 @@
 //     }
 // }
 
-
-
-
-
-
 // .container {
 //   width: 12em;
 //   height: 12em;
@@ -118,5 +113,31 @@
 //     }
 //   }
 // }
-
-
+.btnCartWrapper {
+  background-color: $bg-btn-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  transition: background-color 0.5s;
+  position: relative;
+  &:hover{
+    background-color: $bg-color;
+    > p {
+      background-color: $bg-color;
+    }
+  }
+  > p {
+    position: absolute;
+    background-color: $bg-btn-color;
+    width: 2.4em;
+    border-radius: 10px;
+    right: -55%;
+    text-align: center;
+    color: #161616;
+    font-weight: 600;
+    transition: background-color 0.5s;
+  }
+}

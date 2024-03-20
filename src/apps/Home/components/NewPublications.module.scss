@@ -1,39 +1,26 @@
 @use "../../../common/variables" as *;
 @use "../../../common/responsive" as *;
 
-.container {
-  margin-bottom: 3em;
+.newProductWrapper {
+  // padding: 0px 2em 0px 2em;
   width: 100%;
-  > p {
-    color: $bg-btn-color;
-    text-align: center;
-    font-size: x-large;
-    font-weight: 700;
-    text-decoration: underline;
-    margin-bottom: 2em;
+  padding: 0px 2em 0px 2em;
+
+  > .wrapper {
+    overflow: hidden;
+    position: relative;
+    > .inner {
+      display: flex;
+      width: fit-content;
+      animation: loop 5s linear infinite;
+    }
   }
-  > div {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(auto auto);
-    row-gap: 1em;
-    place-items: center;
-    padding: 0px 1em 0px 1em;
-    @include break(md) {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(auto auto);
-    }
-    @include break(lg) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(auto auto);
-    }
-    @include break(xl) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(auto auto);
-    }
-    @include break(xxl) {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(auto auto);
-    }
+}
+@keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }

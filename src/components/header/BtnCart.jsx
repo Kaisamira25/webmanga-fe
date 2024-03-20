@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconMenuUncheck from "../../assets/icons/MenuUncheck";
 import IconMenu from "../../assets/icons/Menu";
 import IconHome from "../../assets/icons/HomeIcon";
 import IconLogOut from "../../assets/icons/LogOut";
 import IconCart from "../../assets/icons/CartIcon";
 import IconUser from "../../assets/icons/AccountIcon";
-import style from "./scss/BtnHeader.module.scss";
+import style from "./scss/BtnCart.module.scss";
 function BtnHeader({onOpen, icon}) {
   // const [check, setCheck] = useState(false);
   // const rotate = () => {
@@ -54,10 +54,11 @@ function BtnHeader({onOpen, icon}) {
     //     </div>
     //   </div>
     // </div>
-    <div>
+    <div className={`${style.btnCartWrapper}`}>
       <button onClick={handleOpen}>
         {icon}
       </button>
+      <p className={`data ${style.visible}`}>2</p>
     </div>
   );
 }

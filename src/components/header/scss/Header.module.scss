@@ -42,82 +42,36 @@
 // }
 
 header {
-  width: 100%;
+  position: relative;
   background-color: $bg-btn-color;
   height: 5em;
-  margin-bottom: 4em;
-  > div {
-    height: 100%;
+  margin-bottom: 5em;
+  display: flex;
+  padding: 0px 14% 0px 14%;
+  > div:first-child {
     display: flex;
-    justify-content: space-between;
-    padding: 0px 1em 0px 1em;
-    position: relative;
     align-items: center;
-    .brandName {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      z-index: 4;
-
-      a {
-        text-decoration: none;
-        p {
-          color: black;
-          font-weight: 700;
-          font-size: x-large;
-        }
-      }
-    }
-    .link {
-      display: flex;
-      //  justify-content: center;
-      align-items: center;
-      column-gap: 1.5em;
-      position: absolute;
-      width: 100%;
-      left: 0px;
-      justify-content: space-around;
-      gap: 2em;
-      opacity: 0;
-      transform: translateY(0);
-      transition: transform 0.5s, opacity 1s;
-      background-color: $bg-btn-color;
-      bottom: 0px;
-      // z-index: 4;
-      // transform: translateY(100%);
-      a {
-        border-bottom: 1px solid transparent;
-        transition: border-bottom 0.3s linear;
-        p {
-          text-align: center;
-          font-size: large;
-          font-weight: 500;
-          color: black;
-        }
-      }
-      :hover {
-        border-bottom: 1px solid black;
-      }
-
-      @include break(md) {
-        position: static;
-        opacity: 1;
-      }
-    }
-    .linkSlide {
-      opacity: 1;
-      transform: translateY(100%);
-    }
-    .buttonHeader {
-      @include break(md) {
-        display: none;
-      }
+    height: 100%;
+    background-color: $bg-btn-color;
+    > a > p {
+      font-size: large;
+      font-weight: 600;
     }
   }
-}
-a {
-  text-decoration: none !important;
-}
-p {
-  margin-bottom: 0rem !important;
+  > div:nth-child(2) {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 10%;
+    transform: translateY(50%);
+    @include break(lg) {
+      right: 20%;
+    }
+  }
+  > div:nth-child(3) {
+    margin-left: auto;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+  }
 }

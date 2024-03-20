@@ -18,36 +18,9 @@ function Card({
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.image}>
+    <div className={style.containerCard}>
+      <div className={style.imgWrapper}>
         <img src={imgSrc} alt="" />
-      </div>
-      <div className={style.info}>
-        <a href="/">
-          <p>{name}</p>
-        </a>
-        <div>
-          <div className={style.price}>
-            <span>{priceBeforeDiscount}</span>
-            <span>{priceAfterDiscount}</span>
-          </div>
-          <div className={style.btn}>
-            <button onClick={handleAddCart}>
-              <IconCart />
-            </button>
-            <button onClick={handleViewDetail}>
-              <EyeIcon />
-            </button>
-          </div>
-          <div className={style.summary}>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-              harum perferendis provident mollitia ut, asperiores dolorem
-              consequatur neque nesciunt repellendus dolor minima accusamus
-              nulla odio, voluptate nihil nemo quos. Architecto.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,0 +1,31 @@
+@use "../../../common/variables" as *;
+@use "../../../common/responsive" as *;
+
+.searchBarWrapper {
+  // background-color: $bg-btn-color;
+  height: 3em;
+  padding: 0px 2em 0px 2em;
+  display: flex;
+  margin-bottom: 5em;
+  > input {
+    outline: none;
+    width: 100%;
+    background-color: #f3f2f2;
+    padding: 1em 1em 1em 1em;
+    border-radius: 10px 0px 0px 10px;
+    // &:hover {
+    //   filter: drop-shadow(1px 1px 2px gray);
+    // }
+    // &:focus {
+    //   filter: drop-shadow(1px 1px 2px gray);
+    // }
+  }
+  > button {
+    width: 10%;
+    background-color: $bg-btn-color;
+    border-radius: 0px 10px 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
