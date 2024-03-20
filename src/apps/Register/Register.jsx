@@ -1,8 +1,10 @@
 import React from "react";
-import RegisterFormRequired from "./Components/RegisterFormRequired";
+
 import ButtonInput from "../../components/BtnInput";
-import SignInPrompt from "./Components/SignInPrompt";
+
 import { useNavigate } from "react-router-dom";
+import RegisterFormRequired from "./components/RegisterFormRequired";
+import SignInPrompt from "./components/SignInProm";
 function Register() {
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ function Register() {
               </h2>
             </div>
             <div>
-              <RegisterFormRequired />
+              <RegisterFormRequired/>
             </div>
             <div>
               <ButtonInput

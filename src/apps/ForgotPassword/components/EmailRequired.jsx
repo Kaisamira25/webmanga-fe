@@ -1,5 +1,5 @@
 import React from "react";
-import InputAll from "../../../components/InputAll";
+import InputAll from "../../../components/Inputall";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 function EmailRequired() {
   const passwordFields = [

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:8080",
 });
 instance.interceptors.request.use(
   function (config) {
@@ -44,6 +44,10 @@ const fetchUpdateCart = (orderId, order) => {
   return instance.put(`/api/cart/${orderId}`, order);
 };
 
+const loginApi = (data) => {
+  return instance.post("/api/v1/auth/login", data);
+};
+
 export {
   fetchAllProduct,
   fetchAllCategories,
@@ -52,4 +56,5 @@ export {
   fetchCartById,
   fetchAddToCart,
   fetchUpdateCart,
+  loginApi
 };

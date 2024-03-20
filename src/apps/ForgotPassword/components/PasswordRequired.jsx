@@ -1,5 +1,5 @@
 import React from "react";
-import InputAll from "../../../components/InputAll";
+import InputAll from "../../../components/Inputall";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconRepeat from "../../../assets/icons/MaterialIconRepeat";
 function PasswordRequired() {
