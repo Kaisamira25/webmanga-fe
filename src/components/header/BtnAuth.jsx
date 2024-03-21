@@ -1,14 +1,13 @@
 import style from "./scss/BtnAuth.module.scss";
-function BtnAuth() {
-    return ( 
-        <div className={style.btnAuthWrapper}>
-            <button>
-                <p>
-                    Log in
-                </p>
-            </button>
-        </div>
-     );
+import IconLogin from "../../assets/icons/LoginIcon";
+function BtnAuth({handleLogin}) {
+  return (
+    <div className={style.btnAuthWrapper}>
+      <button onClick={handleLogin}>
+        <IconLogin />
+      </button>
+    </div>
+  );
 }
 
 export default BtnAuth;

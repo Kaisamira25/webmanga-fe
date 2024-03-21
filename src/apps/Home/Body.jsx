@@ -9,8 +9,8 @@ function Body() {
     <div>
       <Categories />
       <SearchBar />
-      <NewPublications />
       <Content />
+      <NewPublications />
       <HotPublications />
     </div>
   );

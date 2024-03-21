@@ -50,46 +50,16 @@ function NewPublications() {
       price: "100,000",
       priceDis: "50,000",
     },
-    {
-      id: 7,
-      name: "Re:zero Starting Life In Another World vol. 23",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81yrZAdkw7L._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
-    {
-      id: 8,
-      name: "Re:zero Starting Life In Another World vol. 23",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81yrZAdkw7L._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
-    {
-      id: 9,
-      name: "Re:zero Starting Life In Another World vol. 23",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81yrZAdkw7L._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
-    {
-      id: 10,
-      name: "Re:zero Starting Life In Another World vol. 23",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81yrZAdkw7L._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
   ];
   return (
     <div className={style.newProductWrapper}>
+      <p>New lightnovel</p>
       <div className={style.wrapper}>
         <div className={style.inner}>
           {newList.map((item) => (
-            <div>{item.name}</div>
+            <Card imgSrc={item.imgUrl} name={item.name} priceAfterDiscount={item.priceDis} priceBeforeDiscount={item.price}/>
           ))}
+          <div className={style.fakeDiv}></div>
         </div>
       </div>
     </div>

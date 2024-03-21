@@ -35,26 +35,26 @@ function HotPublications() {
       price: "100,000",
       priceDis: "50,000",
     },
-    {
-      id: 5,
-      name: "Re:zero Starting Life In Another World vol. 18",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81KxVUEwKvL._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
-    {
-      id: 6,
-      name: "Mashoku Tensei vol. 16",
-      imgUrl:
-        "https://m.media-amazon.com/images/I/81WEVQiuExL._AC_UF1000,1000_QL80_.jpg",
-      price: "100,000",
-      priceDis: "50,000",
-    },
+    // {
+    //   id: 5,
+    //   name: "Re:zero Starting Life In Another World vol. 18",
+    //   imgUrl:
+    //     "https://m.media-amazon.com/images/I/81KxVUEwKvL._AC_UF1000,1000_QL80_.jpg",
+    //   price: "100,000",
+    //   priceDis: "50,000",
+    // },
+    // {
+    //   id: 6,
+    //   name: "Mashoku Tensei vol. 16",
+    //   imgUrl:
+    //     "https://m.media-amazon.com/images/I/81WEVQiuExL._AC_UF1000,1000_QL80_.jpg",
+    //   price: "100,000",
+    //   priceDis: "50,000",
+    // },
   ];
   return (
     <article>
-      <p>HOT SALES</p>
+      <p>Hot sales</p>
       <div className="hotProducts">
         {productList.map((item) => (
           <div key={item.id}>

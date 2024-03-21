@@ -1,10 +1,13 @@
 import style from "./scss/BtnLogout.module.scss";
-function BtnLogout({icon}) {
-    return ( 
-        <div className={style.btnLogoutWrapper}>
-            <button>{icon}</button>
-        </div>
-     );
+import IconLogout from "../../assets/icons/LogoutIcon";
+function BtnLogout({handleLogout}) {
+  return (
+    <div className={style.btnLogoutWrapper}>
+      <button onClick={handleLogout}>
+        <IconLogout />
+      </button>
+    </div>
+  );
 }
 
 export default BtnLogout;
