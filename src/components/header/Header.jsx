@@ -11,7 +11,7 @@ function Header() {
   const [visible, setVisible] = useState("");
   useEffect(() => {
     console.log(logout);
-  },[logout])
+  }, [logout]);
   const handleLogout = () => {
     setLogout(!logout);
     setVisible(logout ? "visible" : "");
@@ -19,7 +19,7 @@ function Header() {
   return (
     <header>
       <div>
-        <Link>
+        <Link to={"/Home"}>
           <p>LAINOVO</p>
         </Link>
       </div>
@@ -28,7 +28,7 @@ function Header() {
           <BtnCart />
         </Link>
         <div>
-          <Link>
+          <Link to={"/User"}>
             <BtnUser />
           </Link>
           <div>
