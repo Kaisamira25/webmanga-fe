@@ -1,35 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../../../components/Title/Title";
 import style from "./DetailProduct.module.scss";
 import ProductField from "../../../../components/ProductField/ProductField";
 import imgSrc from "../../../../assets/imgs/imgTest.svg";
 import TotalPayment from "../TotalPayment/TotalPayment";
+import { fetchCart } from "../../../../services/Service";
 
 function DetailProduct() {
-  const productField = [
-    {
-      src: imgSrc,
-      alt: "test",
-      name: "Whispering you a love song",
-      price: "30000",
-    },
-    {
-      src: imgSrc,
-      alt: "test",
-      name: "Whispering you a love song",
-      price: "30000",
-    },
-    {
-      src: imgSrc,
-      alt: "test",
-      name: "Whispering you a love song",
-      price: "30000",
-    },
-  ];
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    fetchCartData();
+  }, []);
+  const fetchCartData = async () => {
+    try {
+      const res = await fetchCart();
+      if (res.data) {
+        setCart(res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
+  useEffect(() => {
+    const totalPrice = cart.reduce(
+      (acc, product) => acc + product.qty * product.price,
+      0
+    );
+    setTotalPrice(totalPrice);
+  }, [cart]);
   const textInfo = [
     { title: "Invoice ID", text: "123456789" },
-    { title: "Total payment", text: "90.000 VNĐ" },
+    { title: "Total payment", price: totalPrice },
   ];
 
   return (
@@ -37,14 +40,15 @@ function DetailProduct() {
       <div className={style.title}>
         <Title title={"Product"} />
       </div>
-      <div>
-        {productField.map((product, index) => (
+      <div className={style.productField}>
+        {cart.map((product, index) => (
           <ProductField
             key={index}
-            src={product.src}
-            alt={product.alt}
+            src={product.img}
+            qty={product.qty}
+            alt={""}
             name={product.name}
-            price={product.price}
+            price={product.price * product.qty}
           />
         ))}
       </div>

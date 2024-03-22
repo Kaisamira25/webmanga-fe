@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Card from "./CardPublications";
 import style from "./Content.module.scss";
 function Content() {

@@ -8,33 +8,32 @@ import { Link} from "react-router-dom";
 function SideBar() {
     const UlField = [
         {
-            name: "Sản Phẩm", svg: <BookIcon />,
+            name: "Product", svg: <BookIcon />,
             LiField: [
-                { name: "Quản lý thể loại",link:"/Admin/Genre"},
-                { name: "Quản lý loại bìa",link:"/Admin/Cover"},
-                { name: "Quản lý quà tặng",link:"/Admin/Gift" },
-                { name: "Quản lý sản phẩm" ,link:"/Admin/Product"},
-                { name: "Quản lý bản sản phẩm" ,link:"/Admin/Type"},
-                { name: "Quản lý mã giảm giá" ,link:"/Admin/Discount"},
+                { name: "Manage Genre",link:"/Admin/Genre"},
+                { name: "Manage Type Cover",link:"/Admin/Cover"},
+                { name: "Manage Gift",link:"/Admin/Gift" },
+                { name: "Manage Book" ,link:"/Admin/Product"},
+                { name: "Manage Type Book" ,link:"/Admin/Type"},
+                { name: "Manage Discount" ,link:"/Admin/Discount"},
             ]
         },
         {
-            name: "Nội bộ", svg: <AdminIcon />,
+            name: "Account", svg: <AdminIcon />,
             LiField: [
-                { name: "Quản lý tài khoản" ,link:"/AdminAccount"},
+                { name: "Manage Account" ,link:"/Admin/Account"},
             ]
         },
         {
-            name: "Thống kê-Báo cáo", svg: <StatisIcon />,
+            name: "Statis", svg: <StatisIcon />,
             LiField: [
-                { name: "Quản lý hoá đơn" ,link:"/AdminOder"},
-                { name: "Sản phẩm tồn kho" ,link:"/AdminStock"},
-                { name: "Thống kê doanh thu" ,link:"/AdminStatis"}
+                { name: "Invoice Statistics" ,link:"/Admin/Order"},
+                { name: "Revenue Statistics" ,link:"/Admin/Sales"}
             ]
         },
     ];
     return (
-        <div className="body pt-lg-3 mb-1 py-2">
+        <div className="pt-lg-3 mb-1 py-2">
             {UlField.map((field, index) => (
                 <div className="rounded-e rounded-s mb-1 h-auto py-1">
                     <ul className="nav ms-1 pb-2 pt-1">

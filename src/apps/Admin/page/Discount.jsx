@@ -8,11 +8,11 @@ import TextArea from "../componnents/TextArea";
 
 
 function AdminDiscount() {
-    const cover = [
-        { type: "text", names: "discount_name", id: "discount_name", placeholder: "Tên mã giảm giá" },
-        { type: "number", names: "percent", id: "percent", placeholder: "Phần trăm đơn hàng" },
-        { type: "text", names: "discout", id: "discount", placeholder: "Mã giảm giá" },
-        { type: "number", names: "stock", id: "stock", placeholder: "Số lượng" },
+    const discount_ip = [
+        { type: "text", names: "discount_name", id: "discount_name", placeholder: "Discount_name" },
+        { type: "number", names: "percent", id: "percent", placeholder: "Discount_percent" },
+        { type: "text", names: "discout", id: "discount", placeholder: "Discoutn_code" },
+        { type: "date", names: "date", id: "date", placeholder: "Expiration_date" },
     ]
     const TH = [{ names: "Id" },
     { names: "Tên mã giảm giá" },
@@ -38,14 +38,14 @@ function AdminDiscount() {
     ]
     return (
         <div className="h-screen pt-12">
-            <header className="mt-4">
+            <div className="mt-4">
                 <div className="text-black text-start">
-                    <h3 className="font-bold">Quản lý mã giảm giá</h3>
+                    <h3 className="font-bold">Manage Discount</h3>
                 </div>
-            </header>
+            </div>
             <div className="h-8/12">
-                <div className="py-4 h-auto">
-                    {cover.map((field, index) => (
+                <div className="py-4 h-auto flex">
+                    {discount_ip.map((field, index) => (
                         <InputAdmin
                             type={field.type}
                             name={field.names}
@@ -53,16 +53,14 @@ function AdminDiscount() {
                             placeholder={field.placeholder}
                         />
                     ))}
-                    <TextArea id={"description"} name={"description"} />
                 </div>
+                <TextArea className="w-4/12 ms-2" id={"description"} name={"description"} />
                 {buttons.map((button, index) => (
                     <BtnAdmin method={button.method} names={button.names} />
                 ))}
                 <SearchBar />
                 <TableAdmin arraysTH={TH} arraysTD={modifiedTD} />
-
             </div>
-
         </div>
     )
 }

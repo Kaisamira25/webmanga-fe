@@ -9,31 +9,10 @@ function Product({
   author,
   category,
   total,
-  initialQuantity,
-  setProducts,
-  index,
+  quantity,
+  handleDecrease,
+  handleIncrease,
 }) {
-  const [quantity, setQuantity] = useState(initialQuantity);
-
-  useEffect(() => {
-    setProducts((prevProducts) => {
-      const updatedProducts = [...prevProducts];
-      updatedProducts[index].quantity = quantity;
-      return updatedProducts;
-    });
-  }, [quantity, index, setProducts]);
-
-  const handleDecrease = (e) => {
-    e.preventDefault();
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const handleIncrease = (e) => {
-    e.preventDefault();
-    setQuantity(quantity + 1);
-  };
   return (
     <div className={style.container}>
       <div className={style.productField}>
