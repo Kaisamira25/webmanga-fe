@@ -4,7 +4,6 @@ import ButtonInput from "../../../components/BtnInput";
 import ForgotYourPassword from "./ForgotButon";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
-// import { Link } from "react-router-dom";
 import { loginApi } from "../../../services/Service";
 import { toast } from "react-toastify";
 function LoginForm() {
