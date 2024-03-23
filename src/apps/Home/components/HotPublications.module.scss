@@ -4,34 +4,29 @@
 article {
   margin-bottom: 5em;
   > p {
-    color: $bg-btn-color;
+    // color: $bg-btn-color;
     text-align: center;
     font-size: x-large;
     font-weight: 700;
-    text-decoration: underline;
+    background-color: $bg-btn-color;
+    // margin: 0px 2em 2em 2em;
+    // border-radius: 10px;
     margin-bottom: 2em;
+    padding: 0.7em 0px 0.7em 0px;
   }
   > div {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     row-gap: 2em;
     padding: 0px 1em 0px 1em;
     @include break(md) {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
     @include break(lg) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
     @include break(xl) {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-    }
-    @include break(xxl) {
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: none;
+      grid-template-columns: repeat(4, 1fr);
     }
     > div {
       display: flex;

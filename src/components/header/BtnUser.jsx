@@ -1,8 +1,11 @@
 import style from "./scss/BtnUser.module.scss";
-function BtnUser({ icon, logoutIcon }) {
+import IconUser from "../../assets/icons/User";
+function BtnUser() {
   return (
     <div className={`${style.btnUserWrapper}`}>
-      <button>{icon}</button>
+      <button>
+        <IconUser />
+      </button>
     </div>
   );
 }

@@ -2,25 +2,30 @@
 @use "../../../common/responsive" as *;
 
 .newProductWrapper {
-  // padding: 0px 2em 0px 2em;
   width: 100%;
-  padding: 0px 2em 0px 2em;
-
-  > .wrapper {
-    overflow: hidden;
-    position: relative;
-    > .inner {
-      display: flex;
-      width: fit-content;
-      animation: loop 5s linear infinite;
+  > p {
+    // color: $bg-btn-color;
+    text-align: center;
+    font-weight: 700;
+    font-size: x-large;
+    background-color: $bg-btn-color;
+    // margin: 0px 2em 2em 2em;
+    // border-radius: 10px;
+    margin-bottom: 2em;
+    padding: 0.7em 0px 0.7em 0px;
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1em;
+    @include break(md) {
+      grid-template-columns: repeat(2, 1fr);
     }
-  }
-}
-@keyframes loop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
+    @include break(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include break(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }

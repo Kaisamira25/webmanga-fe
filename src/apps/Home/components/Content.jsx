@@ -1,151 +1,191 @@
 import { useEffect, useState } from "react";
 import Card from "./CardPublications";
 import style from "./Content.module.scss";
-import { fetchAllProduct } from "../../../services/Service";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-function Content({ categoryId }) {
-  const [listProduct, setListProduct] = useState([]);
-  const [cartItemCount, setCartItemCount] = useState(0);
-  const navigate = useNavigate();
-  let qty = 1;
+import {
+  fetchAllPublications,
+  fetchAllImages,
+} from "../../../services/Service";
+
+function Content() {
+  // const productList = [
+  //   {
+  //     id: 1,
+  //     name: "Classroom of the Elite Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81+8UiitTuL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Re:Zero: Starting Life in Another World Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/814oNkHZi7L._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Mushoku Tensei: Jobless Reincarnation Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81mDZHZbtAL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Goblin Slayer Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/91k5blHZFyL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Grimgar of Fantasy and Ash Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/91NTidW+ITL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Classroom of the Elite: Year 2 Vol. 8",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81xZqAhvRrL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Toradora! Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81UIuiGkPFL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "Mushoku Tensei: Jobless Reincarnation Vol. 14",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81OZnAhp5TL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 9,
+  //     name: "Bunny Girl Senpai Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81pcsJPLQGL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 10,
+  //     name: "The Angel Next Door Spoils Me Rotten Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81cXBPgRaPL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 11,
+  //     name: "The Dawn of the Witch Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/811mGlibl+L._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 12,
+  //     name: "Disciple of the Lich: Or How I Was Cursed by the Gods and Dropped Into the Abyss! Vol. 5",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81Wm3ZSutpL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 13,
+  //     name: "Reincarnated as a Sword Vol. 4",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81sNiE9zJHL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 14,
+  //     name: "The Villainess Enjoys a Carefree Life Married to Her Worst Enemy! Vol. 2",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/815STNVDERL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 15,
+  //     name: "How a Realist Hero Rebuilt the Kingdom Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/81RYM0wsPLL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  //   {
+  //     id: 16,
+  //     name: "Sentenced to Be a Hero Vol. 1",
+  //     imgURL:
+  //       "https://m.media-amazon.com/images/I/91MPiCuqgbL._AC_UF1000,1000_QL80_.jpg",
+  //     price: "100,000",
+  //     priceDis: "50,000",
+  //   },
+  // ];
+  const [productList, setProductList] = useState([]);
+
   useEffect(() => {
-    getProduct();
-    window.scrollTo(0, 0);
-    const storedCartItemCount = localStorage.getItem("cartItemCount");
-    if (storedCartItemCount !== null) {
-      setCartItemCount(parseInt(storedCartItemCount));
-    }
-  }, [categoryId]);
+    getPublications();
+  }, []);
 
-  const getProduct = async () => {
+  const getPublications = async () => {
     try {
-      const res = await fetchAllProduct();
-      if (res.data) {
-        setListProduct(
-          categoryId
-            ? res.data.filter((product) => product.categoryId === 3)
-            : res.data
-        );
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-
-  const handleViewDetail = (
-    id,
-    name,
-    description,
-    img,
-    publishYear,
-    publisher,
-    categories,
-    author,
-    categoryId
-  ) => {
-    navigate(`/Detail/${id}`, {
-      state: {
-        id: id,
-        name: name,
-        description: description,
-        img: img,
-        publishYear: publishYear,
-        publisher: publisher,
-        categories: categories,
-        author: author,
-        categoryId: categoryId,
-      },
-    });
-  };
-
-  const handleAddToCart = async (id, name, price, author, img) => {
-    let isExisting = false;
-    const res = await axios.get("http://localhost:3000/api/cart");
-    if (res.data.length === 0) {
-      const order = {
-        id: id,
-        name: name,
-        price: price,
-        author: author,
-        img: img,
-        qty: qty,
-      };
-      axios.post("http://localhost:3000/api/cart", order);
-      setCartItemCount((prevCount) => {
-        localStorage.setItem("cartItemCount", prevCount + 1);
-        return prevCount + 1;
-      });
-    } else {
-      res.data.map((orderItem) => {
-        if (id === orderItem.id) {
-          orderItem.qty += 1;
-          const order = {
-            id: id,
-            name: name,
-            price: price,
-            author: author,
-            img: img,
-            qty: orderItem.qty,
-          };
-          axios.put(`http://localhost:3000/api/cart/${orderItem.id}`, order);
-          isExisting = true;
-        }
-      });
-      if (isExisting == false) {
-        const order = {
-          id: id,
-          name: name,
-          price: price,
-          author: author,
-          img: img,
-          qty: qty,
+      const response = await fetchAllPublications();
+      console.log("Response data: ", response.data);
+      const data = response.data.data.map((item, index) => {
+        let imageURL = item.image_url
+          ? `${process.env.REACT_APP_IMAGE_BASE_URL}${item.image_url
+              .split("/")
+              .pop()}`
+          : "";
+        return {
+          ...item,
+          imgURL: imageURL,
+          key: index,
         };
-        axios.post("http://localhost:3000/api/cart", order);
-        setCartItemCount((prevCount) => {
-          localStorage.setItem("cartItemCount", prevCount + 1);
-          return prevCount + 1;
-        });
-      }
+      });
+      setProductList(data);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
     }
   };
 
   return (
-    <div className={style.container}>
-      {listProduct.map((product) => (
-        <div key={product.id}>
-          <Card
-            id={product.id}
-            imgSrc={product.img}
-            name={product.name}
-            priceBeforeDiscount={product.price}
-            priceAfterDiscount={""}
-            summary={product.description}
-            onViewDetail={() =>
-              handleViewDetail(
-                product.id,
-                product.name,
-                product.description,
-                product.img,
-                product.publishYear,
-                product.publisher,
-                product.categories,
-                product.author,
-                product.categoryId
-              )
-            }
-            onAddToCart={() =>
-              handleAddToCart(
-                product.id,
-                product.name,
-                product.price,
-                product.author,
-                product.img
-              )
-            }
-          />
-        </div>
-      ))}
+    <div>
+      <div className={style.container}>
+        {productList.map(
+          (item) => (
+            console.log(item.imgURL),
+            (
+              <div key={item.key}>
+                <Card
+                  imgSrc={item.imgURL}
+                  name={item.publicationsName}
+                  priceBeforeDiscount={item.unitPrice}
+                  priceAfterDis
+                  count={item.priceDis}
+                />
+              </div>
+            )
+          )
+        )}
+      </div>
+      <div></div>
     </div>
   );
 }

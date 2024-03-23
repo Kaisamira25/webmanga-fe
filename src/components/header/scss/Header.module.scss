@@ -60,18 +60,25 @@ header {
   }
   > div:nth-child(2) {
     position: absolute;
+    right: 20%;
     display: flex;
     bottom: 0;
-    right: 10%;
     transform: translateY(50%);
-    @include break(lg) {
-      right: 20%;
+    > div {
+      > div:nth-child(2) {
+        position: absolute;
+        right: -50%;
+        top: 0;
+      }
+      > div:nth-child(3) {
+        position: absolute;
+        right: -50%;
+        top: 0;
+      }
+      > .visible {
+        visibility: hidden;
+      }
     }
-  }
-  > div:nth-child(3) {
-    margin-left: auto;
-    display: flex;
-    justify-self: center;
-    align-items: center;
+    
   }
 }

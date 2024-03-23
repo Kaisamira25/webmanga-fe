@@ -20,6 +20,14 @@ instance.interceptors.request.use(
 
 export default instance;
 
+const fetchAllPublications = () => {
+  return instance.get("/api/v1/publications/all");
+};
+
+const fetchAllImages = () => {
+  return instance.get("/api/v1/images/all");
+};
+
 const fetchAllProduct = () => {
   return instance.get("/api/products");
 };
@@ -57,6 +65,8 @@ const verifyOtp = (otp) => {
   return instance.post("/api/v1/auth/verify", { otp: otp });
 };
 export {
+  fetchAllPublications,
+  fetchAllImages,
   fetchAllProduct,
   fetchAllCategories,
   fetchProductById,

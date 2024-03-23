@@ -7,6 +7,11 @@
   padding: 0px 2em 0px 2em;
   display: flex;
   margin-bottom: 5em;
+  position: relative;
+  > span {
+    position: absolute;
+    top: -50%;
+  }
   > input {
     outline: none;
     width: 100%;
