@@ -1,23 +1,44 @@
 import React, { useState } from "react";
-import Padgina from "../componnents/Padgination";
+import { AlertAdmin } from "../componnents/Alert";
 import SearchBar from "../componnents/SearchBar";
 import CoverData from "../Services/CoverData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
+import { system } from "faker/lib/locales/en";
 
 function AdminCover() {
     const [coverType, setCoverType] = useState('');
-    const { covers, addCovers, updateCovers, deleteCovers } = CoverData();
+    const { covers, addCovers, updateCovers, deleteCovers,findCover } = CoverData();
     const [CoverId, setCoverId] = useState('')
+    const [vali, setVali] = useState('')
+    const [info, setInfo] = useState('')
     const TH = [{ names: "Id" },
     { names: "CoverType" }, {}
     ]
+    const isCoverExist = () => {
+        return covers.some(item => item.coverType.toLowerCase() === coverType.toLowerCase());
+    }
+
     const handleAddCover = async () => {
-        if (coverType.trim() !== '') { // Kiểm tra xem giá trị đã được nhập hay chưa
-            await addCovers({ coverType });
-            setCoverType('');
+        if (coverType === null || coverType === "") {
+            setVali("error");
+            setInfo("Cover type is not empty!")
+        } else if (isCoverExist()) {
+            setVali("error");
+            setInfo("CoverType is exist!")
         } else {
-            console.error('Cover type must not be empty');
+            try {
+                await addCovers({ coverType });
+                // Hiển thị alert khi thêm thể loại thành công
+                setVali("success");
+                setInfo("Adding complete")
+                setCoverType('');
+            } catch (error) {
+                // Xử lý khi có lỗi xảy ra trong quá trình thêm thể loại
+                setVali("error");
+                setInfo("Adding fail check field!")
+            }
         }
+
     };
     const handleRowClick = (id) => {
         const selected = covers.find(cover => cover.id === id);
@@ -28,18 +49,49 @@ function AdminCover() {
         }
     };
     const handleUpdateCover = async () => {
-        await updateCovers(CoverId, { coverType });
-        setGenre('');
+        if (coverType === null || coverType === "") {
+            setVali("error");
+            setInfo("Cover type is not empty!")
+        } else if (isCoverExist()) {
+            setVali("error");
+            setInfo("Cover type is exist!")
+        } else {
+            console.log(CoverId, coverType)
+            try {
+                await updateCovers(CoverId, { coverType });
+                // Hiển thị alert khi thêm thể loại thành công
+                setVali("success");
+                setInfo("Update complete!")
+                setCoverType('');
+            } catch (error) {
+                // Xử lý khi có lỗi xảy ra trong quá trình thêm thể loại
+                setVali("error");
+                setInfo("Update fail!")
+            }
+        }
     }
     const handleDeleteCover = async (id) => {
         try {
-            // Gọi hàm xóa genre từ service hoặc endpoint tương ứng
-            await deleteCovers(id);
+            const result = await deleteCovers(id);
+            if (result !== true) {
+                // Xóa thất bại
+                setVali("error");
+                setInfo("Delete fail!")
+            } else {
+                // Xóa thành công
+                setVali("success");
+                setInfo("Delete complete!")
+            }
             setCoverType('');
-        
         } catch (error) {
-            console.error('Error deleting genre:', error);
+            console.error('Error deleting cover:', error);
         }
+    };
+    const handleSearchChange = async (e) => {
+        const searchValue = e.target.value;
+        await findCover(searchValue);
+        console.log(e.target.value)
+        console.log(covers)
     };
     return (
         <div className="h-screen pt-12">
@@ -49,8 +101,8 @@ function AdminCover() {
                 </div>
             </div>
             <div>
-                <div>
-                    <div className=" w-12/12 py-4 flex-col inline-block w-3/12">
+                <div className="py-5">
+                    <div className=" w-12/12 py-4 flex-col inline-block w-3/12 me-1">
                         <div className="relative w-full h-10 ">
                             <input
                                 type="text"
@@ -67,25 +119,33 @@ function AdminCover() {
                             </label>
                         </div>
                     </div>
+                    <button
+                        type="button"
+                        onClick={handleAddCover}
+                        className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
+                    >
+                        Add
+                    </button>
+                    <button
+                        type="button"
+                        onClick={handleUpdateCover}
+                        className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
+                    >
+                        Update
+                    </button>
+                    <AlertAdmin vali={vali} info={info} />
                 </div>
-                <button
-                    type="button"
-                    formMethod="POST"
-                    onClick={handleAddCover}
-                    className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-                >
-                    Add
-                </button>
-                <button
-                    type="button"
-                    formMethod="PUT"
-                    onClick={handleUpdateCover}
-                    className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-                >
-                    Update
-                </button>
-                <SearchBar />
-                <div className="w-12/12 h-1/3 mb-2 mt-1 ">
+                <div className="w-12/12 h-1/2 mb-1 ">
+                    <form className="max-w-sm w-7/12"  >
+                        <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <div className="relative">
+                            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            </div>
+                            <input onChange={handleSearchChange} type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+                        </div>
+                    </form>
+                </div>
+                <div className="w-12/12 h-96 border-2 border-black overflow-y-scroll">
                     <table className="w-full h-full overflow-y-scroll border-s border-black">
                         <thead className="border-b border-black bg-gray-500 uppercase ">
                             <tr>
@@ -95,13 +155,13 @@ function AdminCover() {
                             </tr>
                         </thead>
                         <tbody>
-                            {covers.map((cover, rowIndex) => (
-                                <tr key={rowIndex} name={rowIndex} onClick={() => handleRowClick(cover.id)} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                                    {Object.values(cover).map((value, colIndex) => (
-                                        <td className="text-center border-r border-black" key={colIndex}>{value}</td>
+                            {covers.map((coverRow, rowIndex) => (
+                                <tr key={rowIndex} name={rowIndex} onClick={() => handleRowClick(coverRow.id)} className="cursor-pointer border-b  border-black hover:bg-gray-400">
+                                    {Object.values(coverRow).map((value, col) => (
+                                        <td className="text-center border-r border-black" key={col}>{value}</td>
                                     ))}
                                     <td className="text-center border-r border-black py-2"  >
-                                        <button type="button" onClick={() => handleDeleteCover(cover.id)}
+                                        <button type="button" onClick={() => handleDeleteCover(coverRow.id)}
                                             className="w-6 h-6 bg-red-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                             <CloseBtn />
                                         </button>
@@ -110,7 +170,6 @@ function AdminCover() {
                             ))}
                         </tbody>
                     </table>
-                    <Padgina />
                 </div>
             </div>
         </div>
