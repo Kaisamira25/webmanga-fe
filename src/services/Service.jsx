@@ -50,6 +50,9 @@ const fetchDeleteCart = (orderId, order) => {
 const loginApi = (data) => {
   return instance.post("/api/v1/auth/login", data);
 };
+const registerApi = (formData) => {
+  return instance.post("/api/v1/auth/register", formData);
+};
 
 export {
   fetchAllProduct,
@@ -60,5 +63,6 @@ export {
   fetchAddToCart,
   fetchUpdateCart,
   fetchDeleteCart,
-  loginApi
+  loginApi,
+  registerApi,
 };
