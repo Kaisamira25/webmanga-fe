@@ -5,43 +5,56 @@ import ForgotYourPassword from "./ForgotButon";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import { loginApi } from "../../../services/Service";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
-    console.log(email);
   };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
+
   const handleLogin = async () => {
     if (!email || !password) {
-      toast.error("email/password is incorrect");
+      toast.error("Email/password is incorrect");
+      return;
     }
+
     try {
       const data = {
         email: email,
         password: password,
       };
-      console.log(JSON.stringify(data));
-      const res = await loginApi(data);
-    } catch {}
+      
+      const response = await loginApi(data);
+      console.log("Login successful:", response);
+      
+      // Chuyển hướng tới trang home sau khi đăng nhập thành công
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
+      toast.error("Login failed. Please try again.");
+    }
   };
 
   return (
     <div className="grid grid-cols-1 md:flex md:flex-col w-auto ">
       <InputAll
-        placeholder="email"
+        placeholder="Email"
         type="email"
         svg={<IconEmail />}
         value={email}
         onChange={handleEmail}
       />
       <InputAll
-        placeholder="password"
+        placeholder="Password"
         type="password"
         svg={<IconPassword />}
         value={password}
@@ -52,8 +65,8 @@ function LoginForm() {
       </div>
       <div className="mt-2">
         <ButtonInput
-          type={"button"}
-          placeholder={"Login"}
+          type="button"
+          placeholder="Login"
           onClick={handleLogin}
         />
       </div>
