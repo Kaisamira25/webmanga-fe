@@ -1,43 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwind";
 import style from "./PriceTotal.module.scss";
-import Inputall from "../../../components/InputAll";
-import GoCartpayment from "./TotalPayment/TotalPayment";
+import GoCartPayment from "./TotalPayment/TotalPayment";
 import { Link } from "react-router-dom";
-function PriceTotal() {
-  
-  const productField = [
-    {
-      name: "The Eminence In Shadow",
-      quantity: "x1",
-      price: "50.000",
-    },
-   
-  ];
+import { fetchCart } from "../../../services/Service";
+function PriceTotal({ cartUpdated }) {
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    fetchCartData();
+  }, [cartUpdated]);
+
+  const fetchCartData = async () => {
+    try {
+      const res = await fetchCart();
+      if (res.data) {
+        setCart(res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    const totalPrice = cart.reduce(
+      (acc, product) => acc + product.qty * product.price,
+      0
+    );
+    setTotalPrice(totalPrice);
+  }, [cart]);
   const textInfo = [
-    { title: "Cart blackmail ", text: "50.000 VND" },
-    { title: " Shipping Fee", text: "10.000 VND" },
+    { title: "Cart blackmail ", price: totalPrice },
+    { title: " Shipping Fee", price: 50000 },
 
-    { title: "Discount code ", text: "-20.000 VND" },
+    { title: "Discount code ", price: 50000 },
 
-    { title: "Total bill", text: "40.000 VNĐ" },
+    { title: "Total bill", price: 50000 },
   ];
   return (
     <div>
       <div className=" product  border-b-2 border-black ">
-        {productField.map((product, index) => (
+        {cart.map((product, index) => (
           <ProductField
             key={index}
             name={product.name}
-            quantity={product.quatily}
+            quantity={product.qty}
             price={product.price}
           />
         ))}
-      </div >
-    
+      </div>
 
       <div>
-        <GoCartpayment className={style.total} textInfo={textInfo} />
+        <GoCartPayment className={style.total} textInfo={textInfo} />
       </div>
     </div>
   );

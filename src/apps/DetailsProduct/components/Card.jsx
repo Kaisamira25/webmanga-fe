@@ -1,17 +1,18 @@
 import style from "../scss/Card.module.scss";
 import IconEye from "../../../assets/icons/EyeIcon";
 import { Link } from "react-router-dom";
-function Card({ imgUrl, name, beforeDiscount, afterDiscount }) {
+function Card({id, imgUrl, Viewdetail, beforeDiscount, afterDiscount }) {
+
   return (
     <article className={style.container}>
       <div className={style.imageWrapper}>
-        <img src={imgUrl} alt="" />
+        <img src={imgUrl} alt=""  />
       </div>
-      <div className={style.viewDetail}>
-        <Link to={'/Detail'}>
+      <div className={style.viewDetail} onClick={() => Viewdetail(id)} >
+        {/* <Link to={'/Detail'}> */}
           <IconEye />
           <span>More detail</span>
-        </Link>
+        {/* </Link> */}
       </div>
     </article>
     // <article className={style.container}>
