@@ -8,7 +8,7 @@ function CoverData() {
             const token = 'your_actual_access_token_value';
             const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
             const modifiedCovers = response.data.data.map(cover => ({
-                id: cover.coverId,
+                id: cover.coverID,
                 coverType: cover.coverType
             }));
             setCovers(modifiedCovers);
@@ -21,7 +21,7 @@ function CoverData() {
     const addCovers = async (data) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8080/api/v1/cover/add', data);
+            const response = await axios.post('http://localhost:8080/api/v1/cover', data);
             console.log('Genre added successfully:', response.data);
             console.log(data)
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
@@ -31,11 +31,11 @@ function CoverData() {
             console.error('Error adding genre:', error);
         }
     };
-    const updateCovers = async (id,data) => {
+    const updateCovers = async (id, data) => {
         console.log(id)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.put('http://localhost:8080/api/v1/cover/'+id, data);
+            const response = await axios.put('http://localhost:8080/api/v1/cover/' + id, data);
             console.log('Genre update successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
             fetchCovers();
@@ -44,21 +44,51 @@ function CoverData() {
         }
     };
     const deleteCovers = async (id) => {
+        console.log(id)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.delete('http://localhost:8080/api/v1/cover/'+id,{});
+            const response = await axios.delete('http://localhost:8080/api/v1/cover/' + id, {});
             console.log('Genre delete successfully:', response.data);
             fetchCovers();
+            return true;
         } catch (error) {
             console.error('Error adding genre:', error);
+            return false;
         }
     };
+    const findCover = async (name) => {
+        try {
+            if (name !== null && name !== '') {
+                const token = 'your_actual_access_token_value';
+                const response = await axios.get('http://localhost:8080/api/v1/cover/search/' + name, {});
+                const modifiedCovers = response.data.data.map(cover => ({
+                    id: cover.coverID,
+                    coverType: cover.coverType
+                }));
+                setCovers(modifiedCovers);
+                console.log(name)
+            } else {
+                const token = 'your_actual_access_token_value';
+                const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
+                const modifiedCovers = response.data.data.map(cover => ({
+                    id: cover.coverID,
+                    coverType: cover.coverType
+                }));
+                setCovers(modifiedCovers);
+                console.log(name)
+            }
+            console.log(name)
+        } catch (error) {
+            return error; 
+        }
+    }
+
 
     useEffect(() => {
         fetchCovers();
     }, []);
 
-    return { covers, fetchCovers, addCovers,updateCovers,deleteCovers }; // Trả về cả fetchGenres và addGenres
+    return { covers, fetchCovers, addCovers, updateCovers, deleteCovers,findCover }; // Trả về cả fetchGenres và addGenres
 }
 
 export default CoverData;

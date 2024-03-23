@@ -7,9 +7,9 @@ function GiftData() {
             const token = 'your_actual_access_token_value';
             const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
             const modifiedGifts = response.data.data.map(Gift => ({
-                id: Gift.GiftId,
-                GiftName: Gift.GiftName,
-                GiftType: Gift.GiftType
+                promotionalGiftID: Gift.promotionalGiftID,
+                GiftName: Gift.promotionalGiftName,
+                GiftType: Gift.promotionalGiftType
             }));
             setGifts(modifiedGifts);
             console.log(modifiedGifts);
@@ -18,9 +18,10 @@ function GiftData() {
         }
     };
     const addGifts = async (data) => {
+        console.log(data)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8080/api/v1/Gift/add', data);
+            const response = await axios.post('http://localhost:8080/api/v1/gift', data);
             console.log('Genre added successfully:', response.data);
             console.log(data)
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
@@ -30,11 +31,11 @@ function GiftData() {
             console.error('Error adding genre:', error);
         }
     };
-    const updateGifts = async (id,data) => {
-        console.log(id)
+    const updateGifts = async (id, data) => {
+        console.log(data)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.put('http://localhost:8080/api/v1/Gift/'+id, data);
+            const response = await axios.put('http://localhost:8080/api/v1/gift/' + id, data);
             console.log('Genre update successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
             fetchGifts();
@@ -45,19 +46,46 @@ function GiftData() {
     const deleteGifts = async (id) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.delete('http://localhost:8080/api/v1/Gift/'+id,{});
+            const response = await axios.delete('http://localhost:8080/api/v1/gift/' + id, {});
             console.log('Genre delete successfully:', response.data);
             fetchGifts();
+            return true;
         } catch (error) {
             console.error('Error adding genre:', error);
+            return false;
         }
     };
+    const findGift = async (name) => {
+        try {
+            if (name !== null && name !== '') {
+                const token = 'your_actual_access_token_value';
+                const response = await axios.get('http://localhost:8080/api/v1/gift/search/' + name, {});
+                const modifiedGifts = response.data.data.map(Gift => ({
+                    promotionalGiftID: Gift.promotionalGiftID,
+                    GiftName: Gift.promotionalGiftName,
+                    GiftType: Gift.promotionalGiftType
+                }));
+                setGifts(modifiedGifts);
+            } else {
+                const token = 'your_actual_access_token_value';
+                const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
+                const modifiedGifts = response.data.data.map(Gift => ({
+                    promotionalGiftID: Gift.promotionalGiftID,
+                    GiftName: Gift.promotionalGiftName,
+                    GiftType: Gift.promotionalGiftType
+                }));
+                setGifts(modifiedGifts);
+            }
+        } catch (error) {
+            return error;
+        }
+    }
 
     useEffect(() => {
         fetchGifts();
     }, []);
 
-    return { Gifts, fetchGifts, addGifts,updateGifts,deleteGifts }; // Trả về cả fetchGenres và addGenres
+    return { Gifts, fetchGifts, addGifts, updateGifts, deleteGifts,findGift }; // Trả về cả fetchGenres và addGenres
 }
 
 export default GiftData;
