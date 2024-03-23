@@ -3,29 +3,44 @@ import ProductField from "../../../components/ProductField/ProductFieldTailwind"
 import style from "./PriceTotal.module.scss";
 import GoCartPayment from "./TotalPayment/TotalPayment";
 import { Link } from "react-router-dom";
+import {useLocation} from 'react-router-dom';
+
 import { fetchCart } from "../../../services/Service";
 function PriceTotal({ cartUpdated }) {
-  const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const location = useLocation();
+  const { state } = location;
+  const Nlistproduct = {
+    'name': state.listproduct[0].name,
+    'img': state.listproduct[0].img,
+    'price': state.listproduct[0].price,
+    'author': state.listproduct[0].author,
+    'qty': state.quantity,
+  }
+  console.log(Nlistproduct);
+  const listcart = [];
+  listcart.push(Nlistproduct);
+  // const [cart, setCart] = useState([]);
+  // const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    fetchCartData();
-  }, [cartUpdated]);
+  // useEffect(() => {
+  //   fetchCartData();
+  // }, [cartUpdated]);
 
-  const fetchCartData = async () => {
-    try {
-      const res = await fetchCart();
-      if (res.data) {
-        setCart(res.data);
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+  // const fetchCartData = async () => {
+  //   try {
+  //     const res = await fetchCart();
+  //     if (res.data) {
+  //       setCart(res.data);
+  //     }
+  //     console.log(res.data);
+  //   } catch (error) {
+  //     console.error("Error fetching products:", error);
+  //   }
+  // };
 
   useEffect(() => {
     const totalPrice = cart.reduce(
-      (acc, product) => acc + product.qty * product.price,
+      (acc, product) => acc + state.quantity* state.listproduct[0].price,
       0
     );
     setTotalPrice(totalPrice);
@@ -41,7 +56,7 @@ function PriceTotal({ cartUpdated }) {
   return (
     <div>
       <div className=" product  border-b-2 border-black ">
-        {cart.map((product, index) => (
+        {listcart.map((product, index) => (
           <ProductField
             key={index}
             name={product.name}

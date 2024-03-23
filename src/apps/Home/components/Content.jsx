@@ -13,6 +13,7 @@ function Content({ categoryId, setCart }) {
     window.scrollTo(0, 0);
   }, [categoryId]);
 
+
   const getProduct = async () => {
     try {
       const res = await fetchAllProduct();
@@ -30,8 +31,8 @@ function Content({ categoryId, setCart }) {
   };
 
 
-  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author,categoryId) => {
-    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author,categoryId:categoryId}});
+  const handleViewDetail = (id,name,description,img,publishYear,publisher,categories,author,categoryId,price) => {
+    navigate(`/Detail/${id}`,{state:{id:id,name:name,description:description,img:img,publishYear:publishYear,publisher:publisher,categories:categories,author:author,categoryId:categoryId,price:price}});
   };
 
   const handleAddToCart = async (id, name, price, author, img) => {
@@ -87,7 +88,7 @@ function Content({ categoryId, setCart }) {
             priceBeforeDiscount={product.price}
             priceAfterDiscount={""}
             summary={product.description}
-            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author,product.categoryId)}
+            onViewDetail={() => handleViewDetail(product.id,product.name,product.description,product.img,product.publishYear,product.publisher,product.categories,product.author,product.categoryId,product.price)}
             onAddToCart={() =>
               handleAddToCart(
                 product.id,

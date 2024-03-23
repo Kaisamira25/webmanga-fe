@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../../components/ProductCart/Product";
 import style from "./ProductList.module.scss";
-import { fetchCart, fetchUpdateCart } from "../../../services/Service";
+import {useLocation} from 'react-router-dom';
 import axios from "axios";
+
 function ProductList({ onCartUpdate }) {
-  const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    fetchCartData();
-  }, []);
-
-  const fetchCartData = async () => {
-    try {
-      const res = await fetchCart();
-      if (res.data) {
-        setCart(res.data);
-        onCartChange();
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
+  const location = useLocation();
+  const { state } = location;
+  const Nlistproduct = {
+    'name': state.listproduct[0].name,
+    'img': state.listproduct[0].img,
+    'price': state.listproduct[0].price,
+    'author': state.listproduct[0].author,
+    'qty': state.quantity,
+  }
+  const listcart = [];
+   var product = localStorage.getItem('productList')
+    if(product === null) {
+      var productList = [];
+    } else {
+      var productList = JSON.parse(product);
+      productList.push(Nlistproduct);
+      localStorage.setItem('productList', JSON.stringify(productList));
     }
-  };
 
+    listcart.push(Nlistproduct);
+console.log(product);
   const incDec = async (qty, id, dec, name, img, price, author) => {
     if (dec === "dec") {
       if (qty === 1) {
@@ -37,7 +41,7 @@ function ProductList({ onCartUpdate }) {
       img: img,
       price: price,
       author: author,
-      qty: qty,
+      qty: quantity,
     };
     await axios.put(`http://localhost:3000/api/cart/${id}`, order);
     fetchCartData();
@@ -46,7 +50,7 @@ function ProductList({ onCartUpdate }) {
 
   return (
     <div className={style.productList}>
-      {cart.map((product, index) => (
+      {listcart.map((product, index) => (
         <div key={index}>
           <Product
             bookName={product.name}
