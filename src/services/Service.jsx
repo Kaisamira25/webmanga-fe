@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:8080",
 });
 instance.interceptors.request.use(
   function (config) {
@@ -19,6 +19,14 @@ instance.interceptors.request.use(
 );
 
 export default instance;
+
+const fetchAllPublications = () => {
+  return instance.get("/api/v1/publications/all");
+};
+
+const fetchAllImages = () => {
+  return instance.get("/api/v1/images/all");
+};
 
 const fetchAllProduct = () => {
   return instance.get("/api/products");
@@ -48,6 +56,8 @@ const fetchDeleteCart = (orderId, order) => {
 };
 
 export {
+  fetchAllPublications,
+  fetchAllImages,
   fetchAllProduct,
   fetchAllCategories,
   fetchProductById,
