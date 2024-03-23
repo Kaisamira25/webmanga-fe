@@ -13,11 +13,6 @@ function RelatedPublications() {
   const {categoryId} = location.state;
   const Nlistproduct = {
  "categoryId": categoryId}
-
-  const listproduct = [];
-
-  listproduct.push(Nlistproduct);
-
 const [listProducts, setListProduct] = useState([]);
 useEffect(() => { getProduct();}, []);
 const getProduct = async () => {
@@ -25,7 +20,7 @@ const getProduct = async () => {
     const res = await fetchAllProduct();
     if (res.data) {
       setListProduct(res.data);
-      const filteredProduct = res.data.filter(product => product.categoryId === listproduct[0].categoryId);
+      const filteredProduct = res.data.filter(product => product.categoryId === Nlistproduct.categoryId);
       setListProduct(filteredProduct); 
     }
   } catch (error) {

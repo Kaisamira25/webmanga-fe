@@ -16,11 +16,10 @@ function PriceTotal({ cartUpdated }) {
     'author': state.listproduct[0].author,
     'qty': state.quantity,
   }
-  console.log(Nlistproduct);
   const listcart = [];
   listcart.push(Nlistproduct);
   // const [cart, setCart] = useState([]);
-  // const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // useEffect(() => {
   //   fetchCartData();
@@ -39,12 +38,12 @@ function PriceTotal({ cartUpdated }) {
   // };
 
   useEffect(() => {
-    const totalPrice = cart.reduce(
-      (acc, product) => acc + state.quantity* state.listproduct[0].price,
+    const totalPrice = listcart.reduce(
+      (acc, product) => acc + product.qty* product.price,
       0
     );
     setTotalPrice(totalPrice);
-  }, [cart]);
+  }, [listcart]);
   const textInfo = [
     { title: "Cart blackmail ", price: totalPrice },
     { title: " Shipping Fee", price: 50000 },

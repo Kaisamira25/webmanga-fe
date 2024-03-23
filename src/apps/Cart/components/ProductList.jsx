@@ -15,6 +15,7 @@ function ProductList({ onCartUpdate }) {
     'qty': state.quantity,
   }
   const listcart = [];
+    listcart.push(Nlistproduct);
    var product = localStorage.getItem('productList')
     if(product === null) {
       var productList = [];
@@ -24,7 +25,7 @@ function ProductList({ onCartUpdate }) {
       localStorage.setItem('productList', JSON.stringify(productList));
     }
 
-    listcart.push(Nlistproduct);
+  
 console.log(product);
   const incDec = async (qty, id, dec, name, img, price, author) => {
     if (dec === "dec") {
