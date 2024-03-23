@@ -17,7 +17,6 @@ function Register() {
             <div>
               <RegisterFormRequired />
             </div>
-
             <div className="mt-2">
               <SignInPrompt />
             </div>

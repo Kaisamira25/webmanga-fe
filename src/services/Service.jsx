@@ -50,7 +50,9 @@ const loginApi = (data) => {
 const registerApi = (formData) => {
   return instance.post("/api/v1/auth/register", formData);
 };
-
+const verifyOtp = (otp) => {
+  return instance.post("/api/v1/auth/verify", { otp: otp });
+};
 export {
   fetchAllProduct,
   fetchAllCategories,
@@ -61,4 +63,5 @@ export {
   fetchUpdateCart,
   loginApi,
   registerApi,
+  verifyOtp
 };

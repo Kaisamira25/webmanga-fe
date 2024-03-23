@@ -6,8 +6,10 @@ import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import IconUser from "../../../assets/icons/MaterialIconUser";
 import ButtonInput from "../../../components/BtnInput";
 import { registerApi } from "../../../services/Service";
-
+import { useNavigate } from "react-router-dom";
 function RegisterFormRequired() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -23,7 +25,7 @@ function RegisterFormRequired() {
     registerApi(formData)
       .then((response) => {
         console.log("Registration successful:", response.data);
-       
+        navigate("/Otp", { state: { from: "/Register" } });
       })
       .catch((error) => {
         console.error("Registration failed:", error.response.data);
