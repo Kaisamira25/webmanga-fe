@@ -24,25 +24,26 @@ function LoginForm() {
   };
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      // toast.error("Email/password is incorrect");
-      return;
-    }
+    navigate("/home");
+    // if (!email || !password) {
+    //   // toast.error("Email/password is incorrect");
+    //   return;
+    // }
 
-    try {
-      const data = {
-        email: email,
-        password: password,
-      };
+    // try {
+    //   const data = {
+    //     email: email,
+    //     password: password,
+    //   };
 
-      const response = await loginApi(data);
-      console.log("Login successful:", response);
+    //   const response = await loginApi(data);
+    //   console.log("Login successful:", response);
 
-      navigate("/home");
-    } catch (error) {
-      console.error("Login failed:", error);
-      // toast.error("Login failed. Please try again.");
-    }
+    //   navigate("/home");
+    // } catch (error) {
+    //   console.error("Login failed:", error);
+    //   // toast.error("Login failed. Please try again.");
+    // }
   };
 
   return (
@@ -67,7 +68,7 @@ function LoginForm() {
         {isInvalidPassword && <p>Invalid email/password</p>}
       </div>
       <div>
-        <ForgotYourPassword />
+        {/* <ForgotYourPassword /> */}
       </div>
       <div className="mt-2">
         <ButtonInput type="button" placeholder="Login" onClick={handleLogin} />
