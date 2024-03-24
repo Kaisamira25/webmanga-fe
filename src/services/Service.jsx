@@ -61,16 +61,25 @@ const loginApi = (data) => {
 const registerApi = (formData) => {
   return instance.post("/api/v1/auth/register", formData);
 };
-const verifyOtp = (otp,email) => {
+const verifyOtp = (otp, email) => {
   console.log(otp);
   return instance({
     method: "post",
     url: "api/v1/auth/verify",
     params: {
       otp: otp,
-      email: email
+      email: email,
     },
   });
+};
+const sendEmailApi = async (emailData) => {
+  try {
+    // Gọi API để gửi email
+    const response = await instance.post("/api/v1/customer/forgotPassword", emailData);
+    return response.data; // Trả về dữ liệu từ phản hồi của API (nếu cần)
+  } catch (error) {
+    throw error; // Ném lỗi nếu gửi email không thành công
+  }
 };
 export {
   fetchAllPublications,
@@ -86,4 +95,5 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
+  sendEmailApi,
 };
