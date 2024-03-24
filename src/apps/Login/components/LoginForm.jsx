@@ -6,7 +6,7 @@ import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import { loginApi } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ function LoginForm() {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      toast.error("Email/password is incorrect");
+      // toast.error("Email/password is incorrect");
       return;
     }
 
@@ -40,7 +40,7 @@ function LoginForm() {
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
-      toast.error("Login failed. Please try again.");
+      // toast.error("Login failed. Please try again.");
     }
   };
 

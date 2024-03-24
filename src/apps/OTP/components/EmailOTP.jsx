@@ -21,9 +21,9 @@ function OtpRequired() {
   console.log(otp);
   const handleContinue = async () => {
     try {
-      const response = await verifyOtp(otp);
+      const email = sessionStorage.getItem("email");
+      const response = await verifyOtp(otp,email);
       console.log("OTP verification successful:", response.data);
-
       const destination = redirectTo(from);
       navigate(destination);
     } catch (error) {

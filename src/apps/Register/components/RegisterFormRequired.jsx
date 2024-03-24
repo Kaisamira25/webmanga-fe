@@ -25,10 +25,13 @@ function RegisterFormRequired() {
     registerApi(formData)
       .then((response) => {
         console.log("Registration successful:", response.data);
+        const emailForVerify = response.data.data.email;
+        console.log(emailForVerify);
+        sessionStorage.setItem("email",emailForVerify);
         navigate("/Otp", { state: { from: "/Register" } });
       })
       .catch((error) => {
-        console.error("Registration failed:", error.response.data);
+        console.error("Registration failed:", error.data);
       });
   };
 

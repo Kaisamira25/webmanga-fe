@@ -61,8 +61,16 @@ const loginApi = (data) => {
 const registerApi = (formData) => {
   return instance.post("/api/v1/auth/register", formData);
 };
-const verifyOtp = (otp) => {
-  return instance.post("/api/v1/auth/verify", { otp: otp });
+const verifyOtp = (otp,email) => {
+  console.log(otp);
+  return instance({
+    method: "post",
+    url: "api/v1/auth/verify",
+    params: {
+      otp: otp,
+      email: email
+    },
+  });
 };
 export {
   fetchAllPublications,
@@ -77,5 +85,5 @@ export {
   fetchDeleteCart,
   loginApi,
   registerApi,
-  verifyOtp
+  verifyOtp,
 };
