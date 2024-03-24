@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isInvalidPassword, setIsInvalidPassword] = useState(false); // State để kiểm tra mật khẩu không hợp lệ
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -19,6 +20,7 @@ function LoginForm() {
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    setIsInvalidPassword(false); // Reset trạng thái kiểm tra mật khẩu không hợp lệ khi người dùng nhập mật khẩu mới
   };
 
   const handleLogin = async () => {
@@ -32,11 +34,10 @@ function LoginForm() {
         email: email,
         password: password,
       };
-      
+
       const response = await loginApi(data);
       console.log("Login successful:", response);
-      
-      // Chuyển hướng tới trang home sau khi đăng nhập thành công
+
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
@@ -59,17 +60,19 @@ function LoginForm() {
         svg={<IconPassword />}
         value={password}
         onChange={handlePassword}
+        // Thêm className để hiển thị phản hồi trực quan nếu mật khẩu không hợp lệ
+        className={isInvalidPassword ? "invalid-password" : ""}
       />
+      <div className="error-message">
+        {isInvalidPassword && <p>Invalid email/password</p>}
+      </div>
       <div>
         <ForgotYourPassword />
       </div>
       <div className="mt-2">
-        <ButtonInput
-          type="button"
-          placeholder="Login"
-          onClick={handleLogin}
-        />
+        <ButtonInput type="button" placeholder="Login" onClick={handleLogin} />
       </div>
+      
     </div>
   );
 }
