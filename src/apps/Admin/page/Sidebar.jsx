@@ -9,7 +9,7 @@ function MenuAdmin() {
                 </div>
                 <div className="body p-2 pt-lg-3 mb-1">
                     <SideBar/>
-                    <ul className="nav mt-2 mb-2 ms-1 b-0">
+                    <ul className="nav mt-2 mb-2 ms-1 absolute bottom-0">
                         <li className="nav-item py-2">
                             <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/Home">
                                 Home Page

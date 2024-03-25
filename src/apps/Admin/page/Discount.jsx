@@ -142,7 +142,7 @@ function AdminDiscount() {
     { names: "Mã giảm giá" },
     { names: "Ngày tạo" },
     { names: "Ngày cập nhật" },
-    { names: "Số lượng" },
+ 
   ];
   const TD = [
     {

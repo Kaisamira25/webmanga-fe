@@ -3,6 +3,9 @@ import GiftData from "../Services/GiftData";
 import { AlertAdmin } from "../componnents/Alert";
 import CloseBtn from "../../../assets/icons/CloseBtn";
 
+
+
+
 function AdminGift() {
   const [GiftId, setGiftId] = useState("");
   const [promotionalGiftType, setGiftType] = useState("");

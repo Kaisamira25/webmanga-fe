@@ -3,7 +3,7 @@ import axios from "axios";
 
 function GenreData() {
     const [genres, setGenres] = useState([]);
-
+    const [genresSL, setGenresSL] = useState([]);
 
     const fetchGenres = async () => {
         try {
@@ -61,7 +61,7 @@ function GenreData() {
                 const modifiedGenres = response.data.data.map(genre => ({
                     id: genre.genreID,
                     genre: genre.genre
-                })); 
+                }));
                 setGenres(modifiedGenres);
                 console.log(name)
             } else {
@@ -76,15 +76,29 @@ function GenreData() {
             }
             console.log(name)
         } catch (error) {
-            return error; 
+            return error;
+        }
+    }
+    const GenreSelect = async () => {
+        try {
+            const token = 'your_actual_access_token_value';
+            const response = await axios.get('http://localhost:8080/api/v1/genre/all', {});
+            const modifiedGenres = response.data.data.map(genre => ({
+                value: genre.genreID,
+                label: genre.genre
+            }));
+            setGenresSL(modifiedGenres);
+        } catch (error) {
+            console.error('Error fetching genres:', error);
         }
     }
 
     useEffect(() => {
         fetchGenres();
+        GenreSelect();
     }, []);
 
-    return { genres, fetchGenres, addGenres, updateGenres, deleteGenres, findGenre }; // Trả về cả fetchGenres và addGenres
+    return { genres, fetchGenres, addGenres, updateGenres, deleteGenres, findGenre, genresSL }; // Trả về cả fetchGenres và addGenres
 }
 
 export default GenreData;
