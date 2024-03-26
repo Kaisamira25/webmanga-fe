@@ -20,7 +20,7 @@ function HomeAdmin() {
             <HeaderAdmin />
             <div>
                 <div className="flex    ">
-                    <div className="w-2/12 h-auto"><MenuAdmin /></div>
+                    <div className="w-2/12 "><MenuAdmin /></div>
                     <div className="ms-3 w-10/12 ">
                         {currentPath === "/Admin" || currentPath === "/Admin/Genre" && <Genre />}
                         {currentPath === "/Admin/Gift" && <AdminGift/>}

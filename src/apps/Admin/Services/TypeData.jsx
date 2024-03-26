@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 function TypeData() {
   const [types, setTypes] = useState([]);
+  const [typesSL, setTypeSL] = useState([]);
 
   const fetchTypes = async () => {
     try {
@@ -100,9 +101,32 @@ function TypeData() {
       return error;
     }
   };
+  const TypeSelect = async () => {
+    try {
+      const token = 'your_actual_access_token_value';
+      const response = await axios.get('http://localhost:8080/api/v1/type/all', {});
+      const modifiedCover = response.data.data.map(type => ({
+        value: type.typeID,
+        label: type.typeName
+      }));
+      setTypeSL(modifiedCover);
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+    }
+  };
+  const GetTypeSelect = async (id) => {
+    try {
+        const token = 'your_actual_access_token_value';
+        const response = await axios.get('http://localhost:8080/api/v1/publications_type/' + id, {});
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching genres:', error);
+    }
+};
 
   useEffect(() => {
     fetchTypes();
+    TypeSelect();
   }, []);
 
   return {
@@ -112,6 +136,8 @@ function TypeData() {
     updateTypes,
     deleteTypes,
     findType,
+    typesSL,
+    GetTypeSelect
   }; // Trả về cả fetchTypes và addTypes
 }
 

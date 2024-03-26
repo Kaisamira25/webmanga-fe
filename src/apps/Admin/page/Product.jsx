@@ -7,21 +7,28 @@ import CoverData from "../Services/CoverData";
 import GenreData from "../Services/GenreData";
 import TypeData from "../Services/TypeData";
 import GiftData from "../Services/GiftData";
+import axios from "axios";
+import { AlertAdmin } from "../componnents/Alert";
 
 function AdminProduct() {
+    const [vali, setVali] = useState("");
+    const [info, setInfo] = useState("");
     const [selectedImages, setSelectedImages] = useState([]);
     const [newImageUrls, setNewImageUrls] = useState([])
     const [showModal, setShowModal] = React.useState(false);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const { covers } = CoverData();
-    const { genresSL } = GenreData();
-    const { types } = TypeData();
-    const { Gifts } = GiftData();
-
-    const handleSelectedChange = (value) => {
-        setSelectedOption(value);
-    };
-    
+    const [selectedGenres, setSelectedGenres] = useState([]);
+    const [selectedCovers, setSelectedCovers] = useState([]);
+    const [selectedTypes, setSelectedTypes] = useState([]);
+    const [selectedGifts, setSelectedGifts] = useState([]);
+    const { coversSL, GetCoverSelect } = CoverData();
+    const { genresSL, GetGenreSelect } = GenreData();
+    const { typesSL, GetTypeSelect } = TypeData();
+    const { GiftsSL, GetGiftSelect } = GiftData();
+    const columnIndexToRemove = [0, 7, 8];
+    const [imageClick, setImageClick] = useState([]);
+    const { publics, addPublics, updatePublics } = PublicData();
+    const [idPublic, setIdPublic] = useState('')
+    const [imageUrls, setImageUrls] = useState([]);
     const [formData, setFormData] = useState({
         publicationsName: "",
         unitPrice: "",
@@ -31,15 +38,22 @@ function AdminProduct() {
         publicationYear: "",
         summary: "",
         arrivalDay: "",
-        genres: [],
-        covers: [],
-        gifts: [],
     });
-    const columnIndexToRemove = [6,7];
-
-    const { publics, addPublics } = PublicData();
-    const [imageUrls, setImageUrls] = useState([]); // Mảng chứa các địa chỉ URL của hình ảnh
+    const handleGenreSLChange = value => {
+        setSelectedGenres(value);
+    };
+    const handleCoverSLChange = value => {
+        setSelectedCovers(value);
+    };
+    const handleTypeSLChange = value => {
+        setSelectedTypes(value);
+    };
+    const handleGiftSLChange = value => {
+        setSelectedGifts(value);
+    };
     const handleImageChange = (e) => {
+        setImageClick([]);
+        setSelectedImages([]);
         const files = Array.from(e.target.files);
         const imagePaths = [];
         files.forEach((file) => {
@@ -48,7 +62,6 @@ function AdminProduct() {
                 const imagePath = event.target.result;
                 imagePaths.push(imagePath);
                 if (imagePaths.length === files.length) {
-                    console.log(imagePaths)
                     setNewImageUrls(imagePaths);
                 }
             };
@@ -56,11 +69,67 @@ function AdminProduct() {
         });
         setImageUrls(prevImageUrls => [...prevImageUrls, ...imagePaths]);
         setSelectedImages([...selectedImages, ...files]);
-
     };
-    useEffect(() => {
-        console.log(newImageUrls);
-    }, [newImageUrls]);
+    const formatDate = (isoDate) => {
+        const date = new Date(isoDate);
+        const day = date.getDate();
+        const month = date.getMonth() + 1; // Tháng bắt đầu từ 0
+        const year = date.getFullYear();
+
+        // Đảm bảo rằng ngày và tháng có độ dài 2 chữ số
+        const formattedDay = day < 10 ? '0' + day : day;
+        const formattedMonth = month < 10 ? '0' + month : month;
+
+        return year + '-' + formattedMonth + '-' + formattedDay;
+    }
+    const fileInputRef = useRef(null);
+
+    
+    const handleRowClick = async (id) => {
+        const selected = publics.find((p) => p.publicationsID === id);
+        if (selected) {
+            const formattedArrivalDay = formatDate(selected.arrivalDay);
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                arrivalDay: formattedArrivalDay,
+                publicationsName: selected.publicationsName,
+                unitPrice: selected.unitPrice,
+                stock: selected.stock,
+                author: selected.author,
+                publisher: selected.publisher,
+                publicationYear: selected.publicationYear,
+                summary: selected.summary,
+            }));
+            setIdPublic(id)
+            const imageEP = await axios.get('http://localhost:8080/api/v1/images/getAllImage/' + id, {});
+            setImageClick(imageEP.data.data);
+
+            // Gửi yêu cầu HTTP để lấy thông tin về các thể loại của cuốn sách
+            const genresEP = await GetGenreSelect(id);
+            const matchingGenresSL = genresSL.filter(genreSL => {
+                // Tìm một phần tử trong genresSLF có genreID giống với value trong genreSL
+                return genresEP.some(genreEP => parseInt(genreEP.genreID) === parseInt(genreSL.value));
+            });
+            setSelectedGenres(matchingGenresSL);
+            const coversEP = await GetCoverSelect(id);
+            const matchingCoversSL = coversSL.filter(coverSL => {
+                return coversEP.some(coverEP => parseInt(coverEP.coverID) === parseInt(coverSL.value));
+            })
+            setSelectedCovers(matchingCoversSL);
+            const typesEP = await GetTypeSelect(id);
+            const matchingTypesSL = typesSL.filter(typeSL => {
+                return typesEP.some(typeEP => parseInt(typeEP.typeID) === parseInt(typeSL.value));
+            })
+            setSelectedTypes(matchingTypesSL);
+            const giftsEP = await GetGiftSelect(id);
+            const matchingGiftsSL = GiftsSL.filter(GiftSL => {
+                return giftsEP.some(giftEP => parseInt(giftEP.promotionalGiftID) === parseInt(GiftSL.value));
+            })
+
+            setSelectedGifts(matchingGiftsSL);
+        }
+    };
+
     const handleRemoveImage = (index) => {
         const updatedImages = [...selectedImages];
         const updatedUrls = [...imageUrls];
@@ -73,16 +142,138 @@ function AdminProduct() {
         setImageUrls(updatedUrls);
         URL.revokeObjectURL(imageUrls[index]);
     };
-    const handleChange = (e) => {
+    const handleFormDataChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
     };
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    const isPublicExist = () => {
+        return publics.some(
+            (item) => item.publicationsName.toLowerCase() === formData.publicationsName.toLowerCase()
+        );
+    };
     const handleAddPublic = async () => {
-        await addPublics(formData, newImageUrls);
-        setFormData(new formData());
+        if (!formData.publicationsName || !formData.unitPrice || !formData.stock || !formData.author || !formData.publisher || !formData.publicationYear || !formData.summary || !formData.arrivalDay) {
+            setVali("error");
+            setInfo("Please fill in all fields")
+        }
+        else if (newImageUrls.length === 0) {
+            // Hiển thị cảnh báo nếu không có hình ảnh được chọn
+            setVali("error");
+            setInfo("Please select at least one image")
+        }
+
+        // Kiểm tra các phần tử trong selectedGenres
+        else if (selectedGenres.length === 0) {
+            // Hiển thị cảnh báo nếu không có thể loại được chọn
+            setVali("error");
+            setInfo("Please select at least one genre")
+        }
+
+        // Kiểm tra các phần tử trong selectedCovers
+        else if (selectedCovers.length === 0) {
+            // Hiển thị cảnh báo nếu không có bìa sách được chọn
+            setVali("error");
+            setInfo("Please select at least one cover")
+        }
+
+        // Kiểm tra các phần tử trong selectedTypes
+        else if (selectedTypes.length === 0) {
+            // Hiển thị cảnh báo nếu không có loại sách được chọn
+            setVali("error");
+            setInfo("Please select at least one type")
+        } else if (selectedGifts.length === 0) {
+            // Hiển thị cảnh báo nếu không có quà tặng được chọn
+            setVali("error");
+            setInfo("Please select at least one gift")
+        } else {
+            if (isPublicExist()) {
+                setVali("error");
+                setInfo("Publication name is exist!")
+            } else {
+                await addPublics(formData, newImageUrls, selectedGenres, selectedCovers, selectedTypes, selectedGifts);
+                setVali("success");
+                setInfo("Adding complete!")
+                setFormData({
+                    publicationsName: "",
+                    unitPrice: "",
+                    stock: "",
+                    author: "",
+                    publisher: "",
+                    publicationYear: "",
+                    summary: "",
+                    arrivalDay: "",
+                });
+                setNewImageUrls([])
+                setSelectedImages([])
+                setSelectedGenres([])
+                setSelectedCovers([])
+                setSelectedGifts([])
+                setSelectedTypes([])
+                fileInputRef.current.value = ""; 
+
+            }
+        }
+
+    };
+    const handleUpdatePublic = async () => {
+        if (!formData.publicationsName || !formData.unitPrice || !formData.stock || !formData.author || !formData.publisher || !formData.publicationYear || !formData.summary || !formData.arrivalDay) {
+            setVali("error");
+            setInfo("Please fill in all fields")
+        }
+        else if (newImageUrls.length === 0) {
+            // Hiển thị cảnh báo nếu không có hình ảnh được chọn
+            setVali("error");
+            setInfo("Please select at least one image")
+        }
+
+        // Kiểm tra các phần tử trong selectedGenres
+        else if (selectedGenres.length === 0) {
+            // Hiển thị cảnh báo nếu không có thể loại được chọn
+            setVali("error");
+            setInfo("Please select at least one genre")
+        }
+
+        // Kiểm tra các phần tử trong selectedCovers
+        else if (selectedCovers.length === 0) {
+            // Hiển thị cảnh báo nếu không có bìa sách được chọn
+            setVali("error");
+            setInfo("Please select at least one cover")
+        }
+
+        // Kiểm tra các phần tử trong selectedTypes
+        else if (selectedTypes.length === 0) {
+            // Hiển thị cảnh báo nếu không có loại sách được chọn
+            setVali("error");
+            setInfo("Please select at least one type")
+        } else if (selectedGifts.length === 0) {
+            // Hiển thị cảnh báo nếu không có quà tặng được chọn
+            setVali("error");
+            setInfo("Please select at least one gift")
+        } else {
+            await updatePublics(idPublic, formData, newImageUrls, selectedGenres, selectedCovers, selectedTypes, selectedGifts);
+            setVali("success");
+            setInfo("Update complete!")
+            setFormData({
+                publicationsName: "",
+                unitPrice: "",
+                stock: "",
+                author: "",
+                publisher: "",
+                publicationYear: "",
+                summary: "",
+                arrivalDay: "",
+            });
+            setIdPublic('');
+            setNewImageUrls([]);
+            setSelectedImages([]);
+            setSelectedImages([]);
+            setSelectedGenres([]);
+            setSelectedCovers([]);
+            setSelectedGifts([]);
+            setSelectedTypes([]);
+            fileInputRef.current.value = ""; 
+        }
+
     };
     const product = [
         { type: "text", names: "publicationsName", id: "product", placeholder: "Title" },
@@ -125,7 +316,7 @@ function AdminProduct() {
                                         id={field.id}
                                         name={field.names}
                                         value={formData[field.names]}
-                                        onChange={handleChange}
+                                        onChange={handleFormDataChange}
                                         className="shadow-black peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                                         placeholder=""
                                     />
@@ -137,57 +328,55 @@ function AdminProduct() {
                             </div>
                         </div>
                     ))}
-                    <input className="ms-2" type="file" id="image" name="imageProduct" multiple onChange={handleImageChange} />
+                    <input className="ms-2" type="file" id="image" ref={fileInputRef} name="imageProduct" multiple onChange={handleImageChange} />
                     <br />
-                    <div className="py-2 flex-col inline-block ms-1 w-2/12 ">
-                        < Select
-                            isMultiple
-                            isSearchable
-                            value={selectedOption}
-                            onChange={handleSelectedChange}
-                            options={genresSL}
-                            classNames={"overflow-x-scroll overflow-y-scroll"}
-                            placeholder="Genres"
-                        />
-                    </div>
-                    <div className="py-2 flex-col inline-block ms-1 w-2/12 ">
-                        < Select
-                            isMultiple
-                            isSearchable
-                            value={selectedOption}
-                            onChange={handleSelectedChange}
-                            options={genresSL}
-                            classNames={"overflow-x-scroll overflow-y-scroll"}
-                            placeholder="Covers"
-                        />
-                    </div>
-                    <div className="py-2 flex-col inline-block ms-1 w-2/12 ">
-                        < Select
-                            isMultiple
-                            isSearchable
-                            value={selectedOption}
-                            onChange={handleSelectedChange}
-                            options={genresSL}
-                            classNames={"overflow-x-scroll overflow-y-scroll"}
-                            placeholder="Types"
-                        />
-                    </div>
-                    <div className="py-2 flex-col inline-block ms-1 w-2/12 ">
-                        < Select
-                            isMultiple
-                            isSearchable
-                            value={selectedOption}
-                            onChange={handleSelectedChange}
-                            options={genresSL}
-                            classNames={"overflow-x-scroll overflow-y-scroll"}
-                            placeholder="Gifts"
-                        />
-                    </div>
+                    <div className="flex">
+                        <div className="py-2 flex-col  ms-1 w-2/12 ">
+                            <label  >Genres</label>
+                            < Select
+                                isMultiple
+                                isSearchable
+                                value={selectedGenres}
+                                onChange={handleGenreSLChange}
+                                options={genresSL}
 
+                            />
+                        </div>
+                        <div className="py-2 flex-col  ms-1 w-2/12 ">
+                            <label htmlFor="">Covers</label>
+                            < Select
+                                isMultiple
+                                isSearchable
+                                value={selectedCovers}
+                                onChange={handleCoverSLChange}
+                                options={coversSL}
+                            />
+                        </div>
+                        <div className="py-2 flex-col  ms-1 w-2/12 ">
+                            <label htmlFor="">Type</label>
+                            < Select
+                                isMultiple
+                                isSearchable
+                                value={selectedTypes}
+                                onChange={handleTypeSLChange}
+                                options={typesSL}
+                            />
+                        </div>
+                        <div className="py-2 flex-col ms-1 w-2/12 ">
+                            <label htmlFor="">Gift</label>
+                            < Select
+                                isMultiple
+                                isSearchable
+                                value={selectedGifts}
+                                onChange={handleGiftSLChange}
+                                options={GiftsSL}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div>
-
                 </div>
+
                 <button
                     type="button"
                     onClick={handleAddPublic}
@@ -197,24 +386,20 @@ function AdminProduct() {
                 </button>
                 <button
                     type="button"
+                    onClick={handleUpdatePublic}
                     className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
                 >
                     Update
-                </button>
-                <button
-                    type="button"
-                    className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-                >
-                    Delete
                 </button>
                 <button
                     className=" w-24 h-8 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 px-5 py-1   text-sm  rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(true)}
                 >
-                     Image
+                    Image
                 </button>
-                <div className="w-12/12 h-1/2 mb-1 ">
+                <AlertAdmin vali={vali} info={info} />
+                <div className="w-12/12 h-1/2 mb-1 py-1">
                     <form className="max-w-sm w-7/12"  >
                         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
@@ -224,6 +409,7 @@ function AdminProduct() {
                         </div>
                     </form>
                 </div>
+
                 {showModal ? (
                     <>
                         <div
@@ -247,13 +433,22 @@ function AdminProduct() {
                                         </button>
                                     </div>
                                     {/*body*/}
-                                    <div className="relative p-6 flex-auto">
-                                        {selectedImages.map((image, index) => (
-                                            <Card key={index} className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 " style={{ width: '150px', height: '180px' }}>
-                                                <img src={URL.createObjectURL(image)} />
-                                                <button onClick={() => handleRemoveImage(index)} className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10" type="button">X</button>
-                                            </Card>
-                                        ))}
+                                    <div className="relative p-6 flex-auto">{
+                                        imageClick.length === 0 ?
+                                            selectedImages.map((image, index) => (
+                                                <div key={index} className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 " style={{ width: '170px', height: '180px' }} >
+                                                    <img src={URL.createObjectURL(image)} style={{ width: '100%', height: '100%' }} />
+                                                    <button onClick={() => handleRemoveImage(index)} className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10" type="button">X</button>
+                                                </div>
+                                            ))
+                                            :
+                                            imageClick.map((image, index) => (
+                                                <div key={index} className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 " style={{ width: '170px', height: '180px' }}>
+                                                    <img src={image.imageURL} style={{ width: '100%', height: '100%' }} />
+                                                    <button onClick={() => handleRemoveImage(index)} className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10" type="button">X</button>
+                                                </div>
+                                            ))
+                                    }
                                     </div>
                                     {/*footer*/}
                                     <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -264,7 +459,7 @@ function AdminProduct() {
                                         >
                                             Close
                                         </button>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -282,13 +477,13 @@ function AdminProduct() {
                             </tr>
                         </thead>
                         <tbody>
-                            {publics.map((giftRow, rowIndex) =>
+                            {publics.map((publication, rowIndex) =>
                             (
-                                <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                                    {Object.entries(giftRow).map(([key, value], col, row) => (
+                                <tr key={rowIndex} name={rowIndex} onClick={() => handleRowClick(publication.publicationsID)} className="cursor-pointer border-b  border-black hover:bg-gray-400">
+                                    {Object.entries(publication).map(([key, value], col, row) => (
                                         // Kiểm tra nếu không phải là cột mà bạn muốn loại bỏ
-                                        col !== columnIndexToRemove[0] && col !== columnIndexToRemove[1] ? (
-                                            key !== 'imageURl' ? (
+                                        col !== columnIndexToRemove[0] && col !== columnIndexToRemove[1] && col !== columnIndexToRemove[2] ? (
+                                            key !== 'imageURL' ? (
                                                 <td className="text-center border-r border-black" key={col}>
                                                     {value}
                                                 </td>

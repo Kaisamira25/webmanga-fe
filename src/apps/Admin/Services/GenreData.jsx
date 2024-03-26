@@ -19,6 +19,15 @@ function GenreData() {
             console.error('Error fetching genres:', error);
         }
     };
+    const GetGenreSelect = async (id) => {
+        try {
+            const token = 'your_actual_access_token_value';
+            const response = await axios.get('http://localhost:8080/api/v1/publications_genre/' + id, {});
+            return response.data.data;
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        }
+    };
 
     const addGenres = async (data) => {
         try {
@@ -98,7 +107,7 @@ function GenreData() {
         GenreSelect();
     }, []);
 
-    return { genres, fetchGenres, addGenres, updateGenres, deleteGenres, findGenre, genresSL }; // Trả về cả fetchGenres và addGenres
+    return { genres, fetchGenres, addGenres, updateGenres, deleteGenres, findGenre, genresSL,GetGenreSelect }; // Trả về cả fetchGenres và addGenres
 }
 
 export default GenreData;
