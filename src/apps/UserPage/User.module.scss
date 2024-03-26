@@ -1,4 +1,5 @@
 @use "../../common/variables" as *;
+@use "../../common/responsive" as *;
 
 .wrapper {
   margin-top: $margin-top-50px;
@@ -17,39 +18,29 @@
       width: auto;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
       padding-bottom: 2em;
       border-bottom: 1px solid black;
-      margin-left: 35px;
-      margin-right: 35px;
-
-      .left {
-        flex: 1;
-        margin: 15px 0px 15px 0px;
-
-        @media (max-width: 768px) {
-          margin: 35px 0px 15px 0px;
+      margin: 1em 1em 2em 1em;
+      gap: 2em;
+      .info {
+        width: 100%;
+      }
+      > div {
+        width: 100%;
+        .password {
+          width: 100%;
+        }
+        .address {
+          width: 100%;
+        }
+        @include break(md) {
+          display: flex;
+          gap: 1em;
         }
       }
-
-      .center {
-        flex: 1;
-        margin: 15px 15px 15px 15px;
-
-        @media (max-width: 768px) {
-          margin: 15px 0px 15px 0px;
-        }
-      }
-
-      .right {
-        flex: 1;
-        margin: 15px 0px 15px 0px;
-      }
-
-      @media (max-width: 768px) {
-        flex-direction: column;
-        gap: $gap-value-20px;
-      }
+      
     }
 
     .lowerContainer {
