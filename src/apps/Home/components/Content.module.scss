@@ -28,12 +28,17 @@
     // margin-bottom: 3em;
     @include break(md) {
       grid-template-columns: repeat(2, 1fr);
+      padding: 0em 5em 0em 5em;
+
     }
     @include break(lg) {
       grid-template-columns: repeat(3, 1fr);
+      padding: 0em 11em 0em 11em;
+
     }
     @include break(xl) {
       grid-template-columns: repeat(4, 1fr);
+      padding: 0 14em 0 14em;
     }
     > div {
       display: flex;

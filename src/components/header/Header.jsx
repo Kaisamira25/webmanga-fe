@@ -2,10 +2,10 @@ import style from "./scss/Header.module.scss";
 import BtnCart from "./BtnCart";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import BtnAuth from "./BtnAuth";
 import BtnUser from "./BtnUser";
 import BtnLogout from "./BtnLogout";
+import { useNavigate } from "react-router";
 function Header() {
   const [logout, setLogout] = useState(false);
   const [visible, setVisible] = useState("");
@@ -16,21 +16,31 @@ function Header() {
     setLogout(!logout);
     setVisible(logout ? "visible" : "");
   };
+  const navigate = useNavigate();
+  const handleNavigateToHome = () => {
+    navigate("/home")
+  }
+  const handleNavigateToCart = () => {
+    navigate("/cart")
+  }
+  const handleNavigateToUser = () => {
+    navigate("/user")
+  }
   return (
     <header>
       <div>
-        <Link to={"/Home"}>
+        <a onClick={handleNavigateToHome}>
           <p>LAINOVO</p>
-        </Link>
+        </a>
       </div>
       <div>
-        <Link to={"Cart"}>
+        <a onClick={handleNavigateToCart}>
           <BtnCart />
-        </Link>
+        </a>
         <div>
-          <Link to={"/User"}>
+          <a onClick={handleNavigateToUser}>
             <BtnUser />
-          </Link>
+          </a>
           <div>
             <BtnAuth handleLogin={handleLogout} />
           </div>

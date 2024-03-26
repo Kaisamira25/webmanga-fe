@@ -5,31 +5,38 @@ import { Link, useNavigate } from "react-router-dom";
 function Card({ id, imgSrc, name, priceBeforeDiscount, priceAfterDiscount }) {
   const navigate = useNavigate();
   const handleAddCart = () => {
-    navigate("/Cart");
+    navigate("/cart");
+  };
+  const handleNavigateToDetails = (id) => {
+    navigate("//detail/:id");
   };
 
   return (
     <div className={style.containerCard}>
-      <div className={style.imgWrapper}>
-        <Link to={`/Detail/${id}`}>
-          <img src={imgSrc} alt="" />
+      <div>
+        <div className={style.imgWrapper}>
+          <a onClick={handleNavigateToDetails}>
+            <img src={imgSrc} alt="" />
+            <div>
+              <a>{<EyeIcon />}</a>
+            </div>
+          </a>
+        </div>
+        <div className={style.information}>
+          <a onClick={handleNavigateToDetails}>
+            <p>{name}</p>
+          </a>
           <div>
-            <Link>{<EyeIcon />}</Link>
+            <span>{priceAfterDiscount} VND</span>
+            <span>{priceBeforeDiscount} VND</span>
           </div>
-        </Link>
-      </div>
-      <div className={style.information}>
-        <Link>
-          <p>{name}</p>
-        </Link>
+        </div>
         <div>
-          <span>{priceAfterDiscount} VND</span>
-          <span>{priceBeforeDiscount} VND</span>
+          <button onClick={handleAddCart}>
+            <IconCart />
+          </button>
         </div>
       </div>
-      <button onClick={handleAddCart}>
-        <IconCart />
-      </button>
     </div>
   );
 }
