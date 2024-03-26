@@ -81,8 +81,12 @@ const sendEmailApi = async (emailData) => {
     throw error; // Ném lỗi nếu gửi email không thành công
   }
 };
+const fetchPublicationContentPagingate = (page) => {
+  return instance.get(`/api/v1/publications?page=${page}`)
+}
 export {
   fetchAllPublications,
+  fetchPublicationContentPagingate,
   fetchAllImages,
   fetchAllProduct,
   fetchAllCategories,

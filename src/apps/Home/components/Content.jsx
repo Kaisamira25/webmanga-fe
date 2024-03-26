@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "./CardPublications";
 import style from "./Content.module.scss";
+import ReactPaginate from "react-paginate";
 import {
   fetchAllPublications,
   fetchAllImages,
+  fetchPublicationContentPagingate,
 } from "../../../services/Service";
 
 function Content() {
@@ -138,35 +140,51 @@ function Content() {
   //   },
   // ];
   const [productList, setProductList] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  // useEffect(() => {
+  //   getPublications();
+  // }, []);
 
+  // const getPublications = async () => {
+  //   try {
+  //     const response = await fetchAllPublications();
+  //     console.log("Response data: ", response.data);
+  //     const data = response.data.data.map((item, index) => {
+  //       let imageURL = item.image_url
+          // ? `${process.env.REACT_APP_IMAGE_BASE_URL}${item.image_url
+  //             .split("/")
+  //             .pop()}`
+  //         : "";
+  //       return {
+  //         ...item,
+  //         imgURL: imageURL,
+  //         key: index,
+  //       };
+  //     });
+  //     setProductList(data);
+  //   } catch (error) {
+  //     console.error("Error fetching data: ", error);
+  //   }
+  // };
   useEffect(() => {
-    getPublications();
+    const publicationsData = fetchAllPublications();
+    publicationsData.then((response) => {
+      setPageCount(Math.ceil(response.data.data.length / 9));
+    });
   }, []);
-
-  const getPublications = async () => {
-    try {
-      const response = await fetchAllPublications();
-      console.log("Response data: ", response.data);
-      const data = response.data.data.map((item, index) => {
-        let imageURL = item.image_url
-          ? `${process.env.REACT_APP_IMAGE_BASE_URL}${item.image_url
-              .split("/")
-              .pop()}`
-          : "";
-        return {
-          ...item,
-          imgURL: imageURL,
-          key: index,
-        };
-      });
-      setProductList(data);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-
+  const handlePageChange = (e) => {
+    const selectedPage = e.selected;
+    const publicationDataInCurrentPage = fetchPublicationContentPagingate(selectedPage);
+    publicationDataInCurrentPage.then(
+      response => {
+        const publicationsList = response.data.data.content;
+        console.log(publicationsList)
+        setProductList(publicationsList)
+      }
+    )
+  }
   return (
-    <div>
+    <div className={style.wrapperContent}>
       <div className={style.container}>
         {productList.map(
           (item) => (
@@ -185,7 +203,26 @@ function Content() {
           )
         )}
       </div>
-      <div></div>
+      <ReactPaginate
+        previousLabel="Previous"
+        nextLabel="Next"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageChange}
+        containerClassName="pagination"
+        activeClassName="active"
+        // forcePage={pageOffset}
+      />
     </div>
   );
 }
