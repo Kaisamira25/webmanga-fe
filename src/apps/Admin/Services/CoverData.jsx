@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 function CoverData() {
   const [covers, setCovers] = useState([]);
+  const [coversSL, setCoverSL] = useState([]);
 
   const fetchCovers = async () => {
     try {
@@ -20,6 +21,16 @@ function CoverData() {
       console.error("Error fetching Covers:", error);
     }
   };
+  const GetCoverSelect = async (id) => {
+    try {
+        const token = 'your_actual_access_token_value';
+        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {});
+        console.log(response.data.data)
+        return response.data.data;
+    } catch (error) {
+        console.error('Error fetching genres:', error);
+    }
+};
 
   const addCovers = async (data) => {
     try {
@@ -100,9 +111,23 @@ function CoverData() {
       return error;
     }
   };
+  const CoverSelect = async () => {
+    try {
+      const token = 'your_actual_access_token_value';
+      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
+      const modifiedCover = response.data.data.map(cover => ({
+        value: cover.coverID,
+        label: cover.coverType
+      }));
+      setCoverSL(modifiedCover);
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+    }
+  }
 
   useEffect(() => {
     fetchCovers();
+    CoverSelect();
   }, []);
 
   return {
@@ -112,6 +137,8 @@ function CoverData() {
     updateCovers,
     deleteCovers,
     findCover,
+    coversSL,
+    GetCoverSelect
   }; // Trả về cả fetchGenres và addGenres
 }
 

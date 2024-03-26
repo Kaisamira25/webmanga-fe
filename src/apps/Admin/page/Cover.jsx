@@ -12,7 +12,7 @@ function AdminCover() {
   const [coverId, setcoverId] = useState("");
   const [vali, setVali] = useState("");
   const [info, setInfo] = useState("");
-  const TH = [{ names: "Id" }, { names: "CoverType" }, {}];
+  const TH = [{ names: "Id" }, { names: "CoverType" }, { names: "" }];
   const isCoverExist = () => {
     return covers.some(
       (item) => item.coverType.toLowerCase() === coverType.toLowerCase()
