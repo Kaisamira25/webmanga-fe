@@ -14,7 +14,10 @@
   margin-bottom: 1rem;
 }
 .wrapperContent {
-  min-height: 85em;
+  // min-height: 85em;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
   .container {
     margin-top: 6em;
     display: grid;
@@ -36,5 +39,9 @@
       display: flex;
       justify-content: center;
     }
+  }
+  > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
   }
 }

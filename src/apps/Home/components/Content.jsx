@@ -151,7 +151,7 @@ function Content() {
   //     console.log("Response data: ", response.data);
   //     const data = response.data.data.map((item, index) => {
   //       let imageURL = item.image_url
-          // ? `${process.env.REACT_APP_IMAGE_BASE_URL}${item.image_url
+  // ? `${process.env.REACT_APP_IMAGE_BASE_URL}${item.image_url
   //             .split("/")
   //             .pop()}`
   //         : "";
@@ -174,15 +174,14 @@ function Content() {
   }, []);
   const handlePageChange = (e) => {
     const selectedPage = e.selected;
-    const publicationDataInCurrentPage = fetchPublicationContentPagingate(selectedPage);
-    publicationDataInCurrentPage.then(
-      response => {
-        const publicationsList = response.data.data.content;
-        console.log(publicationsList)
-        setProductList(publicationsList)
-      }
-    )
-  }
+    const publicationDataInCurrentPage =
+      fetchPublicationContentPagingate(selectedPage);
+    publicationDataInCurrentPage.then((response) => {
+      const publicationsList = response.data.data.content;
+      console.log(publicationsList);
+      setProductList(publicationsList);
+    });
+  };
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>
@@ -203,26 +202,28 @@ function Content() {
           )
         )}
       </div>
-      <ReactPaginate
-        previousLabel="Previous"
-        nextLabel="Next"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageChange}
-        containerClassName="pagination"
-        activeClassName="active"
-        // forcePage={pageOffset}
-      />
+      <div>
+        <ReactPaginate
+          previousLabel="Previous"
+          nextLabel="Next"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageChange}
+          containerClassName="pagination"
+          activeClassName="active"
+          // forcePage={pageOffset}
+        />
+      </div>
     </div>
   );
 }

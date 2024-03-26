@@ -15,9 +15,9 @@ function Body() {
     <div>
       <Categories />
       <SearchBar />
-      <Content />
       <NewPublications />
       <HotPublications />
+      <Content />
     </div>
   );
 }
