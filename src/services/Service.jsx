@@ -108,7 +108,6 @@ export {
   fetchNewPublications,
   fetchAllPublications,
   fetchPublicationContentPagingate,
-  // fetchAllPubliationWithImages, 
   fetchAllProduct,
   fetchProductById,
   fetchCart,

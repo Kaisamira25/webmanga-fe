@@ -1,11 +1,18 @@
 import style from "./CardPublications.module.scss";
 import EyeIcon from "../../../assets/icons/EyeIcon";
 import IconCart from "../../../assets/icons/CartIcon";
-import { Link, useNavigate } from "react-router-dom";
-function Card({ id, imgSrc, name, priceBeforeDiscount, priceAfterDiscount }) {
+import { useNavigate } from "react-router-dom";
+function Card({
+  id,
+  imgSrc,
+  name,
+  priceBeforeDiscount,
+  priceAfterDiscount,
+  onClickGetItem,
+}) {
   const navigate = useNavigate();
-  const handleAddCart = () => {
-    navigate("/cart");
+  const getPublicationsId = (id) => {
+    onClickGetItem(id)
   };
   const handleNavigateToDetails = (id) => {
     navigate("/detail/:id");
@@ -32,7 +39,7 @@ function Card({ id, imgSrc, name, priceBeforeDiscount, priceAfterDiscount }) {
           </div>
         </div>
         <div>
-          <button onClick={handleAddCart}>
+          <button onClick={() => getPublicationsId(id)}>
             <IconCart />
           </button>
         </div>

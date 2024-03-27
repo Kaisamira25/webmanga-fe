@@ -15,18 +15,14 @@ function Content() {
       setPageCount(Math.ceil(response.data.data.length / 9));
     });
   });
-  // const [publicationList, setPublicationsList] = useState([]);
+  const [cartList, setCartList] = useState([]);
 
   useEffect(() => {
     const fetchPublicationsInContent = fetchPublicationContentPagingate(0);
     fetchPublicationsInContent.then((response) => {
       setProductList(response.data.data.content);
+      console.log(productList);
     });
-    // tính số trang
-      // const publicationsData = fetchAllPublications();
-      // publicationsData.then((response) => {
-      //   setPageCount(Math.ceil(response.data.data.length / 9));
-      // });
   }, []);
 
   const handlePageChange = (e) => {
@@ -38,18 +34,25 @@ function Content() {
       setProductList(publicationsList);
     });
   };
-
+  const handlePublicationId = (id) => {
+    console.log("Publications: ", id);
+    setCartList((prevCartList) => [...prevCartList, id]);
+  };
+  useEffect(() => {
+    console.log(cartList)
+  }, [cartList]);
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>
         {productList.map((item, index) => (
           <div key={index}>
             <Card
-              imgSrc={item.imageURL}
+              imgSrc={item.images[0].imageURL}
               name={item.publicationsName}
               priceBeforeDiscount={item.unitPrice}
-              priceAfterDis
               count={item.priceDis}
+              onClickGetItem={handlePublicationId}
+              id={item.publicationsID}
             />
           </div>
         ))}
