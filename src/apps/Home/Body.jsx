@@ -13,10 +13,10 @@ function Body() {
   };
   return (
     <div>
-      <Categories />
-      <SearchBar />
       <NewPublications />
       <HotPublications />
+      <Categories />
+      <SearchBar />
       <Content />
     </div>
   );

@@ -2,23 +2,19 @@
 @use "../../../common/responsive" as *;
 
 article {
-  margin-bottom: 5em;
+  margin-bottom: 1em;
   > p {
-    // color: $bg-btn-color;
     text-align: center;
     font-size: x-large;
-    font-weight: 700;
+    font-weight: 600;
     background-color: $bg-btn-color;
-    // margin: 0px 2em 2em 2em;
-    // border-radius: 10px;
-    margin-bottom: 2em;
-    padding: 0.7em 0px 0.7em 0px;
+    margin-bottom: 1em;
+    padding: 0.4em 0 0.4em 0;
   }
   > div {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 2em;
-    // padding: 0px 1em 0px 1em;
     @include break(md) {
       grid-template-columns: repeat(2, 1fr);
       padding: 0em 5em 0em 5em;
@@ -26,7 +22,6 @@ article {
     @include break(lg) {
       grid-template-columns: repeat(3, 1fr);
       padding: 0em 11em 0em 11em;
-
     }
     @include break(xl) {
       grid-template-columns: repeat(4, 1fr);

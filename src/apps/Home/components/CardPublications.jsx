@@ -8,7 +8,7 @@ function Card({ id, imgSrc, name, priceBeforeDiscount, priceAfterDiscount }) {
     navigate("/cart");
   };
   const handleNavigateToDetails = (id) => {
-    navigate("//detail/:id");
+    navigate("/detail/:id");
   };
 
   return (
