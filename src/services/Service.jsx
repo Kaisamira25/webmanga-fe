@@ -72,14 +72,12 @@ const verifyOtp = (otp, email) => {
     },
   });
 };
-const sendEmailApi = async (emailData) => {
-  try {
-    // Gọi API để gửi email
-    const response = await instance.post("/api/v1/customer/forgotPassword", emailData);
-    return response.data; // Trả về dữ liệu từ phản hồi của API (nếu cần)
-  } catch (error) {
-    throw error; // Ném lỗi nếu gửi email không thành công
-  }
+const forgotApi = (email) => {
+  return instance.post("/api/v1/customer/forgotPassword", email);
+};
+
+const newPasswordApi = (password) => {
+  return instance.post("/api/v1/customer/change-password", { password });
 };
 export {
   fetchAllPublications,
@@ -95,5 +93,6 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  sendEmailApi,
+  forgotApi,
+  newPasswordApi,
 };
