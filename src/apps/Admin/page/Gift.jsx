@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GiftData from "../Services/GiftData";
 import { AlertAdmin } from "../componnents/Alert";
 import CloseBtn from "../../../assets/icons/CloseBtn";
@@ -20,6 +20,16 @@ function AdminGift() {
         item.GiftName.toLowerCase() === promotionalGiftName.toLowerCase()
     );
   };
+  useEffect(() => {
+    // Xác định hàm để ẩn AlertAdmin sau 5 giây
+    const hideAlert = setTimeout(() => {
+      setVali('');
+      setInfo('');
+    }, 5000);
+
+    // Clear timeout khi component unmount để tránh memory leaks
+    return () => clearTimeout(hideAlert);
+  }, [vali, info]);
   const handleAddGift = async () => {
     console.log(promotionalGiftName, promotionalGiftType);
     if (
