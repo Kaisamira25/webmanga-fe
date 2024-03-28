@@ -50,8 +50,16 @@ function AdminDiscount() {
         return; // Dừng vòng lặp ngay lập tức khi tìm thấy giá trị rỗng
       }
     });
-    return isValid;
+    if(parseInt(formData.discountPercent) < 0){
+      return false;
+    }else{
+      return isValid;
+    }
   }
+  useEffect(()=> {
+    validForm()
+    console.log(formData.discountPercent)
+  },[formData])
 
   const handleAddDiscount = async () => {
     if (!validForm()) {
@@ -219,7 +227,7 @@ function AdminDiscount() {
             </div>
           </form>
         </div>
-        <div className="w-12/12 mb-2 mt-1 ">
+        <div className="w-12/12 h-80 overflow-y-scroll mb-2 mt-1 ">
           <table className="w-full overflow-y-scroll border-s border-black">
             <thead className="border-b border-black bg-gray-500 uppercase ">
               <tr>
