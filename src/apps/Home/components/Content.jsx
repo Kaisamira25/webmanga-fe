@@ -49,7 +49,7 @@ function Content() {
         {productList.map((item, index) => (
           <div key={index}>
             <Card
-              imgSrc={item.images[0].imageURL}
+              imgSrc={item.images.imageURL}
               name={item.publicationsName}
               priceBeforeDiscount={item.unitPrice}
               count={item.priceDis}

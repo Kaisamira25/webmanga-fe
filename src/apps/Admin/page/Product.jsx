@@ -24,7 +24,7 @@ function AdminProduct() {
     const { typesSL, GetTypeSelect } = TypeData();
     const { GiftsSL, GetGiftSelect } = GiftData();
     const [imageClick, setImageClick] = useState([]);
-    const {publics, addPublics, updatePublics,findPublic } = PublicData();
+    const { publics, addPublics, updatePublics, findPublic } = PublicData();
     const [idPublic, setIdPublic] = useState('')
     const [imageUrls, setImageUrls] = useState([]);
     const [formData, setFormData] = useState({
@@ -149,17 +149,42 @@ function AdminProduct() {
             (item) => item.publicationsName.toLowerCase() === formData.publicationsName.toLowerCase()
         );
     };
+    const validForm = () => {
+        let isValid = true;
+        Object.values(formData).forEach(value => {
+          if (value === '') {
+            isValid = false;
+            setInfo("Please fill in all fields and Publication Name longer than 10!")
+            return; // Dừng vòng lặp ngay lập tức khi tìm thấy giá trị rỗng
+          }
+        });
+        if(formData.publicationsName.length < 11){
+            setInfo("Please fill in all fields and Publication Name longer than 10!")
+            return false;
+        }else if(parseInt(formData.unitPrice) < 0){
+            setInfo("Please do not enter negative numbers!")
+            return false;
+        }else if(parseInt(formData.stock) <0){
+            setInfo("Please do not enter negative numbers!")
+            return false;
+        }else{
+            return isValid;
+        }
+        
+      }
+    useEffect(()=>{
+        console.log(validForm());
+    },[formData])
     const handleAddPublic = async () => {
-        if (!formData.publicationsName || !formData.unitPrice || !formData.stock || !formData.author || !formData.publisher || !formData.publicationYear || !formData.summary || !formData.arrivalDay) {
+        if (!validForm()) {
             setVali("error");
-            setInfo("Please fill in all fields")
+            
         }
         else if (newImageUrls.length === 0) {
             // Hiển thị cảnh báo nếu không có hình ảnh được chọn
             setVali("error");
             setInfo("Please select at least one image")
         }
-
         // Kiểm tra các phần tử trong selectedGenres
         else if (selectedGenres.length === 0) {
             // Hiển thị cảnh báo nếu không có thể loại được chọn
@@ -275,7 +300,7 @@ function AdminProduct() {
     const handleSearchChange = async (e) => {
         const searchValue = e.target.value;
         await findPublic(searchValue);
-      };
+    };
     const product = [
         { type: "text", names: "publicationsName", id: "product", placeholder: "Title" },
         { type: "number", names: "unitPrice", id: "product", placeholder: "Price" },
@@ -310,7 +335,7 @@ function AdminProduct() {
         return () => clearTimeout(hideAlert);
     }, [vali, info]);
     return (
-        <div className="h-full ">
+        <div className="h-full">
             <div className="mt-4">
                 <div className="text-black text-start">
                     <h3 className="font-bold">Manage Book</h3>
@@ -510,7 +535,7 @@ function AdminProduct() {
                                         {publication.publicationYear}
                                     </td>
                                     <td className="text-center border-r border-black px-auto" >
-                                        <img className="mx-auto" src={publication.images[0].imageURL} alt="" width={'150px'} height={'200px'}/>
+                                        < img className="mx-auto" src={publication.images[0].imageURL} alt="" width={'150px'} height={'200px'} />
                                     </td>
                                 </tr>
                             )

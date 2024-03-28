@@ -37,7 +37,7 @@ function PublicationCard({
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
         <div>
-          {/* <img src={listPublications.images[0].imageURL} alt="" /> */}
+         <img src={listPublications.images.imageURL} alt="" />
 
           <p className={style.status}>{publicationsStatus}</p>
         </div>

@@ -113,7 +113,7 @@ function Genre() {
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
   return (
-    <div className=" pt-12">
+    <div className="">
       <div className="mt-4">
         <div className="text-black text-start">
           <h3 className="font-bold">Manage Genre</h3>
@@ -173,7 +173,7 @@ function Genre() {
           </div>
         </form>
       </div>
-      <div className="w-12/12 h-96 border-2 border-black overflow-y-scroll">
+      <div className="w-12/12 h-80 border-2 border-black overflow-y-scroll">
         <table className="w-full overflow-y-scroll h-96  border-s border-black">
           <thead className="border-b border-black bg-gray-500 uppercase ">
             <tr>
