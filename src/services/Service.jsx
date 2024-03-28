@@ -82,25 +82,27 @@ const verifyOtp = (otp, email) => {
 const sendEmailApi = async (emailData) => {
   try {
     // Gọi API để gửi email
-    const response = await instance.post("/api/v1/customer/forgotPassword", emailData);
+    const response = await instance.post(
+      "/api/v1/customer/forgotPassword",
+      emailData
+    );
     return response.data; // Trả về dữ liệu từ phản hồi của API (nếu cần)
   } catch (error) {
     throw error; // Ném lỗi nếu gửi email không thành công
   }
 };
 const fetchPublicationContentPagingate = (page) => {
-  return instance.get(`/api/v1/publications/pagination?page=${page}`)
-}
+  return instance.get(`/api/v1/publications/pagination?page=${page}`);
+};
 const fetchNewPublications = () => {
-  return instance.get("/api/v1/publications/new-arrivals")
-}
+  return instance.get("/api/v1/publications/new-arrivals");
+};
 const fetchHotPublications = () => {
-  return instance.get("/api/v1/publications/best-sellers")
-}
+  return instance.get("/api/v1/publications/best-sellers");
+};
 const fetchAllGenre = () => {
-  return instance.get("/api/v1/genre/all")
-}
-
+  return instance.get("/api/v1/genre/all");
+};
 
 export {
   fetchAllGenre,

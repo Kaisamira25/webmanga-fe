@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Title from "../../../../components/Title/Title";
 import SelectField from "../../../../components/SelectField/SelectField";
 import style from "./PaymentForm.module.scss";
 import InputValidate from "../InputValidate/InputValidate";
 import BankValidate from "../InputValidate/BankValidate";
 
-export default function PaymentForm() {
+export default function PaymentForm({ onPaymentInfoChange }) {
   const [selectedOption, setSelectedOption] = useState("");
+  const [isInputValid, setInputValid] = useState(false);
+  const [isBankValid, setBankValid] = useState(false);
 
   const options = [
     "Cash payment",
@@ -17,6 +19,25 @@ export default function PaymentForm() {
 
   const handleSelectChange = (selectedValue) => {
     setSelectedOption(selectedValue);
+  };
+  const handleInputValidationChange = (isValid) => {
+    setInputValid(isValid);
+    if (
+      selectedOption !== "Bank card payment" &&
+      selectedOption !== "Visa payment"
+    ) {
+      onPaymentInfoChange(isValid);
+    }
+  };
+
+  const handleBankValidationChange = (isValid) => {
+    setBankValid(isValid);
+    if (
+      selectedOption === "Bank card payment" ||
+      selectedOption === "Visa payment"
+    ) {
+      onPaymentInfoChange(isValid);
+    }
   };
 
   return (
@@ -35,7 +56,10 @@ export default function PaymentForm() {
                 : style.full
             } `}
           >
-            <InputValidate className={style.mapField} />
+            <InputValidate
+              className={style.mapField}
+              onValidationChange={handleInputValidationChange}
+            />
 
             <SelectField
               label={"Payment methods"}
@@ -48,7 +72,10 @@ export default function PaymentForm() {
           {(selectedOption === "Bank card payment" ||
             selectedOption === "Visa payment") && (
             <div className={style.right}>
-              <BankValidate className={style.mapField} />
+              <BankValidate
+                className={style.mapField}
+                onValidationChange={handleBankValidationChange}
+              />
             </div>
           )}
         </div>

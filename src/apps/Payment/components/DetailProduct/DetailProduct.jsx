@@ -4,9 +4,9 @@ import style from "./DetailProduct.module.scss";
 import ProductField from "../../../../components/ProductField/ProductField";
 import imgSrc from "../../../../assets/imgs/imgTest.svg";
 import TotalPayment from "../TotalPayment/TotalPayment";
-import { fetchCart } from "../../../../services/Service";
+import { fetchProductById } from "../../../../services/Service";
 
-function DetailProduct() {
+function DetailProduct({ isPaymentInfoComplete }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
@@ -14,9 +14,15 @@ function DetailProduct() {
   }, []);
   const fetchCartData = async () => {
     try {
-      const res = await fetchCart();
-      if (res.data) {
-        setCart(res.data);
+      const cartItems = JSON.parse(localStorage.getItem("cart"));
+      if (cartItems && cartItems.length > 0) {
+        const products = [];
+        for (const item of cartItems) {
+          const response = await fetchProductById(item.id);
+          const productWithQty = { ...response.data.data, qty: item.qty };
+          products.push(productWithQty);
+        }
+        setCart(products);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -25,7 +31,7 @@ function DetailProduct() {
 
   useEffect(() => {
     const totalPrice = cart.reduce(
-      (acc, product) => acc + product.qty * product.price,
+      (acc, product) => acc + product.qty * product.unitPrice,
       0
     );
     setTotalPrice(totalPrice);
@@ -44,16 +50,24 @@ function DetailProduct() {
         {cart.map((product, index) => (
           <ProductField
             key={index}
-            src={product.img}
+            src={
+              product.images && product.images.length > 0
+                ? product.images[0].imageURL
+                : ""
+            }
             qty={product.qty}
             alt={""}
-            name={product.name}
-            price={product.price * product.qty}
+            name={product.publicationsName}
+            price={product.unitPrice * product.qty}
           />
         ))}
       </div>
       <div>
-        <TotalPayment className={style.TotalPayment} textInfo={textInfo} />
+        <TotalPayment
+          className={style.TotalPayment}
+          textInfo={textInfo}
+          isPaymentInfoComplete={isPaymentInfoComplete}
+        />
       </div>
     </div>
   );
