@@ -15,7 +15,7 @@ function Card({
   const getPublicationsId = (id) => onClickGetItem(id);
   const navigateToDetail = (id) => onClickNavigate(id);
   const handleNavigateToDetails = (id) => {
-    navigate("/detail/:id");
+    navigate(`/detail/${id}`);
   };
 
   return (
