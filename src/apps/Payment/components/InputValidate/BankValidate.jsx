@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../../../../components/InputField/InputField";
 
-function BankValidate({ className }) {
+function BankValidate({ className, onValidationChange }) {
   const [ownerName, setOwnerName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
@@ -61,6 +61,30 @@ function BankValidate({ className }) {
         break;
     }
   };
+
+  useEffect(() => {
+    const isValid =
+      ownerName.trim() &&
+      cardNumber.trim() &&
+      expiryDate.trim() &&
+      cvv.trim() &&
+      !ownerNameError &&
+      !cardNumberError &&
+      !expiryDateError &&
+      !cvvError;
+
+    onValidationChange(isValid);
+  }, [
+    ownerName,
+    cardNumber,
+    expiryDate,
+    cvv,
+    ownerNameError,
+    cardNumberError,
+    expiryDateError,
+    cvvError,
+    onValidationChange,
+  ]);
 
   return (
     <div className={className}>

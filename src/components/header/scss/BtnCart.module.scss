@@ -135,9 +135,18 @@
     width: 2.4em;
     border-radius: 10px;
     left: -55%;
+    top: 50%;
+    transform: translateY(-50%);
     text-align: center;
     color: #161616;
     font-weight: 600;
     transition: background-color 0.5s;
+  }
+  > button {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

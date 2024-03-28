@@ -4,28 +4,33 @@
 .newProductWrapper {
   width: 100%;
   > p {
-    // color: $bg-btn-color;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     font-size: x-large;
     background-color: $bg-btn-color;
-    // margin: 0px 2em 2em 2em;
-    // border-radius: 10px;
-    margin-bottom: 2em;
-    padding: 0.7em 0px 0.7em 0px;
+    padding: 0.4em 0 0.4em 0;
+    margin-bottom: 1em;
   }
-  .inner {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1em;
-    @include break(md) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @include break(lg) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @include break(xl) {
-      grid-template-columns: repeat(4, 1fr);
+  .wrapper {
+    width: 100%;
+    > .inner {
+      height: 100%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: 2em;
+      @include break(md) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 5em 0 5em;
+      }
+      @include break(lg) {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 11em 0 11em; 
+      }
+      @include break(xl) {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 0 14em 0 14em;
+      }
     }
   }
 }

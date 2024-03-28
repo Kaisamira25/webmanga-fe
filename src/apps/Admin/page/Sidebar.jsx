@@ -7,9 +7,9 @@ function MenuAdmin() {
                 <div className="header">
                     <h5 className="title text-center font-bold py-2" id="sidebarMenuLabel">LAINOVO</h5>
                 </div>
-                <div className="body p-2 pt-lg-3 mb-1">
+                <div className="body p-2 pt-lg-3 mb-1 ">
                     <SideBar/>
-                    <ul className="nav mt-2 mb-2 ms-1 b-0">
+                    <ul className="nav  mb-2 ms-1 relative mt-32">
                         <li className="nav-item py-2">
                             <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/Home">
                                 Home Page

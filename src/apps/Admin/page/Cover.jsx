@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { AlertAdmin } from "../componnents/Alert";
 import SearchBar from "../componnents/SearchBar";
 import CoverData from "../Services/CoverData";
@@ -12,13 +12,22 @@ function AdminCover() {
   const [coverId, setcoverId] = useState("");
   const [vali, setVali] = useState("");
   const [info, setInfo] = useState("");
-  const TH = [{ names: "Id" }, { names: "CoverType" }, {}];
+  const TH = [{ names: "Id" }, { names: "CoverType" }, { names: "" }];
   const isCoverExist = () => {
     return covers.some(
       (item) => item.coverType.toLowerCase() === coverType.toLowerCase()
     );
   };
+  useEffect(() => {
+    // Xác định hàm để ẩn AlertAdmin sau 5 giây
+    const hideAlert = setTimeout(() => {
+      setVali('');
+      setInfo('');
+    }, 5000);
 
+    // Clear timeout khi component unmount để tránh memory leaks
+    return () => clearTimeout(hideAlert);
+  }, [vali, info]);
   const handleAddCover = async () => {
     if (coverType === null || coverType === "") {
       setVali("error");

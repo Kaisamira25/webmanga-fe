@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function GoCartPayment({ textInfo, className }) {
+  const navigate = useNavigate();
   const [discountCode, setDiscountCode] = useState("");
   const [isDiscountValid, setIsDiscountValid] = useState(false);
   const [isInputFilled, setIsInputFilled] = useState(false);
@@ -27,6 +28,8 @@ export default function GoCartPayment({ textInfo, className }) {
       console.log("Mã giảm giá không hợp lệ!");
       setIsDiscountValid(false);
     }
+
+    navigate("/payment");
   };
 
   return (

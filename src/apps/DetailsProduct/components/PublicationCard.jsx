@@ -1,31 +1,55 @@
+import { useParams } from "react-router";
 import style from "../scss/PublicationCard.module.scss";
 import Info from "./InfoSquare";
-import {useLocation} from 'react-router-dom';
-import { useState } from "react";
-function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDiscount,}) {
-  // const categorieList = [
-  //   { id: 1, name: "Light Novel" },
-  //   { id: 2, name: "Fantasy" },
-  //   { id: 3, name: "Manga - Comic" },
-  //   { id: 4, name: "Detective" },
-  //   { id: 5, name: "Action" },
-  //   { id: 6, name: "Romance" },
-  // ];
-  const location = useLocation();
-  const { id, name ,description,img,publishYear,publisher,categories,author} = location.state;
-  const Nlistproduct = {
-    "id": id,
-    'name': name,
-    "description": description,
-    "img": img,
-    "publishYear":publishYear,
-    "publisher": publisher,
-    "categories" : categories,
-    "author":author
-  }
-  const listproduct = [];
-  listproduct.push(Nlistproduct);
+import { useEffect, useState } from "react";
+import { fetchProductById } from "../../../services/Service";
+function PublicationCard({
+  publicationsStatus,
+  priceBeforeDiscount,
+  priceAfterDiscount,
+}) {
+  const [publicationsID, setPublicationID] = useState(() => {
+    let { id } = useParams();
+    const parseId = parseInt(id);
+    return parseId;
+  });
   const [quantity, setQuantity] = useState(0);
+  const [listPublications, setListPublications] = useState({});
+  useEffect(() => {
+    const fetchPublications = fetchProductById(publicationsID);
+    fetchPublications.then((response) => {
+      setListPublications(response.data.data);
+      console.log(listPublications);
+    });
+  }, [publicationsID]);
+
+  const handleAddToCart = () => {
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let itemAlreadyInCart = false;
+
+    const updatedCartItems = existingCartItems.map((item) => {
+      if (item.id === listPublications.publicationsID) {
+        item.qty += 1;
+        itemAlreadyInCart = true;
+      }
+      return item;
+    });
+
+    if (!itemAlreadyInCart) {
+      const newItem = {
+        id: listPublications.publicationsID,
+        qty: 1,
+      };
+      updatedCartItems.push(newItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+  };
+
+  // change quantity
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {
       setQuantity(0);
@@ -37,23 +61,24 @@ function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDisco
     setQuantity(quantity + 1);
   };
   return (
-   
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
-      {listproduct.map((item) => (
         <div>
-       
-        <img src={item.img} alt="" />
-       
+<<<<<<< HEAD
+         <img src={listPublications.images.imageURL} alt="" />
+=======
+          {listPublications.images && listPublications.images.length > 0 && (
+            <img src={listPublications.images[0].imageURL} alt="" />
+          )}
+>>>>>>> 6285e6aacb9501672e76712ed390980e444db18d
+
           <p className={style.status}>{publicationsStatus}</p>
         </div>
-         ))}
       </div>
-      {listproduct.map((item) => (
+
       <div className={style.publicationInfo}>
-    
-        <p className={style.name}>{item.name}</p>
-    
+        <p className={style.name}>{listPublications.publicationsName}</p>
+
         <div className={style.infoPublications}>
           <div className={style.price}>
             <span>{priceBeforeDiscount}</span>
@@ -62,37 +87,47 @@ function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDisco
           <div className={style.info}>
             <div>
               <div>
-                <Info label={"Tên tác giả:"} content={" " +item.author} />
+                <Info
+                  label={"Tên tác giả:"}
+                  content={" " + listPublications.author}
+                />
               </div>
               <div>
-                <Info label={"Nhà xuất bản:"} content={" " +item.publisher} />
+                <Info
+                  label={"Nhà xuất bản:"}
+                  content={" " + listPublications.publisher}
+                />
               </div>
             </div>
             <div>
               <div>
-                <Info label={"Loại:"} content={ " " +item.categories.join(', ')} />
+                {/* <Info
+                    label={"Loại:"}
+                    content={" " + item.categories.join(", ")}
+                  /> */}
               </div>
               <div>
-                <Info label={"Năm xuất bản:"} content={" " +item.publishYear} />
+                <Info
+                  label={"Năm xuất bản:"}
+                  content={" " + listPublications.publicationYear}
+                />
               </div>
             </div>
           </div>
         </div>
 
-        <div className={style.decription}>
+        <div className={style.description}>
           <label htmlFor="">Nội dung</label>
-         
-        <p >{item.description}</p>
-    
+
+          <p>{listPublications.summary}</p>
         </div>
-        
+
         <div className={style.categories}>
-       
-        {item.categories.map((category, index) => (
-            <a key={index} href="/" style={{ marginRight: '5px' }}>
-              {category}
-            </a>
-          ))}
+          {/* {item.categories.map((category, index) => (
+              <a key={index} href="/" style={{ marginRight: "5px" }}>
+                {category}
+              </a>
+            ))} */}
         </div>
         <div className={style.type}>
           <select name="type" id="">
@@ -107,11 +142,10 @@ function PublicationCard({publicationsStatus,priceBeforeDiscount,priceAfterDisco
             <button onClick={handleIncreaseQuantity}>+</button>
           </div>
           <div className="addCart">
-            <button>Thêm vào giỏ</button>
+            <button onClick={handleAddToCart}>Thêm vào giỏ</button>
           </div>
         </div>
       </div>
-          ))}
     </div>
   );
 }

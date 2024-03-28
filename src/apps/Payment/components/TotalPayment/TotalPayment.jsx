@@ -5,7 +5,11 @@ import style from "./TotalPayment.module.scss";
 import FinishPayment from "../../../../components/Models/FinishPayment/FinishPayment";
 import { useState } from "react";
 
-export default function TotalPayment({ textInfo, className }) {
+export default function TotalPayment({
+  textInfo,
+  className,
+  isPaymentInfoComplete,
+}) {
   const [showFinishModal, setShowFinishModal] = useState(false);
 
   const handleOpenFinishModal = () => {
@@ -24,8 +28,12 @@ export default function TotalPayment({ textInfo, className }) {
           />
         ))}
       </div>
-      <div className={style.btn}>
-        <ButtonInput placeholder={"Pay"} onClick={handleOpenFinishModal} />
+      <div className={style.btnField}>
+        <ButtonInput
+          placeholder={"Pay"}
+          onClick={handleOpenFinishModal}
+          className={`${isPaymentInfoComplete ? style.btn : style.btnHidden}`}
+        />
       </div>
       {showFinishModal && (
         <FinishPayment onClose={() => setShowFinishModal(false)} />

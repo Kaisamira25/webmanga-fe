@@ -1,18 +1,22 @@
 @use "../../../../common/variables" as *;
 
 .container {
-  .btn {
-    margin: $margin-20px;
-    // margin-bottom: 40px;
-    padding-bottom: $padding-bottom-30px;
+  .btnField {
+    padding: 2em;
+    .btn {
+      padding-bottom: $padding-bottom-30px;
+      background-color: $bg-btn-color;
+    }
+    .btnHidden {
+      background-color: $bg-color-green-400;
+      pointer-events: none;
+    }
   }
 
   .text {
-
     margin-bottom: $margin-10px;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-
+    justify-content: space-around;
   }
 }

@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import style from "./Categories.module.scss";
-import { fetchAllCategories } from "../../../services/Service";
+import { fetchAllGenre } from "../../../services/Service";
 function Categories({ onCategorySelect }) {
-  const [listProduct, setListProduct] = useState([]);
+  const [listGenre, setListGenre] = useState([]);
   useEffect(() => {
-    getProduct();
+    const fetchGenre = fetchAllGenre();
+    fetchGenre.then((response) => {
+      setListGenre(response.data.data);
+    });
   }, []);
-  const getProduct = async () => {
-    try {
-      const res = await fetchAllCategories();
-      if (res.data) {
-        setListProduct(res.data);
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
 
   const handleCategoryClick = (categoryId) => {
     onCategorySelect(categoryId);
@@ -23,10 +16,8 @@ function Categories({ onCategorySelect }) {
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
-        {listProduct.map((item) => (
-          <button key={item.id} onClick={() => handleCategoryClick(item.id)}>
-            {item.name}
-          </button>
+        {listGenre.map((item, index) => (
+          <button key={index}>{item.genre}</button>
         ))}
       </div>
     </div>

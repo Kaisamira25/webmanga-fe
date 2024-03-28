@@ -17,6 +17,17 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+// instance.interceptors.response.use(
+//   function(res) {
+//     if (res.data && res.data.data) {
+//       return res.data.data;
+//     }
+//     return res;
+//   },
+//   function(error) {
+//     return Promise.reject(error);
+//   }
+// );
 
 export default instance;
 
@@ -24,19 +35,15 @@ const fetchAllPublications = () => {
   return instance.get("/api/v1/publications/all");
 };
 
-const fetchAllImages = () => {
-  return instance.get("/api/v1/images/all");
-};
+// const fetchAllPubliationWithImages = () => {
+//   return instance.get("/api/v1/publications/all/images");
+// };
 
 const fetchAllProduct = () => {
   return instance.get("/api/products");
 };
-const fetchAllCategories = () => {
-  return instance.get("/api/categories");
-};
-
 const fetchProductById = (productId) => {
-  return instance.get(`/api/products/${productId}`);
+  return instance.get(`/api/v1/publications/${productId}`);
 };
 const fetchCart = () => {
   return instance.get("/api/cart");
@@ -79,11 +86,28 @@ const forgotApi = (email) => {
 const newPasswordApi = (password) => {
   return instance.post("/api/v1/customer/change-password", { password });
 };
+
+
+const fetchPublicationContentPagingate = (page) => {
+  return instance.get(`/api/v1/publications/pagination?page=${page}`);
+};
+const fetchNewPublications = () => {
+  return instance.get("/api/v1/publications/new-arrivals");
+};
+const fetchHotPublications = () => {
+  return instance.get("/api/v1/publications/best-sellers");
+};
+const fetchAllGenre = () => {
+  return instance.get("/api/v1/genre/all");
+};
+
 export {
+  fetchAllGenre,
+  fetchHotPublications,
+  fetchNewPublications,
   fetchAllPublications,
-  fetchAllImages,
+  fetchPublicationContentPagingate,
   fetchAllProduct,
-  fetchAllCategories,
   fetchProductById,
   fetchCart,
   fetchCartById,

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 function GiftData() {
+    const [GiftsSL, setGiftSL] = useState([]);
     const [Gifts, setGifts] = useState([]);
     const fetchGifts = async () => {
         try {
@@ -29,6 +30,15 @@ function GiftData() {
         } catch (error) {
             console.log(data)
             console.error('Error adding genre:', error);
+        }
+    };
+    const GetGiftSelect = async (id) => {
+        try {
+            const token = 'your_actual_access_token_value';
+            const response = await axios.get('http://localhost:8080/api/v1/publications_gift/' + id, {});
+            return response.data.data;
+        } catch (error) {
+            console.error('Error fetching genres:', error);
         }
     };
     const updateGifts = async (id, data) => {
@@ -80,12 +90,26 @@ function GiftData() {
             return error;
         }
     }
+    const GiftSelect = async () => {
+        try {
+            const token = 'your_actual_access_token_value';
+            const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
+            const modifiedGifts = response.data.data.map(Gift => ({
+                value: Gift.promotionalGiftID,
+                label: Gift.promotionalGiftName
+            }));
+            setGiftSL(modifiedGifts);
+        } catch (error) {
+            console.error('Error fetching genres:', error);
+        }
+    }
 
     useEffect(() => {
         fetchGifts();
+        GiftSelect();
     }, []);
 
-    return { Gifts, fetchGifts, addGifts, updateGifts, deleteGifts,findGift }; // Trả về cả fetchGenres và addGenres
+    return { Gifts, fetchGifts, addGifts, updateGifts, deleteGifts,findGift,GiftsSL ,GetGiftSelect}; // Trả về cả fetchGenres và addGenres
 }
 
 export default GiftData;

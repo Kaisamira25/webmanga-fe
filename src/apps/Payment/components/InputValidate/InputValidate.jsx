@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../../../../components/InputField/InputField";
 
-function InputValidate({ className }) {
+function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -46,6 +46,26 @@ function InputValidate({ className }) {
         break;
     }
   };
+
+  useEffect(() => {
+    const isValid =
+      email.trim() &&
+      address.trim() &&
+      phone.trim() &&
+      !emailError &&
+      !addressError &&
+      !phoneError;
+
+    onValidationChange(isValid);
+  }, [
+    email,
+    address,
+    phone,
+    emailError,
+    addressError,
+    phoneError,
+    onValidationChange,
+  ]);
 
   return (
     <div className={className}>
