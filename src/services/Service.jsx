@@ -79,14 +79,24 @@ const verifyOtp = (otp, email) => {
     },
   });
 };
+const verifyOtpForgotPassword = (code) => {
+  console.log(otp);
+  return instance({
+    method: "get",
+    url: "api/v1/customer/passwordReset",
+    params: {
+      code: code,
+      password: password,
+    },
+  });
+};
 const forgotApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
 
 const newPasswordApi = (password) => {
-  return instance.post("/api/v1/customer/change-password", { password });
+  return instance.post("/api/v1/customer/passwordReset", { password });
 };
-
 
 const fetchPublicationContentPagingate = (page) => {
   return instance.get(`/api/v1/publications/pagination?page=${page}`);
@@ -117,6 +127,7 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
+  verifyOtpForgotPassword,
   forgotApi,
   newPasswordApi,
 };

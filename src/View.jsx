@@ -11,7 +11,7 @@ function Views() {
     "/Login",
     "/Register",
     "/Otp",
-    "/OTPFGPW",
+    "/OTPForgotPasswordPage",
     "/ForgotPassword",
     "/ForgotPasswordConfirm",
     "/Admin",
@@ -24,7 +24,7 @@ function Views() {
     "/Admin/Account",
     "/Admin/Order",
     "/Admin/Stock",
-    "/Admin/Sales"
+    "/Admin/Sales",
   ].includes(location.pathname);
   return (
     <div>

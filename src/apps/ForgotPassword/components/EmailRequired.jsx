@@ -7,20 +7,18 @@ import { forgotApi } from "../../../services/Service";
 
 function EmailRequired() {
   const [email, setEmail] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-
   const handleContinue = async () => {
     try {
       const response = await forgotApi({ email });
       console.log("API Response:", response.data);
-     
-      navigate("/Otp", { state: { from: "/ForgotPassword" } });
-
+      sessionStorage.setItem("email", email);
+      navigate("/OTPForgotPasswordPage");
     } catch (error) {
       console.error("Failed to call API:", error);
     }

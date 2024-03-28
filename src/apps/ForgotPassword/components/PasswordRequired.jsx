@@ -4,8 +4,9 @@ import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconRepeat from "../../../assets/icons/MaterialIconRepeat";
 import { newPasswordApi } from "../../../services/Service"; 
 import ButtonInput from "../../../components/BtnInput";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 function PasswordRequired() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const handlePasswordChange = (e) => {
@@ -19,18 +20,17 @@ function PasswordRequired() {
  
   const handleSubmit = async () => {
     try {
- 
+      navigate("/Login");
       if (password !== repeatPassword) {
         throw new Error("Passwords do not match");
       }
-
       const response = await newPasswordApi(password);
+    
       console.log("API Response:", response.data);
     } catch (error) {
       console.error("Failed ", error);
     }
   };
-
   return (
     <div className="grid grid-cols-1 md:flex md:flex-col w-auto ">
       
