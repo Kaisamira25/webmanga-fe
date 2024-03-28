@@ -158,7 +158,7 @@ function AdminProduct() {
             return; // Dừng vòng lặp ngay lập tức khi tìm thấy giá trị rỗng
           }
         });
-        if(formData.publicationsName.length < 11){
+        if(formData.publicationsName.length < 15){
             setInfo("Please fill in all fields and Publication Name longer than 10!")
             return false;
         }else if(parseInt(formData.unitPrice) < 0){

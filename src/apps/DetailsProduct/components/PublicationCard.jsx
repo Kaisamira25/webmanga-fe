@@ -37,13 +37,9 @@ function PublicationCard({
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
         <div>
-<<<<<<< HEAD
-         <img src={listPublications.images.imageURL} alt="" />
-=======
           {listPublications.images && listPublications.images.length > 0 && (
             <img src={listPublications.images[0].imageURL} alt="" />
           )}
->>>>>>> 6285e6aacb9501672e76712ed390980e444db18d
 
           <p className={style.status}>{publicationsStatus}</p>
         </div>
