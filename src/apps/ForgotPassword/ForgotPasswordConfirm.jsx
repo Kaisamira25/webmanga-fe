@@ -10,7 +10,7 @@ function ForgotPasswordConfirm() {
           <form>
             <div>
               <h2 className="text-4xl font-pacifico mb-4 text-center ">
-                Reset Passwword
+                New Passwword
               </h2>
             </div>
             <div>

@@ -94,10 +94,12 @@ const forgotApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
 
-const newPasswordApi = (password) => {
-  return instance.post("/api/v1/customer/passwordReset", { password });
+const newPasswordApi = (password, code) => {
+  return instance.get("/api/v1/customer/passwordReset", {
+    params: { code },
+    headers: { password } 
+  });
 };
-
 const fetchPublicationContentPagingate = (page) => {
   return instance.get(`/api/v1/publications/pagination?page=${page}`);
 };
