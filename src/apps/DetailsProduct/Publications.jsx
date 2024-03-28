@@ -12,9 +12,9 @@ function Publications() {
           priceAfterDiscount={"50.000 VND"}
         />
       </div>
-      <div className={style.relatedPublicationsWrapper}>
+      {/* <div className={style.relatedPublicationsWrapper}>
         <RelatedPublications />
-      </div>
+      </div> */}
     </div>
   );
 }

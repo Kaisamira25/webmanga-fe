@@ -23,7 +23,6 @@ function Content() {
     const fetchPublicationsInContent = fetchPublicationContentPagingate(0);
     fetchPublicationsInContent.then((response) => {
       setProductList(response.data.data.content);
-      console.log(productList);
     });
   }, []);
 
@@ -37,12 +36,12 @@ function Content() {
     });
   };
   const handlePublicationId = (id) => {
-    console.log("Publications: ", id);
-    setCartList((prevCartList) => [...prevCartList, id]);
     return navigate(`/detail/${id}`);
   };
+  const handlePublicationGetId = (id) => {
+    setCartList((prevCartList) => [...prevCartList, id]);
+  };
   useEffect(() => {
-    console.log(cartList);
   }, [cartList]);
   return (
     <div className={style.wrapperContent}>
@@ -54,7 +53,8 @@ function Content() {
               name={item.publicationsName}
               priceBeforeDiscount={item.unitPrice}
               count={item.priceDis}
-              onClickGetItem={handlePublicationId}
+              onClickNavigate={handlePublicationId}
+              onClickGetItem={handlePublicationGetId}
               id={item.publicationsID}
             />
           </div>

@@ -9,11 +9,11 @@ function Card({
   priceBeforeDiscount,
   priceAfterDiscount,
   onClickGetItem,
+  onClickNavigate,
 }) {
   const navigate = useNavigate();
-  const getPublicationsId = (id) => {
-    onClickGetItem(id)
-  };
+  const getPublicationsId = (id) => onClickGetItem(id);
+  const navigateToDetail = (id) => onClickNavigate(id);
   const handleNavigateToDetails = (id) => {
     navigate("/detail/:id");
   };
@@ -22,7 +22,7 @@ function Card({
     <div className={style.containerCard}>
       <div>
         <div className={style.imgWrapper}>
-          <a onClick={handleNavigateToDetails}>
+          <a onClick={() => navigateToDetail(id)}>
             <img src={imgSrc} alt="" />
             <div>
               <a>{<EyeIcon />}</a>

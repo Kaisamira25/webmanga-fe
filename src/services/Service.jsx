@@ -43,7 +43,7 @@ const fetchAllProduct = () => {
   return instance.get("/api/products");
 };
 const fetchProductById = (productId) => {
-  return instance.get(`/api/products/${productId}`);
+  return instance.get(`/api/v1/publications/${productId}`);
 };
 const fetchCart = () => {
   return instance.get("/api/cart");
