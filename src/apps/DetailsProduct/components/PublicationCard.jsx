@@ -8,7 +8,6 @@ function PublicationCard({
   priceBeforeDiscount,
   priceAfterDiscount,
 }) {
-  
   const [publicationsID, setPublicationID] = useState(() => {
     let { id } = useParams();
     const parseId = parseInt(id);
@@ -20,6 +19,7 @@ function PublicationCard({
     const fetchPublications = fetchProductById(publicationsID);
     fetchPublications.then((response) => {
       setListPublications(response.data.data);
+      console.log(listPublications);
     });
   }, [publicationsID]);
   // change quantity
@@ -37,7 +37,13 @@ function PublicationCard({
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
         <div>
+<<<<<<< HEAD
          <img src={listPublications.images.imageURL} alt="" />
+=======
+          {listPublications.images && listPublications.images.length > 0 && (
+            <img src={listPublications.images[0].imageURL} alt="" />
+          )}
+>>>>>>> 6285e6aacb9501672e76712ed390980e444db18d
 
           <p className={style.status}>{publicationsStatus}</p>
         </div>
