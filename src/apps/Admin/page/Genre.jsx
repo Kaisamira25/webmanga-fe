@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import SearchBar from "../componnents/SearchBar";
 import GenreData from "../Services/GenreData";
@@ -102,6 +102,16 @@ function Genre() {
     console.log(e.target.value);
     console.log(genres);
   };
+  useEffect(() => {
+    // Xác định hàm để ẩn AlertAdmin sau 5 giây
+    const hideAlert = setTimeout(() => {
+      setVali('');
+      setInfo('');
+    }, 5000);
+
+    // Clear timeout khi component unmount để tránh memory leaks
+    return () => clearTimeout(hideAlert);
+  }, [vali, info]);
   return (
     <div className=" pt-12">
       <div className="mt-4">

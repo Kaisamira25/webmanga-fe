@@ -7,22 +7,8 @@ function DiscountData() {
   const fetchDiscounts = async () => {
     try {
       const token = "your_actual_access_token_value";
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/discount/all",
-        {}
-      );
-      const modifiedDiscounts = response.data.data.map((discount) => ({
-        id: discount.discountId,
-        discountName: discount.discountName,
-        // description: discount.description,
-        discountPercent: discount.discountPercent,
-        active: discount.active,
-        discountCode: discount.discountCode,
-        createdAt: discount.createdAt,
-        expirationDate: discount.expirationDate,
-      }));
-      setDiscounts(modifiedDiscounts);
-      console.log(modifiedDiscounts);
+      const response = await axios.get("http://localhost:8080/api/v1/discount/all",{});
+      setDiscounts(response.data.data);
     } catch (error) {
       console.error("Error fetching Discounts:", error);
     }
@@ -35,47 +21,24 @@ function DiscountData() {
         "http://localhost:8080/api/v1/discount",
         data
       );
-      console.log("Discount added successfully:", response.data);
-      console.log(data);
       fetchDiscounts();
     } catch (error) {
-      console.log(data);
       console.error("Error adding discount:", error);
     }
   };
 
   const updateDiscounts = async (id, data) => {
-    console.log(id);
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.put(
         "http://localhost:8080/api/v1/discount/" + id,
         data
       );
-      console.log("Discount update successfully:", response.data);
       fetchDiscounts();
     } catch (error) {
       console.error("Error updating discount:", error);
     }
   };
-
-  const deleteDiscounts = async (id) => {
-    console.log(id);
-    try {
-      const token = "your_actual_access_token_value";
-      const response = await axios.delete(
-        "http://localhost:8080/api/v1/discount/" + id,
-        {}
-      );
-      console.log("Discount delete successfully:", response.data);
-      fetchDiscounts();
-      return true;
-    } catch (error) {
-      console.error("Error deleting discount:", error);
-      return false;
-    }
-  };
-
   const findDiscount = async (name) => {
     try {
       if (name !== null && name !== "") {
@@ -84,18 +47,7 @@ function DiscountData() {
           "http://localhost:8080/api/v1/discount/search/" + name,
           {}
         );
-        const modifiedDiscounts = response.data.data.map((discount) => ({
-          id: discount.discountId,
-          discountName: discount.discountName,
-          // description: discount.description,
-          discountPercent: discount.discountPercent,
-          active: discount.active,
-          discountCode: discount.discountCode,
-          createdAt: discount.createdAt,
-          expirationDate: discount.expirationDate,
-        }));
-        setDiscounts(modifiedDiscounts);
-        console.log(name);
+        setDiscounts(response.data.data);
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
@@ -103,19 +55,10 @@ function DiscountData() {
           {}
         );
         const modifiedDiscounts = response.data.data.map((discount) => ({
-          id: discount.discountId,
-          discountName: discount.discountName,
-          // description: discount.description,
-          discountPercent: discount.discountPercent,
-          active: discount.active,
-          discountCode: discount.discountCode,
-          createdAt: discount.createdAt,
-          expirationDate: discount.expirationDate,
+         
         }));
-        setDiscounts(modifiedDiscounts);
-        console.log(name);
+        setDiscounts(response.data.data);
       }
-      console.log(name);
     } catch (error) {
       return error;
     }
@@ -130,7 +73,6 @@ function DiscountData() {
     fetchDiscounts,
     addDiscounts,
     updateDiscounts,
-    deleteDiscounts,
     findDiscount,
   };
 }

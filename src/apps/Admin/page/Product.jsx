@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Card } from "@mui/material";
 import PublicData from "../Services/PublicationData";
 import Select from "react-tailwindcss-select";
 import CoverData from "../Services/CoverData";
@@ -24,9 +23,8 @@ function AdminProduct() {
     const { genresSL, GetGenreSelect } = GenreData();
     const { typesSL, GetTypeSelect } = TypeData();
     const { GiftsSL, GetGiftSelect } = GiftData();
-    const columnIndexToRemove = [0, 7, 8];
     const [imageClick, setImageClick] = useState([]);
-    const { publics, addPublics, updatePublics } = PublicData();
+    const {publics, addPublics, updatePublics,findPublic } = PublicData();
     const [idPublic, setIdPublic] = useState('')
     const [imageUrls, setImageUrls] = useState([]);
     const [formData, setFormData] = useState({
@@ -84,7 +82,7 @@ function AdminProduct() {
     }
     const fileInputRef = useRef(null);
 
-    
+
     const handleRowClick = async (id) => {
         const selected = publics.find((p) => p.publicationsID === id);
         if (selected) {
@@ -209,7 +207,7 @@ function AdminProduct() {
                 setSelectedCovers([])
                 setSelectedGifts([])
                 setSelectedTypes([])
-                fileInputRef.current.value = ""; 
+                fileInputRef.current.value = "";
 
             }
         }
@@ -271,10 +269,13 @@ function AdminProduct() {
             setSelectedCovers([]);
             setSelectedGifts([]);
             setSelectedTypes([]);
-            fileInputRef.current.value = ""; 
+            fileInputRef.current.value = "";
         }
-
     };
+    const handleSearchChange = async (e) => {
+        const searchValue = e.target.value;
+        await findPublic(searchValue);
+      };
     const product = [
         { type: "text", names: "publicationsName", id: "product", placeholder: "Title" },
         { type: "number", names: "unitPrice", id: "product", placeholder: "Price" },
@@ -298,6 +299,16 @@ function AdminProduct() {
     { names: "Update" },
     { names: "Xoá" }
     ]
+    useEffect(() => {
+        // Xác định hàm để ẩn AlertAdmin sau 5 giây
+        const hideAlert = setTimeout(() => {
+            setVali('');
+            setInfo('');
+        }, 5000);
+
+        // Clear timeout khi component unmount để tránh memory leaks
+        return () => clearTimeout(hideAlert);
+    }, [vali, info]);
     return (
         <div className="h-full ">
             <div className="mt-4">
@@ -405,7 +416,7 @@ function AdminProduct() {
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             </div>
-                            <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+                            <input type="search" onChange={handleSearchChange} id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
                         </div>
                     </form>
                 </div>
@@ -480,19 +491,27 @@ function AdminProduct() {
                             {publics.map((publication, rowIndex) =>
                             (
                                 <tr key={rowIndex} name={rowIndex} onClick={() => handleRowClick(publication.publicationsID)} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                                    {Object.entries(publication).map(([key, value], col, row) => (
-                                        // Kiểm tra nếu không phải là cột mà bạn muốn loại bỏ
-                                        col !== columnIndexToRemove[0] && col !== columnIndexToRemove[1] && col !== columnIndexToRemove[2] ? (
-                                            key !== 'imageURL' ? (
-                                                <td className="text-center border-r border-black" key={col}>
-                                                    {value}
-                                                </td>
-                                            ) :
-                                                <td className="text-center border-r border-black " key={col}>
-                                                    <img src={value} alt="" className="mx-auto" style={{ width: '50px', height: '80px' }} />
-                                                </td>
-                                        ) : null
-                                    ))}
+                                    <td className="text-center border-r border-black" >
+                                        {publication.publicationsName}
+                                    </td>
+                                    <td className="text-center border-r border-black" >
+                                        {publication.unitPrice}
+                                    </td>
+                                    <td className="text-center border-r border-black" >
+                                        {publication.stock}
+                                    </td>
+                                    <td className="text-center border-r border-black" >
+                                        {publication.author}
+                                    </td>
+                                    <td className="text-center border-r border-black" >
+                                        {publication.publisher}
+                                    </td>
+                                    <td className="text-center border-r border-black" >
+                                        {publication.publicationYear}
+                                    </td>
+                                    <td className="text-center border-r border-black px-auto" >
+                                        <img className="mx-auto" src={publication.images[0].imageURL} alt="" width={'150px'} height={'200px'}/>
+                                    </td>
                                 </tr>
                             )
                             )}

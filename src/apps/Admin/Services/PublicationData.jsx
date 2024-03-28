@@ -15,18 +15,7 @@ function PublicData() {
         try {
             const token = 'your_actual_access_token_value';
             const response = await axios.get('http://localhost:8080/api/v1/publications/all', {});
-            const imageRequests = response.data.data.map(publication =>
-                axios.get(`http://localhost:8080/api/v1/images/getAll/${publication.publicationsID}`, {})
-            );
-
-            // Thực hiện tất cả các yêu cầu HTTP song song
-            const imageResponses = await Promise.all(imageRequests);
-            const modifiedPublics = response.data.data.map((publication, index) => ({
-                ...publication,
-                imageURL: imageResponses[index].data.data.imageURL
-            }));
-
-            setPublics(modifiedPublics);
+            setPublics(response.data.data);
         } catch (error) {
             console.error('Error fetching Publics:', error);
         }
@@ -38,7 +27,6 @@ function PublicData() {
             const data = response.data.data
             const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths)
                 .then((responseImage) => {
-                    console.log(responseImage.data);
                     return true;
                 })
                 .catch((error) => {
@@ -128,10 +116,21 @@ function PublicData() {
         }
         fetchPublics();
     };
+    const findPublic = async (name) => {
+        if (name !== null && name !== '') {
+            const token = "your_actual_access_token_value";
+            const response = await axios.get("http://localhost:8080/api/v1/publications/search/" + name, {});
+            setPublics(response.data.data)
+        } else {
+            const token = "your_actual_access_token_value";
+            const response = await axios.get("http://localhost:8080/api/v1/publications/all", {});
+            setPublics(response.data.data)
+        }
+    }
     useEffect(() => {
         fetchPublics()
     }, []);
 
-    return { publics, fetchPublics, addPublics, updatePublics }; // Trả về cả fetchGenres và addGenres
+    return { publics, fetchPublics, addPublics, updatePublics, findPublic }; // Trả về cả fetchGenres và addGenres
 }
 export default PublicData;
