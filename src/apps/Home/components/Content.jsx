@@ -6,8 +6,10 @@ import {
   fetchAllPublications,
   fetchPublicationContentPagingate,
 } from "../../../services/Service";
+import { useNavigate } from "react-router-dom";
 
 function Content() {
+  const navigate = useNavigate();
   const [productList, setProductList] = useState([]);
   const [pageCount, setPageCount] = useState(() => {
     const publicationData = fetchAllPublications();
@@ -37,9 +39,10 @@ function Content() {
   const handlePublicationId = (id) => {
     console.log("Publications: ", id);
     setCartList((prevCartList) => [...prevCartList, id]);
+    return navigate(`/detail/${id}`);
   };
   useEffect(() => {
-    console.log(cartList)
+    console.log(cartList);
   }, [cartList]);
   return (
     <div className={style.wrapperContent}>
