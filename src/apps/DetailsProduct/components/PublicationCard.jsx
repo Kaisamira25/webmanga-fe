@@ -22,6 +22,33 @@ function PublicationCard({
       console.log(listPublications);
     });
   }, [publicationsID]);
+
+  const handleAddToCart = () => {
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let itemAlreadyInCart = false;
+
+    const updatedCartItems = existingCartItems.map((item) => {
+      if (item.id === listPublications.publicationsID) {
+        item.qty += 1;
+        itemAlreadyInCart = true;
+      }
+      return item;
+    });
+
+    if (!itemAlreadyInCart) {
+      const newItem = {
+        id: listPublications.publicationsID,
+        qty: 1,
+      };
+      updatedCartItems.push(newItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+  };
+
   // change quantity
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {
@@ -111,7 +138,7 @@ function PublicationCard({
             <button onClick={handleIncreaseQuantity}>+</button>
           </div>
           <div className="addCart">
-            <button>Thêm vào giỏ</button>
+            <button onClick={handleAddToCart}>Thêm vào giỏ</button>
           </div>
         </div>
       </div>

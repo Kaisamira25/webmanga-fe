@@ -3,7 +3,7 @@ import ProductField from "../../../components/ProductField/ProductFieldTailwind"
 import style from "./PriceTotal.module.scss";
 import GoCartPayment from "./TotalPayment/TotalPayment";
 import { Link } from "react-router-dom";
-import { fetchCart } from "../../../services/Service";
+import { fetchCart, fetchProductById } from "../../../services/Service";
 function PriceTotal({ cartUpdated }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -14,9 +14,15 @@ function PriceTotal({ cartUpdated }) {
 
   const fetchCartData = async () => {
     try {
-      const res = await fetchCart();
-      if (res.data) {
-        setCart(res.data);
+      const cartItems = JSON.parse(localStorage.getItem("cart"));
+      if (cartItems && cartItems.length > 0) {
+        const products = [];
+        for (const item of cartItems) {
+          const response = await fetchProductById(item.id);
+          const productWithQty = { ...response.data.data, qty: item.qty };
+          products.push(productWithQty);
+        }
+        setCart(products);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -25,7 +31,7 @@ function PriceTotal({ cartUpdated }) {
 
   useEffect(() => {
     const totalPrice = cart.reduce(
-      (acc, product) => acc + product.qty * product.price,
+      (acc, product) => acc + product.qty * product.unitPrice,
       0
     );
     setTotalPrice(totalPrice);
@@ -44,9 +50,9 @@ function PriceTotal({ cartUpdated }) {
         {cart.map((product, index) => (
           <ProductField
             key={index}
-            name={product.name}
+            name={product.publicationsName}
             quantity={product.qty}
-            price={product.price}
+            price={product.unitPrice}
           />
         ))}
       </div>

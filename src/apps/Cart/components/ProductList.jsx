@@ -4,47 +4,59 @@ import style from "./ProductList.module.scss";
 import {
   fetchCart,
   fetchDeleteCart,
+  fetchProductById,
   fetchUpdateCart,
 } from "../../../services/Service";
 import axios from "axios";
 function ProductList({ onCartUpdate }) {
   const [cart, setCart] = useState([]);
+  const [qtyChanged, setQtyChanged] = useState(false);
 
   useEffect(() => {
     fetchCartData();
-  }, []);
+  }, [qtyChanged]);
 
   const fetchCartData = async () => {
     try {
-      const res = await fetchCart();
-      if (res.data) {
-        setCart(res.data);
-        onCartChange();
+      const cartItems = JSON.parse(localStorage.getItem("cart"));
+      if (cartItems && cartItems.length > 0) {
+        const products = [];
+        for (const item of cartItems) {
+          const response = await fetchProductById(item.id);
+          const productWithQty = { ...response.data.data, qty: item.qty };
+          products.push(productWithQty);
+        }
+        setCart(products);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
-  const incDec = async (qty, id, dec, name, img, price, author) => {
-    if (dec === "dec") {
-      qty -= 1;
-      if (qty === 0) {
-        fetchDeleteCart(id);
+  const incDec = async (qty, dec, publicationsID) => {
+    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const index = cartItems.findIndex((item) => item.id === publicationsID);
+    if (index !== -1) {
+      if (dec === "dec") {
+        qty -= 1;
+        if (qty === 0) {
+          cartItems.splice(index, 1);
+        } else {
+          cartItems[index].qty = qty;
+        }
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        setCart([...cartItems]);
+        setQtyChanged((prev) => !prev);
+        onCartUpdate();
+      } else {
+        cartItems[index].qty += 1;
+        localStorage.setItem("cart", JSON.stringify(cartItems));
+        setCart([...cartItems]);
+        setQtyChanged((prev) => !prev);
+        onCartUpdate();
       }
-    } else {
-      qty += 1;
     }
-    const order = {
-      name: name,
-      img: img,
-      price: price,
-      author: author,
-      qty: qty,
-    };
-    await axios.put(`http://localhost:3000/api/cart/${id}`, order);
-    fetchCartData();
-    onCartUpdate();
   };
 
   return (
@@ -52,33 +64,21 @@ function ProductList({ onCartUpdate }) {
       {cart.map((product, index) => (
         <div key={index} className={style.productField}>
           <Product
-            bookName={product.name}
-            imgBook={product.img}
-            bookPrice={product.price}
+            bookName={product.publicationsName}
+            imgBook={
+              product.images && product.images.length > 0
+                ? product.images[0].imageURL
+                : ""
+            }
+            bookPrice={product.unitPrice}
             author={product.author}
-            total={product.price * product.qty}
+            total={product.unitPrice * product.qty}
             quantity={product.qty}
             handleDecrease={() =>
-              incDec(
-                product.qty,
-                product.id,
-                "dec",
-                product.name,
-                product.img,
-                product.price,
-                product.author
-              )
+              incDec(product.qty, "dec", product.publicationsID)
             }
             handleIncrease={() =>
-              incDec(
-                product.qty,
-                product.id,
-                "inc",
-                product.name,
-                product.img,
-                product.price,
-                product.author
-              )
+              incDec(product.qty, "inc", product.publicationsID)
             }
           />
         </div>
