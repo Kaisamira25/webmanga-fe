@@ -3,7 +3,7 @@ import InputAll from "../../../components/Inputall";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import ButtonInput from "../../../components/BtnInput";
 import { Link, useNavigate } from "react-router-dom";
-import { sendEmailApi } from "../../../services/Service";
+import { forgotApi } from "../../../services/Service";
 
 function EmailRequired() {
   const [email, setEmail] = useState("");
@@ -13,14 +13,14 @@ function EmailRequired() {
     setEmail(e.target.value);
   };
 
-  const handleForgotPassword = async () => {
+  const handleContinue = async () => {
     try {
-      const emailData = { email: email }; // Tạo đối tượng chứa dữ liệu email
-      await sendEmailApi(emailData); // Gọi hàm API để gửi email
-      navigate("/Otp", { state: { from: "/components/EmailRequired" } });
+      const response = await forgotApi({ email });
+      console.log("API Response:", response.data);
+      sessionStorage.setItem("email", email);
+      navigate("/OTPForgotPasswordPage");
     } catch (error) {
-      console.error("Failed to send email:", error);
-      // Xử lý lỗi khi gửi email không thành công (ví dụ: hiển thị thông báo cho người dùng)
+      console.error("Failed to call API:", error);
     }
   };
 
@@ -43,12 +43,11 @@ function EmailRequired() {
           <ButtonInput
             type={"button"}
             placeholder={"Continue"}
-            onClick={handleForgotPassword}
+            onClick={handleContinue}
           />
         </div>
       </div>
     </div>
   );
 }
-
 export default EmailRequired;

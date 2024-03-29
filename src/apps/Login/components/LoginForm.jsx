@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import InputAll from "../../../components/Inputall";
 import ButtonInput from "../../../components/BtnInput";
-import ForgotYourPassword from "./ForgotButon";
 import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import { loginApi } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
+import ForgotYourPassword from "./ForgotButon";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isInvalidPassword, setIsInvalidPassword] = useState(false); // State để kiểm tra mật khẩu không hợp lệ
+  const [isInvalidPassword, setIsInvalidPassword] = useState(false); 
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -20,30 +19,29 @@ function LoginForm() {
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
-    setIsInvalidPassword(false); // Reset trạng thái kiểm tra mật khẩu không hợp lệ khi người dùng nhập mật khẩu mới
+    setIsInvalidPassword(false); 
   };
 
   const handleLogin = async () => {
-    navigate("/home");
-    // if (!email || !password) {
-    //   // toast.error("Email/password is incorrect");
-    //   return;
-    // }
+    if (!email || !password) {
+      setIsInvalidPassword(true); 
+      return;
+    }
 
-    // try {
-    //   const data = {
-    //     email: email,
-    //     password: password,
-    //   };
+    try {
+      const data = {
+        email: email,
+        password: password,
+      };
 
-    //   const response = await loginApi(data);
-    //   console.log("Login successful:", response);
+      const response = await loginApi(data);
+      console.log("Login successful:", response);
 
-    //   navigate("/home");
-    // } catch (error) {
-    //   console.error("Login failed:", error);
-    //   // toast.error("Login failed. Please try again.");
-    // }
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
+      setIsInvalidPassword(true); 
+    }
   };
 
   return (
@@ -61,19 +59,15 @@ function LoginForm() {
         svg={<IconPassword />}
         value={password}
         onChange={handlePassword}
-        // Thêm className để hiển thị phản hồi trực quan nếu mật khẩu không hợp lệ
         className={isInvalidPassword ? "invalid-password" : ""}
       />
       <div className="error-message">
         {isInvalidPassword && <p>Invalid email/password</p>}
       </div>
-      <div>
-        {/* <ForgotYourPassword /> */}
-      </div>
+      <ForgotYourPassword />
       <div className="mt-2">
         <ButtonInput type="button" placeholder="Login" onClick={handleLogin} />
       </div>
-      
     </div>
   );
 }

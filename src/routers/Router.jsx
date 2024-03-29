@@ -11,6 +11,7 @@ const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/OTP/OTPPage"));
+const OTPForgotPasswordPage = lazy(() => import("../pages/OTPPAS/OTPForgotPasswordPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
 const ForgotPasswordPage = lazy(() =>
@@ -27,6 +28,8 @@ const routes = [
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/otp", element: <OtpPage /> },
+  { path: "/OTPForgotPasswordPage", element: <OTPForgotPasswordPage /> },
+
   { path: "/forgotPassword", element: <ForgotPasswordPage /> },
   { path: "/forgotPasswordConfirm", element: <ForgotPasswordConfirm /> },
   // adminPage
