@@ -25,6 +25,7 @@ function Genre() {
       (item) => item.genre.toLowerCase() === genre.toLowerCase()
     );
   };
+ 
 
   const handleAddGenre = async () => {
     if (genre === null || genre === "") {

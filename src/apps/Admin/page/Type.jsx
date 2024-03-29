@@ -27,6 +27,18 @@ function AdminType() {
     // Clear timeout khi component unmount để tránh memory leaks
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
+  useEffect(() => {
+    // Nếu thành công khi thêm sản phẩm, thì mới ẩn thông báo sau 5 giây
+    if (vali === "success") {
+        const hideAlert = setTimeout(() => {
+            setVali('');
+            setInfo('');
+        }, 5000);
+
+        // Clear timeout khi component unmount để tránh memory leaks
+        return () => clearTimeout(hideAlert);
+    }
+}, [vali, info]);
   const handleAddType = async () => {
     if (typeName === null || typeName === "") {
       setVali("error");

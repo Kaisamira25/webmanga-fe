@@ -28,6 +28,7 @@ function AdminCover() {
     // Clear timeout khi component unmount để tránh memory leaks
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
+ 
   const handleAddCover = async () => {
     if (coverType === null || coverType === "") {
       setVali("error");

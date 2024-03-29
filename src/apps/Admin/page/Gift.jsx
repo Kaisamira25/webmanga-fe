@@ -30,6 +30,7 @@ function AdminGift() {
     // Clear timeout khi component unmount để tránh memory leaks
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
+ 
   const handleAddGift = async () => {
     console.log(promotionalGiftName, promotionalGiftType);
     if (
