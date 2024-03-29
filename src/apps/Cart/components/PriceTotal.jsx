@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwind";
 import style from "./PriceTotal.module.scss";
-import GoCartPayment from "./TotalPayment/TotalPayment";
+import TotalPayment from "./TotalPayment/TotalPayment";
 import { Link } from "react-router-dom";
 import { fetchCart, fetchProductById } from "../../../services/Service";
 function PriceTotal({ cartUpdated }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [discountCode, setDiscountCode] = useState("");
 
   useEffect(() => {
     fetchCartData();
@@ -36,13 +37,32 @@ function PriceTotal({ cartUpdated }) {
     );
     setTotalPrice(totalPrice);
   }, [cart]);
+
+  const applyDiscount = () => {
+    if (discountCode === "DISCOUNT20") {
+      return totalPrice * 0.2;
+    }
+    return 0;
+  };
+
+  const handleDiscountCodeChange = (code) => {
+    setDiscountCode(code);
+  };
+
+  const totalBill = () => {
+    if (discountCode === "DISCOUNT20") {
+      return totalPrice - applyDiscount();
+    }
+    return totalPrice;
+  };
+
   const textInfo = [
     { title: "Cart blackmail ", price: totalPrice },
-    { title: " Shipping Fee", price: 50000 },
+    { title: " Shipping Fee", price: 0 },
 
-    { title: "Discount code ", price: 50000 },
+    { title: "Discount code ", price: applyDiscount() },
 
-    { title: "Total bill", price: 50000 },
+    { title: "Total bill", price: totalBill() },
   ];
   return (
     <div>
@@ -58,7 +78,11 @@ function PriceTotal({ cartUpdated }) {
       </div>
 
       <div>
-        <GoCartPayment className={style.total} textInfo={textInfo} />
+        <TotalPayment
+          className={style.total}
+          textInfo={textInfo}
+          onDiscountCodeChange={handleDiscountCodeChange}
+        />
       </div>
     </div>
   );
