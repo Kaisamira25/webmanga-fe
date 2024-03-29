@@ -30,7 +30,7 @@ function PasswordRequired() {
       console.log(typeof code);
       const response = await newPasswordApi(password, code);
       navigate("/Login");
-
+      sessionStorage.removeItem("verificationCode");
       console.log("API Response:", response.data);
     } catch (error) {
       console.error("Failed ", error);
