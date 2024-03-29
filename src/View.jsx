@@ -19,7 +19,7 @@ function Views() {
     "/admin/Cover",
     "/admin/Discount",
     "/admin/Gift",
-    "/admin/Product",
+    "/admin/product",
     "/admin/Type",
     "/admin/Account",
     "/admin/Order",

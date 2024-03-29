@@ -154,17 +154,21 @@ function AdminProduct() {
         Object.values(formData).forEach(value => {
           if (value === '') {
             isValid = false;
-            setInfo("Please fill in all fields and Publication Name longer than 10!")
+            setVali("error");
+            setInfo("Please fill in all fields!")
             return; // Dừng vòng lặp ngay lập tức khi tìm thấy giá trị rỗng
           }
         });
         if(formData.publicationsName.length < 15){
-            setInfo("Please fill in all fields and Publication Name longer than 10!")
+            setVali("error");
+            setInfo("Please fill in all fields and Publication Name longer than 15!")
             return false;
         }else if(parseInt(formData.unitPrice) < 0){
+            setVali("error");
             setInfo("Please do not enter negative numbers!")
             return false;
         }else if(parseInt(formData.stock) <0){
+            setVali("error");
             setInfo("Please do not enter negative numbers!")
             return false;
         }else{
