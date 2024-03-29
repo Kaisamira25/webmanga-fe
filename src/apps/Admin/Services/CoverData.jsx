@@ -8,7 +8,7 @@ function CoverData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.get(
-        "http://localhost:8080/api/v1/cover/all",
+        "http://localhost:8181/api/v1/cover/all",
         {}
       );
       const modifiedCovers = response.data.data.map((cover) => ({
@@ -24,7 +24,7 @@ function CoverData() {
   const GetCoverSelect = async (id) => {
     try {
         const token = 'your_actual_access_token_value';
-        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {});
+        const response = await axios.get('http://localhost:8181/api/v1/publications_cover/' + id, {});
         console.log(response.data.data)
         return response.data.data;
     } catch (error) {
@@ -36,7 +36,7 @@ function CoverData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.post(
-        "http://localhost:8080/api/v1/cover",
+        "http://localhost:8181/api/v1/cover",
         data
       );
       console.log("Genre added successfully:", response.data);
@@ -53,7 +53,7 @@ function CoverData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.put(
-        "http://localhost:8080/api/v1/cover/" + id,
+        "http://localhost:8181/api/v1/cover/" + id,
         data
       );
       console.log("Genre update successfully:", response.data);
@@ -68,7 +68,7 @@ function CoverData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.delete(
-        "http://localhost:8080/api/v1/cover/" + id,
+        "http://localhost:8181/api/v1/cover/" + id,
         {}
       );
       console.log("Genre delete successfully:", response.data);
@@ -84,7 +84,7 @@ function CoverData() {
       if (name !== null && name !== "") {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8080/api/v1/cover/search/" + name,
+          "http://localhost:8181/api/v1/cover/search/" + name,
           {}
         );
         const modifiedCovers = response.data.data.map((cover) => ({
@@ -96,7 +96,7 @@ function CoverData() {
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8080/api/v1/cover/all",
+          "http://localhost:8181/api/v1/cover/all",
           {}
         );
         const modifiedCovers = response.data.data.map((cover) => ({
@@ -114,7 +114,7 @@ function CoverData() {
   const CoverSelect = async () => {
     try {
       const token = 'your_actual_access_token_value';
-      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
+      const response = await axios.get('http://localhost:8181/api/v1/cover/all', {});
       const modifiedCover = response.data.data.map(cover => ({
         value: cover.coverID,
         label: cover.coverType

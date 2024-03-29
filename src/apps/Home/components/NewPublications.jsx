@@ -2,14 +2,26 @@ import { useEffect, useState } from "react";
 import Card from "./CardPublications";
 import style from "./NewPublications.module.scss";
 import { fetchNewPublications } from "../../../services/Service";
+import { useNavigate } from "react-router-dom";
+
 function NewPublications() {
+  const navigate = useNavigate();
   const [newPublications, setNewPublications] = useState([]);
-useEffect(() => {
-  const fetchNewPublication = fetchNewPublications();
-  fetchNewPublication.then(res => {
-    setNewPublications(res.data.data)
-  })
-},[])
+  const [cartList, setCartList] = useState([]);
+
+  useEffect(() => {
+    const fetchNewPublication = async () => {
+    const response = await fetchNewPublications();
+    setNewPublications(response.data.data);
+    }
+    fetchNewPublication();
+  }, []);
+  const handlePublicationId = (id) => {
+    return navigate(`/detail/${id}`);
+  };
+  const handlePublicationGetId = (id) => {
+    setCartList((prevCartList) => [...prevCartList, id]);
+  };
   return (
     <div className={style.newProductWrapper}>
       <p>New lightnovel</p>
@@ -20,8 +32,11 @@ useEffect(() => {
               key={index}
               imgSrc={item.imageURL}
               name={item.publicationsName}
-              priceAfterDiscount={item.unitPrice}
-              priceBeforeDiscount={item.price}
+              priceBeforeDiscount={item.unitPrice}
+              // priceAfterDiscount={item.unitPrice}
+              onClickNavigate={handlePublicationId}
+              onClickGetItem={handlePublicationGetId}
+              id={item.publicationsId}
             />
           ))}
           <div className={style.fakeDiv}></div>

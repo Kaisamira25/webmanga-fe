@@ -6,7 +6,7 @@ function GiftData() {
     const fetchGifts = async () => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
+            const response = await axios.get('http://localhost:8181/api/v1/gift/all', {});
             const modifiedGifts = response.data.data.map(Gift => ({
                 promotionalGiftID: Gift.promotionalGiftID,
                 GiftName: Gift.promotionalGiftName,
@@ -22,7 +22,7 @@ function GiftData() {
         console.log(data)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8080/api/v1/gift', data);
+            const response = await axios.post('http://localhost:8181/api/v1/gift', data);
             console.log('Genre added successfully:', response.data);
             console.log(data)
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
@@ -35,7 +35,7 @@ function GiftData() {
     const GetGiftSelect = async (id) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8080/api/v1/publications_gift/' + id, {});
+            const response = await axios.get('http://localhost:8181/api/v1/publications_gift/' + id, {});
             return response.data.data;
         } catch (error) {
             console.error('Error fetching genres:', error);
@@ -45,7 +45,7 @@ function GiftData() {
         console.log(data)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.put('http://localhost:8080/api/v1/gift/' + id, data);
+            const response = await axios.put('http://localhost:8181/api/v1/gift/' + id, data);
             console.log('Genre update successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
             fetchGifts();
@@ -56,7 +56,7 @@ function GiftData() {
     const deleteGifts = async (id) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.delete('http://localhost:8080/api/v1/gift/' + id, {});
+            const response = await axios.delete('http://localhost:8181/api/v1/gift/' + id, {});
             console.log('Genre delete successfully:', response.data);
             fetchGifts();
             return true;
@@ -69,7 +69,7 @@ function GiftData() {
         try {
             if (name !== null && name !== '') {
                 const token = 'your_actual_access_token_value';
-                const response = await axios.get('http://localhost:8080/api/v1/gift/search/' + name, {});
+                const response = await axios.get('http://localhost:8181/api/v1/gift/search/' + name, {});
                 const modifiedGifts = response.data.data.map(Gift => ({
                     promotionalGiftID: Gift.promotionalGiftID,
                     GiftName: Gift.promotionalGiftName,
@@ -78,7 +78,7 @@ function GiftData() {
                 setGifts(modifiedGifts);
             } else {
                 const token = 'your_actual_access_token_value';
-                const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
+                const response = await axios.get('http://localhost:8181/api/v1/gift/all', {});
                 const modifiedGifts = response.data.data.map(Gift => ({
                     promotionalGiftID: Gift.promotionalGiftID,
                     GiftName: Gift.promotionalGiftName,
@@ -93,7 +93,7 @@ function GiftData() {
     const GiftSelect = async () => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
+            const response = await axios.get('http://localhost:8181/api/v1/gift/all', {});
             const modifiedGifts = response.data.data.map(Gift => ({
                 value: Gift.promotionalGiftID,
                 label: Gift.promotionalGiftName

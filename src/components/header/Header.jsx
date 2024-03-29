@@ -9,9 +9,6 @@ import { useNavigate } from "react-router";
 function Header() {
   const [logout, setLogout] = useState(false);
   const [visible, setVisible] = useState("");
-  useEffect(() => {
-    console.log(logout);
-  }, [logout]);
   const handleLogout = () => {
     setLogout(!logout);
     setVisible(logout ? "visible" : "");
