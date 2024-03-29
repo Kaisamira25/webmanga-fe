@@ -14,9 +14,9 @@ function Card({
   const navigate = useNavigate();
   const getPublicationsId = (id) => onClickGetItem(id);
   const navigateToDetail = (id) => onClickNavigate(id);
-  const handleNavigateToDetails = (id) => {
-    navigate(`/detail/${id}`);
-  };
+  // const handleNavigateToDetails = (id) => {
+  //   navigate(`/detail/${id}`);
+  // };
 
   return (
     <div className={style.containerCard}>
@@ -30,12 +30,12 @@ function Card({
           </a>
         </div>
         <div className={style.information}>
-          <a onClick={handleNavigateToDetails}>
+          <a onClick={() => navigateToDetail(id)}>
             <p>{name}</p>
           </a>
           <div>
-            <span>{priceAfterDiscount} VND</span>
             <span>{priceBeforeDiscount} VND</span>
+            <span>{priceAfterDiscount}</span>
           </div>
         </div>
         <div>

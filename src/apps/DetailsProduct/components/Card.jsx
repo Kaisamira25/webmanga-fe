@@ -8,7 +8,7 @@ function Card({ imgUrl, name, beforeDiscount, afterDiscount }) {
         <img src={imgUrl} alt="" />
       </div>
       <div className={style.viewDetail}>
-        <Link to={'/Detail'}>
+        <Link to={'/detail'}>
           <IconEye />
           <span>More detail</span>
         </Link>

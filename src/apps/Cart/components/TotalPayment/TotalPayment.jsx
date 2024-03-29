@@ -2,34 +2,36 @@ import React, { useState } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function GoCartPayment({ textInfo, className }) {
+export default function TotalPayment({
+  textInfo,
+  className,
+  onDiscountCodeChange,
+}) {
   const navigate = useNavigate();
   const [discountCode, setDiscountCode] = useState("");
-  const [isDiscountValid, setIsDiscountValid] = useState(false);
-  const [isInputFilled, setIsInputFilled] = useState(false);
+  const [isDiscountValid, setIsDiscountValid] = useState(true);
+
   const handleDiscountCodeChange = (event) => {
     const inputDiscountCode = event.target.value;
     setDiscountCode(inputDiscountCode);
-    setIsInputFilled(!!inputDiscountCode.trim());
+    if (inputDiscountCode.trim() !== "" && inputDiscountCode === "DISCOUNT20") {
+      setIsDiscountValid(true);
+      onDiscountCodeChange(inputDiscountCode);
+    } else if (
+      inputDiscountCode.trim() !== "" &&
+      inputDiscountCode !== "DISCOUNT20"
+    ) {
+      setIsDiscountValid(false);
+    } else {
+      setIsDiscountValid(true);
+      onDiscountCodeChange(inputDiscountCode);
+    }
   };
 
-  const handleOpenFinishModal = () => {
-    if (!isInputFilled) {
-      console.log("Bạn chưa nhập mã giảm giá!");
-      return;
-    }
-
-    if (discountCode === "DISCOUNT20") {
-      console.log("Mã giảm giá đã được áp dụng!");
-      setIsDiscountValid(true);
-    } else {
-      console.log("Mã giảm giá không hợp lệ!");
-      setIsDiscountValid(false);
-    }
-
-    navigate("/payment");
+  const handleToPayment = () => {
+    navigate("/cart/payment");
   };
 
   return (
@@ -49,20 +51,15 @@ export default function GoCartPayment({ textInfo, className }) {
           type="text"
           value={discountCode}
           onChange={handleDiscountCodeChange}
-          placeholder="Nhập mã giảm giá"
+          placeholder="Enter the discount code"
           className={style.input}
         />
-        {!isDiscountValid && isInputFilled && (
-          <p className={style.invalidMessage}>Mã giảm giá không hợp lệ!</p>
+        {!isDiscountValid && (
+          <p className={style.invalidMessage}>Invalid discount code!</p>
         )}
       </div>
       <div className={style.btn}>
-        <Link to={"/Cart/Payment"}>
-          <ButtonInput
-            placeholder={"Continue"}
-            onClick={handleOpenFinishModal}
-          />
-        </Link>
+        <ButtonInput placeholder={"Continue"} onClick={handleToPayment} />
       </div>
     </div>
   );

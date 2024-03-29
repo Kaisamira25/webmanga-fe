@@ -10,46 +10,51 @@ import { useNavigate } from "react-router-dom";
 
 function Content() {
   const navigate = useNavigate();
-  const [productList, setProductList] = useState([]);
-  const [pageCount, setPageCount] = useState(() => {
-    const publicationData = fetchAllPublications();
-    publicationData.then((response) => {
-      setPageCount(Math.ceil(response.data.data.length / 9));
-    });
-  });
+  const [pageCount, setPageCount] = useState(1);
   const [cartList, setCartList] = useState([]);
-
+  const [publications, setPublications] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // Call api to get all publications in first page
   useEffect(() => {
-    const fetchPublicationsInContent = fetchPublicationContentPagingate(0);
-    fetchPublicationsInContent.then((response) => {
-      setProductList(response.data.data.content);
-    });
-  }, []);
-
-  const handlePageChange = (e) => {
+    const getPublicationsFirstPage = async () => {
+      setIsLoading(true);
+      const response = await fetchPublicationContentPagingate(0);
+      setPublications(response.data.data.content);
+      setIsLoading(false);
+    };
+    getPublicationsFirstPage();
+  }, [])
+  useEffect(() => {
+    const fetchAllPublicationsToSetPageCount = async () => {
+      const response = await fetchAllPublications();
+      if (response && response.data && response.data.data && Array.isArray(response.data.data)) {
+        setPageCount(Math.ceil(response.data.data.length / 9));
+      } else {
+        console.log("Error pagecount not an integer: ",response)
+      }
+    }
+    fetchAllPublicationsToSetPageCount();
+  }, [])
+  const handlePageChange = async (e) => {
     const selectedPage = e.selected;
-    const publicationDataInCurrentPage =
-      fetchPublicationContentPagingate(selectedPage);
-    publicationDataInCurrentPage.then((response) => {
-      const publicationsList = response.data.data.content;
-      setProductList(publicationsList);
-    });
+    const fetchData = await fetchPublicationContentPagingate(selectedPage);
+    setPublications(fetchData.data.data.content);
   };
+  // console.log(publications[0].images[0].imageURL);
+
   const handlePublicationId = (id) => {
     return navigate(`/detail/${id}`);
   };
   const handlePublicationGetId = (id) => {
     setCartList((prevCartList) => [...prevCartList, id]);
   };
-  useEffect(() => {
-  }, [cartList]);
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>
-        {productList.map((item, index) => (
+        {isLoading ? (<p>Loading</p>) : publications.map((item, index) => (
           <div key={index}>
             <Card
-              imgSrc={item.images.imageURL}
+              imgSrc={item.images[0].imageURL}
               name={item.publicationsName}
               priceBeforeDiscount={item.unitPrice}
               count={item.priceDis}
@@ -73,8 +78,8 @@ function Content() {
           breakLabel="..."
           breakClassName="page-item"
           breakLinkClassName="page-link"
-          pageCount={pageCount}
           marginPagesDisplayed={2}
+          pageCount={pageCount}
           pageRangeDisplayed={5}
           onPageChange={handlePageChange}
           containerClassName="pagination"

@@ -8,7 +8,7 @@ function FinishPayment({ onClose }) {
   const navigate = useNavigate();
 
   const handleGoToHomePage = () => {
-    navigate("/Home");
+    navigate("/home");
   };
   return (
     <>

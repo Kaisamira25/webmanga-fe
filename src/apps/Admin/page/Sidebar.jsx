@@ -11,12 +11,12 @@ function MenuAdmin() {
                     <SideBar/>
                     <ul className="nav  mb-2 ms-1 relative mt-32">
                         <li className="nav-item py-2">
-                            <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/Home">
+                            <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/home">
                                 Home Page
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/Home">
+                            <a className="nav-link gap-2 py-2 hover:text-blue-400" href="/home">
                                 Log out
                             </a>
                         </li>

@@ -14,7 +14,7 @@ function EnterCode() {
   const handleContinue = () => {
     sessionStorage.setItem("verificationCode", code);
     console.log(typeof code);
-    navigate("/ForgotPasswordConfirm");
+    navigate("/forgotPasswordConfirm");
   };
 
   return (
