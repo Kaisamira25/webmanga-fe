@@ -8,7 +8,7 @@ function GenreData() {
     const fetchGenres = async () => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8181/api/v1/genre/all', {});
+            const response = await axios.get('http://localhost:8080/api/v1/genre/all', {});
             const modifiedGenres = response.data.data.map(genre => ({
                 id: genre.genreID,
                 genre: genre.genre
@@ -22,7 +22,7 @@ function GenreData() {
     const GetGenreSelect = async (id) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8181/api/v1/publications_genre/' + id, {});
+            const response = await axios.get('http://localhost:8080/api/v1/publications_genre/' + id, {});
             return response.data.data;
         } catch (error) {
             console.error('Error fetching genres:', error);
@@ -32,7 +32,7 @@ function GenreData() {
     const addGenres = async (data) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8181/api/v1/genre', data);
+            const response = await axios.post('http://localhost:8080/api/v1/genre', data);
             console.log('Genre added successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGenres để cập nhật danh sách thể loại
             fetchGenres();
@@ -44,7 +44,7 @@ function GenreData() {
         console.log(id)
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.put('http://localhost:8181/api/v1/genre/' + id, data);
+            const response = await axios.put('http://localhost:8080/api/v1/genre/' + id, data);
             console.log('Genre update successfully:', response.data);
             // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGenres để cập nhật danh sách thể loại
             fetchGenres();
@@ -55,7 +55,7 @@ function GenreData() {
     const deleteGenres = async (id) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.delete('http://localhost:8181/api/v1/genre/' + id, {});
+            const response = await axios.delete('http://localhost:8080/api/v1/genre/' + id, {});
             fetchGenres();
             return true;
         } catch (error) {
@@ -66,7 +66,7 @@ function GenreData() {
         try {
             if (name !== null && name !== '') {
                 const token = 'your_actual_access_token_value';
-                const response = await axios.get('http://localhost:8181/api/v1/genre/search/' + name, {});
+                const response = await axios.get('http://localhost:8080/api/v1/genre/search/' + name, {});
                 const modifiedGenres = response.data.data.map(genre => ({
                     id: genre.genreID,
                     genre: genre.genre
@@ -75,7 +75,7 @@ function GenreData() {
                 console.log(name)
             } else {
                 const token = 'your_actual_access_token_value';
-                const response = await axios.get('http://localhost:8181/api/v1/genre/all', {});
+                const response = await axios.get('http://localhost:8080/api/v1/genre/all', {});
                 const modifiedGenres = response.data.data.map(genre => ({
                     id: genre.genreID,
                     genre: genre.genre
@@ -91,7 +91,7 @@ function GenreData() {
     const GenreSelect = async () => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8181/api/v1/genre/all', {});
+            const response = await axios.get('http://localhost:8080/api/v1/genre/all', {});
             const modifiedGenres = response.data.data.map(genre => ({
                 value: genre.genreID,
                 label: genre.genre

@@ -5,7 +5,7 @@ function SignInPrompt() {
   const navigate = useNavigate();
 
   const handleToLogin = () => {
-    navigate("/Login");
+    navigate("/login");
   };
   return (
     <div className="flex ">

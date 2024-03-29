@@ -8,7 +8,7 @@ function TypeData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.get(
-        "http://localhost:8181/api/v1/type/all",
+        "http://localhost:8080/api/v1/type/all",
         {}
       );
       const modifiedTypes = response.data.data.map((type) => ({
@@ -26,7 +26,7 @@ function TypeData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.post(
-        "http://localhost:8181/api/v1/type",
+        "http://localhost:8080/api/v1/type",
         data
       );
       console.log("Type added successfully:", response.data);
@@ -43,7 +43,7 @@ function TypeData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.put(
-        "http://localhost:8181/api/v1/type/" + id,
+        "http://localhost:8080/api/v1/type/" + id,
         data
       );
       console.log("Type update successfully:", response.data);
@@ -58,7 +58,7 @@ function TypeData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.delete(
-        "http://localhost:8181/api/v1/type/" + id,
+        "http://localhost:8080/api/v1/type/" + id,
         {}
       );
       console.log("Type delete successfully:", response.data);
@@ -74,7 +74,7 @@ function TypeData() {
       if (name !== null && name !== "") {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8181/api/v1/type/search/" + name,
+          "http://localhost:8080/api/v1/type/search/" + name,
           {}
         );
         const modifiedTypes = response.data.data.map((type) => ({
@@ -86,7 +86,7 @@ function TypeData() {
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8181/api/v1/type/all",
+          "http://localhost:8080/api/v1/type/all",
           {}
         );
         const modifiedTypes = response.data.data.map((type) => ({
@@ -104,7 +104,7 @@ function TypeData() {
   const TypeSelect = async () => {
     try {
       const token = 'your_actual_access_token_value';
-      const response = await axios.get('http://localhost:8181/api/v1/type/all', {});
+      const response = await axios.get('http://localhost:8080/api/v1/type/all', {});
       const modifiedCover = response.data.data.map(type => ({
         value: type.typeID,
         label: type.typeName
@@ -117,7 +117,7 @@ function TypeData() {
   const GetTypeSelect = async (id) => {
     try {
         const token = 'your_actual_access_token_value';
-        const response = await axios.get('http://localhost:8181/api/v1/publications_type/' + id, {});
+        const response = await axios.get('http://localhost:8080/api/v1/publications_type/' + id, {});
         return response.data.data;
     } catch (error) {
         console.error('Error fetching genres:', error);

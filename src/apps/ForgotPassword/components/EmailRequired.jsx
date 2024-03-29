@@ -18,7 +18,7 @@ function EmailRequired() {
       const response = await forgotApi({ email });
       console.log("API Response:", response.data);
       sessionStorage.setItem("email", email);
-      navigate("/OTPForgotPasswordPage");
+      navigate("/otpForgotPasswordPage");
     } catch (error) {
       console.error("Failed to call API:", error);
     }
@@ -35,7 +35,7 @@ function EmailRequired() {
       />
       <div className="flex gap-4 ">
         <div className="flex-1 ml-2">
-          <Link to={"/Login"}>
+          <Link to={"/login"}>
             <ButtonInput type={"button"} placeholder={"Cancel "} />
           </Link>
         </div>

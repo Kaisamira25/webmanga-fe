@@ -28,7 +28,7 @@ function RegisterFormRequired() {
         const emailForVerify = response.data.data.email;
         console.log(emailForVerify);
         sessionStorage.setItem("email",emailForVerify);
-        navigate("/Otp", { state: { from: "/Register" } });
+        navigate("/otp", { state: { from: "/register" } });
       })
       .catch((error) => {
         console.error("Registration failed:", error.data);

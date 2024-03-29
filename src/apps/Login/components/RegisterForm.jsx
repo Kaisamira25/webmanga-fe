@@ -5,7 +5,7 @@ function RegisterPrompt() {
   const navigate = useNavigate();
 
   const handleToRegister = () => {
-    navigate("/Register");
+    navigate("/register");
   };
   return (
     <div className="flex ">

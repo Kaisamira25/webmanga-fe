@@ -13,13 +13,14 @@ function PublicationCard({
     const parseId = parseInt(id);
     return parseId;
   });
+  const [stock, setStock] = useState(0)
   const [quantity, setQuantity] = useState(0);
   const [listPublications, setListPublications] = useState({});
   useEffect(() => {
     const fetchPublications = fetchProductById(publicationsID);
     fetchPublications.then((response) => {
       setListPublications(response.data.data);
-      console.log(listPublications);
+      setStock(response.data.data.stock)
     });
   }, [publicationsID]);
 
@@ -68,7 +69,7 @@ function PublicationCard({
             <img src={listPublications.images[0].imageURL} alt="" />
           )}
 
-          <p className={style.status}>{publicationsStatus}</p>
+          <p className={style.status}>{stock < 0 ? "Out stock" : "In stock"}</p>
         </div>
       </div>
 

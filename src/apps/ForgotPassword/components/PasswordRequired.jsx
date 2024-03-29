@@ -29,7 +29,7 @@ function PasswordRequired() {
       console.log(code);
       console.log(typeof code);
       const response = await newPasswordApi(password, code);
-      navigate("/Login");
+      navigate("/login");
 
       console.log("API Response:", response.data);
     } catch (error) {

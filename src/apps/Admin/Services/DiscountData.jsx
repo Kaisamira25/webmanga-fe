@@ -7,7 +7,7 @@ function DiscountData() {
   const fetchDiscounts = async () => {
     try {
       const token = "your_actual_access_token_value";
-      const response = await axios.get("http://localhost:8181/api/v1/discount/all",{});
+      const response = await axios.get("http://localhost:8080/api/v1/discount/all",{});
       setDiscounts(response.data.data);
     } catch (error) {
       console.error("Error fetching Discounts:", error);
@@ -18,7 +18,7 @@ function DiscountData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.post(
-        "http://localhost:8181/api/v1/discount",
+        "http://localhost:8080/api/v1/discount",
         data
       );
       fetchDiscounts();
@@ -31,7 +31,7 @@ function DiscountData() {
     try {
       const token = "your_actual_access_token_value";
       const response = await axios.put(
-        "http://localhost:8181/api/v1/discount/" + id,
+        "http://localhost:8080/api/v1/discount/" + id,
         data
       );
       fetchDiscounts();
@@ -44,14 +44,14 @@ function DiscountData() {
       if (name !== null && name !== "") {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8181/api/v1/discount/search/" + name,
+          "http://localhost:8080/api/v1/discount/search/" + name,
           {}
         );
         setDiscounts(response.data.data);
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
-          "http://localhost:8181/api/v1/discount/all",
+          "http://localhost:8080/api/v1/discount/all",
           {}
         );
         const modifiedDiscounts = response.data.data.map((discount) => ({

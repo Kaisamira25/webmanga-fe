@@ -14,7 +14,7 @@ function PublicData() {
     const fetchPublics = async () => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.get('http://localhost:8181/api/v1/publications/all', {});
+            const response = await axios.get('http://localhost:8080/api/v1/publications/all', {});
             setPublics(response.data.data);
         } catch (error) {
             console.error('Error fetching Publics:', error);
@@ -23,9 +23,9 @@ function PublicData() {
     const addPublics = async (publics, imagePaths, genres, covers, types, gifts) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.post('http://localhost:8181/api/v1/publications', publics);
+            const response = await axios.post('http://localhost:8080/api/v1/publications', publics);
             const data = response.data.data
-            const responseImage = await axios.post('http://localhost:8181/api/v1/images/' + data.publicationsID, imagePaths)
+            const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths)
                 .then((responseImage) => {
                     return true;
                 })
@@ -35,19 +35,19 @@ function PublicData() {
                 });
             if (genres !== null) {
                 const listGenres = genres.map(genre => genre.value);
-                const responseGenres = await axios.post('http://localhost:8181/api/v1/publications_genre/' + data.publicationsID, listGenres)
+                const responseGenres = await axios.post('http://localhost:8080/api/v1/publications_genre/' + data.publicationsID, listGenres)
             }
             if (covers !== null) {
                 const listCovers = covers.map(cover => cover.value);
-                const responseCovers = await axios.post('http://localhost:8181/api/v1/publications_cover/' + data.publicationsID, listCovers)
+                const responseCovers = await axios.post('http://localhost:8080/api/v1/publications_cover/' + data.publicationsID, listCovers)
             }
             if (types !== null) {
                 const listTypes = types.map(type => type.value);
-                const responseTypes = await axios.post('http://localhost:8181/api/v1/publications_type/' + data.publicationsID, listTypes)
+                const responseTypes = await axios.post('http://localhost:8080/api/v1/publications_type/' + data.publicationsID, listTypes)
             }
             if (gifts !== null) {
                 const listGifts = gifts.map(gift => gift.value);
-                const responseGifts = await axios.post('http://localhost:8181/api/v1/publications_gift/' + data.publicationsID, listGifts)
+                const responseGifts = await axios.post('http://localhost:8080/api/v1/publications_gift/' + data.publicationsID, listGifts)
             }
         } catch (error) {
             console.error('Error fetching publication:', error);
@@ -58,50 +58,50 @@ function PublicData() {
     const updatePublics = async (id, publics, imagePaths, genres, covers, types, gifts) => {
         try {
             const token = 'your_actual_access_token_value';
-            const response = await axios.put('http://localhost:8181/api/v1/publications/' + id, publics);
+            const response = await axios.put('http://localhost:8080/api/v1/publications/' + id, publics);
             const data = response.data.data
-            const responseDelImage = await axios.delete('http://localhost:8181/api/v1/images/delImage/' + id, {});
+            const responseDelImage = await axios.delete('http://localhost:8080/api/v1/images/delImage/' + id, {});
             if (genres !== null) {
                 const listGenres = genres.map(genre => genre.value);
                 const genreSelectData = await GetGenreSelect(id);
                 if (genreSelectData.length === 0) {
-                    const responseGenres = await axios.post('http://localhost:8181/api/v1/publications_genre/' + id, listGenres)
+                    const responseGenres = await axios.post('http://localhost:8080/api/v1/publications_genre/' + id, listGenres)
                 } else {
-                    const del = await axios.delete('http://localhost:8181/api/v1/publications_genre/' + id, {});
-                    const responseGenres = await axios.post('http://localhost:8181/api/v1/publications_genre/' + id, listGenres)
+                    const del = await axios.delete('http://localhost:8080/api/v1/publications_genre/' + id, {});
+                    const responseGenres = await axios.post('http://localhost:8080/api/v1/publications_genre/' + id, listGenres)
                 }
             }
             if (covers !== null) {
                 const listCovers = covers.map(cover => cover.value);
                 const coverSelectData = await GetCoverSelect(id);
                 if (coverSelectData.length === 0) {
-                    const responseCovers = await axios.post('http://localhost:8181/api/v1/publications_cover/' + id, listCovers)
+                    const responseCovers = await axios.post('http://localhost:8080/api/v1/publications_cover/' + id, listCovers)
                 } else {
-                    const del = await axios.delete('http://localhost:8181/api/v1/publications_cover/' + id, {});
-                    const responseCovers = await axios.post('http://localhost:8181/api/v1/publications_cover/' + id, listCovers)
+                    const del = await axios.delete('http://localhost:8080/api/v1/publications_cover/' + id, {});
+                    const responseCovers = await axios.post('http://localhost:8080/api/v1/publications_cover/' + id, listCovers)
                 }
             }
             if (types !== null) {
                 const listTypes = types.map(type => type.value);
                 const typeSelectData = await GetTypeSelect(id);
                 if (typeSelectData.length === 0) {
-                    const responseTypes = await axios.post('http://localhost:8181/api/v1/publications_type/' + id, listTypes)
+                    const responseTypes = await axios.post('http://localhost:8080/api/v1/publications_type/' + id, listTypes)
                 } else {
-                    const del = await axios.delete('http://localhost:8181/api/v1/publications_type/' + id, {});
-                    const responseTypes = await axios.post('http://localhost:8181/api/v1/publications_type/' + id, listTypes)
+                    const del = await axios.delete('http://localhost:8080/api/v1/publications_type/' + id, {});
+                    const responseTypes = await axios.post('http://localhost:8080/api/v1/publications_type/' + id, listTypes)
                 }
             }
             if (gifts !== null) {
                 const listGifts = gifts.map(gift => gift.value);
                 const giftSelectData = await GetGiftSelect(id);
                 if (giftSelectData.length === 0) {
-                    const responseGifts = await axios.post('http://localhost:8181/api/v1/publications_gift/' + id, listGifts)
+                    const responseGifts = await axios.post('http://localhost:8080/api/v1/publications_gift/' + id, listGifts)
                 } else {
-                    const del = await axios.delete('http://localhost:8181/api/v1/publications_gift/' + id, {});
-                    const responseGifts = await axios.post('http://localhost:8181/api/v1/publications_gift/' + id, listGifts)
+                    const del = await axios.delete('http://localhost:8080/api/v1/publications_gift/' + id, {});
+                    const responseGifts = await axios.post('http://localhost:8080/api/v1/publications_gift/' + id, listGifts)
                 }
             }
-            const responseImage = await axios.post('http://localhost:8181/api/v1/images/' + data.publicationsID, imagePaths)
+            const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths)
                 .then((responseImage) => {
                     console.log(responseImage.data);
                     return true;
@@ -119,11 +119,11 @@ function PublicData() {
     const findPublic = async (name) => {
         if (name !== null && name !== '') {
             const token = "your_actual_access_token_value";
-            const response = await axios.get("http://localhost:8181/api/v1/publications/search/" + name, {});
+            const response = await axios.get("http://localhost:8080/api/v1/publications/search/" + name, {});
             setPublics(response.data.data)
         } else {
             const token = "your_actual_access_token_value";
-            const response = await axios.get("http://localhost:8181/api/v1/publications/all", {});
+            const response = await axios.get("http://localhost:8080/api/v1/publications/all", {});
             setPublics(response.data.data)
         }
     }

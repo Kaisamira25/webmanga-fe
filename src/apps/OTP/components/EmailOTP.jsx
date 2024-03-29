@@ -12,10 +12,10 @@ function OtpRequired() {
   const from = state ? state.from : null;
   const [otp, setOtp] = useState("");
   const redirectTo = (from) => {
-    if (from === "/Register") {
-      return "/Login";
+    if (from === "/register") {
+      return "/login";
     } else if (from === "/ForgotPassword") {
-      return "/ForgotPasswordConfirm";
+      return "/forgotPasswordConfirm";
     }
   };
   console.log(otp);

@@ -28,7 +28,7 @@ const routes = [
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/otp", element: <OtpPage /> },
-  { path: "/OTPForgotPasswordPage", element: <OTPForgotPasswordPage /> },
+  { path: "/otpForgotPasswordPage", element: <OTPForgotPasswordPage /> },
 
   { path: "/forgotPassword", element: <ForgotPasswordPage /> },
   { path: "/forgotPasswordConfirm", element: <ForgotPasswordConfirm /> },
