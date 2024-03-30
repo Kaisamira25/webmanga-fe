@@ -69,18 +69,21 @@ header {
     > div {
       > div:nth-child(2) {
         position: absolute;
+        z-index: 1;
         right: -50%;
         top: 0;
       }
-      > div:nth-child(3) {
+      > .showLogout {
+        position: absolute;
+        right: -50%;
+        top: 0;
+        z-index: 2;
+      }
+      > .hiddenLogout {
         position: absolute;
         right: -50%;
         top: 0;
       }
-      > .visible {
-        visibility: hidden;
-      }
     }
-    
   }
 }

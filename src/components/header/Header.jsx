@@ -8,15 +8,25 @@ import BtnLogout from "./BtnLogout";
 import { useNavigate } from "react-router";
 function Header() {
   const [logout, setLogout] = useState(false);
-  const [visible, setVisible] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    const checkLogin = () => {
+      const customerRole = sessionStorage.getItem("role");
+      if(customerRole == "CUSTOMER") {
+        setLogout(true);
+      } 
+    }
+    checkLogin();
+  },[])
   const navigateToLogin = () => {
     navigate("/login");
   }
   const handleLogout = () => {
-    navigateToLogin();
+    sessionStorage.removeItem("role");
     setLogout(!logout);
-    setVisible(logout ? "visible" : "");
+    // navigateToLogin();
+    // setLogout(!logout);
+    // setVisible(logout ? "visible" : "");
   };
   const handleNavigateToHome = () => {
     navigate("/home")
@@ -43,9 +53,9 @@ function Header() {
             <BtnUser />
           </a>
           <div>
-            <BtnAuth handleLogin={handleLogout} />
+            <BtnAuth handleLogin={navigateToLogin} />
           </div>
-          <div className={style[visible]}>
+          <div className={logout ? `${style.showLogout}` : `${style.hiddenLogout}`}>
             <BtnLogout handleLogout={handleLogout} />
           </div>
         </div>

@@ -1,7 +1,7 @@
 @use "../../../common/variables" as *;
 @use "../../../common/responsive" as *;
 .btnLogoutWrapper {
-  background-color: $bg-color;
+  background-color: $bg-btn-color;
   display: flex;
   align-items: center;
   justify-content: center;
