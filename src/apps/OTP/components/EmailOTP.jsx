@@ -1,35 +1,16 @@
 import React, { useState } from "react";
 import InputAll from "../../../components/Inputall";
 import OtpIcon from "../../../assets/icons/MaterialOtpIcon";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ButtonInput from "../../../components/BtnInput";
 import { verifyOtp } from "../../../services/Service";
 
 function OtpRequired() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { state } = location;
-  const from = state ? state.from : null;
   const [otp, setOtp] = useState("");
-  const redirectTo = (from) => {
-    if (from === "/register") {
-      return "/login";
-    } else if (from === "/ForgotPassword") {
-      return "/forgotPasswordConfirm";
-    }
-  };
-  console.log(otp);
+
   const handleContinue = async () => {
-    try {
-      const email = sessionStorage.getItem("email");
-      const response = await verifyOtp(otp,email);
-      console.log("OTP verification successful:", response.data);
-      const destination = redirectTo(from);
-      navigate(destination);
-    } catch (error) {
-      console.log(typeof otp);
-      console.error("OTP verification failed:", error.response.data);
-    }
+    
   };
 
   return (
@@ -38,7 +19,6 @@ function OtpRequired() {
         placeholder="OTP"
         type="text"
         svg={<OtpIcon />}
-        value={otp}
         onChange={(e) => setOtp(e.target.value)}
       />
       <div>

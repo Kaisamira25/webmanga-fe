@@ -65,17 +65,17 @@ const fetchDeleteCart = (orderId, order) => {
 const loginApi = (data) => {
   return instance.post("/api/v1/auth/login", data);
 };
-const registerApi = (formData) => {
-  return instance.post("/api/v1/auth/register", formData);
+const registerApi = (data) => {
+  return instance.post("/api/v1/auth/register", data);
 };
-const verifyOtp = (otp, email) => {
-  console.log(otp);
+const verifyOtp = (otp) => {
+  const email = sessionStorage.getItem("email");
   return instance({
     method: "post",
     url: "api/v1/auth/verify",
     params: {
-      otp: otp,
-      email: email,
+      otp,
+      email,
     },
   });
 };
@@ -97,7 +97,7 @@ const forgotApi = (email) => {
 const newPasswordApi = (password, code) => {
   return instance.get("/api/v1/customer/passwordReset", {
     params: { code },
-    headers: { password } 
+    headers: { password },
   });
 };
 const fetchPublicationContentPagingate = (page) => {
