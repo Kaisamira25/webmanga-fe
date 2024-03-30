@@ -10,7 +10,25 @@ function OtpRequired() {
   const [otp, setOtp] = useState("");
 
   const handleContinue = async () => {
-    
+    const emailFromSession = sessionStorage.getItem("email");
+    const customerData = {
+      otp: otp,
+      email: emailFromSession
+    };
+    const customerDataJson = JSON.stringify(customerData);
+    console.log(customerDataJson)
+    const response = await verifyOtp(customerDataJson);
+    if(response.data.status == 1) {
+      // console.log(response.data.status);
+      // Thông báo successful ra rồi cho ngủ 1 xí r hãy chuyển trang 
+      
+      setTimeout(() => {
+        navigate("/login")
+      },2000)
+    } else {
+      // Thông báo xác thực thức bại tại đây rồi không navigate đi đâu hết
+      console.log("Wrong otp");
+    }
   };
 
   return (

@@ -40,7 +40,6 @@ function RegisterFormRequired() {
   const handleInputRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-  console.log(email);
   const handleRegister = async () => {
   
     const postData = {
@@ -51,6 +50,7 @@ function RegisterFormRequired() {
     const json = JSON.stringify(postData);
     console.log(postData);
     navigate ("/otp")
+    sessionStorage.setItem("email", email)
     const response = await registerApi(postData);
  
   }
