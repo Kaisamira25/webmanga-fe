@@ -82,8 +82,14 @@ const newPasswordApi = (password, code) => {
     headers: { password },
   });
 };
-const fetchPublicationContentPagingate = (page) => {
-  return instance.get(`/api/v1/publications/pagination?page=${page}`);
+const fetchPublicationContentPagingate = (page, genre) => {
+  const params = {
+    page: page,
+  };
+  if (genre) {
+    params.genre = genre;
+  }
+  return instance.get("/api/v1/publications/pagination", { params });
 };
 const fetchNewPublications = () => {
   return instance.get("/api/v1/publications/new-arrivals");
@@ -94,8 +100,11 @@ const fetchHotPublications = () => {
 const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
 };
-
+const fetchPublicationsDetailsInformation = (id) => {
+  return instance.get(`/api/v1/publications/id/${id}`);
+};
 export {
+  fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,
   fetchNewPublications,

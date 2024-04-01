@@ -39,6 +39,8 @@ function Content() {
     const selectedPage = e.selected;
     const fetchData = await fetchPublicationContentPagingate(selectedPage);
     setPublications(fetchData.data.data.content);
+    console.log(selectedPage);
+    console.log(fetchData.data);
   };
   // console.log(publications[0].images[0].imageURL);
 

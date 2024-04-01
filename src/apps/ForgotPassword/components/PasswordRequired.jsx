@@ -26,12 +26,12 @@ function PasswordRequired() {
       }
       const verificationCode = sessionStorage.getItem("code");
       const passwordata = {
-        code:verificationCode,
+        code: verificationCode,
         password: password,
         repeatPassword: repeatPassword,
       };
       const passwordataJson = JSON.stringify(passwordata);
-      console.log(passwordataJson)
+      console.log(passwordataJson);
       const response = await newPasswordApi(passwordataJson);
       navigate("/Login");
       sessionStorage.removeItem("code");

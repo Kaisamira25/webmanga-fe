@@ -10,14 +10,14 @@ function Categories({ onCategorySelect }) {
     });
   }, []);
 
-  const handleCategoryClick = (categoryId) => {
-    onCategorySelect(categoryId);
+  const handleCategoryClick = (genreId) => {
+    onCategorySelect(genreId);
   };
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
         {listGenre.map((item, index) => (
-          <button key={index}>{item.genre}</button>
+          <button key={index} onClick={() => handleCategoryClick(item.genreID)}>{item.genre}</button>
         ))}
       </div>
     </div>

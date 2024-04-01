@@ -1,10 +1,8 @@
 import { useState } from "react";
 import style from "./Body.module.scss";
-import Categories from "./components/Categories";
-import Content from "./components/Content";
 import HotPublications from "./components/HotPublications";
 import NewPublications from "./components/NewPublications";
-import SearchBar from "./components/SearchBar";
+import MainPublications from "./components/MainPublications";
 function Body() {
   const [selectedCategoryId, setSelectedCategoryId] = useState();
 
@@ -15,9 +13,7 @@ function Body() {
     <div>
       <NewPublications />
       <HotPublications />
-      <Categories />
-      <SearchBar />
-      <Content />
+      <MainPublications />
     </div>
   );
 }
