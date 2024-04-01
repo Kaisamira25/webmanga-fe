@@ -1,9 +1,7 @@
 import React, { useState , useEffect} from "react";
 import { AlertAdmin } from "../componnents/Alert";
-import SearchBar from "../componnents/SearchBar";
 import CoverData from "../Services/CoverData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
-import { system } from "faker/lib/locales/en";
 
 function AdminCover() {
   const [coverType, setCoverType] = useState("");
