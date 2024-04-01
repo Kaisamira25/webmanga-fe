@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    config.headers['Content-Type'] = 'application/json';
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -87,13 +87,19 @@ const forgotApi = (email) => {
 };
 
 const newPasswordApi = (password, code) => {
-  return instance.get("/api/v1/customer/passwordReset", {
-    params: { code },
-    headers: { password },
-  });
+  const params = {
+    code: code
+  };
+  return instance.post("/api/v1/customer/passwordReset", { password },{ params });
 };
-const fetchPublicationContentPagingate = (page) => {
-  return instance.get(`/api/v1/publications/pagination?page=${page}`);
+const fetchPublicationContentPagingate = (page, genre) => {
+  const params = {
+    page: page,
+  };
+  if (genre) {
+    params.genre = genre;
+  }
+  return instance.get("/api/v1/publications/pagination", { params });
 };
 const fetchNewPublications = () => {
   return instance.get("/api/v1/publications/new-arrivals");
@@ -104,8 +110,11 @@ const fetchHotPublications = () => {
 const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
 };
-
+const fetchPublicationsDetailsInformation = (id) => {
+  return instance.get(`/api/v1/publications/id/${id}`);
+};
 export {
+  fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,
   fetchNewPublications,

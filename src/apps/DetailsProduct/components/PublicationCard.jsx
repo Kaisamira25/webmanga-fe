@@ -2,7 +2,8 @@ import { useParams } from "react-router";
 import style from "../scss/PublicationCard.module.scss";
 import Info from "./InfoSquare";
 import { useEffect, useState } from "react";
-import { fetchProductById } from "../../../services/Service";
+import { fetchPublicationsDetailsInformation } from "../../../services/Service";
+
 function PublicationCard({
   publicationsStatus,
   priceBeforeDiscount,
@@ -13,15 +14,21 @@ function PublicationCard({
     const parseId = parseInt(id);
     return parseId;
   });
-  const [stock, setStock] = useState(0)
+  const [stock, setStock] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [listPublications, setListPublications] = useState({});
+  const [publicationsInfo, setPublicationsInfo] = useState({});
+  const [genres, setGenres] = useState([]);
+  const [types, setTypes] = useState([]);
   useEffect(() => {
-    const fetchPublications = fetchProductById(publicationsID);
-    fetchPublications.then((response) => {
-      setListPublications(response.data.data);
-      setStock(response.data.data.stock)
-    });
+    const fetchPublicationsDetails = async (id) => {
+      const response = await fetchPublicationsDetailsInformation(id);
+      console.log(response.data.data.types[0]);
+      setPublicationsInfo(response.data.data);
+      setGenres(response.data.data.genres);
+      setTypes(response.data.data.types[0]);
+    };
+    fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
 
   const handleAddToCart = () => {
@@ -65,16 +72,13 @@ function PublicationCard({
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
         <div>
-          {listPublications.images && listPublications.images.length > 0 && (
-            <img src={listPublications.images[0].imageURL} alt="" />
-          )}
-
+          <img src={publicationsInfo.imageURL} alt="" />
           <p className={style.status}>{stock < 0 ? "Out stock" : "In stock"}</p>
         </div>
       </div>
 
       <div className={style.publicationInfo}>
-        <p className={style.name}>{listPublications.publicationsName}</p>
+        <p className={style.name}>{publicationsInfo.publicationsName}</p>
 
         <div className={style.infoPublications}>
           <div className={style.price}>
@@ -84,29 +88,23 @@ function PublicationCard({
           <div className={style.info}>
             <div>
               <div>
-                <Info
-                  label={"Tên tác giả:"}
-                  content={" " + listPublications.author}
-                />
+                <Info label={"Author:"} content={publicationsInfo.author} />
               </div>
               <div>
                 <Info
-                  label={"Nhà xuất bản:"}
-                  content={" " + listPublications.publisher}
+                  label={"Publisher:"}
+                  content={publicationsInfo.publisher}
                 />
               </div>
             </div>
             <div>
               <div>
-                {/* <Info
-                    label={"Loại:"}
-                    content={" " + item.categories.join(", ")}
-                  /> */}
+                <Info label={"Type:"} content={types} />
               </div>
               <div>
                 <Info
-                  label={"Năm xuất bản:"}
-                  content={" " + listPublications.publicationYear}
+                  label={"Release Date:"}
+                  content={publicationsInfo.publicationYear}
                 />
               </div>
             </div>
@@ -115,16 +113,13 @@ function PublicationCard({
 
         <div className={style.description}>
           <label htmlFor="">Nội dung</label>
-
-          <p>{listPublications.summary}</p>
+          <p>{publicationsInfo.summary}</p>
         </div>
 
         <div className={style.categories}>
-          {/* {item.categories.map((category, index) => (
-              <a key={index} href="/" style={{ marginRight: "5px" }}>
-                {category}
-              </a>
-            ))} */}
+          {genres.map((item, index) => (
+            <a key={index}>{item}</a>
+          ))}
         </div>
         <div className={style.type}>
           <select name="type" id="">
