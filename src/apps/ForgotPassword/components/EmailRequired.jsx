@@ -3,7 +3,7 @@ import InputAll from "../../../components/Inputall";
 import IconEmail from "../../../assets/icons/MaterialIconEmail";
 import ButtonInput from "../../../components/BtnInput";
 import { Link, useNavigate } from "react-router-dom";
-import { forgotApi } from "../../../services/Service";
+import { forgotPasswordApi } from "../../../services/Service";
 
 function EmailRequired() {
   const [email, setEmail] = useState("");
@@ -15,10 +15,13 @@ function EmailRequired() {
 
   const handleContinue = async () => {
     try {
-      const response = await forgotApi({ email });
-      console.log("API Response:", response.data);
-      sessionStorage.setItem("email", email);
+      const emailValue = {
+        email: email
+      }
+      const emailJson = JSON.stringify(emailValue);
+      // sessionStorage.setItem("email", email);
       navigate("/otpForgotPasswordPage");
+      const response = await forgotPasswordApi(emailJson);
     } catch (error) {
       console.error("Failed to call API:", error);
     }

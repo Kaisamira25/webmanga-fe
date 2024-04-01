@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputAll from "../../../components/Inputall";
 import ButtonInput from "../../../components/BtnInput";
 import { useNavigate } from "react-router-dom";
+import { verifyResetPasswordCode } from "../../../services/Service";
 
 function EnterCode() {
   const [code, setCode] = useState("");
@@ -11,9 +12,10 @@ function EnterCode() {
     setCode(e.target.value);
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     sessionStorage.setItem("verificationCode", code);
-    console.log(typeof code);
+    const response = await verifyResetPasswordCode(code);
+    console.log(response.data)
     navigate("/forgotPasswordConfirm");
   };
 

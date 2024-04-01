@@ -4,7 +4,7 @@ import IconPassword from "../../../assets/icons/MaterialIconPassword";
 import IconRepeat from "../../../assets/icons/MaterialIconRepeat";
 import { newPasswordApi } from "../../../services/Service";
 import ButtonInput from "../../../components/BtnInput";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PasswordRequired() {
   const navigate = useNavigate();
@@ -20,21 +20,25 @@ function PasswordRequired() {
   };
 
   const handleSubmit = async () => {
-    try {
-      if (password !== repeatPassword) {
-        throw new Error("Passwords do not match");
-      }
+    // try {
+    //   if (password !== repeatPassword) {
+    //     throw new Error("Passwords do not match");
+    //   }
 
       const code = sessionStorage.getItem("verificationCode");
-      console.log(code);
-      console.log(typeof code);
-      const response = await newPasswordApi(password, code);
+      const passwordValue = {
+        code: code,
+        newPassword: password
+      }
+      const passwordJson = JSON.stringify(passwordValue)
+      console.log(passwordJson)
+      const response = await newPasswordApi(passwordJson, code);
       navigate("/login");
       sessionStorage.removeItem("verificationCode");
       console.log("API Response:", response.data);
-    } catch (error) {
-      console.error("Failed ", error);
-    }
+    // } catch (error) {
+    //   console.error("Failed ", error);
+    // }
   };
 
   return (

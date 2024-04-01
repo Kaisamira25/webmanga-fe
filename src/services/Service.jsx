@@ -71,26 +71,27 @@ const registerApi = (data) => {
 const verifyOtp = (data) => {
   return instance.post("/api/v1/auth/verify", data);
 };
-const verifyOtpForgotPassword = (code) => {
-  console.log(otp);
-  return instance({
-    method: "get",
-    url: "api/v1/customer/passwordReset",
-    params: {
-      code: code,
-      password: password,
-    },
-  });
-};
-const forgotApi = (email) => {
+// const verifyOtpForgotPassword = (code) => {
+//   return instance({
+//     method: "get",
+//     url: "api/v1/customer/passwordReset",
+//     params: {
+//       code: code,
+//       password: password,
+//     },
+//   });
+// };
+const forgotPasswordApi = (email) => {
+  console.log(email);
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
-
-const newPasswordApi = (password, code) => {
-  const params = {
-    code: code
-  };
-  return instance.post("/api/v1/customer/passwordReset", { password },{ params });
+const verifyResetPasswordCode = (code) => {
+  return instance.post("/api/v1/customer/passwordResetCode", null, {
+    params: { code: code },
+  });
+};
+const newPasswordApi = (data) => {
+  return instance.post("/api/v1/customer/passwordResetNewPassword", data);
 };
 const fetchPublicationContentPagingate = (page, genre) => {
   const params = {
@@ -114,6 +115,7 @@ const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
 export {
+  verifyResetPasswordCode,
   fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,
@@ -130,7 +132,7 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  verifyOtpForgotPassword,
-  forgotApi,
+  // verifyOtpForgotPassword,
+  forgotPasswordApi,
   newPasswordApi,
 };
