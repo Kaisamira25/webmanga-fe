@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    config.headers['Content-Type'] = 'application/json';
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -71,23 +71,13 @@ const registerApi = (data) => {
 const verifyOtp = (data) => {
   return instance.post("/api/v1/auth/verify", data);
 };
-const verifyOtpForgotPassword = (code) => {
-  console.log(otp);
-  return instance({
-    method: "get",
-    url: "api/v1/customer/passwordReset",
-    params: {
-      code: code,
-      password: password,
-    },
-  });
-};
+
 const forgotApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
 
 const newPasswordApi = (password, code) => {
-  return instance.get("/api/v1/customer/passwordReset", {
+  return instance.post("/api/v1/customer/passwordReset", {
     params: { code },
     headers: { password },
   });
@@ -121,7 +111,6 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  verifyOtpForgotPassword,
   forgotApi,
   newPasswordApi,
 };
