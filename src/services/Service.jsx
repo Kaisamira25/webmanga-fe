@@ -6,11 +6,12 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem("token");
+    const accessToken = sessionStorage.getItem("accessToken");
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (token || accessToken) {
+      config.headers.Authorization = `bearer ${token ? token : accessToken}`;
     }
-    config.headers['Content-Type'] = 'application/json';
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -105,6 +106,28 @@ const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
 };
 
+const fetchUpdateAddress = (address, phoneNumber) => {
+  return instance.put("/api/v1/customer/address", {
+    address,
+    phoneNumber,
+  });
+};
+
+const fetchCreateAddress = (address, phoneNumber) => {
+  return instance.post("/api/v1/customer/address", {
+    address,
+    phoneNumber,
+  });
+};
+
+const fetchUserInfo = () => {
+  return instance.get("/api/v1/customer/info");
+};
+
+const fetchUserAddress = () => {
+  return instance.get("/api/v1/customer/address");
+};
+
 export {
   fetchAllGenre,
   fetchHotPublications,
@@ -124,4 +147,8 @@ export {
   verifyOtpForgotPassword,
   forgotApi,
   newPasswordApi,
+  fetchUpdateAddress,
+  fetchCreateAddress,
+  fetchUserInfo,
+  fetchUserAddress,
 };
