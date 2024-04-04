@@ -12,7 +12,7 @@ instance.interceptors.request.use(
       config.headers.Authorization = `bearer ${token ? token : accessToken}`;
     }
     config.headers["Content-Type"] = "application/json";
-    config.headers["Content-Type"] = "application/json";
+
     return config;
   },
   function (error) {
@@ -101,6 +101,10 @@ const fetchHotPublications = () => {
 };
 const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
+};
+
+const fetchPublicationsDetailsInformation = (id) => {
+  return instance.get(`/api/v1/publications/id/${id}`);
 };
 
 const fetchUpdateAddress = (address, phoneNumber) => {
