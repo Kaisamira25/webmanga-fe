@@ -24,13 +24,17 @@ function PasswordRequired() {
       if (password !== repeatPassword) {
         throw new Error("Passwords do not match");
       }
-
-      const code = sessionStorage.getItem("verificationCode");
-      console.log(code);
-      console.log(typeof code);
-      const response = await newPasswordApi(password, code);
+      const verificationCode = sessionStorage.getItem("code");
+      const passwordata = {
+        code: verificationCode,
+        password: password,
+        repeatPassword: repeatPassword,
+      };
+      const passwordataJson = JSON.stringify(passwordata);
+      console.log(passwordataJson);
+      const response = await newPasswordApi(passwordataJson);
       navigate("/Login");
-      sessionStorage.removeItem("verificationCode");
+      sessionStorage.removeItem("code");
       console.log("API Response:", response.data);
     } catch (error) {
       console.error("Failed ", error);

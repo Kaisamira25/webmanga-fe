@@ -10,19 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function RegisterFormRequired() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  });
 
-  const [errors, setErrors] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  });
   const [email, setEmail] = useState("");
   const [fullName, setFullname] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +29,34 @@ function RegisterFormRequired() {
     setRepeatPassword(e.target.value);
   };
   const handleRegister = async () => {
-  
+    // //user ko để trống
+    // const Userpattern = /(?=.*[a-z])(?=.*[A-Z])/;
+    // if (!Userpattern.test(fullName)) {
+    //   alert(" Username cannot be blank");
+    //   return;
+    // }
+    //email thieu @ = cook
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("Invalid email format");
+      return;
+    }
+
+    //định dạng mật khẩu
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+    if (!passwordPattern.test(password)) {
+      alert(
+        "Password is in wrong format, requires minimum length 8, must contain letters and numbers, must have special characters"
+      );
+      return;
+    }
+
+    // Kiểm tra xác nhận mật khẩu
+    if (password !== repeatPassword) {
+      alert("Passwords do not match");
+      return;
+      // Nếu tất cả  đúng thì bay xuốn thg dưới
+    }
     const postData = {
       email: email,
       fullName: fullName,
@@ -49,11 +64,10 @@ function RegisterFormRequired() {
     };
     const json = JSON.stringify(postData);
     console.log(postData);
-    navigate ("/otp")
-    sessionStorage.setItem("email", email)
+    navigate("/otp");
+    sessionStorage.setItem("email", email);
     const response = await registerApi(postData);
- 
-  }
+  };
 
   return (
     <div className="grid grid-cols-1 md:flex md:flex-col w-auto ">
@@ -65,7 +79,6 @@ function RegisterFormRequired() {
           name="fullName"
           onChange={handleInputFullName}
         />
-        <div className="error-message">{errors.fullName}</div>
       </div>
       <div>
         <InputAll
@@ -75,7 +88,6 @@ function RegisterFormRequired() {
           name="email"
           onChange={handleInputEmail}
         />
-        <div className="error-message">{errors.email}</div>
       </div>
       <div>
         <InputAll
@@ -85,7 +97,6 @@ function RegisterFormRequired() {
           name="password"
           onChange={handleInputPassword}
         />
-        <div className="error-message">{errors.password}</div>
       </div>
       <div>
         <InputAll
@@ -95,7 +106,6 @@ function RegisterFormRequired() {
           name="repeatPassword"
           onChange={handleInputRepeatPassword}
         />
-        <div className="error-message">{errors.repeatPassword}</div>
       </div>
 
       <div>

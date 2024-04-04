@@ -12,6 +12,7 @@ instance.interceptors.request.use(
       config.headers.Authorization = `bearer ${token ? token : accessToken}`;
     }
     config.headers["Content-Type"] = "application/json";
+    config.headers["Content-Type"] = "application/json";
     return config;
   },
   function (error) {
@@ -72,29 +73,25 @@ const registerApi = (data) => {
 const verifyOtp = (data) => {
   return instance.post("/api/v1/auth/verify", data);
 };
-const verifyOtpForgotPassword = (code) => {
-  console.log(otp);
-  return instance({
-    method: "get",
-    url: "api/v1/customer/passwordReset",
-    params: {
-      code: code,
-      password: password,
-    },
-  });
-};
+
 const forgotApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
 
 const newPasswordApi = (password, code) => {
-  return instance.get("/api/v1/customer/passwordReset", {
+  return instance.post("/api/v1/customer/passwordReset", {
     params: { code },
     headers: { password },
   });
 };
-const fetchPublicationContentPagingate = (page) => {
-  return instance.get(`/api/v1/publications/pagination?page=${page}`);
+const fetchPublicationContentPagingate = (page, genre) => {
+  const params = {
+    page: page,
+  };
+  if (genre) {
+    params.genre = genre;
+  }
+  return instance.get("/api/v1/publications/pagination", { params });
 };
 const fetchNewPublications = () => {
   return instance.get("/api/v1/publications/new-arrivals");
@@ -129,6 +126,7 @@ const fetchUserAddress = () => {
 };
 
 export {
+  fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,
   fetchNewPublications,
@@ -144,7 +142,6 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  verifyOtpForgotPassword,
   forgotApi,
   newPasswordApi,
   fetchUpdateAddress,

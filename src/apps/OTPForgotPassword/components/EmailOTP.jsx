@@ -12,19 +12,15 @@ function EnterCode() {
   };
 
   const handleContinue = () => {
-    sessionStorage.setItem("verificationCode", code);
-    console.log(typeof code);
-    navigate("/forgotPasswordConfirm");
+    sessionStorage.setItem("code", code);
+    setTimeout(() => {
+      navigate("/forgotPasswordConfirm");
+    }, 2000);
   };
 
   return (
     <div>
-      <InputAll
-        placeholder="OTP"
-        type="text"
-        value={code}
-        onChange={handleCodeChange}
-      />
+      <InputAll placeholder="OTP" type="text" onChange={handleCodeChange} />
       <ButtonInput
         type="button"
         placeholder="Continue"

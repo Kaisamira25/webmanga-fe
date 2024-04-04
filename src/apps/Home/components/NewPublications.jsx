@@ -11,9 +11,10 @@ function NewPublications() {
 
   useEffect(() => {
     const fetchNewPublication = async () => {
-    const response = await fetchNewPublications();
-    setNewPublications(response.data.data);
-    }
+      const response = await fetchNewPublications();
+      setNewPublications(response.data.data);
+      console.log("New publications",response.data.data)
+    };
     fetchNewPublication();
   }, []);
   const handlePublicationId = (id) => {
