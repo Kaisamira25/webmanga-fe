@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import InputUser from "../InputUser/InputUser";
 import Toast from "../ToastMessage/Toast";
-import { fetchUpdateAddress } from "../../../../services/Service";
+import {
+  fetchUserAddress,
+  fetchUpdateAddress,
+  fetchCreateAddress,
+} from "../../../../services/Service";
 
 function ChangeAddress() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,7 +26,7 @@ function ChangeAddress() {
     setPhoneNumber("(+8x) ");
   }, []);
 
-  const updateAddress = async (e) => {
+  const updateOrCreateAddress = async (e) => {
     e.preventDefault();
     if (isLoggedIn) {
       if (!validatePhoneNumber(phoneNumber)) {
@@ -33,15 +37,28 @@ function ChangeAddress() {
         return;
       }
       try {
-        await fetchUpdateAddress(address, phoneNumber);
-        setToastMessage("Update Address Success!");
-        setToastType("success");
-        setShowToast(true);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        const userAddress = await fetchUserAddress();
+        if (userAddress) {
+          // If user has an address, update it
+          await fetchUpdateAddress(address, phoneNumber);
+          setToastMessage("Update Address Success!");
+          setToastType("success");
+          setShowToast(true);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        } else {
+          // If user doesn't have an address, create a new one
+          await fetchCreateAddress(address, phoneNumber);
+          setToastMessage("Create Address Success!");
+          setToastType("success");
+          setShowToast(true);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
       } catch (error) {
-        setToastMessage("Update Address Fail!");
+        setToastMessage("Update/Create Address Fail!");
         setToastType("error");
         setShowToast(true);
       }
@@ -104,7 +121,7 @@ function ChangeAddress() {
       <InputUser
         title="Change Address"
         fields={fields}
-        onSubmit={updateAddress}
+        onSubmit={updateOrCreateAddress}
         errors={errors}
       />
       <Toast
