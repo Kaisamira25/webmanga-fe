@@ -8,41 +8,17 @@ import {
 } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
 
-function Content() {
+function Content({
+  publicationsList,
+  pageCount,
+  handlePageChange,
+  publications,
+  forcePage
+}) {
   const navigate = useNavigate();
-  const [pageCount, setPageCount] = useState(1);
+
   const [cartList, setCartList] = useState([]);
-  const [publications, setPublications] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  // Call api to get all publications in first page
-  useEffect(() => {
-    const getPublicationsFirstPage = async () => {
-      setIsLoading(true);
-      const response = await fetchPublicationContentPagingate(0);
-      setPublications(response.data.data.content);
-      setIsLoading(false);
-    };
-    getPublicationsFirstPage();
-  }, [])
-  useEffect(() => {
-    const fetchAllPublicationsToSetPageCount = async () => {
-      const response = await fetchAllPublications();
-      if (response && response.data && response.data.data && Array.isArray(response.data.data)) {
-        setPageCount(Math.ceil(response.data.data.length / 9));
-      } else {
-        console.log("Error pagecount not an integer: ",response)
-      }
-    }
-    fetchAllPublicationsToSetPageCount();
-  }, [])
-  const handlePageChange = async (e) => {
-    const selectedPage = e.selected;
-    const fetchData = await fetchPublicationContentPagingate(selectedPage);
-    setPublications(fetchData.data.data.content);
-    console.log(selectedPage);
-    console.log(fetchData.data);
-  };
-  // console.log(publications[0].images[0].imageURL);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handlePublicationId = (id) => {
     return navigate(`/detail/${id}`);
@@ -50,10 +26,13 @@ function Content() {
   const handlePublicationGetId = (id) => {
     setCartList((prevCartList) => [...prevCartList, id]);
   };
+  // useEffect(() => {
+    
+  // },[forcePage])
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>
-        {isLoading ? (<p>Loading</p>) : publications.map((item, index) => (
+        {publications.map((item, index) => (
           <div key={index}>
             <Card
               imgSrc={item.images[0].imageURL}
@@ -83,10 +62,10 @@ function Content() {
           marginPagesDisplayed={2}
           pageCount={pageCount}
           pageRangeDisplayed={5}
-          onPageChange={handlePageChange}
+          onPageChange={(e) => handlePageChange(e)}
           containerClassName="pagination"
           activeClassName="active"
-          // forcePage={pageOffset}
+          forcePage={forcePage}
         />
       </div>
     </div>

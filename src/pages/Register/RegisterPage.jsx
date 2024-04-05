@@ -1,5 +1,4 @@
-import React from "react";
-import Register from "../../apps/Register/Register";
+import Register from "../../apps/Authentication/Register/Register";
 
 function RegisterPage() {
   return (

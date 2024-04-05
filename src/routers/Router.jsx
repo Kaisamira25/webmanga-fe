@@ -1,8 +1,6 @@
 import React, { lazy } from "react";
 import DetailsProductPage from "../pages/DetailsProduct/DetailsProductPage";
-const ForgotPasswordConfirm = lazy(() =>
-  import("../apps/ForgotPassword/ForgotPasswordConfirm")
-);
+const NewPassword = lazy(() => import("../pages/ResetPassword/NewPasswordPage"));
 const AdminGenre = lazy(() => import("../apps/Admin/page/Genre"));
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const PaymentPage = lazy(() => import("../pages/Payment/PaymentPage"));
@@ -10,13 +8,11 @@ const UserPage = lazy(() => import("../pages/User/UserPage"));
 const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
-const OtpPage = lazy(() => import("../pages/OTP/OTPPage"));
-const OTPForgotPasswordPage = lazy(() => import("../pages/OTPPAS/OTPForgotPasswordPage"));
+const OtpPage = lazy(() => import("../pages/Otp/OtpPage"));
+const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
-const ForgotPasswordPage = lazy(() =>
-  import("../pages/ForgotPassword/ForgotPasswordPage")
-);
+const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -28,10 +24,9 @@ const routes = [
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/otp", element: <OtpPage /> },
-  { path: "/otpForgotPasswordPage", element: <OTPForgotPasswordPage /> },
-
-  { path: "/forgotPassword", element: <ForgotPasswordPage /> },
-  { path: "/forgotPasswordConfirm", element: <ForgotPasswordConfirm /> },
+  { path: "/otp/resetpassword", element: <OtpResetPassword /> },
+  { path: "/resetpassword", element: <ResetPasswordPage /> },
+  { path: "/newpassword", element: <NewPassword /> },
   // adminPage
   { path: "/admin", element: <HomeAdmin /> },
   { path: "/admin/genre", element: <HomeAdmin /> },

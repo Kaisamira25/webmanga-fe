@@ -82,7 +82,6 @@ const verifyOtp = (data) => {
 //   });
 // };
 const forgotPasswordApi = (email) => {
-  console.log(email);
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
 const verifyResetPasswordCode = (code) => {
@@ -93,12 +92,12 @@ const verifyResetPasswordCode = (code) => {
 const newPasswordApi = (data) => {
   return instance.post("/api/v1/customer/passwordResetNewPassword", data);
 };
-const fetchPublicationContentPagingate = (page, genre) => {
+const fetchPublicationContentPagingate = (page, genreId) => {
   const params = {
     page: page,
   };
-  if (genre) {
-    params.genre = genre;
+  if (genreId) {
+    params.genreId = genreId;
   }
   return instance.get("/api/v1/publications/pagination", { params });
 };
@@ -111,11 +110,15 @@ const fetchHotPublications = () => {
 const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
 };
+const fetchPublictionsFromGenre = (genreID) => {
+  return instance.get(`/api/v1/genre/${genreID}`);
+};
 const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
 export {
   verifyResetPasswordCode,
+  fetchPublictionsFromGenre,
   fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,

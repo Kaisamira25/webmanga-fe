@@ -1,0 +1,36 @@
+@use "../../../../common/variables" as *;
+@use "../../../../common/responsive" as *;
+
+.registerWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > .registerForm {
+    width: 20em;
+    background-color: $bg-btn-color;
+    padding: 1.5em;
+    border-radius: 5px;
+    > p {
+      text-align: center;
+      font-size: xx-large;
+      margin-bottom: 1em;
+      color: white;
+    }
+    > form {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5em;
+        margin-bottom: 0.7em;
+    }
+    > p:nth-child(3) {
+      font-size: small;
+    }
+    > .registerButton {
+      display: flex;
+      column-gap: 0.5em;
+    }
+  }
+}

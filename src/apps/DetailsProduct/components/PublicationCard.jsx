@@ -9,8 +9,8 @@ function PublicationCard({
   priceBeforeDiscount,
   priceAfterDiscount,
 }) {
+  let { id } = useParams();
   const [publicationsID, setPublicationID] = useState(() => {
-    let { id } = useParams();
     const parseId = parseInt(id);
     return parseId;
   });

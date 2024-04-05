@@ -30,30 +30,55 @@
 //     }
 // }
 .container {
-    padding: 0px 2em 0px 2em;
-    margin-bottom: 3em;
-    .wrapper {
-        background-color: $bg-btn-color;
-        border-radius: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        // overflow-x: hidden;
-        padding: 0.5em 0.5em;
-        column-gap: 1em;
-        row-gap: 0.5em;
-        button {
-            transition: translate 1s linear;
-            background-color: $bg-color;
-            border-radius: 9px; 
-            padding-left: 0.5em;
-            padding-right: 0.5em;
-            &:hover {
-                background-color: rgb(136, 214, 153);
-            }
-            &:focus {
-                background-color: rgb(136, 214, 153);
-            }
-            
-        }
+  padding: 0px 2em 0px 2em;
+  margin-bottom: 3em;
+  .wrapper {
+    background-color: $bg-btn-color;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    // overflow-x: hidden;
+    padding: 0.5em 0.5em;
+    column-gap: 1em;
+    row-gap: 0.5em;
+    button {
+      transition: translate 1s linear;
+      background-color: $bg-color;
+      border-radius: 9px;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      &:hover {
+        background-color: rgb(136, 214, 153);
+      }
+      // &:focus {
+      //     background-color: rgb(136, 214, 153);
+      // }
     }
+    .isSelected {
+      transition: translate 1s linear;
+      background-color: rgb(136, 214, 153);
+      border-radius: 9px;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      // &:hover {
+      //     background-color: rgb(136, 214, 153);
+      // }
+      // &:focus {
+      //     background-color: rgb(136, 214, 153);
+      // }
+    }
+    .isNotSelect {
+      transition: translate 1s linear;
+      background-color: $bg-btn-color;
+      border-radius: 9px;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      // &:hover {
+      //     background-color: rgb(136, 214, 153);
+      // }
+      // &:focus {
+      //     background-color: rgb(136, 214, 153);
+      // }
+    }
+  }
 }

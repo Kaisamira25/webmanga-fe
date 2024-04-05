@@ -1,5 +1,4 @@
-import React from "react";
-import Login from "../../apps/Login/Login";
+import Login from "../../apps/Authentication/Login/Login";
 
 function LoginPage() {
   return (
