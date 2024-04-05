@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function TotalPayment({
   textInfo,
   className,
   onDiscountCodeChange,
+  discount,
 }) {
   const navigate = useNavigate();
   const [discountCode, setDiscountCode] = useState("");
   const [isDiscountValid, setIsDiscountValid] = useState(true);
 
-  const handleDiscountCodeChange = (event) => {
+  const handleDiscountCodeChange = async (event) => {
     const inputDiscountCode = event.target.value;
     setDiscountCode(inputDiscountCode);
-    if (inputDiscountCode.trim() !== "" && inputDiscountCode === "DISCOUNT20") {
+    try{
+      const discountRes =await axios.get("http://localhost:8080/api/v1/discount/code/" +inputDiscountCode, {})
+      discount =discountRes.data.data
       setIsDiscountValid(true);
-      onDiscountCodeChange(inputDiscountCode);
-    } else if (
-      inputDiscountCode.trim() !== "" &&
-      inputDiscountCode !== "DISCOUNT20"
-    ) {
+      onDiscountCodeChange(discount)
+    }catch (error){
       setIsDiscountValid(false);
-    } else {
-      setIsDiscountValid(true);
-      onDiscountCodeChange(inputDiscountCode);
+      onDiscountCodeChange(null);
     }
   };
-
+ 
   const handleToPayment = () => {
     navigate("/cart/payment");
   };

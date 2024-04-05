@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./InputField.module.scss";
 
-function InputField({ label, type, placeholder, className, onChange, value }) {
+function InputField({ label, type, placeholder, className, onChange, value , onLoad}) {
   const inputClassName = `${style.input} ${className}`;
 
   return (
@@ -13,6 +13,7 @@ function InputField({ label, type, placeholder, className, onChange, value }) {
         placeholder={placeholder}
         className={inputClassName}
         onChange={onChange}
+        onLoad={onLoad}
       />
     </div>
   );

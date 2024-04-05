@@ -4,10 +4,11 @@ import style from "./PriceTotal.module.scss";
 import TotalPayment from "./TotalPayment/TotalPayment";
 import { Link } from "react-router-dom";
 import { fetchCart, fetchProductById } from "../../../services/Service";
+import axios from "axios";
 function PriceTotal({ cartUpdated }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [discountCode, setDiscountCode] = useState("");
+  const [discounts, setDiscounts] = useState();
 
   useEffect(() => {
     fetchCartData();
@@ -36,29 +37,42 @@ function PriceTotal({ cartUpdated }) {
       0
     );
     setTotalPrice(totalPrice);
-  }, [cart]);
+    if(discounts){
+      localStorage.setItem('discount',discounts.discountId);
+    }else{
+      localStorage.setItem('discount',null);
+    }
+  }, [cart,discounts]);
 
   const applyDiscount = () => {
-    if (discountCode === "DISCOUNT20") {
-      return totalPrice * 0.2;
+    if(discounts){
+      return 50000 * discounts.discountPercent;
+    }else{
+      return 0;
     }
-    return 0;
+    
   };
 
-  const handleDiscountCodeChange = (code) => {
-    setDiscountCode(code);
+  const handleDiscountCodeChange = async (code) => {
+    
+    setDiscounts(code);
   };
-
+  
+  
   const totalBill = () => {
-    if (discountCode === "DISCOUNT20") {
-      return totalPrice - applyDiscount();
+    if(discounts){
+      localStorage.setItem('total',totalPrice + 50000 - (50000 * discounts.discountPercent))
+      return totalPrice + 50000 - (50000 * discounts.discountPercent)
+    }else{
+      localStorage.setItem('total',totalPrice + 50000 )
+      return totalPrice + 50000;
     }
-    return totalPrice;
+   
   };
 
   const textInfo = [
     { title: "Cart blackmail ", price: totalPrice },
-    { title: " Shipping Fee", price: 0 },
+    { title: " Shipping Fee", price: 50000 },
 
     { title: "Discount code ", price: applyDiscount() },
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../../../components/Title/Title";
 import SelectField from "../../../../components/SelectField/SelectField";
 import style from "./PaymentForm.module.scss";
@@ -6,7 +6,7 @@ import InputValidate from "../InputValidate/InputValidate";
 import BankValidate from "../InputValidate/BankValidate";
 
 export default function PaymentForm({ onPaymentInfoChange }) {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("Cash payment");
   const [isInputValid, setInputValid] = useState(false);
   const [isBankValid, setBankValid] = useState(false);
 
@@ -20,6 +20,9 @@ export default function PaymentForm({ onPaymentInfoChange }) {
   const handleSelectChange = (selectedValue) => {
     setSelectedOption(selectedValue);
   };
+  useEffect(()=>{
+    localStorage.setItem('Payment',selectedOption);
+  },[selectedOption])
   const handleInputValidationChange = (isValid) => {
     setInputValid(isValid);
     if (

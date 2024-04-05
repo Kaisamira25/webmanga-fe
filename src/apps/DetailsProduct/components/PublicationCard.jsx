@@ -23,6 +23,7 @@ function PublicationCard({
   useEffect(() => {
     const fetchPublicationsDetails = async (id) => {
       const response = await fetchPublicationsDetailsInformation(id);
+      setListPublications(id);
       console.log(response.data.data.types[0]);
       setPublicationsInfo(response.data.data);
       setGenres(response.data.data.genres);
@@ -37,7 +38,7 @@ function PublicationCard({
     let itemAlreadyInCart = false;
 
     const updatedCartItems = existingCartItems.map((item) => {
-      if (item.id === listPublications.publicationsID) {
+      if (item.id === publicationsID) {
         item.qty += 1;
         itemAlreadyInCart = true;
       }
@@ -46,7 +47,7 @@ function PublicationCard({
 
     if (!itemAlreadyInCart) {
       const newItem = {
-        id: listPublications.publicationsID,
+        id:publicationsID,
         qty: 1,
       };
       updatedCartItems.push(newItem);

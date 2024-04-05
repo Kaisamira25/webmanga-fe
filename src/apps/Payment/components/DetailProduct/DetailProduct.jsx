@@ -30,14 +30,10 @@ function DetailProduct({ isPaymentInfoComplete }) {
   };
 
   useEffect(() => {
-    const totalPrice = cart.reduce(
-      (acc, product) => acc + product.qty * product.unitPrice,
-      0
-    );
+    const totalPrice = localStorage.getItem('total');
     setTotalPrice(totalPrice);
   }, [cart]);
   const textInfo = [
-    { title: "Invoice ID", text: "123456789" },
     { title: "Total payment", price: totalPrice },
   ];
 
