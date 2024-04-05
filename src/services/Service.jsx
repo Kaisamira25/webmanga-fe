@@ -129,6 +129,20 @@ const fetchUserAddress = () => {
   return instance.get("/api/v1/customer/address");
 };
 
+const fetchChangePassword = (password, newPassword, confirmPassword) => {
+  return instance.patch("/api/v1/customer/change-password", {
+    password,
+    newPassword,
+    confirmPassword,
+  });
+};
+
+const fetchValidateOldPassword = (password) => {
+  return instance.post("/api/v1/customer/validate-old-password", {
+    password,
+  });
+};
+
 export {
   fetchPublicationsDetailsInformation,
   fetchAllGenre,
@@ -152,4 +166,6 @@ export {
   fetchCreateAddress,
   fetchUserInfo,
   fetchUserAddress,
+  fetchChangePassword,
+  fetchValidateOldPassword,
 };

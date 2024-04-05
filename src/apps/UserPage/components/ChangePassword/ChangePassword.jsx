@@ -1,55 +1,135 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import InputUser from "../InputUser/InputUser";
+import Toast from "../ToastMessage/Toast";
+import { fetchChangePassword } from "../../../../services/Service";
 
 function ChangePassword() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState(["", "", ""]);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const changePassword = async (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      if (!validatePassword(password, newPassword, confirmPassword)) {
+        setToastMessage("Change Password Fail!");
+        setToastType("error");
+        setShowToast(true);
+        return;
+      }
+      try {
+        const response = await fetchChangePassword(
+          password,
+          newPassword,
+          confirmPassword
+        );
+        if (response.data.status === "fail") {
+          setToastMessage("Change Password Fail!");
+          setToastType("error");
+          setShowToast(true);
+          return;
+        } else {
+          setToastMessage("Change Password Success!");
+          setToastType("success");
+          setShowToast(true);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
+      } catch (error) {
+        setToastMessage("Change Password Fail!");
+        setToastType("error");
+        setShowToast(true);
+      }
+    } else {
+      console.log("User is not logged in!");
+    }
+  };
+
+  const validatePassword = async (password, newPassword, confirmPassword) => {
+    let valid = true;
+    const errors = ["", "", ""];
+
+    try {
+      const response = await fetchChangePassword(
+        password,
+        newPassword,
+        confirmPassword
+      );
+      if (response.data.data.status === "fail") {
+        errors[0] = "Wrong old password!";
+        valid = false;
+      }
+    } catch (error) {
+      errors[0] = "An error occurred while checking old passwords!";
+      valid = false;
+    }
+
+    if (newPassword !== confirmPassword) {
+      errors[1] = "New password does not match!";
+      errors[2] = "Re-entered password does not match!";
+      valid = false;
+    }
+
+    setErrors(errors);
+    return valid;
+  };
+
   const fields = [
     {
       label: "Old Password *",
       type: "password",
       placeholder: "Enter Old Password",
+      value: password,
+      onChange: (e) => setPassword(e.target.value),
+      error: errors[0],
     },
     {
       label: "New Password *",
       type: "password",
       placeholder: "Enter New Password",
+      value: newPassword,
+      onChange: (e) => setNewPassword(e.target.value),
+      error: errors[1],
     },
     {
-      label: "Re-enter Password *",
+      label: "Confirm Password *",
       type: "password",
-      placeholder: "Re-enter Password",
+      placeholder: "Confirm Password",
+      value: confirmPassword,
+      onChange: (e) => setConfirmPassword(e.target.value),
+      error: errors[2],
     },
   ];
 
   return (
     <div>
-      <InputUser title="Change Password" fields={fields} />
+      <InputUser
+        title="Change Password"
+        fields={fields}
+        onSubmit={changePassword}
+        errors={errors}
+      />
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        showToast={showToast}
+        setShowToast={setShowToast}
+      />
     </div>
   );
 }
-
-// function ChangePassword() {
-//   return (
-//     <div className={styles.passwordForm}>
-//       <h2>Đổi mật khẩu</h2>
-//       <form>
-//         <label>
-//           Mật Khẩu Cũ *
-//           <input type="password" placeholder="Nhập vào mật khẩu cũ của bạn" />
-//         </label>
-//         <div className={styles.newPasswordFields}>
-//           <label >
-//             Mật Khẩu Mới *
-//             <input className={styles.newPass} type="password" placeholder="Mật khẩu mới" />
-//           </label>
-//           <label >
-//             Nhập Lại Mật Khẩu *
-//             <input className={styles.againPass} type="password" placeholder="Nhập lại mật khẩu" />
-//           </label>
-//         </div>
-//         <button type="submit">Lưu</button>
-//       </form>
-//     </div>
-//   );
-// }
 
 export default ChangePassword;

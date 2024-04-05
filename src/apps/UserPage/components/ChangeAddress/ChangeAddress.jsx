@@ -35,6 +35,9 @@ function ChangeAddress() {
         setToastMessage("Update Address Success!");
         setToastType("success");
         setShowToast(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } catch (error) {
         setToastMessage("Update Address Fail!");
         setToastType("error");
