@@ -22,6 +22,7 @@ function HotPublications() {
   const handlePublicationGetId = (id) => {
     setCartList((prevCartList) => [...prevCartList, id]);
   };
+  console.log(cartList);
   return (
     <article>
       <p>Hot sales</p>

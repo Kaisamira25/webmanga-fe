@@ -25,7 +25,9 @@ function Content({
   };
   const handlePublicationGetId = (id) => {
     setCartList((prevCartList) => [...prevCartList, id]);
+    navigate("/cart")
   };
+  console.log(cartList);
   // useEffect(() => {
     
   // },[forcePage])

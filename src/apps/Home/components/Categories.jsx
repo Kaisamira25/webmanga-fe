@@ -8,7 +8,6 @@ function Categories({ onCategorySelect }) {
     const fetchGenre = fetchAllGenre();
     fetchGenre.then((response) => {
       setListGenre(response.data.data);
-      console.log(response.data.data);
     });
   }, []);
 

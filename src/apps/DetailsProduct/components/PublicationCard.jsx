@@ -56,7 +56,6 @@ function PublicationCard({
 
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
   };
-
   // change quantity
   const handleDecreaseQuantity = () => {
     if (quantity <= 0) {
@@ -76,10 +75,8 @@ function PublicationCard({
           <p className={style.status}>{stock < 0 ? "Out stock" : "In stock"}</p>
         </div>
       </div>
-
       <div className={style.publicationInfo}>
         <p className={style.name}>{publicationsInfo.publicationsName}</p>
-
         <div className={style.infoPublications}>
           <div className={style.price}>
             <span>{priceBeforeDiscount}</span>
@@ -110,7 +107,6 @@ function PublicationCard({
             </div>
           </div>
         </div>
-
         <div className={style.description}>
           <label htmlFor="">Nội dung</label>
           <p>{publicationsInfo.summary}</p>
