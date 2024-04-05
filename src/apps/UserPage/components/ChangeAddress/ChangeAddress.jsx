@@ -18,6 +18,8 @@ function ChangeAddress() {
     if (token) {
       setIsLoggedIn(true);
     }
+    // Set initial phone number
+    setPhoneNumber("(+8x) ");
   }, []);
 
   const updateAddress = async (e) => {
@@ -31,7 +33,7 @@ function ChangeAddress() {
         return;
       }
       try {
-        const response = await fetchUpdateAddress(address, phoneNumber);
+        await fetchUpdateAddress(address, phoneNumber);
         setToastMessage("Update Address Success!");
         setToastType("success");
         setShowToast(true);
@@ -51,14 +53,16 @@ function ChangeAddress() {
   const validatePhoneNumber = (number) => {
     let valid = true;
     const length = number.replace(/\D/g, "").length; // remove non-digit characters
-    if (length < 10 || length > 10) {
+    if (length < 10 || length > 15) {
       setErrors((prevErrors) => [
-        "Phone numbers can only be 10 digits long!",
+        "Phone number from 10 - 15 digits!",
         prevErrors[1],
       ]);
       valid = false;
-    }
-    if (!/^\(\+\d{2,3}\) \d{9}$/.test(number) && !/^0\d{9}$/.test(number)) {
+    } else if (
+      !/^\(\+\d{2,3}\) \d{9}$/.test(number) &&
+      !/^0\d{9}$/.test(number)
+    ) {
       setErrors((prevErrors) => [
         "Phone number must be in format 0xxxxxxxxxx or (+xx) xxxxxxxxx!",
         prevErrors[1],
@@ -82,7 +86,7 @@ function ChangeAddress() {
     {
       label: "New Phone Number *",
       type: "tel",
-      placeholder: "Enter your new phone number",
+      placeholder: "",
       value: phoneNumber,
       onChange: (e) => setPhoneNumber(e.target.value),
     },

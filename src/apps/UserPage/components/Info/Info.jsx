@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../Info/Info.module.scss";
 import { fetchUserInfo, fetchUserAddress } from "../../../../services/Service";
-import Toast from "../ToastMessage/Toast"; // Make sure to import the Toast component
+import Toast from "../ToastMessage/Toast";
 
 function Info() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -137,12 +137,6 @@ const fetchChangePassword = (password, newPassword, confirmPassword) => {
   });
 };
 
-const fetchValidateOldPassword = (password) => {
-  return instance.post("/api/v1/customer/validate-old-password", {
-    password,
-  });
-};
-
 export {
   fetchPublicationsDetailsInformation,
   fetchAllGenre,
@@ -167,5 +161,4 @@ export {
   fetchUserInfo,
   fetchUserAddress,
   fetchChangePassword,
-  fetchValidateOldPassword,
 };
