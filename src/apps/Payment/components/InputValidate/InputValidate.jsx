@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InputField from "../../../../components/InputField/InputField";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
@@ -23,10 +25,38 @@ function InputValidate({ className, onValidationChange }) {
       default:
         break;
     }
-
     validateInput(key, value);
   };
-
+  const handleLoad = async (key) => {
+    try {
+      const decoded = jwtDecode(localStorage.getItem('refreshToken'));
+      const response = await axios.get('http://localhost:8080/api/v1/customer/' + decoded.customerId, {});
+      const customer = response.data.data;
+      switch (key) {
+        case "email":
+          setEmail(customer.email);
+          break;
+        case "address":
+          setAddress(customer.addresses.address.trim());
+          break;
+        case "phone":
+          setPhone(customer.addresses.phoneNumber);
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error("Error fetching customer data:", error);
+    }
+  };
+  useEffect(() => {
+    handleLoad("email");
+    handleLoad("address");
+    handleLoad("phone");
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('UserData', JSON.stringify({ email, address, phone }));
+  }, [email, phone, address])
   const validateInput = (key, value) => {
     switch (key) {
       case "email":
@@ -76,6 +106,7 @@ function InputValidate({ className, onValidationChange }) {
           placeholder={"Email"}
           value={email}
           onChange={(e) => handleChange("email", e.target.value)}
+          onLoad={() => handleLoad("email")}
         />
         {emailError && <span>{emailError}</span>}
       </div>
@@ -86,6 +117,7 @@ function InputValidate({ className, onValidationChange }) {
           placeholder={"Address (e.g., 123 Street)"}
           value={address}
           onChange={(e) => handleChange("address", e.target.value)}
+          onLoad={() => handleLoad("address")}
         />
         {addressError && <span>{addressError}</span>}
       </div>
@@ -96,6 +128,7 @@ function InputValidate({ className, onValidationChange }) {
           placeholder={"Phone number"}
           value={phone}
           onChange={(e) => handleChange("phone", e.target.value)}
+          onLoad={() => handleLoad("phone")}
         />
         {phoneError && <span>{phoneError}</span>}
       </div>

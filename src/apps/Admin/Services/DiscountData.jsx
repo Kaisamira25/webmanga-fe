@@ -63,7 +63,7 @@ function DiscountData() {
       return error;
     }
   };
-
+  
   useEffect(() => {
     fetchDiscounts();
   }, []);
@@ -74,6 +74,7 @@ function DiscountData() {
     addDiscounts,
     updateDiscounts,
     findDiscount,
+    
   };
 }
 
