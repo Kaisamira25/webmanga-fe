@@ -29,34 +29,46 @@ function ChangeAddress() {
   const updateOrCreateAddress = async (e) => {
     e.preventDefault();
     if (isLoggedIn) {
-      if (!validatePhoneNumber(phoneNumber)) {
-        setToastMessage("Update Address Fail!");
+      if (phoneNumber && !validatePhoneNumber(phoneNumber)) {
+        setToastMessage("Update/Create Address Fail!");
         setToastType("error");
         setShowToast(true);
         console.log("Phone number is in wrong format");
         return;
       }
       try {
-        const userAddress = await fetchUserAddress();
-        if (userAddress) {
-          // If user has an address, update it
+        let userHasAddress = true;
+        try {
+          await fetchUserAddress();
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            userHasAddress = false;
+          } else {
+            throw error;
+          }
+        }
+        if (userHasAddress) {
           await fetchUpdateAddress(address, phoneNumber);
           setToastMessage("Update Address Success!");
           setToastType("success");
           setShowToast(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
         } else {
-          // If user doesn't have an address, create a new one
-          await fetchCreateAddress(address, phoneNumber);
-          setToastMessage("Create Address Success!");
-          setToastType("success");
-          setShowToast(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          // Check if the fields are not empty
+          if (!validateEmptyFields(address, phoneNumber)) {
+            setToastMessage("Create Address Fail!");
+            setToastType("error");
+            setShowToast(true);
+            return;
+          } else {
+            await fetchCreateAddress(address, phoneNumber);
+            setToastMessage("Create Address Success!");
+            setToastType("success");
+            setShowToast(true);
+          }
         }
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } catch (error) {
         setToastMessage("Update/Create Address Fail!");
         setToastType("error");
@@ -66,14 +78,37 @@ function ChangeAddress() {
       console.log("User is not logged in!");
     }
   };
+  // ----------------------------------------------------------------
 
+  // Validate Empty Fields
+  const validateEmptyFields = (address, phoneNumber) => {
+    let valid = true;
+    let errors = ["", ""];
+
+    if (!phoneNumber) {
+      errors[0] = "Phone number cannot be empty!";
+      valid = false;
+    }
+
+    if (!address) {
+      errors[1] = "Address cannot be empty!";
+      valid = false;
+    }
+
+    setErrors(errors);
+    return valid;
+  };
+
+  //-------------------------------------------------------------------------------
+
+  // Validate Phone Number
   const validatePhoneNumber = (number) => {
     let valid = true;
     const length = number.replace(/\D/g, "").length; // remove non-digit characters
     if (length < 10 || length > 15) {
       setErrors((prevErrors) => [
         "Phone number from 10 - 15 digits!",
-        prevErrors[1],
+        prevErrors[0],
       ]);
       valid = false;
     } else if (
@@ -82,22 +117,23 @@ function ChangeAddress() {
     ) {
       setErrors((prevErrors) => [
         "Phone number must be in format 0xxxxxxxxxx or (+xx) xxxxxxxxx!",
-        prevErrors[1],
+        prevErrors[0],
       ]);
       valid = false;
     }
     if (/[^0-9\(\)\+\s]/.test(number)) {
       setErrors((prevErrors) => [
         "Phone number must only contain digits!",
-        prevErrors[1],
+        prevErrors[0],
       ]);
       valid = false;
     }
     if (valid) {
-      setErrors(["", ""]);
+      setErrors((prevErrors) => [prevErrors[0], ""]);
     }
     return valid;
   };
+  // ----------------------------------------------------------------
 
   const fields = [
     {

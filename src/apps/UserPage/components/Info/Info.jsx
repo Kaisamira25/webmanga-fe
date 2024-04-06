@@ -24,6 +24,9 @@ function Info() {
           setUserAddress(userAddressResponse.data.data);
         } catch (error) {
           console.error("Error fetching user info or address: ", error);
+          setToastMessage("User has no address yet!");
+          setToastType("error");
+          setShowToast(true);
         }
       } else {
         setIsLoggedIn(false);
@@ -47,11 +50,17 @@ function Info() {
         <h1>Account Information</h1>
         <hr className={styles.line} />
         {isLoggedIn ? (
-          info.map((item, index) => (
-            <p key={index}>
-              <span>{item.field}</span>: {item.value}
+          userAddress ? (
+            info.map((item, index) => (
+              <p key={index}>
+                <span>{item.field}</span>: {item.value}
+              </p>
+            ))
+          ) : (
+            <p style={{ color: "red", fontSize: "20px" }}>
+              User has no address yet!
             </p>
-          ))
+          )
         ) : (
           <p style={{ color: "red", fontSize: "20px" }}>
             User is not logged in!
@@ -67,5 +76,4 @@ function Info() {
     </div>
   );
 }
-
 export default Info;
