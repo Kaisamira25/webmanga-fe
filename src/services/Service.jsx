@@ -71,23 +71,33 @@ const registerApi = (data) => {
 const verifyOtp = (data) => {
   return instance.post("/api/v1/auth/verify", data);
 };
-
-const forgotApi = (email) => {
+// const verifyOtpForgotPassword = (code) => {
+//   return instance({
+//     method: "get",
+//     url: "api/v1/customer/passwordReset",
+//     params: {
+//       code: code,
+//       password: password,
+//     },
+//   });
+// };
+const forgotPasswordApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };
-
-const newPasswordApi = (password, code) => {
-  return instance.post("/api/v1/customer/passwordReset", {
-    params: { code },
-    headers: { password },
+const verifyResetPasswordCode = (code) => {
+  return instance.post("/api/v1/customer/passwordResetCode", null, {
+    params: { code: code },
   });
 };
-const fetchPublicationContentPagingate = (page, genre) => {
+const newPasswordApi = (data) => {
+  return instance.post("/api/v1/customer/passwordResetNewPassword", data);
+};
+const fetchPublicationContentPagingate = (page, genreId) => {
   const params = {
     page: page,
   };
-  if (genre) {
-    params.genre = genre;
+  if (genreId) {
+    params.genreId = genreId;
   }
   return instance.get("/api/v1/publications/pagination", { params });
 };
@@ -100,10 +110,19 @@ const fetchHotPublications = () => {
 const fetchAllGenre = () => {
   return instance.get("/api/v1/genre/all");
 };
+const fetchPublictionsFromGenre = (genreID) => {
+  return instance.get(`/api/v1/genre/${genreID}`);
+};
 const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
+const fetchPublicationsBySearch = (name) => {
+  return instance.get(`api/v1/publications/search/${name}`)
+}
 export {
+  fetchPublicationsBySearch,
+  verifyResetPasswordCode,
+  fetchPublictionsFromGenre,
   fetchPublicationsDetailsInformation,
   fetchAllGenre,
   fetchHotPublications,
@@ -120,6 +139,7 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  forgotApi,
+  // verifyOtpForgotPassword,
+  forgotPasswordApi,
   newPasswordApi,
 };

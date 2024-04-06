@@ -25,7 +25,7 @@ function Card({
           <a onClick={() => navigateToDetail(id)}>
             <img src={imgSrc} alt="" />
             <div>
-              <a>{<EyeIcon />}</a>
+              <EyeIcon />
             </div>
           </a>
         </div>

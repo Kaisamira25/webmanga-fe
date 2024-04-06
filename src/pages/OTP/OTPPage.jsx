@@ -1,12 +1,7 @@
-import React from "react";
-import OTP from "../../apps/OTP/OTP";
+import Otp from "../../apps/Authentication/Otp/Otp";
 
-function OTPPage() {
-  return (
-    <div>
-      <OTP />
-    </div>
-  );
+function OtpPage() {
+  return <Otp />;
 }
 
-export default OTPPage;
+export default OtpPage;

@@ -1,0 +1,41 @@
+@use "../../../../common/variables" as *;
+@use "../../../../common/responsive" as *;
+
+.otpWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > .otpForm {
+    padding: 1.5em;
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: $bg-btn-color;
+    > p {
+      text-align: center;
+      font-size: xx-large;
+      margin-bottom: 0.5em;
+      color: white;
+    }
+    > form {
+      > p {
+        margin-top: 0.8em;
+        color: white;
+        font-size: small;
+        margin-bottom: 1em;
+        > a {
+          color: $bg-color;
+          cursor: pointer;
+        }
+      }
+      .otpButtonWrapper {
+        display: flex;
+        column-gap: 0.5em;
+      }
+    }
+  }
+}

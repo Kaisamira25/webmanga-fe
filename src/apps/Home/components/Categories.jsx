@@ -3,6 +3,7 @@ import style from "./Categories.module.scss";
 import { fetchAllGenre } from "../../../services/Service";
 function Categories({ onCategorySelect }) {
   const [listGenre, setListGenre] = useState([]);
+  const [selectGenreId, setSelectGenreId] = useState(null);
   useEffect(() => {
     const fetchGenre = fetchAllGenre();
     fetchGenre.then((response) => {
@@ -11,13 +12,27 @@ function Categories({ onCategorySelect }) {
   }, []);
 
   const handleCategoryClick = (genreId) => {
-    onCategorySelect(genreId);
+    if (genreId == selectGenreId) {
+      setSelectGenreId(null);
+      onCategorySelect(null);
+    } else {
+      setSelectGenreId(genreId);
+      onCategorySelect(genreId);
+    }
   };
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
         {listGenre.map((item, index) => (
-          <button key={index} onClick={() => handleCategoryClick(item.genreID)}>{item.genre}</button>
+          <button
+            className={
+              item.genreID === selectGenreId ? `${style.isSelected}` : ""
+            }
+            key={index}
+            onClick={() => handleCategoryClick(item.genreID)}
+          >
+            {item.genre}
+          </button>
         ))}
       </div>
     </div>

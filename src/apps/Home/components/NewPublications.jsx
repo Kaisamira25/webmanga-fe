@@ -13,7 +13,6 @@ function NewPublications() {
     const fetchNewPublication = async () => {
       const response = await fetchNewPublications();
       setNewPublications(response.data.data);
-      console.log("New publications",response.data.data)
     };
     fetchNewPublication();
   }, []);
@@ -23,6 +22,7 @@ function NewPublications() {
   const handlePublicationGetId = (id) => {
     setCartList((prevCartList) => [...prevCartList, id]);
   };
+  console.log(cartList);
   return (
     <div className={style.newProductWrapper}>
       <p>New lightnovel</p>
