@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import {
   fetchAllPublications,
   fetchPublicationContentPagingate,
+  fetchPublicationsBySearch,
   fetchPublictionsFromGenre,
 } from "../../../services/Service";
 function MainPublications() {
@@ -15,6 +16,7 @@ function MainPublications() {
   // const [publicationsList, setPublictionsList] = useState([]);
   const [publications, setPublications] = useState([]);
   const [forcePage, setForcePage] = useState(null);
+  const [search, setSearch] = useState("");
   const handleSelectGenre = async (genreId) => {
     setSelectedGenre(genreId);
     if (genreId == null) {
@@ -77,10 +79,30 @@ function MainPublications() {
       setPublications(fetchData.data.data.content);
     }
   };
+  // Thay đổi giá trị tìm kiếm của người dùng nhập
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  useEffect(() => {
+    // được render lại mỗi khi search state thay đổi
+    const searchPublictions = async (searchName) => {
+      // tạo ra một function rồi gọi lại ngay chính trong useEffect()
+      const response = await fetchPublicationsBySearch(searchName); // Mỗi khi mà render lại thì sẽ call api để tìm ra được dữ liệu của sản phẩm
+      setPublications(response.data.data); // đưa mảng dữ liệu vừa tiềm được cho publications và đưa mảng đó cho content để render ra sản phẩm
+      if (response.data.data.length > 9) {
+        // nếu sản phẩm tìm được lớn hơn 9 sản phẩm thì sẽ chia ra các page tương ứng với số lượng sản phẩm được tìm thấy
+        setPageCount(Math.ceil(response.data.data.length / 9));
+        setForcePage(0);
+      } else {
+        setPageCount(1);
+      }
+    };
+    searchPublictions(search);
+  }, [search]);
   return (
     <div>
       <Categories onCategorySelect={handleSelectGenre} />
-      <SearchBar />
+      <SearchBar handleSearch={handleSearch} />
       <Content
         pageCount={pageCount}
         handlePageChange={handlePageChange}

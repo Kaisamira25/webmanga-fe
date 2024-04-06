@@ -116,7 +116,11 @@ const fetchPublictionsFromGenre = (genreID) => {
 const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
+const fetchPublicationsBySearch = (name) => {
+  return instance.get(`api/v1/publications/search/${name}`)
+}
 export {
+  fetchPublicationsBySearch,
   verifyResetPasswordCode,
   fetchPublictionsFromGenre,
   fetchPublicationsDetailsInformation,
