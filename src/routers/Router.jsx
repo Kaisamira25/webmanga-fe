@@ -8,7 +8,7 @@ const UserPage = lazy(() => import("../pages/User/UserPage"));
 const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
-const OtpPage = lazy(() => import("../pages/Otp/OTPPage"));
+const OtpPage = lazy(() => import("../pages/Otp/OTPPage")); // Đúng path rồi
 const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
