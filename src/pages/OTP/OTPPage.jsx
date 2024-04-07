@@ -1,7 +1,7 @@
-import Otp from "../../apps/Authentication/Otp/Otp";
+import Otp from "../../apps/Authentication/Otp/OtpVerify";
 
 function OtpPage() {
-  return <Otp />;
+  return (<Otp />);
 }
 
 export default OtpPage;

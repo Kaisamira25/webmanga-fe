@@ -4,7 +4,7 @@ import OtpInput from "./components/OtpInput";
 import OtpStyle from "./scss/Otp.module.scss";
 import { useState } from "react";
 import { verifyOtp } from "../../../services/Service";
-function Otp() {
+function OtpVerify() {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   const handleChangeValueOtp = (e) => {
@@ -50,4 +50,4 @@ function Otp() {
   );
 }
 
-export default Otp;
+export default OtpVerify;
