@@ -2,32 +2,30 @@ import { useState } from "react";
 import LoginButton from "./components/LoginButton";
 import LoginInput from "./components/LoginInput";
 import LoginStyle from "./scss/Login.module.scss";
-import { loginAdmin, loginApi } from "../../../services/Service";
+import { loginAdmin } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import LoginInputPassword from "./components/LoginInputPassword";
-function Login() {
+function LoginAdmin() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [accountName, setAccountName] = useState("");
   const [password, setPassword] = useState("");
   const handleChangeValueEmail = (e) => {
-    setEmail(e.target.value);
-    console.log(email);
+    setAccountName(e.target.value);
   };
   const handleChangeValuePassword = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const handleLogin = async () => {
     const data = {
-      email: email,
+      accountName: accountName,
       password: password,
     };
     const dataJson = JSON.stringify(data);
-    const response = await loginApi(dataJson);
+    const response = await loginAdmin(dataJson);
     if (response.data.status == 1) {
-      sessionStorage.setItem("role", "CUSTOMER");
-      navigate("/home");
+      sessionStorage.setItem("role", "ADMIN");
+      navigate("/admin");
     } else {
       console.log("Login fail");
     }
@@ -44,8 +42,8 @@ function Login() {
         <p>Login</p>
         <form>
           <LoginInput
-            label={"Email"}
-            placeholder={"Email"}
+            label={"Account name"}
+            placeholder={"Account name"}
             type={"text"}
             onChangeValue={handleChangeValueEmail}
           />
@@ -69,4 +67,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginAdmin;

@@ -119,7 +119,11 @@ const fetchPublicationsDetailsInformation = (id) => {
 const fetchPublicationsBySearch = (name) => {
   return instance.get(`api/v1/publications/search/${name}`)
 }
+const loginAdmin = (data) => {
+  return instance.post("/api/v1/admin/login", data)
+}
 export {
+  loginAdmin,
   fetchPublicationsBySearch,
   verifyResetPasswordCode,
   fetchPublictionsFromGenre,
