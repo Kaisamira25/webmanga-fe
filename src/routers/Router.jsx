@@ -13,6 +13,7 @@ const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"))
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
 const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
+const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"))
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -28,6 +29,8 @@ const routes = [
   { path: "/resetpassword", element: <ResetPasswordPage /> },
   { path: "/newpassword", element: <NewPassword /> },
   // adminPage
+
+  { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },
   { path: "/admin", element: <HomeAdmin /> },
   { path: "/admin/genre", element: <HomeAdmin /> },
   { path: "/admin/cover", element: <HomeAdmin /> },

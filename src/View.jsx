@@ -13,6 +13,7 @@ function Views() {
     "/otp",
     "/otp/resetpassword",
     "/newpassword",
+    "/authentication/login/admin/account",
     "/resetpassword",
     "/Admin",
     "/Admin/Genre",
