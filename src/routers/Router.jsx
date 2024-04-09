@@ -16,8 +16,12 @@ const OtpResetPassword = lazy(() =>
 );
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
-const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
-const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"))
+const ResetPasswordPage = lazy(() =>
+  import("../pages/ResetPassword/ResetPasswordPage")
+);
+const LoginAdminPage = lazy(() =>
+  import("../apps/Authentication/Login/LoginAdmin")
+);
 
 const routes = [
   // userPage
