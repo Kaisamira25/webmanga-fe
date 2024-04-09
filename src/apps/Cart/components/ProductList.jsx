@@ -42,6 +42,7 @@ function ProductList({ onCartUpdate }) {
         qty -= 1;
         if (qty === 0) {
           cartItems.splice(index, 1);
+          window.location.reload();
         } else {
           cartItems[index].qty = qty;
         }
