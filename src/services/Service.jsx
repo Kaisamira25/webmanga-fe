@@ -6,11 +6,13 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem("token");
+    const accessToken = sessionStorage.getItem("accessToken");
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (token || accessToken) {
+      config.headers.Authorization = `bearer ${token ? token : accessToken}`;
     }
     config.headers["Content-Type"] = "application/json";
+
     return config;
   },
   function (error) {
@@ -117,8 +119,39 @@ const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
 const fetchPublicationsBySearch = (name) => {
-  return instance.get(`api/v1/publications/search/${name}`)
-}
+  return instance.get(`api/v1/publications/search/${name}`);
+};
+
+const fetchUpdateAddress = (address, phoneNumber) => {
+  return instance.put("/api/v1/customer/address", {
+    address,
+    phoneNumber,
+  });
+};
+
+const fetchCreateAddress = (address, phoneNumber) => {
+  return instance.post("/api/v1/customer/address", {
+    address,
+    phoneNumber,
+  });
+};
+
+const fetchUserInfo = () => {
+  return instance.get("/api/v1/customer/info");
+};
+
+const fetchUserAddress = () => {
+  return instance.get("/api/v1/customer/address");
+};
+
+const fetchChangePassword = (password, newPassword, confirmPassword) => {
+  return instance.patch("/api/v1/customer/change-password", {
+    password,
+    newPassword,
+    confirmPassword,
+  });
+};
+
 export {
   fetchPublicationsBySearch,
   verifyResetPasswordCode,
@@ -142,4 +175,9 @@ export {
   // verifyOtpForgotPassword,
   forgotPasswordApi,
   newPasswordApi,
+  fetchUpdateAddress,
+  fetchCreateAddress,
+  fetchUserInfo,
+  fetchUserAddress,
+  fetchChangePassword,
 };
