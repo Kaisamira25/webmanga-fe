@@ -15,7 +15,7 @@ function PublicationCard({
     return parseId;
   });
   const [stock, setStock] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [listPublications, setListPublications] = useState({});
   const [publicationsInfo, setPublicationsInfo] = useState({});
   const [genres, setGenres] = useState([]);
@@ -24,7 +24,7 @@ function PublicationCard({
     const fetchPublicationsDetails = async (id) => {
       const response = await fetchPublicationsDetailsInformation(id);
       setListPublications(id);
-      console.log(response.data.data.types[0]);
+      console.log(response.data.data);
       setPublicationsInfo(response.data.data);
       setGenres(response.data.data.genres);
       setTypes(response.data.data.types[0]);
@@ -39,7 +39,7 @@ function PublicationCard({
 
     const updatedCartItems = existingCartItems.map((item) => {
       if (item.id === publicationsID) {
-        item.qty += 1;
+        item.qty += quantity;
         itemAlreadyInCart = true;
       }
       return item;
@@ -47,8 +47,8 @@ function PublicationCard({
 
     if (!itemAlreadyInCart) {
       const newItem = {
-        id:publicationsID,
-        qty: 1,
+        id: publicationsID,
+        qty: quantity,
       };
       updatedCartItems.push(newItem);
     }
