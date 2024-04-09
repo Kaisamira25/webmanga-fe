@@ -1,23 +1,13 @@
 @use "../../../common/variables" as *;
 @use "../../../common/responsive" as *;
 .btnLogoutWrapper {
-  background-color: $bg-btn-color;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 3em;
-  height: 3em;
-  transition: background-color 0.5s;
-  position: relative;
-  &:hover {
-    background-color: $bg-color;
-  }
+  height: 100%;
+  gap: 0.5em;
   > button {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    > span {
+      font-size: large;
+    font-weight: 500;
+    }
   }
 }

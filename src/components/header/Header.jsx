@@ -1,63 +1,66 @@
 import style from "./scss/Header.module.scss";
 import BtnCart from "./BtnCart";
-
 import { useEffect, useState } from "react";
-import BtnAuth from "./BtnAuth";
+import BtnLogin from "./BtnAuth";
 import BtnUser from "./BtnUser";
 import BtnLogout from "./BtnLogout";
 import { useNavigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
 function Header() {
-  const [logout, setLogout] = useState(false);
+  const [logout, setLogout] = useState(true);
+  // const [customerName, setCustomerName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const checkLogin = () => {
       const customerRole = sessionStorage.getItem("role");
-      if(customerRole == "CUSTOMER") {
-        setLogout(true);
-      } 
-    }
+      // const customerName = jwtDecode(sessionStorage.getItem("accessToken"));
+      if (customerRole == "CUSTOMER") {
+        // setCustomerName(customerName.customerName);
+        setLogout(false);
+      }
+    };
     checkLogin();
-  },[])
-  const navigateToLogin = () => {
+  }, []);
+  const handleLogin = () => {
     navigate("/login");
-  }
+  };
   const handleLogout = () => {
     sessionStorage.removeItem("role");
+    // setCustomerName("");
     setLogout(!logout);
-    // navigateToLogin();
-    // setLogout(!logout);
-    // setVisible(logout ? "visible" : "");
   };
   const handleNavigateToHome = () => {
-    navigate("/home")
-  }
+    navigate("/home");
+  };
   const handleNavigateToCart = () => {
-    navigate("/cart")
-  }
+    navigate("/cart");
+  };
   const handleNavigateToUser = () => {
-    navigate("/user")
+    navigate("/user");
+  };
+  const handleNavigateToAboutUs = () => {
   }
   return (
     <header>
       <div>
-        <a onClick={handleNavigateToHome}>
-          <p>LAINOVO</p>
-        </a>
-      </div>
-      <div>
-        <a onClick={handleNavigateToCart}>
-          <BtnCart />
-        </a>
         <div>
-          <a onClick={handleNavigateToUser}>
-            <BtnUser />
+          <a onClick={handleNavigateToHome}>
+            <p>LAINOVO</p>
           </a>
-          <div>
-            <BtnAuth handleLogin={navigateToLogin} />
-          </div>
-          <div className={logout ? `${style.showLogout}` : `${style.hiddenLogout}`}>
-            <BtnLogout handleLogout={handleLogout} />
-          </div>
+        </div>
+        <div>
+          <ul>
+            <li onClick={handleNavigateToHome}>Home</li>
+            <li onClick={handleNavigateToCart}>Cart</li>
+            <li onClick={handleNavigateToAboutUs}>About</li>
+          </ul>
+        </div>
+        <div>
+          {logout ? <ul>
+            <li onClick={handleLogin}>Login</li>
+          </ul> : <ul>
+            <li onClick={handleLogout}>Logout</li>
+          </ul>}
         </div>
       </div>
     </header>
