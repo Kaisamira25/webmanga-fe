@@ -17,28 +17,11 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-// instance.interceptors.response.use(
-//   function(res) {
-//     if (res.data && res.data.data) {
-//       return res.data.data;
-//     }
-//     return res;
-//   },
-//   function(error) {
-//     return Promise.reject(error);
-//   }
-// );
-
 export default instance;
 
 const fetchAllPublications = () => {
   return instance.get("/api/v1/publications/all");
 };
-
-// const fetchAllPubliationWithImages = () => {
-//   return instance.get("/api/v1/publications/all/images");
-// };
-
 const fetchAllProduct = () => {
   return instance.get("/api/products");
 };
@@ -71,16 +54,6 @@ const registerApi = (data) => {
 const verifyOtp = (data) => {
   return instance.post("/api/v1/auth/verify", data);
 };
-// const verifyOtpForgotPassword = (code) => {
-//   return instance({
-//     method: "get",
-//     url: "api/v1/customer/passwordReset",
-//     params: {
-//       code: code,
-//       password: password,
-//     },
-//   });
-// };
 const forgotPasswordApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };

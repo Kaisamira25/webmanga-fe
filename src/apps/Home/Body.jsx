@@ -1,8 +1,7 @@
 import { useState } from "react";
 import style from "./Body.module.scss";
-import HotPublications from "./components/HotPublications";
-import NewPublications from "./components/NewPublications";
 import MainPublications from "./components/MainPublications";
+// import AboveContent from "./components/";
 function Body() {
   const [selectedCategoryId, setSelectedCategoryId] = useState();
 
@@ -11,8 +10,7 @@ function Body() {
   };
   return (
     <div>
-      <NewPublications />
-      <HotPublications />
+      {/* <AboveContent /> */}
       <MainPublications />
     </div>
   );

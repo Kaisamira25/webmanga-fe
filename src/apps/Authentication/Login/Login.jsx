@@ -2,20 +2,20 @@ import { useState } from "react";
 import LoginButton from "./components/LoginButton";
 import LoginInput from "./components/LoginInput";
 import LoginStyle from "./scss/Login.module.scss";
-import { loginAdmin, loginApi } from "../../../services/Service";
+import { loginApi } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import LoginInputPassword from "./components/LoginInputPassword";
+import { jwtDecode } from "jwt-decode";
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleChangeValueEmail = (e) => {
     setEmail(e.target.value);
-    console.log(email);
   };
   const handleChangeValuePassword = (e) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const handleLogin = async () => {
@@ -25,8 +25,10 @@ function Login() {
     };
     const dataJson = JSON.stringify(data);
     const response = await loginApi(dataJson);
-    if (response.data.status == 1) {
+    const jwtPayload = jwtDecode(response.data.data.accessToken);
+    if (jwtPayload.role[0].authority == "CUSTOMER") {
       sessionStorage.setItem("role", "CUSTOMER");
+      sessionStorage.setItem("accessToken", response.data.data.accessToken)
       navigate("/home");
     } else {
       console.log("Login fail");
@@ -36,8 +38,8 @@ function Login() {
     navigate("/register");
   };
   const navigateToResetPassword = () => {
-    navigate("/resetpassword")
-  }
+    navigate("/resetpassword");
+  };
   return (
     <div className={LoginStyle.loginWrapper}>
       <div className={LoginStyle.loginForm}>

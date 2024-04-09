@@ -54,7 +54,7 @@ function BtnCart({ onOpen, icon }) {
       <button onClick={handleOpen}>
         <IconCart />
       </button>
-      <p className={`data ${style.visible}`}>1</p>
+      <p className={`data ${style.visible}`}>22</p>
     </div>
   );
 }

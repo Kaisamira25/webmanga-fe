@@ -42,48 +42,76 @@
 // }
 
 header {
-  position: relative;
-  background-color: $bg-btn-color;
   height: 5em;
-  margin-bottom: 5em;
-  display: flex;
-  padding: 0px 14% 0px 14%;
-  > div:first-child {
+  background-color: $bg-btn-color;
+  > div {
+    height: 100%;
     display: flex;
     align-items: center;
-    height: 100%;
-    background-color: $bg-btn-color;
-    > a > p {
-      font-size: large;
-      font-weight: 600;
-      margin-bottom: 0;
-      cursor: pointer;
-    }
-  }
-  > div:nth-child(2) {
-    position: absolute;
-    right: 20%;
-    display: flex;
-    bottom: 0;
-    transform: translateY(50%);
-    > div {
-      > div:nth-child(2) {
-        position: absolute;
-        z-index: 1;
-        right: -50%;
-        top: 0;
-      }
-      > .showLogout {
-        position: absolute;
-        right: -50%;
-        top: 0;
-        z-index: 2;
-      }
-      > .hiddenLogout {
-        position: absolute;
-        right: -50%;
-        top: 0;
+    justify-content: space-between;
+    padding: 0 4em 0 4em;
+    > div:first-child {
+      a {
+        p {
+          margin: 0;
+          color: white;
+          font-weight: 500;
+          font-size: x-large;
+          cursor: pointer;
+        }
       }
     }
+    > div:nth-child(2) {
+      > ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        gap: 3em;
+        li {
+          color: white;
+          font-size: large;
+          font-weight: 500;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s;
+          }
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    > div:nth-child(3) {
+      > ul {
+        height: 2em;
+        width: 5.5em;
+        border-radius: 50px;
+        background-color: #69bb9b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        li {
+          width: 100%;
+          text-align: center;
+          color: white;
+          font-size: large;
+          font-weight: 500;
+          cursor: pointer;
+        }
+      }
+    }
+    
   }
 }
