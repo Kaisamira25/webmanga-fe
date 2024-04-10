@@ -1,0 +1,72 @@
+@use "../../../common/responsive" as *;
+@use "../../../common/variables" as *;
+
+.aboveContainer {
+  padding-top: 5em;
+  // height: fit-content;
+  .introduce {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    gap: 2em;
+  }
+  .selectionWrapper {
+    padding-top: 1em;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 4em;
+      li {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        font-size: medium;
+        font-weight: 500;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: black;
+          transition: width 0.3s;
+        }
+        &:hover::after,
+        &.active::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .abovePublicationsContainer {
+    background-color: #f0f0f0;
+    padding-top: 3em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    @include break(lg) {
+      padding-left: 5em;
+      padding-right: 5em;
+    }
+    @include break(xl) {
+        padding-left: 15em;
+      padding-right: 15em; 
+      justify-content: center;
+    }
+    @include break(xxl) {
+      justify-content: left;
+    }
+    @include break(xxxl) {
+      padding-left: 15em;
+      padding-right: 15em; 
+      justify-content: center;
+    }
+  }
+}

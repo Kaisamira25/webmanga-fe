@@ -24,7 +24,6 @@ function User() {
             </div>
           </div>
         </div>
-        {/* <hr className={styles.line}/> */}
         <div className={styles.lowerContainer}>
           <History />
         </div>

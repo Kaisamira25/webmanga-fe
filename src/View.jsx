@@ -9,10 +9,12 @@ function Views() {
 
   const shouldDisplayHeaderFooter = ![
     "/login",
+    "/Login",
     "/register",
     "/otp",
     "/otp/resetpassword",
     "/newpassword",
+    "/authentication/login/admin/account",
     "/resetpassword",
     "/Admin",
     "/Admin/Genre",

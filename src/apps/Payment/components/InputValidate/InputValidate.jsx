@@ -27,10 +27,15 @@ function InputValidate({ className, onValidationChange }) {
     }
     validateInput(key, value);
   };
+
   const handleLoad = async (key) => {
     try {
-      const decoded = jwtDecode(localStorage.getItem('refreshToken'));
-      const response = await axios.get('http://localhost:8080/api/v1/customer/' + decoded.customerId, {});
+      const decoded = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
+      console.log(decoded)
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/customer/" + decoded,
+        {}
+      );
       const customer = response.data.data;
       switch (key) {
         case "email":
@@ -55,8 +60,8 @@ function InputValidate({ className, onValidationChange }) {
     handleLoad("phone");
   }, []);
   useEffect(() => {
-    localStorage.setItem('UserData', JSON.stringify({ email, address, phone }));
-  }, [email, phone, address])
+    localStorage.setItem("UserData", JSON.stringify({ email, address, phone }));
+  }, [email, phone, address]);
   const validateInput = (key, value) => {
     switch (key) {
       case "email":
