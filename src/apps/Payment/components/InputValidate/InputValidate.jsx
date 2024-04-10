@@ -30,9 +30,10 @@ function InputValidate({ className, onValidationChange }) {
 
   const handleLoad = async (key) => {
     try {
-      const decoded = jwtDecode(localStorage.getItem("refreshToken"));
+      const decoded = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
+      console.log(decoded)
       const response = await axios.get(
-        "http://localhost:8080/api/v1/customer/" + decoded.customerId,
+        "http://localhost:8080/api/v1/customer/" + decoded,
         {}
       );
       const customer = response.data.data;
