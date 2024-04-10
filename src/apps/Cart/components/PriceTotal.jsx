@@ -37,42 +37,40 @@ function PriceTotal({ cartUpdated }) {
       0
     );
     setTotalPrice(totalPrice);
-    if(discounts){
-      localStorage.setItem('discount',discounts.discountId);
-    }else{
-      localStorage.setItem('discount',null);
+    if (discounts) {
+      localStorage.setItem("discount", discounts.discountId);
+    } else {
+      localStorage.setItem("discount", null);
     }
-  }, [cart,discounts]);
+  }, [cart, discounts]);
 
   const applyDiscount = () => {
-    if(discounts){
-      return 50000 * discounts.discountPercent;
-    }else{
+    if (discounts) {
+      return totalPrice * (discounts.discountPercent / 100);
+    } else {
       return 0;
     }
-    
   };
 
   const handleDiscountCodeChange = async (code) => {
-    
     setDiscounts(code);
   };
-  
-  
+
   const totalBill = () => {
-    if(discounts){
-      localStorage.setItem('total',totalPrice + 50000 - (50000 * discounts.discountPercent))
-      return totalPrice + 50000 - (50000 * discounts.discountPercent)
-    }else{
-      localStorage.setItem('total',totalPrice + 50000 )
-      return totalPrice + 50000;
+    if (discounts) {
+      localStorage.setItem(
+        "total",
+        totalPrice * (1 - discounts.discountPercent / 100)
+      );
+      return totalPrice * (1 - discounts.discountPercent / 100);
+    } else {
+      localStorage.setItem("total", totalPrice);
+      return totalPrice;
     }
-   
   };
 
   const textInfo = [
     { title: "Cart blackmail ", price: totalPrice },
-    { title: " Shipping Fee", price: 50000 },
 
     { title: "Discount code ", price: applyDiscount() },
 
