@@ -24,7 +24,7 @@ export default function TotalPayment({
       totalPrice:localStorage.getItem('total'),
       phoneNumber:userData.phone,
       address:userData.address,
-      paymentStatus:true,
+      paymentStatus:false,
       discount: localStorage.getItem('discount'),
       email:userData.email,
       orderItem:JSON.parse(localStorage.getItem('cart'))

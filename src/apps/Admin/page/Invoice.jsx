@@ -3,70 +3,27 @@ import Padgina from "../componnents/Padgination";
 import SearchBar from "../componnents/SearchBar";
 import CoverData from "../Services/CoverData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
+import OrderData from "../Services/OrderData";
+import moment from "moment/moment";
 
-function AdminCover() {
+function Invoice() {
+    const { orders, fetchOrder } = OrderData();
     const OderTH = [
-        { names: "Id Order" },
-        { names: "User" },
-        { names: "Guest" },
+        { names: "Customer" },
+        { names: "Phone Number" },
+        { names: "Address" },
         { names: "Total" },
-        { names: "Order Day" },
         { names: "Order Status" },
-        { names: "Discount" }
-    ]
-    const OderTD = [
-        { id: "1", user: "Lân", guest: "", total: 10000001, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "2", user: "", guest: "Lân1", total: 10000002, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "3", user: "", guest: "Lân2", total: 10000003, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
-        { id: "4", user: "Lân3", guest: "", total: 10000004, day: "20/03/2003", status: "Đang vận chuyển", discount: "Không có" },
+        { names: "Payment Status" },
+        { names: "Order Day" },
+
     ]
     const ItemTH = [
         { names: "Order Id" },
         { names: "Publication" },
         { names: "Quantity" }
     ]
-    const ItemTD = [
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-        { id: 1, book: "Gintama", quantity: 5 },
-        { id: 3, book: "Gintama", quantity: 5 },
-        { id: 4, book: "Gintama", quantity: 5 },
-    ]
+
 
     return (
         <div className="h-screen pt-12">
@@ -76,7 +33,7 @@ function AdminCover() {
                 </div>
             </div>
             <div className="w-12/12 h-10 flex py-5">
-                <div className="w-8/12 me-24 h-96 border-2 border-black rounded-lg overflow-y-scroll">
+                <div className="w-8/12  h-96 border-2 border-black overflow-auto">
                     <div className="text-center bg-slate-500 font-bold">
                         <span>Invoice</span>
                     </div>
@@ -89,11 +46,15 @@ function AdminCover() {
                             </tr>
                         </thead>
                         <tbody>
-                            {OderTD.map((items, rowIndex) => (
+                            {orders.map((item, rowIndex) => (
                                 <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                                    {Object.values(items).map((value, colIndex) => (
-                                        <td className="text-center border-r border-black" key={colIndex}>{value}</td>
-                                    ))}
+                                    <td className="text-center border-r border-black" >{item.fullname}</td>
+                                    <td className="text-center border-r border-black" >{item.phoneNumber}</td>
+                                    <td className="text-center border-r border-black" >{item.address}</td>
+                                    <td className="text-center border-r border-black" >{item.totalPrice}</td>
+                                    <td className="text-center border-r border-black" >{item.orderStatus}</td>
+                                    <td className="text-center border-r border-black" >{item.paymentStatus ? 'Paid' : 'Unpaid'}</td>
+                                    <td className="text-center border-r border-black" >{moment(item.orderDay).format('DD-MM-YYYY HH:mm:ss')}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -104,7 +65,7 @@ function AdminCover() {
                         <div className="text-center bg-slate-500 font-bold">
                             <span>Detail Invoice</span>
                         </div>
-                        <table className="w-full h-80 border-s border-r border-black">
+                        {/* <table className="w-full h-80 border-s border-r border-black">
                             <thead className="border-b border-black  bg-slate-400  ">
                                 <tr>
                                     {ItemTH.map((item, index) => (
@@ -113,7 +74,7 @@ function AdminCover() {
                                 </tr>
                             </thead>
                             <tbody className="overflow-y-scroll">
-                                {ItemTD.map((items, rowIndex) => (
+                                {order.orderItem.map((items, rowIndex) => (
                                     <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
                                         {Object.values(items).map((value, colIndex) => (
                                             <td className="text-center border-r border-black" key={colIndex}>{value}</td>
@@ -121,7 +82,7 @@ function AdminCover() {
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
 
@@ -129,4 +90,4 @@ function AdminCover() {
         </div>
     )
 }
-export default AdminCover
+export default Invoice
