@@ -11,27 +11,48 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleChangeValueEmail = (e) => {
     setEmail(e.target.value);
+    setErrorMessage("");
   };
   const handleChangeValuePassword = (e) => {
     setPassword(e.target.value);
+    setErrorMessage("");
   };
 
   const handleLogin = async () => {
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage("Không để trống Email/Password");
+      return;
+    }
+
     const data = {
       email: email,
       password: password,
     };
     const dataJson = JSON.stringify(data);
-    const response = await loginApi(dataJson);
-    const jwtPayload = jwtDecode(response.data.data.accessToken);
-    if (jwtPayload.role[0].authority == "CUSTOMER") {
-      sessionStorage.setItem("role", "CUSTOMER");
-      sessionStorage.setItem("accessToken", response.data.data.accessToken)
-      navigate("/home");
-    } else {
-      console.log("Login fail");
+
+    try {
+      const response = await loginApi(dataJson);
+      const jwtPayload = jwtDecode(response.data.data.accessToken);
+      if (jwtPayload.role[0].authority === "CUSTOMER") {
+        sessionStorage.setItem("role", "CUSTOMER");
+        sessionStorage.setItem("accessToken", response.data.data.accessToken);
+        navigate("/home");
+      } else {
+        setErrorMessage("Login unsuccessful. Please try again later.");
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          setErrorMessage("Email is incorrect/");
+        }
+        if (error.response.status === 400) {
+          setErrorMessage("incorrect password");
+        }
+      }
     }
   };
   const navigateToRegister = () => {
@@ -57,6 +78,9 @@ function Login() {
             onChangeValue={handleChangeValuePassword}
           />
         </form>
+        <div className={LoginStyle.errorMessage}>
+          {errorMessage && <p>{errorMessage}</p>}
+        </div>
         <span>
           Forgot password? <a onClick={navigateToResetPassword}>Click here</a>
         </span>
