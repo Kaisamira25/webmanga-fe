@@ -2,16 +2,18 @@
 @use "../../../common/variables" as *;
 
 .aboveContainer {
-    margin-top: 5em;
-    height: fit-content;
-    .introduce {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      margin-bottom: 4em;
-    }
-    .selectionWrapper {
-    background-color: #b3b3b3;
+  padding-top: 5em;
+  // height: fit-content;
+  .introduce {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    gap: 2em;
+  }
+  .selectionWrapper {
+    padding-top: 1em;
+    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     ul {
@@ -35,14 +37,15 @@
           background-color: black;
           transition: width 0.3s;
         }
-        &:hover::after,&.active::after {
+        &:hover::after,
+        &.active::after {
           width: 100%;
         }
-        
       }
     }
   }
   .abovePublicationsContainer {
+    background-color: #f0f0f0;
     padding-top: 3em;
     display: flex;
     flex-wrap: wrap;
@@ -53,16 +56,17 @@
       padding-right: 5em;
     }
     @include break(xl) {
-      padding-left: 5em;
-      padding-right: 5em;
+        padding-left: 15em;
+      padding-right: 15em; 
       justify-content: center;
     }
     @include break(xxl) {
       justify-content: left;
     }
     @include break(xxxl) {
+      padding-left: 15em;
+      padding-right: 15em; 
       justify-content: center;
     }
-
   }
 }
