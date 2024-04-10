@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "./Body.module.scss";
+import BodyStyle from "./Body.module.scss";
 import MainPublications from "./components/MainPublications";
 import AboveContent from "./components/AboveContent";
 function Body() {
@@ -9,7 +9,7 @@ function Body() {
     setSelectedCategoryId(categoryId);
   };
   return (
-    <div>
+    <div className={BodyStyle.bodyContainer}>
       <AboveContent />
       <MainPublications />
     </div>
