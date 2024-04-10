@@ -40,7 +40,7 @@ function AboveContent() {
       <div className={AboveContentStyle.introduce}>
         {introduce.map((item, index) => (
           <Introduce key={index} label={item.label} icon={item.icon} />
-        ))}
+        ))} 
       </div>
       <div className={AboveContentStyle.selectionWrapper}>
         <ul>
