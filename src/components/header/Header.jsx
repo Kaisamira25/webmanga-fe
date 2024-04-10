@@ -8,14 +8,16 @@ import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 function Header() {
   const [logout, setLogout] = useState(true);
-  // const [customerName, setCustomerName] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const checkLogin = () => {
       const customerRole = sessionStorage.getItem("role");
-      // const customerName = jwtDecode(sessionStorage.getItem("accessToken"));
+      if (customerRole) {
+        const customerName = jwtDecode(sessionStorage.getItem("accessToken"));
+        setCustomerName(customerName.customerName);
+      }
       if (customerRole == "CUSTOMER") {
-        // setCustomerName(customerName.customerName);
         setLogout(false);
       }
     };
@@ -26,7 +28,7 @@ function Header() {
   };
   const handleLogout = () => {
     sessionStorage.removeItem("role");
-    // setCustomerName("");
+    setCustomerName("");
     setLogout(!logout);
   };
   const handleNavigateToHome = () => {
@@ -38,8 +40,7 @@ function Header() {
   const handleNavigateToUser = () => {
     navigate("/user");
   };
-  const handleNavigateToAboutUs = () => {
-  }
+  const handleNavigateToAboutUs = () => {};
   return (
     <header>
       <div>
@@ -56,11 +57,16 @@ function Header() {
           </ul>
         </div>
         <div>
-          {logout ? <ul>
-            <li onClick={handleLogin}>Login</li>
-          </ul> : <ul>
-            <li onClick={handleLogout}>Logout</li>
-          </ul>}
+          <span onClick={handleNavigateToUser}>{customerName}</span>
+          {logout ? (
+            <ul>
+              <li onClick={handleLogin}>Login</li>
+            </ul>
+          ) : (
+            <ul>
+              <li onClick={handleLogout}>Logout</li>
+            </ul>
+          )}
         </div>
       </div>
     </header>

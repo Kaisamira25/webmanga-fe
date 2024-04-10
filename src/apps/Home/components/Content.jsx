@@ -27,7 +27,6 @@ function Content({
     setCartList((prevCartList) => [...prevCartList, id]);
     navigate("/cart")
   };
-  console.log(cartList);
   // useEffect(() => {
     
   // },[forcePage])

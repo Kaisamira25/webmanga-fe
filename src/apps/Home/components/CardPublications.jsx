@@ -34,8 +34,14 @@ function Card({
             <p>{name}</p>
           </a>
           <div>
-            <span>{priceBeforeDiscount} VND</span>
-            <span>{priceAfterDiscount}</span>
+            <span>
+              {priceBeforeDiscount}
+              <p>đ</p>
+            </span>
+            <span>
+              {priceAfterDiscount} 120000
+              <p>đ</p>
+            </span>
           </div>
         </div>
         <div>

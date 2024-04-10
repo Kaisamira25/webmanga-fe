@@ -35,7 +35,6 @@ function AboveContent() {
     const response = await items[index].apiCall();
     setPublications(response.data.data);
   };
-  console.log(publications);
   return (
     <div className={AboveContentStyle.aboveContainer}>
       <div className={AboveContentStyle.introduce}>
