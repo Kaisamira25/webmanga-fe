@@ -6,13 +6,16 @@ import WideVariety from "../../../assets/icons/WideVariety";
 import Money from "../../../assets/icons/Money";
 import Contact from "../../../assets/icons/Contact";
 import CardPublications from "./CardPublications";
+import { useNavigate } from "react-router-dom";
 import {
   fetchNewPublications,
   fetchHotPublications,
 } from "../../../services/Service";
 function AboveContent() {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [publications, setPublications] = useState([]);
+  const [cartList, setCartList] = useState([]);
   const items = [
     { label: "NEW", apiCall: () => fetchNewPublications() },
     { label: "BEST SELLER", apiCall: () => fetchHotPublications() },
@@ -30,10 +33,17 @@ function AboveContent() {
     };
     callApiNewPublications();
   }, []);
+  const handlePublicationId = (id) => {
+    return navigate(`/detail/${id}`);
+  };
   const handleCallApi = async (index) => {
     setActiveIndex(index);
     const response = await items[index].apiCall();
     setPublications(response.data.data);
+  };
+  const handlePublicationGetId = (id) => {
+    setCartList((prevCartList) => [...prevCartList, id]);
+    navigate("/cart")
   };
   return (
     <div className={AboveContentStyle.aboveContainer}>
@@ -65,6 +75,8 @@ function AboveContent() {
               name={item.publicationsName}
               key={index}
               priceBeforeDiscount={item.unitPrice}
+              onClickNavigate={handlePublicationId}
+              onClickGetItem={handlePublicationGetId}
             />
           ))}
       </div>
