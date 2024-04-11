@@ -7,6 +7,7 @@ import Account from "../../assets/icons/User";
 import Arrow from "../../assets/icons/ArrowDown";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import { logoutApi } from "../../services/Service";
 function Header() {
   const [logout, setLogout] = useState(true);
   const [customerName, setCustomerName] = useState("");
@@ -28,7 +29,9 @@ function Header() {
   const handleLogin = () => {
     navigate("/login");
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const response = await logoutApi();
+    console.log(response);
     sessionStorage.removeItem("role");
     setCustomerName("");
     setLogout(!logout);

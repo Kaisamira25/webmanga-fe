@@ -50,6 +50,9 @@ const fetchDeleteCart = (orderId, order) => {
 const loginApi = (data) => {
   return instance.post("/api/v1/auth/login", data);
 };
+const logoutApi = () => {
+  return instance.patch("/api/v1/auth/logout")
+}
 const registerApi = (data) => {
   return instance.post("/api/v1/auth/register", data);
 };
@@ -58,7 +61,7 @@ const verifyOtp = (data) => {
 };
 const forgotPasswordApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
-};
+};    
 const verifyResetPasswordCode = (code) => {
   return instance.post("/api/v1/customer/passwordResetCode", null, {
     params: { code: code },
@@ -130,6 +133,7 @@ const fetchChangePassword = (password, newPassword, confirmPassword) => {
 };
 
 export {
+  logoutApi,
   loginAdmin,
   fetchPublicationsBySearch,
   verifyResetPasswordCode,

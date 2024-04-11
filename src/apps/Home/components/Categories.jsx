@@ -4,6 +4,7 @@ import { fetchAllGenre } from "../../../services/Service";
 function Categories({ onCategorySelect }) {
   const [listGenre, setListGenre] = useState([]);
   const [selectGenreId, setSelectGenreId] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   useEffect(() => {
     const fetchGenre = fetchAllGenre();
     fetchGenre.then((response) => {
@@ -20,8 +21,11 @@ function Categories({ onCategorySelect }) {
       onCategorySelect(genreId);
     }
   };
+  const toggleCategories = () => {
+    setIsExpanded(!isExpanded)
+  }
   return (
-    <div className={style.container}>
+    <div className={`${style.container} ${isExpanded ? style.expanded : style.collapsed}`} onClick={toggleCategories}>
       <div className={style.wrapper}>
         {listGenre.map((item, index) => (
           <button

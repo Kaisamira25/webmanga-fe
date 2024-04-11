@@ -20,6 +20,7 @@ function PublicationCard({
   const [publicationsInfo, setPublicationsInfo] = useState({});
   const [genres, setGenres] = useState([]);
   const [types, setTypes] = useState([]);
+  const [discountPrice, setDiscountPrice] = useState(130000);
   useEffect(() => {
     const fetchPublicationsDetails = async (id) => {
       const response = await fetchPublicationsDetailsInformation(id);
@@ -70,70 +71,98 @@ function PublicationCard({
   };
   return (
     <div className={style.wrapper}>
-      <div className={style.imgWrapper}>
-        <div>
-          <img src={publicationsInfo.imageURL} alt="" />
-          <p className={style.status}>{stock < 0 ? "Out stock" : "In stock"}</p>
+      <div className={style.imageAndInfo}>
+        <div className={style.imageZone}>
+          <div className={style.imgWrapper}>
+            <div>
+              <img src={publicationsInfo.imageURL} alt="" />
+              <p className={style.status}>
+                {stock < 0 ? "Out stock" : "In stock"}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div className={style.categories}>
+              {genres.map((item, index) => (
+                <a key={index}>{item}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className={style.publicationInfo}>
+          <p className={style.name}>{publicationsInfo.publicationsName}</p>
+          <div className={style.infoPublications}>
+            <div className={style.price}>
+              <span
+                className={
+                  discountPrice == null ? style.hiddenPrice : style.defaultPrice
+                }
+              >
+                {discountPrice}
+                <span>đ</span>
+              </span>
+              <span>
+                {publicationsInfo.unitPrice}
+                <span>đ</span>
+              </span>
+            </div>
+            <div className={style.info}>
+              <div>
+                <div>
+                  <Info label={"Author: "} content={publicationsInfo.author} />
+                </div>
+                <div>
+                  <Info
+                    label={"Publisher: "}
+                    content={publicationsInfo.publisher}
+                  />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <Info label={"Type: "} content={types} />
+                </div>
+                <div>
+                  <Info
+                    label={"Release Date: "}
+                    content={publicationsInfo.publicationYear}
+                  />
+                </div>
+              </div>
+              <div className={style.type}>
+                <select name="type" id="">
+                  <option value="Special">Special</option>
+                  <option value="Regular">Regular</option>
+                </select>
+              </div>
+            </div>
+            <div className={style.description}>
+              <label htmlFor="">Summary</label>
+              <p>{publicationsInfo.summary}</p>
+            </div>
+          </div>
+
+          <div className={style.type}>
+            <select name="type" id="">
+              <option value="Special">Special</option>
+              <option value="Regular">Regular</option>
+            </select>
+          </div>
+          <div className={style.quantity}>
+            <div className="quantity">
+              <button onClick={handleDecreaseQuantity}>-</button>
+              <p>{quantity}</p>
+              <button onClick={handleIncreaseQuantity}>+</button>
+            </div>
+            <div className="addCart">
+              <button onClick={handleAddToCart}>Thêm vào giỏ</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div className={style.publicationInfo}>
-        <p className={style.name}>{publicationsInfo.publicationsName}</p>
-        <div className={style.infoPublications}>
-          <div className={style.price}>
-            <span>{priceBeforeDiscount}</span>
-            <span>{priceAfterDiscount}</span>
-          </div>
-          <div className={style.info}>
-            <div>
-              <div>
-                <Info label={"Author:"} content={publicationsInfo.author} />
-              </div>
-              <div>
-                <Info
-                  label={"Publisher:"}
-                  content={publicationsInfo.publisher}
-                />
-              </div>
-            </div>
-            <div>
-              <div>
-                <Info label={"Type:"} content={types} />
-              </div>
-              <div>
-                <Info
-                  label={"Release Date:"}
-                  content={publicationsInfo.publicationYear}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={style.description}>
-          <label htmlFor="">Nội dung</label>
-          <p>{publicationsInfo.summary}</p>
-        </div>
-
-        <div className={style.categories}>
-          {genres.map((item, index) => (
-            <a key={index}>{item}</a>
-          ))}
-        </div>
-        <div className={style.type}>
-          <select name="type" id="">
-            <option value="special">Bản đặc biệt</option>
-            <option value="normal">Bản thường</option>
-          </select>
-        </div>
-        <div className={style.quantity}>
-          <div className="quantity">
-            <button onClick={handleDecreaseQuantity}>-</button>
-            <p>{quantity}</p>
-            <button onClick={handleIncreaseQuantity}>+</button>
-          </div>
-          <div className="addCart">
-            <button onClick={handleAddToCart}>Thêm vào giỏ</button>
-          </div>
-        </div>
+      <div className={style.description}>
+        <label htmlFor="">Summary</label>
+        <p>{publicationsInfo.summary}</p>
       </div>
     </div>
   );

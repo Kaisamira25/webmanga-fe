@@ -37,9 +37,18 @@ function About() {
         </div>
         <div>
           <span>Mission</span>
+          <p>
+            Become a quality publishing unit in Vietnam and a trusted partner of
+            publishers around the world.
+          </p>
         </div>
         <div>
           <span>Core values</span>
+          <p>
+            Build and develop a sustainable business model on the foundation of
+            ensuring the best interests of customers, employees, and
+            shareholders.
+          </p>
         </div>
       </div>
     </div>

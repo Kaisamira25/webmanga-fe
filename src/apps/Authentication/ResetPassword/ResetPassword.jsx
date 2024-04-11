@@ -17,7 +17,7 @@ function ResetPassword() {
     });
     navigate("/otp/resetpassword");
     const response = await forgotPasswordApi(dataJson);
-    console.log(response.data.status);
+    console.log(response.data)
   };
 
   const handleNavigateBack = () => {
