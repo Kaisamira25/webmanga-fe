@@ -25,7 +25,7 @@ export default function TotalPayment({
       phoneNumber:userData.phone,
       address:userData.address,
       paymentStatus:false,
-      discount: localStorage.getItem('discount'),
+      discount: localStorage.getItem('discount')=== null ? null :localStorage.getItem('discount'),
       email:userData.email,
       orderItem:JSON.parse(localStorage.getItem('cart'))
     };
@@ -35,7 +35,7 @@ export default function TotalPayment({
     localStorage.removeItem('Payment')
     localStorage.removeItem('total')
     localStorage.removeItem('discount')
-    localStorage.setItem('cart','')
+    localStorage.removeItem('cart')
     setShowFinishModal(true);
   };
  
