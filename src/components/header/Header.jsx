@@ -1,21 +1,26 @@
 import style from "./scss/Header.module.scss";
 import BtnCart from "./BtnCart";
 import { useEffect, useState } from "react";
-import BtnLogin from "./BtnAuth";
-import BtnUser from "./BtnUser";
-import BtnLogout from "./BtnLogout";
+import Home from "../../assets/icons/HomeIcon";
+import Cart from "../../assets/icons/CartIcon";
+import Account from "../../assets/icons/User";
+import Arrow from "../../assets/icons/ArrowDown";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import { logoutApi } from "../../services/Service";
 function Header() {
   const [logout, setLogout] = useState(true);
-  // const [customerName, setCustomerName] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     const checkLogin = () => {
       const customerRole = sessionStorage.getItem("role");
-      // const customerName = jwtDecode(sessionStorage.getItem("accessToken"));
+      if (customerRole) {
+        const customerName = jwtDecode(sessionStorage.getItem("accessToken"));
+        setCustomerName(customerName.customerName);
+      }
       if (customerRole == "CUSTOMER") {
-        // setCustomerName(customerName.customerName);
         setLogout(false);
       }
     };
@@ -24,9 +29,11 @@ function Header() {
   const handleLogin = () => {
     navigate("/login");
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const response = await logoutApi();
+    console.log(response);
     sessionStorage.removeItem("role");
-    // setCustomerName("");
+    setCustomerName("");
     setLogout(!logout);
   };
   const handleNavigateToHome = () => {
@@ -39,6 +46,11 @@ function Header() {
     navigate("/user");
   };
   const handleNavigateToAboutUs = () => {
+    navigate("/aboutus");
+  };
+  const handleOpenMenu = () => {
+    setOpenMenu(!openMenu);
+    console.log(openMenu)
   }
   return (
     <header>
@@ -53,14 +65,38 @@ function Header() {
             <li onClick={handleNavigateToHome}>Home</li>
             <li onClick={handleNavigateToCart}>Cart</li>
             <li onClick={handleNavigateToAboutUs}>About</li>
+            <li onClick={handleNavigateToAboutUs}>Contact</li>
           </ul>
         </div>
         <div>
-          {logout ? <ul>
-            <li onClick={handleLogin}>Login</li>
-          </ul> : <ul>
-            <li onClick={handleLogout}>Logout</li>
-          </ul>}
+          <span onClick={handleNavigateToUser}>{customerName}</span>
+          <div>
+            {logout ? (
+              <ul>
+                <li onClick={handleLogin}>Login</li>
+              </ul>
+            ) : (
+              <ul>
+                <li onClick={handleLogout}>Logout</li>
+              </ul>
+            )}
+            <button onClick={handleOpenMenu} className={openMenu ? `${style.openMenu}` : ""}>
+              <Arrow />
+            </button>
+          </div>
+        </div>
+        <div className={openMenu ? `${style.buttonInSmSize}` : ""}>
+          <div>
+            <button onClick={handleNavigateToHome}>
+              <Home />
+            </button>
+            <button onClick={handleNavigateToCart}>
+              <Cart />
+            </button>
+            <button onClick={handleNavigateToUser}>
+              <Account />
+            </button>
+          </div>
         </div>
       </div>
     </header>

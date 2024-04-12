@@ -8,29 +8,36 @@
   display: flex;
   margin-bottom: 5em;
   position: relative;
-  > span {
-    position: absolute;
-    top: -50%;
-  }
-  > input {
-    outline: none;
-    width: 100%;
-    background-color: #f3f2f2;
-    padding: 1em 1em 1em 1em;
-    border-radius: 10px 0px 0px 10px;
-    // &:hover {
-    //   filter: drop-shadow(1px 1px 2px gray);
-    // }
-    // &:focus {
-    //   filter: drop-shadow(1px 1px 2px gray);
-    // }
-  }
-  > button {
-    width: 10%;
-    background-color: $bg-btn-color;
-    border-radius: 0px 10px 10px 0px;
+  div {
     display: flex;
     justify-content: center;
-    align-items: center;
+    width: 100%;
+    position: relative;
+    > span {
+      position: absolute;
+      top: -50%;
+    }
+    > input {
+      outline: none;
+      width: 60%;
+      background-color: #dadada;
+      padding: 0.2em 2em 0.2em 2em;
+      border-radius: 10px;
+      font-size: small;
+      // &:hover {
+      //   filter: drop-shadow(1px 1px 2px gray);
+      // }
+      // &:focus {
+      //   filter: drop-shadow(1px 1px 2px gray);
+      // }
+    }
+    // > button {
+    //   width: 10%;
+    //   background-color: $bg-btn-color;
+    //   border-radius: 0px 10px 10px 0px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    // }
   }
 }
