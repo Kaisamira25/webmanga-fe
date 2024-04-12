@@ -67,10 +67,7 @@
   width: fit-content;
   > div {
     height: 100%;
-    // padding: 1em 1em 1em 1em;
-    // box-shadow: $box-shadow-4px;
-    // border-radius: 10px;
-    // height: 100%;
+    width: 100%;
     > .imgWrapper {
       height: 70%;
       display: flex;
@@ -108,37 +105,45 @@
       align-items: center;
       flex-direction: column;
       margin-bottom: 0.6em;
+      width: 12em;
       > a {
+        width: 100%;
         padding-top: 0.3em;
         :hover {
           color: $bg-btn-color;
         }
         > p {
-          // padding: 0px 1em 0px 1em;
-          width: 11em;
+          width: 100%;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          font-weight: 500;
-          font-size: large;
+          font-weight: 400;
+          font-size: medium;
           margin-bottom: 0;
           cursor: pointer;
         }
       }
       > div {
+        height: 1.7em;
         display: flex;
         gap: 0.3em;
         width: 100%;
-        justify-content: space-between;
+        justify-content: space-evenly;
         > span:first-child {
+          display: flex;
           color: $bg-btn-color;
           font-weight: 400;
           font-size: medium;
         }
         > span:nth-child(2) {
+          display: flex;
           text-decoration: line-through;
+          font-weight: 400;
           font-size: medium;
           opacity: 0.6;
+        }
+        p {
+          text-decoration: underline;
         }
       }
     }

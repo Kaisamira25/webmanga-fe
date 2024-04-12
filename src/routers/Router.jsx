@@ -22,7 +22,7 @@ const ResetPasswordPage = lazy(() =>
 const LoginAdminPage = lazy(() =>
   import("../apps/Authentication/Login/LoginAdmin")
 );
-
+const AboutPage = lazy(() => import("../pages/About/AboutPage"))
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -37,6 +37,7 @@ const routes = [
   { path: "/otp/resetpassword", element: <OtpResetPassword /> },
   { path: "/resetpassword", element: <ResetPasswordPage /> },
   { path: "/newpassword", element: <NewPassword /> },
+  { path: "/aboutus", element: <AboutPage />},
   // adminPage
 
   { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },
