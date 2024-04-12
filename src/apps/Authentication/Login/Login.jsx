@@ -24,7 +24,7 @@ function Login() {
 
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
-      setErrorMessage("Không để trống Email/Password");
+      setErrorMessage("Enter valid Email/Password");
       return;
     }
 
