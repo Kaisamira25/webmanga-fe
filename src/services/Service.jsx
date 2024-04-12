@@ -92,12 +92,11 @@ const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
 const fetchPublicationsBySearch = (name) => {
-  return instance.get(`api/v1/publications/search/${name}`)
-}
+  return instance.get(`api/v1/publications/search/${name}`);
+};
 const loginAdmin = (data) => {
-  return instance.post("/api/v1/admin/login", data)
-}
-
+  return instance.post("/api/v1/admin/login", data);
+};
 
 const fetchUpdateAddress = (address, phoneNumber) => {
   return instance.put("/api/v1/customer/address", {

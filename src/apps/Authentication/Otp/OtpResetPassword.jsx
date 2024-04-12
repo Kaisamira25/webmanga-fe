@@ -16,7 +16,7 @@ function OtpResetPassword() {
   };
   const handleVerifyEmail = async () => {
     const response = await verifyResetPasswordCode(otp);
-    sessionStorage.setItem("otp",otp);
+    sessionStorage.setItem("otp", otp);
     console.log(response.data.status);
     if (response.data.status == 1) {
       navigate("/newpassword");
