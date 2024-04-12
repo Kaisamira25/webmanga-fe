@@ -21,8 +21,9 @@ function ResetPassword() {
       const dataJson = JSON.stringify({
         email: email,
       });
-      navigate("/otp/resetpassword");
+     
       const response = await forgotPasswordApi(dataJson);
+       navigate("/otp/resetpassword");
       console.log(response.data.status);
     } catch (error) {
       if (error.response) {
