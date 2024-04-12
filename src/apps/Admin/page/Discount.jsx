@@ -37,10 +37,7 @@ function AdminDiscount() {
     const { name, value } = e.target;
     setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
-  useEffect(() => {
-    console.log(formData, validForm())
 
-  }, [formData])
 
   const validForm = () => {
     let isValid = true;
@@ -58,7 +55,6 @@ function AdminDiscount() {
   }
   useEffect(()=> {
     validForm()
-    console.log(formData.discountPercent)
   },[formData])
 
   const handleAddDiscount = async () => {

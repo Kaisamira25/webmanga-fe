@@ -13,19 +13,19 @@ export default function TotalPayment({
   isPaymentInfoComplete,
 }) {
   const [showFinishModal, setShowFinishModal] = useState(false);
-  const [order,setOrder]=useState();
+  const [,setOrder]=useState();
 
   const handleOpenFinishModal = async () => {
     const userData = JSON.parse(localStorage.getItem('UserData'));
     const cartData = JSON.parse(localStorage.getItem('cart'));
-    const id= jwtDecode(localStorage.getItem('refreshToken')).customerId
+    const id = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
     const payData=localStorage.getItem('Payment')
     const order = {
       totalPrice:localStorage.getItem('total'),
       phoneNumber:userData.phone,
       address:userData.address,
-      paymentStatus:true,
-      discount: localStorage.getItem('discount'),
+      paymentStatus:false,
+      discount: localStorage.getItem('discount')=== null ? null :localStorage.getItem('discount'),
       email:userData.email,
       orderItem:JSON.parse(localStorage.getItem('cart'))
     };
@@ -34,12 +34,10 @@ export default function TotalPayment({
     localStorage.removeItem('Payment')
     localStorage.removeItem('total')
     localStorage.removeItem('discount')
-    localStorage.setItem('cart','')
+    localStorage.removeItem('cart')
     setShowFinishModal(true);
   };
-  useEffect(()=>{
-    console.log(order)
-  },[order])
+ 
   return (
     <div className={style.container}>
       <div className={style.text}>

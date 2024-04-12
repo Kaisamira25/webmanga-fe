@@ -7,8 +7,8 @@ import BankValidate from "../InputValidate/BankValidate";
 
 export default function PaymentForm({ onPaymentInfoChange }) {
   const [selectedOption, setSelectedOption] = useState("Cash payment");
-  const [isInputValid, setInputValid] = useState(false);
-  const [isBankValid, setBankValid] = useState(false);
+  const [, setInputValid] = useState(false);
+  const [, setBankValid] = useState(false);
 
   const options = [
     "Cash payment",
@@ -20,9 +20,9 @@ export default function PaymentForm({ onPaymentInfoChange }) {
   const handleSelectChange = (selectedValue) => {
     setSelectedOption(selectedValue);
   };
-  useEffect(()=>{
-    localStorage.setItem('Payment',selectedOption);
-  },[selectedOption])
+  useEffect(() => {
+    localStorage.setItem("Payment", selectedOption);
+  }, [selectedOption]);
   const handleInputValidationChange = (isValid) => {
     setInputValid(isValid);
     if (

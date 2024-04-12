@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductField from "../../../components/ProductField/ProductFieldTailwind";
 import style from "./PriceTotal.module.scss";
 import TotalPayment from "./TotalPayment/TotalPayment";
-import { Link } from "react-router-dom";
-import { fetchCart, fetchProductById } from "../../../services/Service";
+import { fetchProductById } from "../../../services/Service";
 import axios from "axios";
 function PriceTotal({ cartUpdated }) {
   const [cart, setCart] = useState([]);

@@ -37,7 +37,6 @@ function Register() {
     const dataToJson = JSON.stringify(dataFromUser);
     navigate("/otp");
     const response = await registerApi(dataToJson);
-    console.log(response.data.data.email);
     sessionStorage.setItem("email", response.data.data.email);
   };
   return (

@@ -40,18 +40,19 @@ const routes = [
   // adminPage
 
   { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },
-  { path: "/admin", element: <HomeAdmin /> },
-  { path: "/admin/genre", element: <HomeAdmin /> },
-  { path: "/admin/cover", element: <HomeAdmin /> },
-  { path: "/admin/gift", element: <HomeAdmin /> },
-  { path: "/admin/discount", element: <HomeAdmin /> },
-  { path: "/admin/product", element: <HomeAdmin /> },
-  { path: "/admin/statis", element: <HomeAdmin /> },
-  { path: "/admin/type", element: <HomeAdmin /> },
-  { path: "/admin/account", element: <HomeAdmin /> },
-  { path: "/admin/order", element: <HomeAdmin /> },
-  { path: "/admin/stock", element: <HomeAdmin /> },
-  { path: "/admin/sales", element: <HomeAdmin /> },
+  { path: "/admin", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/genre", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/cover", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/gift", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/discount", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/product", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/type", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
   { path: "*", element: <ErrorPage /> },
 ];
+
 export default routes;
