@@ -28,14 +28,11 @@ function MainPublications() {
       setForcePage(0);
       // Bổ sung thêm api search sản phẩm bằng genre
       const fetchDataFromGenre = await fetchPublictionsFromGenre(genreId);
-      // console.log(fetchDataFromGenre.data.data.publications.length);
       setPageCount(
         Math.ceil(fetchDataFromGenre.data.data.publications.length / 9)
       );
       const response = await fetchPublicationContentPagingate(0, genreId);
-      // console.log(response.data.data.content);
       setPublications(response.data.data.content);
-      // setPageCount(Math.ceil(response.data.data.content.length / 9));
     }
   };
   useEffect(() => {

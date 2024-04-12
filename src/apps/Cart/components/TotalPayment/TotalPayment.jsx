@@ -24,7 +24,6 @@ export default function TotalPayment({
         {}
       );
       discount = discountRes.data.data;
-      console.log(discount);
       setIsDiscountValid(true);
       onDiscountCodeChange(discount);
     } catch (error) {

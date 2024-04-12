@@ -13,7 +13,7 @@ export default function TotalPayment({
   isPaymentInfoComplete,
 }) {
   const [showFinishModal, setShowFinishModal] = useState(false);
-  const [order,setOrder]=useState();
+  const [,setOrder]=useState();
 
   const handleOpenFinishModal = async () => {
     const userData = JSON.parse(localStorage.getItem('UserData'));
@@ -30,7 +30,6 @@ export default function TotalPayment({
       orderItem:JSON.parse(localStorage.getItem('cart'))
     };
     setOrder(order);
-    console.log(order)
     await axios.post('http://localhost:8080/api/v1/order',order);
     localStorage.removeItem('Payment')
     localStorage.removeItem('total')

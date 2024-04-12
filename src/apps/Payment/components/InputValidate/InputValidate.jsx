@@ -31,7 +31,6 @@ function InputValidate({ className, onValidationChange }) {
   const handleLoad = async (key) => {
     try {
       const decoded = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
-      console.log(decoded)
       const response = await axios.get(
         "http://localhost:8080/api/v1/customer/" + decoded,
         {}

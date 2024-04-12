@@ -2,7 +2,6 @@ import Card from "./Card";
 import style from "../scss/RelatedPublications.module.scss";
 import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { fetchAllProduct } from "../../../services/Service";
 
 function RelatedPublications() {

@@ -4,19 +4,15 @@ import Info from "./InfoSquare";
 import { useEffect, useState } from "react";
 import { fetchPublicationsDetailsInformation } from "../../../services/Service";
 
-function PublicationCard({
-  publicationsStatus,
-  priceBeforeDiscount,
-  priceAfterDiscount,
-}) {
+function PublicationCard({ priceBeforeDiscount, priceAfterDiscount }) {
   let { id } = useParams();
-  const [publicationsID, setPublicationID] = useState(() => {
+  const [publicationsID] = useState(() => {
     const parseId = parseInt(id);
     return parseId;
   });
-  const [stock, setStock] = useState(0);
+  const [stock] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [listPublications, setListPublications] = useState({});
+  const [, setListPublications] = useState({});
   const [publicationsInfo, setPublicationsInfo] = useState({});
   const [genres, setGenres] = useState([]);
   const [types, setTypes] = useState([]);
