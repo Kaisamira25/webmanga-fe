@@ -63,7 +63,8 @@ const forgotPasswordApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
 };    
 const verifyResetPasswordCode = (code) => {
-  return instance.post("/api/v1/customer/passwordResetCode", null, {
+  console.log(typeof code);
+  return instance.post("/api/v1/customer/passwordResetCode", {}, {
     params: { code: code },
   });
 };
