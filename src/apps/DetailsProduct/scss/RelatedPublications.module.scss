@@ -1,13 +1,47 @@
 @use "../../../common/variables" as *;
 @use "../../../common/responsive" as *;
 
-// .container {
-//     display: grid;
-//     grid-template-columns: repeat(1, 1fr);
-//     grid-template-rows: auto auto;
-//     padding-left: 0.5em;
-//     padding-right:0.5em;
-//     gap: 2em;
-// }  
-
-
+.container {
+    margin-bottom: 5em;
+  .sameAuthorContainer {
+    .sameAuthorWrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5em;
+      h5 {
+        color: black;
+        text-align: center;
+        font-size: large;
+        font-weight: bold;
+        min-width: 20em;
+        margin: 0 auto 2em auto;
+      }
+      .cardWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1em;
+        @include break(md) {
+          justify-content: flex-start;
+          padding: 0 3em 0 3em;
+        }
+        @include break(lg) {
+          justify-content: flex-start;
+          padding: 0 4em 0 4em;
+          gap: 2em;
+        }
+        @include break(xl) {
+          justify-content: flex-start;
+          padding: 0 5em 0 5em;
+        }
+        @include break(xxxl) {
+            justify-content: flex-start;
+            padding: 0 11em 0 11em;
+            gap: 4em;
+        }
+      }
+    }
+  }
+  .sameGenreContainer {
+  }
+}

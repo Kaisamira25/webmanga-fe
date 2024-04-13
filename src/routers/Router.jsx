@@ -1,8 +1,6 @@
 import React, { lazy } from "react";
-import DetailsProductPage from "../pages/DetailsProduct/DetailsProductPage";
-const NewPassword = lazy(() =>
-  import("../pages/ResetPassword/NewPasswordPage")
-);
+const DetailsProductPage = lazy(() => import("../pages/DetailsProduct/DetailsProductPage"))
+const NewPassword = lazy(() =>import("../pages/ResetPassword/NewPasswordPage"));
 const AdminGenre = lazy(() => import("../apps/Admin/page/Genre"));
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const PaymentPage = lazy(() => import("../pages/Payment/PaymentPage"));
@@ -11,18 +9,12 @@ const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/Otp/OTPPage")); // Đúng path rồi
-const OtpResetPassword = lazy(() =>
-  import("../pages/Otp/OtpResetPasswordPage")
-);
+const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
-const ResetPasswordPage = lazy(() =>
-  import("../pages/ResetPassword/ResetPasswordPage")
-);
-const LoginAdminPage = lazy(() =>
-  import("../apps/Authentication/Login/LoginAdmin")
-);
-const AboutPage = lazy(() => import("../pages/About/AboutPage"))
+const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
+const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"));
+const AboutPage = lazy(() => import("../pages/About/AboutPage"));
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -37,7 +29,7 @@ const routes = [
   { path: "/otp/resetpassword", element: <OtpResetPassword /> },
   { path: "/resetpassword", element: <ResetPasswordPage /> },
   { path: "/newpassword", element: <NewPassword /> },
-  { path: "/aboutus", element: <AboutPage />},
+  { path: "/aboutus", element: <AboutPage /> },
   // adminPage
 
   { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },

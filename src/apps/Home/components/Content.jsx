@@ -27,9 +27,6 @@ function Content({
     setCartList((prevCartList) => [...prevCartList, id]);
     navigate("/cart")
   };
-  // useEffect(() => {
-    
-  // },[forcePage])
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>

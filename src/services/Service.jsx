@@ -51,8 +51,8 @@ const loginApi = (data) => {
   return instance.post("/api/v1/auth/login", data);
 };
 const logoutApi = () => {
-  return instance.patch("/api/v1/auth/logout")
-}
+  return instance.patch("/api/v1/auth/logout");
+};
 const registerApi = (data) => {
   return instance.post("/api/v1/auth/register", data);
 };
@@ -61,12 +61,16 @@ const verifyOtp = (data) => {
 };
 const forgotPasswordApi = (email) => {
   return instance.post("/api/v1/customer/forgotPassword", email);
-};    
+};
 const verifyResetPasswordCode = (code) => {
   console.log(typeof code);
-  return instance.post("/api/v1/customer/passwordResetCode", {}, {
-    params: { code: code },
-  });
+  return instance.post(
+    "/api/v1/customer/passwordResetCode",
+    {},
+    {
+      params: { code: code },
+    }
+  );
 };
 const newPasswordApi = (data) => {
   return instance.post("/api/v1/customer/passwordResetNewPassword", data);
@@ -96,20 +100,17 @@ const fetchPublicationsDetailsInformation = (id) => {
   return instance.get(`/api/v1/publications/id/${id}`);
 };
 const fetchPublicationsBySearch = (name) => {
-  return instance.get(`api/v1/publications/search/${name}`)
-}
+  return instance.get(`api/v1/publications/search/${name}`);
+};
 const loginAdmin = (data) => {
-  return instance.post("/api/v1/admin/login", data)
-}
-
-
+  return instance.post("/api/v1/admin/login", data);
+};
 const fetchUpdateAddress = (address, phoneNumber) => {
   return instance.put("/api/v1/customer/address", {
     address,
     phoneNumber,
   });
 };
-
 const fetchCreateAddress = (address, phoneNumber) => {
   return instance.post("/api/v1/customer/address", {
     address,
@@ -132,7 +133,13 @@ const fetchChangePassword = (password, newPassword, confirmPassword) => {
     confirmPassword,
   });
 };
-
+const fetchPublicationsByAuthor = (authorName) => {
+  return instance.get("/api/v1/publications/author/name", {
+    params: {
+      author: authorName
+    }
+  });
+}
 export {
   logoutApi,
   loginAdmin,
@@ -145,6 +152,7 @@ export {
   fetchNewPublications,
   fetchAllPublications,
   fetchPublicationContentPagingate,
+  fetchPublicationsByAuthor,
   fetchAllProduct,
   fetchProductById,
   fetchCart,
@@ -155,7 +163,6 @@ export {
   loginApi,
   registerApi,
   verifyOtp,
-  // verifyOtpForgotPassword,
   forgotPasswordApi,
   newPasswordApi,
   fetchUpdateAddress,
