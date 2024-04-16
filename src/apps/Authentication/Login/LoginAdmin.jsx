@@ -25,6 +25,7 @@ function LoginAdmin() {
     const response = await loginAdmin(dataJson);
     if (response.data.status == 1) {
       sessionStorage.setItem("role", "ADMIN");
+      sessionStorage.setItem("accessToken", response.data.data.accessToken)
       navigate("/admin");
     } else {
       console.log("Login fail");
