@@ -6,7 +6,7 @@ function OrderData() {
   const fetchOrder = async () => {
     try {
       const token = "your_actual_access_token_value";
-      const response = await axios.get("http://localhost:8080/api/v1/order/getAll", {} );
+      const response = await axios.get("http://localhost:8080/api/v1/order/getAll", {});
       const modifiedorder = response.data.data
       setOrders(modifiedorder);
     } catch (error) {
@@ -16,13 +16,22 @@ function OrderData() {
   const getOrderbyId = async (id) => {
     try {
       const token = "your_actual_access_token_value";
-      const response = await axios.get("http://localhost:8080/api/v1/order/" + id, {} );
+      const response = await axios.get("http://localhost:8080/api/v1/order/" + id, {});
       return response.data.data;
     } catch (error) {
       return null;
     }
   }
-  
+  const updateOrder = async (orders) => {
+    try {
+      const token = "your_actual_access_token_value";
+      const response = await axios.put("http://localhost:8080/api/v1/order/update" , orders);
+      return response.data.data;
+    } catch (error) {
+      return null;
+    }
+  }
+
   useEffect(() => {
     fetchOrder();
   }, []);
@@ -30,7 +39,8 @@ function OrderData() {
   return {
     orders,
     fetchOrder,
-    getOrderbyId
+    getOrderbyId,
+    updateOrder
   }; // Trả về cả fetchGenres và addGenres
 }
 
