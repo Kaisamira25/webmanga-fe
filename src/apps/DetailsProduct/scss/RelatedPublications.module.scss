@@ -20,12 +20,30 @@
       display: flex;
       flex-direction: column;
       row-gap: 1.5em;
-      max-width: 94em;
+      max-width: 14em;
       overflow-x: hidden;
+      transition: transform 0.4s;
+      @include break(md) {
+        max-width: 30em;
+      }
+      @include break(lg) {
+        max-width: 46em;
+      }
+      @include break(xl) {
+        max-width: 62em;
+      }
+      @include break(xxl) {
+        max-width: 78em;
+      }
+      @include break(xxxl) {
+        max-width: 94em;
+      }
       .cardWrapper {
         display: flex;
         justify-content: flex-start;
         gap: 2em;
+        width: 100%;
+        // overflow-x: scroll;
       }
       .navigateButton {
         position: absolute;

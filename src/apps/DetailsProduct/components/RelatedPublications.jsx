@@ -1,44 +1,60 @@
 import style from "../scss/RelatedPublications.module.scss";
 import React, { useState, useEffect, useRef } from "react";
 import Card from "./Card";
+import ArrowBack from "../../../assets/icons/ArrowBack";
+import ArrowForward from "../../../assets/icons/ArrowForward";
 function RelatedPublications({
   publicationsByAuthorName,
   handleChoosenOtherPublications,
 }) {
+  // const sameAuthorWrapper = useRef(null);
+  // const cardWrapper = useRef(null);
+  // let scrollPosition = 0;
+
   const handleNavigateToDetails = (id) => {
     handleChoosenOtherPublications(id);
   };
 
-  // const sameAuthorWrapper = document.querySelector(
-  //   `.${style.sameAuthorWrapper}`
-  // );
-  // const cardWrapper = document.querySelector(`.${style.cardWrapper}`);
-  // let scrollPosition = 0;
   // const updateScroll = () => {
-  //   cardWrapper.style.transform = `translateX(${scrollPosition}px)`;
+  //   window.requestAnimationFrame(() => {
+  //     cardWrapper.current.style.transform = `translateX(${scrollPosition}px)`;
+  //   });
   // };
-  // sameAuthorWrapper.addEventListener("scroll", function () {
-  //   scrollPosition = sameAuthorWrapper.scrollLeft;
-  //   updateScroll();
-  // });
-  // const prevButton = document.querySelector(`.${style.prevButton}`);
-  // const nextButton = document.querySelector(`${style.nextButton}`);
 
-  // prevButton.addEventListener("click", function () {
-  //   scrollPosition -= 200; // Di chuyển sang trái
+  // const handleScroll = () => {
+  //   scrollPosition = sameAuthorWrapper.current.scrollLeft;
   //   updateScroll();
-  // });
+  // };
 
-  // nextButton.addEventListener("click", function () {
-  //   scrollPosition += 200; // Di chuyển sang phải
+  // const handlePrevClick = () => {
+  //   scrollPosition -= 256; // Adjust this value as needed
   //   updateScroll();
-  // });
+  // };
+
+  // const handleNextClick = () => {
+  //   scrollPosition += 256; // Adjust this value as needed
+  //   updateScroll();
+  // };
+
+  // useEffect(() => {
+  //   sameAuthorWrapper.current.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     sameAuthorWrapper.current.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
   return (
     <div className={style.container}>
       <div className={style.sameAuthorContainer}>
         <h5>SAME AUTHOR</h5>
-        <div className={style.sameAuthorWrapper}>
-          <div className={style.cardWrapper}>
+        <div
+          className={style.sameAuthorWrapper}
+          // ref={sameAuthorWrapper}
+          // onScroll={handleScroll}
+        >
+          <div
+            className={style.cardWrapper}
+            //  ref={cardWrapper}
+          >
             {Array.isArray(publicationsByAuthorName) &&
               publicationsByAuthorName.map((item, index) => (
                 <Card
@@ -51,8 +67,18 @@ function RelatedPublications({
               ))}
           </div>
           <div className={style.navigateButton}>
-            <button className={style.prevButton}>Prev</button>
-            <button className={style.nextButton}>Next</button>
+            <button
+              className={style.prevButton}
+              // onClick={handlePrevClick}
+            >
+              <ArrowBack />
+            </button>
+            <button
+              className={style.nextButton}
+              // onClick={handleNextClick}
+            >
+              <ArrowForward />
+            </button>
           </div>
         </div>
       </div>
