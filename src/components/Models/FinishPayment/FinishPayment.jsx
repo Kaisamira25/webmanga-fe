@@ -10,6 +10,9 @@ function FinishPayment({ onClose }) {
   const handleGoToHomePage = () => {
     navigate("/home");
   };
+  const handleComplete =() =>{
+    navigate("/user")
+  }
   return (
     <>
       <Modal show={true} onHide={onClose}>
@@ -18,7 +21,7 @@ function FinishPayment({ onClose }) {
         </Modal.Header>
         <Modal.Body>Cảm ơn bạn vì đã mua hàng!</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" onClick={handleComplete}>
             Hoàn tất
           </Button>
           <Button variant="primary" onClick={handleGoToHomePage}>
