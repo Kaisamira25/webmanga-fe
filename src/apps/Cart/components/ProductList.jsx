@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../../components/ProductCart/Product";
 import style from "./ProductList.module.scss";
-import {
-  fetchCart,
-  fetchDeleteCart,
-  fetchProductById,
-  fetchUpdateCart,
-} from "../../../services/Service";
-import axios from "axios";
+import { fetchProductById } from "../../../services/Service";
 function ProductList({ onCartUpdate }) {
   const [cart, setCart] = useState([]);
   const [qtyChanged, setQtyChanged] = useState(false);

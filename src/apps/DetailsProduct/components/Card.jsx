@@ -1,14 +1,14 @@
 import style from "../scss/Card.module.scss";
 import IconEye from "../../../assets/icons/EyeIcon";
 import { Link } from "react-router-dom";
-function Card({ imgUrl, name, beforeDiscount, afterDiscount }) {
+function Card({ imgUrl }) {
   return (
     <article className={style.container}>
       <div className={style.imageWrapper}>
         <img src={imgUrl} alt="" />
       </div>
       <div className={style.viewDetail}>
-        <Link to={'/detail'}>
+        <Link to={"/detail"}>
           <IconEye />
           <span>More detail</span>
         </Link>

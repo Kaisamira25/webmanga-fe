@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
@@ -24,7 +24,6 @@ export default function TotalPayment({
         {}
       );
       discount = discountRes.data.data;
-      console.log(discount);
       setIsDiscountValid(true);
       onDiscountCodeChange(discount);
     } catch (error) {

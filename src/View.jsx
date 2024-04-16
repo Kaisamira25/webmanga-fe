@@ -1,11 +1,13 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
 import routes from "./routers/Router";
 import Header from "./components/header/Header";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 function Views() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const shouldDisplayHeaderFooter = ![
     "/login",
@@ -28,6 +30,22 @@ function Views() {
     "/admin/stock",
     "/admin/sales",
   ].includes(location.pathname);
+
+  useEffect(() => {
+    const role = sessionStorage.getItem("role");
+    const isAdmin = role === "ADMIN";
+
+    if (
+      !isAdmin &&
+      routes.some(
+        (route) =>
+          route.adminRequired && location.pathname.startsWith(route.path)
+      )
+    ) {
+      navigate("/home");
+    }
+  }, [location.pathname]);
+
   return (
     <div>
       {shouldDisplayHeaderFooter && <Header />}

@@ -10,7 +10,6 @@ function OtpVerify() {
   const handleChangeValueOtp = (e) => {
     setOtp(e.target.value);
   };
-  console.log(otp);
   const handleResend = () => {};
   const handleBackToRegister = () => {
     sessionStorage.removeItem("email");

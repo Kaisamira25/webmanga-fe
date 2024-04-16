@@ -3,7 +3,7 @@ import LoginButton from "../Login/components/LoginButton";
 import OtpInput from "./components/OtpInput";
 import OtpStyle from "./scss/Otp.module.scss";
 import { useState } from "react";
-import { verifyOtp, verifyResetPasswordCode } from "../../../services/Service";
+import { verifyResetPasswordCode } from "../../../services/Service";
 function OtpResetPassword() {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
@@ -16,8 +16,7 @@ function OtpResetPassword() {
   };
   const handleVerifyEmail = async () => {
     const response = await verifyResetPasswordCode(otp);
-    sessionStorage.setItem("otp",otp);
-    console.log(response.data.status);
+    sessionStorage.setItem("otp", otp);
     if (response.data.status == 1) {
       navigate("/newpassword");
     } else {
