@@ -1,49 +1,68 @@
 import FaceBookIcon from "../assets/icons/LogosFacebook";
 import XIcon from "../assets/icons/TwitterIcon";
 import MapIcon from "../assets/icons/MapPointIcon";
-import PhoneIcon from '../assets/icons/PhoneIcon'
-import TikTokIcon from '../assets/icons/LogosTiktokIcon'
+import PhoneIcon from "../assets/icons/PhoneIcon";
+import TikTokIcon from "../assets/icons/LogosTiktokIcon";
+import FooterStyle from "./scss/Footer.module.scss";
+import { useNavigate } from "react-router-dom";
 function Footer() {
+  const navigate = useNavigate();
+  const handleNavigateToHome = () => {
+    navigate("/home");
+  };
+  const handleNavigateToCart = () => {
+    navigate("/cart");
+  };
+  const handleNavigateToUser = () => {
+    navigate("/user");
+  };
+  const handleNavigateToAboutUs = () => {
+    navigate("/aboutus");
+  };
   return (
-    <footer className="w-full bg-white100 h-auto flex p-10 md:p-20">
-      <div className="basis-1/2">
-        <p className="font-bold text-2xl">LAINOVO</p>
-        <div className="flex flex-col text-md">
-          <a href="/">Home</a>
-          <a href="/">Publications</a>
-          <a href="/">Cart</a>
-          <a href="/">User Info</a>
-        </div>
-      </div>
-      <div className="basis-1/2">
-        <p className="font-bold text-2xl">About Us</p>
-        <div className="text-md flex-col space-y-3">
-          <div className="flex items-center gap-4">
+    <footer className={FooterStyle.footerWrapper}>
+      <p>LAINOVO</p>
+      <div className={FooterStyle.footerContent}>
+        <div className={FooterStyle.leftContent}>
+          <div>
             <span>
-              <MapIcon />
+              Address:{" "}
+              <span>
+                8/4C1 tổ 10 ấp 3 xã Xuân Thới Sơn, huyện Hóc Môn, tp Hồ Chí Minh
+              </span>
             </span>
-            <p>8/4C1 tổ 20 ấp 30 huyện Miền Đất Hứa, thành phố Trên Không</p>
-          </div>
-          <p className="flex gap-4 text-xl">
-            <a href="/">
-              <FaceBookIcon />
-            </a>
-            <a href="/">
-              <XIcon />
-            </a>
-            <a href="/">
-                <TikTokIcon/>
-            </a>
-          </p>
-          <div className="flex items-center gap-4">
             <span>
-                <PhoneIcon/>
+              Hotline: <span>0988681424</span>
             </span>
-            <p>0988681424</p>
+            <span>
+              Email: <span>thienthan726@gmail.com</span>
+            </span>
           </div>
         </div>
+        <div className={FooterStyle.rightContent}>
+          <div>
+            <ul>
+              <li onClick={handleNavigateToHome}>Home</li>
+              <li onClick={handleNavigateToCart}>Cart</li>
+              <li onClick={handleNavigateToAboutUs}>About</li>
+              <li onClick={handleNavigateToUser}>Account</li>
+            </ul>
+          </div>
+          <div className={FooterStyle.anotherChannel}>
+            <ul>
+              <li>
+                <FaceBookIcon />
+              </li>
+              <li>
+                <TikTokIcon />
+              </li>
+              <li>
+                <XIcon />
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      {/* demo */}
     </footer>
   );
 }

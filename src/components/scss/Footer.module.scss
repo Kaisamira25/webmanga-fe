@@ -1,0 +1,54 @@
+@use "../../common/variables" as *;
+@use "../../common/responsive" as *;
+
+.footerWrapper {
+  width: 100%;
+  padding: 2em 4em 2em 2em;
+  background-color: $bg-color;
+  p {
+    font-weight: 500;
+    font-size: x-large;
+  }
+  .footerContent {
+    display: flex;
+    .leftContent {
+      div {
+        display: flex;
+        flex-direction: column;
+        > span {
+          font-size: large;
+          font-weight: 500;
+          > span {
+            font-size: medium;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .rightContent {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      > div {
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1;
+          li {
+            cursor: pointer;
+            &:hover {
+              color: $bg-btn-color;
+            }
+          }
+        }
+      }
+      .anotherChannel {
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+        }
+      }
+    }
+  }
+}
