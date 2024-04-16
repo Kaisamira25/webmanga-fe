@@ -6,11 +6,13 @@ import WideVariety from "../../../assets/icons/WideVariety";
 import Money from "../../../assets/icons/Money";
 import Contact from "../../../assets/icons/Contact";
 import CardPublications from "./CardPublications";
+import { useNavigate } from "react-router-dom";
 import {
   fetchNewPublications,
   fetchHotPublications,
 } from "../../../services/Service";
 function AboveContent() {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [publications, setPublications] = useState([]);
   const items = [
@@ -35,12 +37,38 @@ function AboveContent() {
     const response = await items[index].apiCall();
     setPublications(response.data.data);
   };
+  const handlePublicationGetId = (id) => {
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    let itemAlreadyInCart = false;
+
+    const updatedCartItems = existingCartItems.map((item) => {
+      if (item.id === id) {
+        item.qty += 1;
+        itemAlreadyInCart = true;
+      }
+      return item;
+    });
+
+    if (!itemAlreadyInCart) {
+      const newItem = {
+        id: id,
+        qty: 1,
+      };
+      updatedCartItems.push(newItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+
+    // setCartList((prevCartList) => [...prevCartList, id]);
+    navigate("/cart");
+  };
   return (
     <div className={AboveContentStyle.aboveContainer}>
       <div className={AboveContentStyle.introduce}>
         {introduce.map((item, index) => (
           <Introduce key={index} label={item.label} icon={item.icon} />
-        ))} 
+        ))}
       </div>
       <div className={AboveContentStyle.selectionWrapper}>
         <ul>
@@ -58,15 +86,16 @@ function AboveContent() {
         </ul>
       </div>
       <div className={AboveContentStyle.abovePublicationsContainer}>
-          {publications.map((item, index) => (
-            <CardPublications
-              id={item.publicationsId}
-              imgSrc={item.imageURL}
-              name={item.publicationsName}
-              key={index}
-              priceBeforeDiscount={item.unitPrice}
-            />
-          ))}
+        {publications.map((item, index) => (
+          <CardPublications
+            id={item.publicationsId}
+            imgSrc={item.imageURL}
+            name={item.publicationsName}
+            key={index}
+            priceBeforeDiscount={item.unitPrice}
+            onClickGetItem={handlePublicationGetId}
+          />
+        ))}
       </div>
     </div>
   );
