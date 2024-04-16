@@ -5,7 +5,6 @@ import style from "./TotalPayment.module.scss";
 import FinishPayment from "../../../../components/Models/FinishPayment/FinishPayment";
 import { useState } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 
 export default function TotalPayment({
   textInfo,
@@ -13,28 +12,31 @@ export default function TotalPayment({
   isPaymentInfoComplete,
 }) {
   const [showFinishModal, setShowFinishModal] = useState(false);
-  const [,setOrder]=useState();
-
+  const [order,setOrder]=useState();
+  const clearLocal =() =>{
+    localStorage.removeItem('Payment')
+    localStorage.removeItem('total')
+    localStorage.removeItem('discount')
+    localStorage.removeItem('cart')
+  }
   const handleOpenFinishModal = async () => {
     const userData = JSON.parse(localStorage.getItem('UserData'));
-    const cartData = JSON.parse(localStorage.getItem('cart'));
-    const id = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
-    const payData=localStorage.getItem('Payment')
+    const id = sessionStorage.getItem('accessToken');
+    
     const order = {
       totalPrice:localStorage.getItem('total'),
+      fullname:userData.fullname,
       phoneNumber:userData.phone,
       address:userData.address,
       paymentStatus:false,
       discount: localStorage.getItem('discount')=== null ? null :localStorage.getItem('discount'),
       email:userData.email,
-      orderItem:JSON.parse(localStorage.getItem('cart'))
+      orderItem:JSON.parse(localStorage.getItem('cart')),
+      status:id === null ? false : true
     };
     setOrder(order);
     await axios.post('http://localhost:8080/api/v1/order',order);
-    localStorage.removeItem('Payment')
-    localStorage.removeItem('total')
-    localStorage.removeItem('discount')
-    localStorage.removeItem('cart')
+    clearLocal();
     setShowFinishModal(true);
   };
  

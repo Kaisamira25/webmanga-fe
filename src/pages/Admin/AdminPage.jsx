@@ -19,8 +19,8 @@ function HomeAdmin() {
         <div className="w-auto ">
             <HeaderAdmin />
             <div>
-                <div className="flex    ">
-                    <div className="w-2/12 "><MenuAdmin /></div>
+                <div className="flex">
+                    <div className="w-2/12"><MenuAdmin /></div>
                     <div className="ms-3 w-10/12 ">
                         {currentPath === "/admin" && <Genre />}
                         {currentPath === "/admin/genre" && <Genre />}
