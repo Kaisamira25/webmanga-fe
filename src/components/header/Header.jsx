@@ -30,7 +30,11 @@ function Header() {
   };
   const handleLogout = () => {
     sessionStorage.removeItem("role");
+    sessionStorage.removeItem("accessToken");
     setCustomerName("");
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
     setLogout(!logout);
   };
   const handleNavigateToHome = () => {
