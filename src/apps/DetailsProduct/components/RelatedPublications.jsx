@@ -78,6 +78,7 @@ function RelatedPublications({
               // onClick={handleNextClick}
             >
               <ArrowForward />
+              {/* adfa */}
             </button>
           </div>
         </div>
