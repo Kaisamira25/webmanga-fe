@@ -14,7 +14,7 @@ function AdminProduct() {
   const [info, setInfo] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
   const [newImageUrls, setNewImageUrls] = useState([]);
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedCovers, setSelectedCovers] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
@@ -86,7 +86,7 @@ function AdminProduct() {
     const selected = publics.find((p) => p.publicationsID === id);
     if (selected) {
       const formattedArrivalDay = formatDate(selected.arrivalDay);
-      setFormData((prevFormData) => ({
+      setFormData((prevFormData) => ({    
         ...prevFormData,
         arrivalDay: formattedArrivalDay,
         publicationsName: selected.publicationsName,
@@ -103,7 +103,6 @@ function AdminProduct() {
         {}
       );
       setImageClick(imageEP.data.data);
-
       // Gửi yêu cầu HTTP để lấy thông tin về các thể loại của cuốn sách
       const genresEP = await GetGenreSelect(id);
       const matchingGenresSL = genresSL.filter((genreSL) => {
@@ -526,45 +525,44 @@ function AdminProduct() {
                   <div className="relative p-6 flex-auto">
                     {imageClick.length === 0
                       ? selectedImages.map((image, index) => (
-                          <div
-                            key={index}
-                            className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
-                            style={{ width: "170px", height: "180px" }}
+                        <div
+                          key={index}
+                          className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
+                          style={{ width: "170px", height: "180px" }}
+                        >
+                          <img
+                            src={URL.createObjectURL(image)}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                          <button
+                            onClick={() => handleRemoveImage(index)}
+                            className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
+                            type="button"
                           >
-                            <img
-                              src={URL.createObjectURL(image)}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                            <button
-                              onClick={() => handleRemoveImage(index)}
-                              className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
-                              type="button"
-                            >
-                              X
-                            </button>
-                          </div>
-                        ))
+                            X
+                          </button>
+                        </div>
+                      ))
                       : imageClick.map((image, index) => (
-                          <div
-                            key={index}
-                            className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
-                            style={{ width: "170px", height: "180px" }}
+                        <div
+                          key={index}
+                          className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
+                          style={{ width: "170px", height: "180px" }}
+                        >
+                          <img
+                            src={image.imageURL}
+                            style={{ width: "100%", height: "100%" }}
+                          />
+                          <button
+                            onClick={() => handleRemoveImage(index)}
+                            className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
+                            type="button"
                           >
-                            <img
-                              src={image.imageURL}
-                              style={{ width: "100%", height: "100%" }}
-                            />
-                            <button
-                              onClick={() => handleRemoveImage(index)}
-                              className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
-                              type="button"
-                            >
-                              X
-                            </button>
-                          </div>
-                        ))}
+                            X
+                          </button>
+                        </div>
+                      ))}
                   </div>
-                  {/*footer*/}
                   <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                     <button
                       className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

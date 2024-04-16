@@ -7,6 +7,7 @@ function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [fullname, setFullname] = useState("");
   const [emailError, setEmailError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [phoneError, setPhoneError] = useState("");
@@ -22,6 +23,9 @@ function InputValidate({ className, onValidationChange }) {
       case "phone":
         setPhone(value);
         break;
+      case "fullname":
+        setFullname(value);
+        break;
       default:
         break;
     }
@@ -29,7 +33,7 @@ function InputValidate({ className, onValidationChange }) {
   };
 
   const handleLoad = async (key) => {
-    try {
+    if (sessionStorage.getItem('accessToken') !== null) {
       const decoded = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
       const response = await axios.get(
         "http://localhost:8080/api/v1/customer/" + decoded,
@@ -46,11 +50,29 @@ function InputValidate({ className, onValidationChange }) {
         case "phone":
           setPhone(customer.addresses.phoneNumber);
           break;
+        case "Fullname":
+          setPhone("");
+          break;
         default:
           break;
       }
-    } catch (error) {
-      console.error("Error fetching customer data:", error);
+    } else {
+      switch (key) {
+        case "email":
+          setEmail("");
+          break;
+        case "address":
+          setAddress("");
+          break;
+        case "phone":
+          setPhone("");
+          break;
+        case "Fullname":
+          setPhone("");
+          break;
+        default:
+          break;
+      }
     }
   };
   useEffect(() => {
@@ -59,8 +81,8 @@ function InputValidate({ className, onValidationChange }) {
     handleLoad("phone");
   }, []);
   useEffect(() => {
-    localStorage.setItem("UserData", JSON.stringify({ email, address, phone }));
-  }, [email, phone, address]);
+    localStorage.setItem("UserData", JSON.stringify({ email, address, phone, fullname }));
+  }, [email, phone, address, fullname]);
   const validateInput = (key, value) => {
     switch (key) {
       case "email":
@@ -86,6 +108,7 @@ function InputValidate({ className, onValidationChange }) {
       email.trim() &&
       address.trim() &&
       phone.trim() &&
+      fullname.trim() &&
       !emailError &&
       !addressError &&
       !phoneError;
@@ -98,11 +121,22 @@ function InputValidate({ className, onValidationChange }) {
     emailError,
     addressError,
     phoneError,
+    fullname,
     onValidationChange,
   ]);
 
   return (
     <div className={className}>
+      <div>
+        <InputField
+          label={"Name"}
+          type={"text"}
+          placeholder={"Fullname"}
+          value={fullname}
+          onChange={(e) => handleChange("fullname", e.target.value)}
+        />
+
+      </div>
       <div>
         <InputField
           label={"Email"}

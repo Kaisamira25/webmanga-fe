@@ -1,55 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import InputAdmin from "../componnents/InputAdmin";
-import _Select from "../componnents/Select_Statis";
-import TableAdmin from "../componnents/TableAdmin";
-
-
+import Select from "react-tailwindcss-select";
+import moment from "moment/moment";
+import ReveData from "../Services/ReveneuData";
 
 function Reveneu() {
-    // const [xData,setXData] =useState([]);
-    const xData = ['Page A', 'Page B', 'Page C', 'Page D', 'Page E', 'Page F', 'Page G'];
-    const options = [
-        { value: "month", label: "Month" },
-        { value: "year", label: "Year" }
-    ];
+    const [formData, setFormData] = useState({
+        dayFrom: null,
+        dayTo: null
+    })
+    const [data, setData] = useState([]);
+    const { fetchReve, order } = ReveData();
+    const [xData, setXdata] = useState([]);
     const input = [
-        { type: "date", names: "From", id: "DayFrom", placeholder: "Day From" },
-        { type: "date", names: "To", id: "DayTo", placeholder: "Day To" }
+        { type: "date", names: "dayFrom", id: "DayFrom", placeholder: "Day From" },
+        { type: "date", names: "dayTo", id: "DayTo", placeholder: "Day To" }
     ]
-    const TH = [
-        { names: "Id" },
-        { names: "Total Price" },
-        { names: "Status" },
-        { names: "Discount" },
-    ]
-    const TD = [
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 1, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 2, total:1000000,status:"Đang lên đơn",discount:"" },
-        { id: 3, total:1000000,status:"Đang lên đơn",discount:"" },
-    
-    ]
+    const handleDayToChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    }
+    const convertDateFormat = (dateString) => {
+        return moment(dateString, 'DD/MM/YYYY').toISOString();
+    }
 
+    useEffect(() => {
+        const newData = [];
+        if (formData.dayTo !== null && formData.dayFrom !== null) {
+            const dayFrom = convertDateFormat(formData.dayFrom);
+            const dayTo = convertDateFormat(formData.dayTo);
+            const filteredOrders = order.filter(item => {
+                const orderDate = new Date(item.orderDay);
+                return orderDate >= dayFrom && orderDate <= dayTo;
+            });
+            console.log(filteredOrders);
+        } else if (formData.dayTo !== null && formData.dayFrom === null) {
 
+        } else {
+            order.forEach(order => {
+                const orderDate = new Date(order.orderDay); // Chuyển đổi ngày đơn hàng thành kiểu Date
+                let existingDataIndex = newData.findIndex(data => data.xData === orderDate.getDate());
+                if (existingDataIndex !== -1) {
+                    // Nếu ngày của đơn hàng đã tồn tại trong newData, cập nhật giá trị
+                    newData[existingDataIndex].data += order.totalPrice;
+                } else {
+                    // Nếu ngày của đơn hàng chưa tồn tại trong newData, thêm dữ liệu mới
+                    newData.push({ xData: orderDate.getDate(), data: order.totalPrice });
+                }
+            });
+        }
 
+        newData.sort((a, b) => a.xData - b.xData)
+        setData(prevData => [...prevData, ...newData]);
+        console.log(newData)
+    }, [formData.dayTo, formData.dayFrom, order])
+    const xDataArray = data.map(item => item.xData);
+    const dataArray = data.map(item => item.data);
     return (
         <div>
             <div className="mt-4">
@@ -60,63 +67,36 @@ function Reveneu() {
             <div>
                 <div className="w-full">
                     <div className=" w-12/12 py-4  ">
-                        <div className="w-11/12 flex py-2">
-                            <div>
-                                <span className="font-bold ">Oder by</span>
-                                <br />
-                                <div className="w-12/12 flex px-4 py-2">
-                                    {input.map((field, index) => (
-                                        <InputAdmin
-                                            key={index}
-                                            type={field.type}
-                                            name={field.names}
-                                            id={field.id}
-                                            placeholder={field.placeholder}
-                                        />
-                                    ))}
-                                    <div className="w-3/12">
-                                        <_Select options={options} />
-                                    </div>
-                                </div>
+                        <div>
+                            <span className="font-bold ">Oder by</span>
+                            <br />
+                            <div className="w-12/12 flex  py-2">
+                                {input.map((field, index) => (
+                                    <InputAdmin
+                                        key={index}
+                                        type={field.type}
+                                        name={field.names}
+                                        id={field.id}
+                                        placeholder={field.placeholder}
+                                        onChange={handleDayToChange}
+                                    />
+                                ))}
                             </div>
+
                         </div>
-                        <div className="w-12/12 h-10 border-1  border-black flex py-5">
-                            <div className="w-5/12 me-40">
-                                <LineChart
-                                    xAxis={[{ data: xData, scaleType: 'point', label: 'Order' }]}
-                                    series={[
-                                        {
-                                            data: [60, 40, 70, 80, 100, 180, 105],
-                                            label: 'Order',
-                                            area: true
-                                        },
-                                    ]}
-                                    width={800}
-                                    height={500} 
-                                />
-                            </div>
-                            <div className="w-4/12 ms-20 mt-9">
-                                <div className="w-12/12 mb-2 mt-8 h-96 border-2 border-black overflow-y-scroll">
-                                    <table className="w-full h-80 border-s border-r border-black">
-                                        <thead className="border-b border-black bg-gray-500 uppercase ">
-                                            <tr>
-                                                {TH.map((item, index) => (
-                                                    <th className=" text-center font-bold border-r border-black" key={index}>{item.names}</th>
-                                                ))}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {TD.map((items, rowIndex) => (
-                                                <tr key={rowIndex} name={rowIndex} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                                                    {Object.values(items).map((value, colIndex) => (
-                                                        <td className="text-center border-r border-black" key={colIndex}>{value}</td>
-                                                    ))}
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div className="w-12/12 h-10 py-5 ms-3">
+                            <LineChart
+                                xAxis={[{ data: xDataArray, scaleType: 'point', label: 'Order', position: "right" }]}
+                                series={[
+                                    {
+                                        data: dataArray,
+                                        area: true,
+                                    },
+                                ]}
+                                width={1200}
+                                height={600}
+
+                            />
                         </div>
                     </div>
                 </div>
