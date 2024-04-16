@@ -27,6 +27,7 @@ function LoginAdmin() {
     if (response.data.status == 1) {
       sessionStorage.setItem("accessToken", response.data.data.accessToken);
       sessionStorage.setItem("role", "ADMIN");
+      sessionStorage.setItem("accessToken", response.data.data.accessToken)
       navigate("/admin");
     } else {
       console.log("Login fail");

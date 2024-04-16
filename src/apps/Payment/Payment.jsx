@@ -9,7 +9,6 @@ function Payment() {
   const handlePaymentInfoChange = (isValid) => {
     setPaymentInfoComplete(isValid);
   };
-  // console.log(isPaymentInfoComplete);
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
