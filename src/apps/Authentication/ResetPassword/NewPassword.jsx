@@ -12,6 +12,25 @@ function NewPassword() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleResetPassword = async () => {
+    const containsNumber = /\d/;
+    if (!containsNumber.test(newPassword)) {
+      setErrorMessage("Password must contain at least one digit");
+      return;
+    }
+    const containsUpcase = /[A-Z]/;
+    if (!containsUpcase.test(newPassword)) {
+      setErrorMessage("Password must contain at least one CAPITAL letter ");
+      return;
+    }
+    const containsLowpercase = /[a-z]/;
+    if (!containsLowpercase.test(newPassword)) {
+      setErrorMessage("Password must contain at least one lowercase letter ");
+      return;
+    }
+    if (newPassword.length < 8) {
+      setErrorMessage("Password must have at least 8 characters");
+      return;
+    }
     if (newPassword !== repeatPassword) {
       setErrorMessage("Password and repeated password do not match");
       return;
@@ -26,7 +45,7 @@ function NewPassword() {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 502) {
-          setErrorMessage("Email is incorrect");
+          setErrorMessage("password is not in the correct format");
         }
       }
     }
