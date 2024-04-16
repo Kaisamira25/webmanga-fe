@@ -14,7 +14,7 @@ function ResetPassword() {
   };
   const handleGetOtpCodeToVerifyEmail = async () => {
     if (!email.trim() || !email.trim()) {
-      setErrorMessage(" Enter valid email");
+      setErrorMessage("Enter valid Email");
       return;
     }
     try {
