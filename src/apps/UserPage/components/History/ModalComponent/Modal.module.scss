@@ -1,14 +1,18 @@
-@use "../../../../common/variables" as *;
+@use "../../../../../common/variables" as *;
 
-.history {
+.modal {
   width: $width-90;
   margin: $margin-20px auto;
+  max-height: 90vh;
   overflow-x: auto;
+  overflow-y: auto;
+  background-color: white;
 
   h1 {
     font-size: $font-size-32px;
     text-align: center;
     margin-bottom: $margin-bottom-20px;
+    margin-top: $margin-top-20px;
   }
 
   table {
@@ -26,6 +30,15 @@
 
     th {
       background-color: $bg-color-green-400;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    th:not(:last-child),
+    td:not(:last-child) {
+      border-right: 1px solid #ccc;
     }
   }
 

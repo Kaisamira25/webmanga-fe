@@ -105,6 +105,7 @@ const fetchPublicationsBySearch = (name) => {
 const loginAdmin = (data) => {
   return instance.post("/api/v1/admin/login", data);
 };
+
 const fetchUpdateAddress = (address, phoneNumber) => {
   return instance.put("/api/v1/customer/address", {
     address,
@@ -140,6 +141,11 @@ const fetchPublicationsByAuthor = (authorName) => {
     }
   });
 }
+
+const fetchHistory = (customerId) => {
+  return instance.get(`/api/v1/order/getOrder/${customerId}`);
+};
+
 export {
   logoutApi,
   loginAdmin,
@@ -170,4 +176,5 @@ export {
   fetchUserInfo,
   fetchUserAddress,
   fetchChangePassword,
+  fetchHistory,
 };
