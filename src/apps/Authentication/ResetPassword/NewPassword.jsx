@@ -9,23 +9,39 @@ function NewPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const otp = sessionStorage.getItem("otp");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleResetPassword = async () => {
-    const dataJson = JSON.stringify({
-      code: otp,
-      newPassword: newPassword,
-    });
-    const response = await newPasswordApi(dataJson);
-    navigate("/login");
+    if (newPassword !== repeatPassword) {
+      setErrorMessage("Password and repeated password do not match");
+      return;
+    }
+    try {
+      const dataJson = JSON.stringify({
+        code: otp,
+        newPassword: newPassword,
+      });
+      const response = await newPasswordApi(dataJson);
+      navigate("/login");
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 502) {
+          setErrorMessage("Email is incorrect");
+        }
+      }
+    }
   };
   const handleChangeNewPassword = (e) => {
     setNewPassword(e.target.value);
+    setErrorMessage("");
   };
   const handleRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+    setErrorMessage("");
   };
   const handleNavigateToLogin = (e) => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
   return (
     <div className={NewPasswordStyle.newPasswordWrapper}>
       <div className={NewPasswordStyle.newPasswordForm}>
@@ -46,6 +62,9 @@ function NewPassword() {
               placeholder={"Repeat password"}
               onChangeValue={handleRepeatPassword}
             />
+          </div>
+          <div className={NewPasswordStyle.errorMessage}>
+            {errorMessage && <p>{errorMessage}</p>}
           </div>
           <div className={NewPasswordStyle.newPasswordButton}>
             <LoginButton

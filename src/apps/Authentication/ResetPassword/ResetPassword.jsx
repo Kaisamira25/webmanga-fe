@@ -7,17 +7,29 @@ import { forgotPasswordApi } from "../../../services/Service";
 function ResetPassword() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChangeValue = (e) => {
     setEmail(e.target.value);
   };
   const handleGetOtpCodeToVerifyEmail = async () => {
-    const dataJson = JSON.stringify({
-      email: email,
-    });
-    navigate("/otp/resetpassword");
-    const response = await forgotPasswordApi(dataJson);
-    console.log(response.data)
+    if (!email.trim() || !email.trim()) {
+      setErrorMessage("Enter valid Email");
+      return;
+    }
+    try {
+      const dataJson = JSON.stringify({
+        email: email,
+      });
+      const response = await forgotPasswordApi(dataJson);
+      navigate("/otp/resetpassword");
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          setErrorMessage("	Email does not exist");
+        }
+      }
+    }
   };
 
   const handleNavigateBack = () => {
@@ -30,6 +42,9 @@ function ResetPassword() {
           <p>Veriy account</p>
           <p>We need to know that you are the owner of this account.</p>
           <LoginInput label={"Email"} onChangeValue={handleChangeValue} />
+          <div className={ResetPasswordStyle.errorMessage}>
+            {errorMessage && <p>{errorMessage}</p>}
+          </div>
           <div className={ResetPasswordStyle.resetPasswordButtonWrapper}>
             <LoginButton title={"Back"} handleAction={handleNavigateBack} />
             <LoginButton

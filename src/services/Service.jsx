@@ -147,7 +147,6 @@ const fetchHistory = (customerId) => {
 };
 
 export {
-  logoutApi,
   loginAdmin,
   fetchPublicationsBySearch,
   verifyResetPasswordCode,
@@ -177,4 +176,5 @@ export {
   fetchUserAddress,
   fetchChangePassword,
   fetchHistory,
+  logoutApi
 };

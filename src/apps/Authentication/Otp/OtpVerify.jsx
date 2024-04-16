@@ -6,9 +6,12 @@ import { useState } from "react";
 import { verifyOtp } from "../../../services/Service";
 function OtpVerify() {
   const [otp, setOtp] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
   const handleChangeValueOtp = (e) => {
     setOtp(e.target.value);
+    setErrorMessage("");
   };
   const handleResend = () => {};
   const handleBackToRegister = () => {
@@ -16,17 +19,25 @@ function OtpVerify() {
     navigate("/register");
   };
   const handleVerifyEmail = async () => {
-    const emailFromSessionStorge = sessionStorage.getItem("email");
-    const dataJson = JSON.stringify({
-      otp: otp,
-      email: emailFromSessionStorge,
-    });
-    const response = await verifyOtp(dataJson);
-    if (response.data.status == 1) {
-      sessionStorage.removeItem("email");
-      navigate("/login");
-    } else {
-      console.log("Wrong otp for email try again");
+    try {
+      const emailFromSessionStorge = sessionStorage.getItem("email");
+      const dataJson = JSON.stringify({
+        otp: otp,
+        email: emailFromSessionStorge,
+      });
+      const response = await verifyOtp(dataJson);
+      if (response.data.status == 1) {
+        sessionStorage.removeItem("email");
+        navigate("/login");
+      } 
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          setErrorMessage(
+            "Authentication failed, please check the code again or click resend "
+          );
+        }
+      }
     }
   };
   return (
@@ -35,6 +46,9 @@ function OtpVerify() {
         <p>OTP</p>
         <form action="">
           <OtpInput onChangeAction={handleChangeValueOtp} />
+          <div className={OtpStyle.errorMessage}>
+            {errorMessage && <p>{errorMessage}</p>}
+          </div>
           <p>
             If you still have not received the OTP code,{" "}
             <a onClick={handleResend}>Click here</a> to resend.
