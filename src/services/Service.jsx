@@ -146,6 +146,9 @@ const fetchHistory = (customerId) => {
   return instance.get(`/api/v1/order/getOrder/${customerId}`);
 };
 
+const createOrder = () => {
+  return instance.post()
+}
 export {
   loginAdmin,
   fetchPublicationsBySearch,
