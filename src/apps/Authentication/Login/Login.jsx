@@ -24,7 +24,7 @@ function Login() {
 
   const handleLogin = async () => {
     if (!email.trim() || !password.trim()) {
-      setErrorMessage(" Enter valid email/Passw");
+      setErrorMessage(" Enter valid email/Password");
       return;
     }
 

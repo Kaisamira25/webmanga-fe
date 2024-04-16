@@ -50,6 +50,9 @@ const fetchDeleteCart = (orderId, order) => {
 const loginApi = (data) => {
   return instance.post("/api/v1/auth/login", data);
 };
+const logoutApi = () => {
+  return instance.patch("/api/v1/auth/logout");
+};
 const registerApi = (data) => {
   return instance.post("/api/v1/auth/register", data);
 };
@@ -157,4 +160,5 @@ export {
   fetchUserInfo,
   fetchUserAddress,
   fetchChangePassword,
+  logoutApi
 };

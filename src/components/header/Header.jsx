@@ -50,8 +50,8 @@ function Header() {
   };
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
-    console.log(openMenu)
-  }
+    console.log(openMenu);
+  };
   return (
     <header>
       <div>
@@ -80,7 +80,10 @@ function Header() {
                 <li onClick={handleLogout}>Logout</li>
               </ul>
             )}
-            <button onClick={handleOpenMenu} className={openMenu ? `${style.openMenu}` : ""}>
+            <button
+              onClick={handleOpenMenu}
+              className={openMenu ? `${style.openMenu}` : ""}
+            >
               <Arrow />
             </button>
           </div>
