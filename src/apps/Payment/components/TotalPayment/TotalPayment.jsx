@@ -35,7 +35,6 @@ export default function TotalPayment({
       status:id === null ? false : true
     };
     setOrder(order);
-    console.log(order)
     await axios.post('http://localhost:8080/api/v1/order',order);
     clearLocal();
     setShowFinishModal(true);

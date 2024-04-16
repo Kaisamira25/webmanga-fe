@@ -97,6 +97,9 @@ header {
           &:nth-child(3) {
             opacity: 0.7;
           }
+          &:nth-child(4) {
+            opacity: 0.7;
+          }
         }
       }
       @include break(md) {
@@ -110,6 +113,10 @@ header {
         font-weight: 500;
         width: 5em;
         cursor: pointer;
+        visibility: hidden;
+        @include break(md) {
+          visibility: visible;
+        }
       }
       div {
         display: flex;
@@ -151,7 +158,6 @@ header {
     }
     > div:nth-child(4) {
       height: 2em;
-      // background-color: $bg-btn-color;
       position: absolute;
       width: 100%;
       bottom: 0;
@@ -173,7 +179,7 @@ header {
         }
       }
       &.buttonInSmSize {
-        transform: translateY(130%);
+        transform: translateY(20%);
         opacity: 1;
       }
     }

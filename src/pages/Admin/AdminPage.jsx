@@ -22,16 +22,16 @@ function HomeAdmin() {
                 <div className="flex">
                     <div className="w-2/12"><MenuAdmin /></div>
                     <div className="ms-3 w-10/12 ">
-                        {currentPath === "/Admin" && <Genre />}
-                        {currentPath === "/Admin/Genre" && <Genre />}
-                        {currentPath === "/Admin/Gift" && <AdminGift/>}
-                        {currentPath === "/Admin/Discount" && <AdminDiscount />}
-                        {currentPath === "/Admin/Cover" && <AdminCover />}
-                        {currentPath === "/Admin/Product" && <AdminProduct />}
-                        {currentPath === "/Admin/Type" && <AdminType />}
-                        {currentPath === "/Admin/Order" && <Invoice/> }
-                        {currentPath === "/Admin/Account" && <Account/>}
-                        {currentPath === "/Admin/Sales" && <Reveneu />}
+                        {currentPath === "/admin" && <Genre />}
+                        {currentPath === "/admin/genre" && <Genre />}
+                        {currentPath === "/admin/gift" && <AdminGift/>}
+                        {currentPath === "/admin/discount" && <AdminDiscount />}
+                        {currentPath === "/admin/cover" && <AdminCover />}
+                        {currentPath === "/admin/product" && <AdminProduct />}
+                        {currentPath === "/admin/type" && <AdminType />}
+                        {currentPath === "/admin/order" && <Invoice/> }
+                        {currentPath === "/admin/account" && <Account/>}
+                        {currentPath === "/admin/sales" && <Reveneu />}
                     </div>
                 </div>
             </div>

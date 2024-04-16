@@ -13,7 +13,7 @@ function Content({
   pageCount,
   handlePageChange,
   publications,
-  forcePage
+  forcePage,
 }) {
   const navigate = useNavigate();
 
@@ -24,12 +24,31 @@ function Content({
     return navigate(`/detail/${id}`);
   };
   const handlePublicationGetId = (id) => {
-    setCartList((prevCartList) => [...prevCartList, id]);
-    navigate("/cart")
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    let itemAlreadyInCart = false;
+
+    const updatedCartItems = existingCartItems.map((item) => {
+      if (item.id === id) {
+        item.qty += 1;
+        itemAlreadyInCart = true;
+      }
+      return item;
+    });
+
+    if (!itemAlreadyInCart) {
+      const newItem = {
+        id: id,
+        qty: 1,
+      };
+      updatedCartItems.push(newItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+
+    navigate("/cart");
   };
-  // useEffect(() => {
-    
-  // },[forcePage])
+
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>

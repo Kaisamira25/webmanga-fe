@@ -15,15 +15,15 @@
     border-radius: 5px;
     > p {
       text-align: center;
-      font-size: xx-large;
+      font-size: small;
       margin-bottom: 1em;
       color: white;
     }
     > form {
-        display: flex;
-        flex-direction: column;
-        gap: 2.5em;
-        margin-bottom: 0.7em;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5em;
+      margin-bottom: 0.7em;
     }
     > p:nth-child(3) {
       font-size: small;
@@ -33,4 +33,10 @@
       column-gap: 0.5em;
     }
   }
+}
+.errorMessage {
+  color: #eb233e;
+  font-size: small;
+  text-decoration: none;
+  padding-bottom: 1px;
 }

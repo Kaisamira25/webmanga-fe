@@ -9,26 +9,26 @@ function SideBar() {
         {
             name: "Product", svg: <BookIcon />,
             LiField: [
-                { name: "Manage Genre",link:"/Admin/Genre"},
-                { name: "Manage Cover",link:"/Admin/Cover"},
-                { name: "Manage Gift",link:"/Admin/Gift" },
-                { name: "Manage Type" ,link:"/Admin/Type"},
-                { name: "Manage Book" ,link:"/Admin/Product"},
-                { name: "Manage Discount" ,link:"/Admin/Discount"},
+                { name: "Manage Genre",link:"/admin/genre"},
+                { name: "Manage Cover",link:"/admin/cover"},
+                { name: "Manage Gift",link:"/admin/gift" },
+                { name: "Manage Type" ,link:"/admin/type"},
+                { name: "Manage Book" ,link:"/admin/product"},
+                { name: "Manage Discount" ,link:"/admin/discount"},
             ]
         },
         {
             name: "Account", svg: <AdminIcon />,
             LiField: [
-                { name: "Manage Customer" ,link:"/Admin/Customer"},
-                { name: "Manage User" ,link:"/Admin/Account"}
+                { name: "Manage Customer" ,link:"/admin/customer"},
+                { name: "Manage User" ,link:"/admin/account"}
             ]
         },
         {
             name: "Statis", svg: <StatisIcon />,
             LiField: [
-                { name: "Invoice Statistics" ,link:"/Admin/Order"},
-                { name: "Revenue Statistics" ,link:"/Admin/Sales"}
+                { name: "Invoice Statistics" ,link:"/admin/order"},
+                { name: "Revenue Statistics" ,link:"/admin/sales"}
             ]
         },
     ];

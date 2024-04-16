@@ -7,6 +7,7 @@ import Account from "../../assets/icons/User";
 import Arrow from "../../assets/icons/ArrowDown";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
+import { logoutApi } from "../../services/Service";
 function Header() {
   const [logout, setLogout] = useState(true);
   const [customerName, setCustomerName] = useState("");
@@ -28,9 +29,15 @@ function Header() {
   const handleLogin = () => {
     navigate("/login");
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const response = await logoutApi();
+    console.log(response);
     sessionStorage.removeItem("role");
+    sessionStorage.removeItem("accessToken");
     setCustomerName("");
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
     setLogout(!logout);
   };
   const handleNavigateToHome = () => {
@@ -42,11 +49,12 @@ function Header() {
   const handleNavigateToUser = () => {
     navigate("/user");
   };
-  const handleNavigateToAboutUs = () => {};
+  const handleNavigateToAboutUs = () => {
+    navigate("/aboutus");
+  };
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
-    console.log(openMenu)
-  }
+  };
   return (
     <header>
       <div>
@@ -60,6 +68,7 @@ function Header() {
             <li onClick={handleNavigateToHome}>Home</li>
             <li onClick={handleNavigateToCart}>Cart</li>
             <li onClick={handleNavigateToAboutUs}>About</li>
+            <li onClick={handleNavigateToAboutUs}>Contact</li>
           </ul>
         </div>
         <div>
@@ -74,20 +83,23 @@ function Header() {
                 <li onClick={handleLogout}>Logout</li>
               </ul>
             )}
-            <button onClick={handleOpenMenu} className={openMenu ? `${style.openMenu}` : ""}>
+            <button
+              onClick={handleOpenMenu}
+              className={openMenu ? `${style.openMenu}` : ""}
+            >
               <Arrow />
             </button>
           </div>
         </div>
         <div className={openMenu ? `${style.buttonInSmSize}` : ""}>
           <div>
-            <button>
+            <button onClick={handleNavigateToHome}>
               <Home />
             </button>
-            <button>
+            <button onClick={handleNavigateToCart}>
               <Cart />
             </button>
-            <button>
+            <button onClick={handleNavigateToUser}>
               <Account />
             </button>
           </div>

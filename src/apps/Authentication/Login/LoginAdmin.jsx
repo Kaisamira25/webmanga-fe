@@ -23,8 +23,11 @@ function LoginAdmin() {
     };
     const dataJson = JSON.stringify(data);
     const response = await loginAdmin(dataJson);
+    console.log(response.data);
     if (response.data.status == 1) {
+      sessionStorage.setItem("accessToken", response.data.data.accessToken);
       sessionStorage.setItem("role", "ADMIN");
+      sessionStorage.setItem("accessToken", response.data.data.accessToken)
       navigate("/admin");
     } else {
       console.log("Login fail");
