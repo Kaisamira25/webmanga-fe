@@ -15,7 +15,7 @@ function Publications() {
   });
   const [stock, setStock] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [listPublications, setListPublications] = useState({});
+  // const [listPublications, setListPublications] = useState({});
   const [publicationsInfo, setPublicationsInfo] = useState({});
   const [genres, setGenres] = useState([]);
   const [types, setTypes] = useState([]);
@@ -23,15 +23,28 @@ function Publications() {
   const [publicationsByAuthor, setPublicationsByAuthor] = useState({});
   useEffect(() => {
     const fetchPublicationsDetails = async (id) => {
-      const publicationsDetailResponse = await fetchPublicationsDetailsInformation(id);
+      const publicationsDetailResponse =
+        await fetchPublicationsDetailsInformation(id);
       const authorName = publicationsDetailResponse.data.data.author;
-      const publicationsByAuthorResponse = await fetchPublicationsByAuthor(authorName);
-      const publicationsByAuthor = publicationsByAuthorResponse.data.data.filter(item => item.publicationsID !== id);
+      const publicationsByAuthorResponse = await fetchPublicationsByAuthor(
+        authorName
+      );
+      const publicationsByAuthor =
+        publicationsByAuthorResponse.data.data.filter(
+          (item) => item.publicationsID !== id
+        );
+      // if (publicationsByAuthor.length > 5) {
+      // let getFivePublications = publicationsByAuthor.slice(0, 5);
+      // setPublicationsByAuthor(getFivePublications);
+      // } else {
+      // setPublicationsByAuthor(publicationsByAuthor);
+      // }
       // Set state cho các state
+      setPublicationsByAuthor(publicationsByAuthor);
       setPublicationsInfo(publicationsDetailResponse.data.data);
+      setStock(publicationsDetailResponse.data.data.stock);
       setGenres(publicationsDetailResponse.data.data.genres);
       setTypes(publicationsDetailResponse.data.data.types[0]);
-      setPublicationsByAuthor(publicationsByAuthor);
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
@@ -71,7 +84,7 @@ function Publications() {
   };
   const handleChoosenOtherPublications = (id) => {
     setPublicationID(id);
-  }
+  };
   return (
     <div className={style.container}>
       <div className={style.publicationCardWrapper}>
@@ -94,7 +107,10 @@ function Publications() {
         />
       </div>
       <div className={style.relatedPublications}>
-        <RelatedPublications publicationsByAuthorName={publicationsByAuthor} handleChoosenOtherPublications={handleChoosenOtherPublications}/>
+        <RelatedPublications
+          publicationsByAuthorName={publicationsByAuthor}
+          handleChoosenOtherPublications={handleChoosenOtherPublications}
+        />
       </div>
     </div>
   );

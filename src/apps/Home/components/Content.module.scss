@@ -4,32 +4,23 @@
 
 
 .wrapperContent {
-  display: flex;
-  flex-direction: column;
-
   .container {
-    background-color: #f0f0f0;
-    margin: auto;
-    padding-top: 3em;
+    max-width: 26em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    margin: auto;
     gap: 2em;
+    @include break(md) {
+      max-width: 40em;
+    }
     @include break(lg) {
-      padding-left: 15em;
-      padding-right: 15em;
+      max-width: 56em;
     }
     @include break(xl) {
-      
-      justify-content: center;
+      max-width: 70em;
     }
     @include break(xxl) {
-      justify-content: left;
-    }
-    @include break(xxxl) {
-      padding-left: 15em;
-      padding-right: 15em;
-      justify-content: left;
+      max-width: 84em;
     }
   }
   > div:nth-child(2) {

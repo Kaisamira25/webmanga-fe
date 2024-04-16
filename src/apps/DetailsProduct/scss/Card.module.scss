@@ -2,11 +2,11 @@
 @use "../../../common/responsive" as *;
 
 .container {
-  height: 20em;
+  height: 27em;
   width: 14em;
   cursor: pointer;
   > .imageWrapper {
-    height: inherit;
+    height: 20em;
     width: inherit;
     position: relative;
     &::after {
@@ -23,8 +23,19 @@
       background-color: rgba(255, 255, 255, 0.4);
     }
     img {
-      height: inherit;
+      height: 20em;
       width: inherit;
+    }
+  }
+  > .infoPublicationsWrapper {
+    p {
+      font-weight: 500;
+      transition: color 0.3s;
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+      &:hover {
+        color: $bg-btn-color;
+      }
     }
   }
 }

@@ -4,41 +4,38 @@
 .container {
     margin-bottom: 5em;
   .sameAuthorContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    h5 {
+      color: black;
+      text-align: center;
+      font-size: large;
+      font-weight: bold;
+      min-width: 20em;
+      margin: 0 auto 2em auto;
+    }
     .sameAuthorWrapper {
       display: flex;
       flex-direction: column;
       row-gap: 1.5em;
-      h5 {
-        color: black;
-        text-align: center;
-        font-size: large;
-        font-weight: bold;
-        min-width: 20em;
-        margin: 0 auto 2em auto;
-      }
+      max-width: 94em;
+      overflow-x: hidden;
       .cardWrapper {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        gap: 1em;
-        @include break(md) {
-          justify-content: flex-start;
-          padding: 0 3em 0 3em;
-        }
-        @include break(lg) {
-          justify-content: flex-start;
-          padding: 0 4em 0 4em;
-          gap: 2em;
-        }
-        @include break(xl) {
-          justify-content: flex-start;
-          padding: 0 5em 0 5em;
-        }
-        @include break(xxxl) {
-            justify-content: flex-start;
-            padding: 0 11em 0 11em;
-            gap: 4em;
-        }
+        justify-content: flex-start;
+        gap: 2em;
+      }
+      .navigateButton {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        width: 108em;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 50%;
       }
     }
   }

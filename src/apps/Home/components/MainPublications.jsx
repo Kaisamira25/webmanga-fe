@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Categories from "./Categories";
 import Content from "./Content";
 import SearchBar from "./SearchBar";
+import mainPublicationsStyle from "../scss/MainPublications.module.scss"
 
 import {
   fetchAllPublications,
@@ -109,8 +110,10 @@ function MainPublications() {
   }, [search]);
   return (
     <div>
-      <Categories onCategorySelect={handleSelectGenre} />
-      <SearchBar handleSearch={handleSearch} />
+      <div className={mainPublicationsStyle.search_filter}>
+        <SearchBar handleSearch={handleSearch} />
+        <Categories onCategorySelect={handleSelectGenre} />
+      </div>
       <Content
         pageCount={pageCount}
         handlePageChange={handlePageChange}
