@@ -2,42 +2,20 @@
 @use "../../../common/responsive" as *;
 
 .searchBarWrapper {
-  // background-color: $bg-btn-color;
-  height: 3em;
-  padding: 0px 2em 0px 2em;
-  display: flex;
-  margin-bottom: 5em;
-  position: relative;
-  div {
-    display: flex;
-    justify-content: center;
+  > div {
     width: 100%;
-    position: relative;
-    > span {
-      position: absolute;
-      top: -50%;
-    }
     > input {
+      width: 100%;
       outline: none;
-      width: 60%;
-      background-color: #dadada;
-      padding: 0.2em 2em 0.2em 2em;
+      padding: 0.5em 1em 0.5em 1em;
+      background-color: $bg-btn-color;
+      border: 2px solid white;
+      color: white;
       border-radius: 10px;
-      font-size: small;
-      // &:hover {
-      //   filter: drop-shadow(1px 1px 2px gray);
-      // }
-      // &:focus {
-      //   filter: drop-shadow(1px 1px 2px gray);
-      // }
+      &::placeholder {
+        color: white;
+        opacity: 0.8;
+      }
     }
-    // > button {
-    //   width: 10%;
-    //   background-color: $bg-btn-color;
-    //   border-radius: 0px 10px 10px 0px;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    // }
   }
 }

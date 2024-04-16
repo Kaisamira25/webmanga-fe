@@ -46,12 +46,9 @@ function Content({
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
-    // setCartList((prevCartList) => [...prevCartList, id]);
     navigate("/cart");
   };
-  // useEffect(() => {
 
-  // },[forcePage])
   return (
     <div className={style.wrapperContent}>
       <div className={style.container}>

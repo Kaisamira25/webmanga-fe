@@ -4,11 +4,7 @@ function SearchBar({ handleSearch }) {
   return (
     <div className={style.searchBarWrapper}>
       <div>
-        <span>Search</span>
-        <input type="text" onChange={(e) => handleSearch(e)} />
-        {/* <button>
-        <IconArrow />
-      </button> */}
+        <input type="text" onChange={(e) => handleSearch(e)} placeholder="Search"/>
       </div>
     </div>
   );

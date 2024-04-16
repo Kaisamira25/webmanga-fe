@@ -15,6 +15,7 @@ function AboveContent() {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [publications, setPublications] = useState([]);
+  const [cartList, setCartList] = useState([]);
   const items = [
     { label: "NEW", apiCall: () => fetchNewPublications() },
     { label: "BEST SELLER", apiCall: () => fetchHotPublications() },
@@ -32,6 +33,9 @@ function AboveContent() {
     };
     callApiNewPublications();
   }, []);
+  const handlePublicationId = (id) => {
+    return navigate(`/detail/${id}`);
+  };
   const handleCallApi = async (index) => {
     setActiveIndex(index);
     const response = await items[index].apiCall();
@@ -60,8 +64,8 @@ function AboveContent() {
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
-    // setCartList((prevCartList) => [...prevCartList, id]);
-    navigate("/cart");
+    setCartList((prevCartList) => [...prevCartList, id]);
+    navigate("/cart")
   };
   return (
     <div className={AboveContentStyle.aboveContainer}>
@@ -86,16 +90,17 @@ function AboveContent() {
         </ul>
       </div>
       <div className={AboveContentStyle.abovePublicationsContainer}>
-        {publications.map((item, index) => (
-          <CardPublications
-            id={item.publicationsId}
-            imgSrc={item.imageURL}
-            name={item.publicationsName}
-            key={index}
-            priceBeforeDiscount={item.unitPrice}
-            onClickGetItem={handlePublicationGetId}
-          />
-        ))}
+          {publications.map((item, index) => (
+            <CardPublications
+              id={item.publicationsId}
+              imgSrc={item.imageURL}
+              name={item.publicationsName}
+              key={index}
+              priceBeforeDiscount={item.unitPrice}
+              onClickNavigate={handlePublicationId}
+              onClickGetItem={handlePublicationGetId}
+            />
+          ))}
       </div>
     </div>
   );
