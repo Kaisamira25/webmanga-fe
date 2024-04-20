@@ -18,7 +18,7 @@ function PublicationCard({
   handleIncreaseQuantity,
   handleAddToCart,
 }) {
-  console.log(types[0])
+  console.log(types[0]);
   return (
     <div className={style.wrapper}>
       <div className={style.imageAndInfo}>
@@ -75,8 +75,9 @@ function PublicationCard({
               </div>
               <div className={style.type}>
                 <select name="type" id="">
-                  <option value="Special">Special</option>
-                  <option value="Regular">Regular</option>
+                  {types.map((type, index) => (
+                    <option key={index} value={type}>{types}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -87,13 +88,11 @@ function PublicationCard({
           </div>
 
           <div className={style.type}>
-            {types.map((type, index) => (
-              <select name="type" key={index}>
-                <option value={type[index]}>
-                  {type}
-                </option>
-              </select>
-            ))}
+            {/* {types.map((type, index) => ( */}
+            <select name="type">
+              <option>{types[0]}</option>
+            </select>
+            {/* ))} */}
           </div>
           <div className={style.quantity}>
             <div className="quantity">
