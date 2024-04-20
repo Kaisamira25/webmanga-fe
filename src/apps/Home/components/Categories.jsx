@@ -31,7 +31,7 @@ function Categories({ onCategorySelect }) {
   };
   return (
     <div className={style.categoriesWrapper} onClick={toggleCategories}>
-      <button onClick={handleOpenFilter}>
+      <button onClick={handleOpenFilter} className={selectGenreId !== null ? `${style.active}` : ""}>
         {
           selectGenreId == null ? <FilterOff /> : <FilterOn />
         }

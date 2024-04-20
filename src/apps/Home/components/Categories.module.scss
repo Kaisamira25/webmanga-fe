@@ -6,7 +6,7 @@
   justify-content: flex-end;
   > button {
     height: 2.5em;
-    background-color: $bg-btn-color;
+    background-color: #5eb192;
     display: flex;
     align-items: center;
     padding: 0 0.5em 0 0.5em;
@@ -15,9 +15,11 @@
     color: white;
     gap: 0.3em;
     outline: none;
-    &:hover,
-    &:focus {
-      background-color: #33795f;
+    &:hover {
+      background-color: #469175;
+    }
+    &.active {
+      background-color: #469175;
     }
   }
   > div {
@@ -25,30 +27,34 @@
     top: 100%;
     z-index: 1;
     right: 0;
-    display: flex;
-    padding: 0.5em;
     width: 100%;
-    justify-content: center;
     > div {
       display: flex;
       flex-wrap: wrap;
-      gap: 1em;
-      padding: 0.5em;
+      padding: 1em;
       background-color: $bg-btn-color;
       border-radius: 10px;
-      max-width: 70em;
-      max-height: 70em;
+      max-width: 100%;
+      max-height: 72em;
+      box-sizing: border-box;
+      row-gap: 1em;
       button {
         background-color: $bg-btn-color;
+        width: calc(100% / 2);
         padding: 0.2em 0.4em 0.2em 0.4em;
         border-radius: 7px;
         color: white;
-        border: 1px solid white;
         transition: background-color 0.3s;
+        @include break(md) {
+          width: calc(100% / 3);
+        }
+        @include break(xl) {
+          width: calc(100% / 4);
+        }
         &:hover {
           background-color: $bg-color;
           color: black;
-          border: 1px solid $bg-color;
+          // border: 1px solid $bg-color;
         }
         &.isSelected {
           background-color: $bg-color;

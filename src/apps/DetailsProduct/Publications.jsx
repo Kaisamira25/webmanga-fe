@@ -44,10 +44,11 @@ function Publications() {
       setPublicationsInfo(publicationsDetailResponse.data.data);
       setStock(publicationsDetailResponse.data.data.stock);
       setGenres(publicationsDetailResponse.data.data.genres);
-      setTypes(publicationsDetailResponse.data.data.types[0]);
+      setTypes(publicationsDetailResponse.data.data.types);
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
+  console.log(publicationsInfo.types)
   const handleAddToCart = () => {
     const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
