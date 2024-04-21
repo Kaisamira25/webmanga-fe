@@ -2,51 +2,98 @@
 @use "../../common/responsive" as *;
 
 .footerWrapper {
-  width: 100%;
-  padding: 2em 4em 2em 2em;
-  background-color: $bg-color;
-  p {
-    font-weight: 500;
-    font-size: x-large;
+  background-color: $bg-btn-color;
+  padding: 2em 1em;
+  h1 {
+    color: white;
   }
-  .footerContent {
-    display: flex;
-    .leftContent {
-      div {
+  .infoWrapper {
+    @include break(lg) {
+      display: flex;
+      justify-content: space-between;
+    }
+    .footerInfomation {
+      border-bottom: 1px solid $bg-color;
+      padding-bottom: 1em;
+      @include break(lg) {
+        border: none;
+        padding: 0;
+      }
+      > div {
         display: flex;
         flex-direction: column;
-        > span {
-          font-size: large;
-          font-weight: 500;
-          > span {
-            font-size: medium;
-            font-weight: 400;
-          }
+        gap: 1.5em;
+        span {
+          column-gap: 0.5em;
+          display: flex;
+          color: white;
+          align-items: center;
         }
       }
     }
-    .rightContent {
+    .footerSupportAndPolicy {
       display: flex;
-      justify-content: space-evenly;
-      width: 100%;
-      > div {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      justify-content: space-between;
+      border-bottom: 1px solid $bg-color;
+      @include break(lg) {
+        border: none;
+        padding: 0;
+        justify-content: space-between;
+        width: 35em;
+      }
+      #footerSupport {
+        span {
+          color: white;
+          font-weight: 500;
+        }
         ul {
-          display: flex;
-          flex-direction: column;
-          gap: 1;
+          padding: 0;
+          margin: 0;
           li {
+            color: white;
             cursor: pointer;
+            transition: color 0.3s;
             &:hover {
-              color: $bg-btn-color;
+              color: #62be95;
             }
           }
         }
       }
-      .anotherChannel {
+      #footerPolicy {
+        span {
+          color: white;
+          font-weight: 500;
+        }
+        ul {
+          padding: 0;
+          margin: 0;
+          li {
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s;
+            &:hover {
+              color: #62be95;
+            }
+          }
+        }
+      }
+      #footerMediaSocial {
+        display: none;
+      }
+    }
+    .footerContactMedia {
+      span {
+        color: white;
+        font-weight: 500;
+      }
+      div {
         ul {
           display: flex;
-          flex-direction: column;
-          gap: 1em;
+          padding: 0.5em 0;
+          margin: 0;
+          gap: 1.5em;
         }
       }
     }

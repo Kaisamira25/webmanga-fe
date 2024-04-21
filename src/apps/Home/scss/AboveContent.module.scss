@@ -6,11 +6,14 @@
   padding-bottom: 5em;
   .introduce {
     display: flex;
-    width: 59em;
+    width: 29em;
     flex-wrap: wrap;
     margin-bottom: 2em;
     gap: 1em;
     margin: auto;
+    @include break(lg) {
+      width: 59em;
+    }
   }
   .selectionWrapper {
     padding-top: 3em;

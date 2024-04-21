@@ -18,7 +18,6 @@ function PublicationCard({
   handleIncreaseQuantity,
   handleAddToCart,
 }) {
-  console.log(types[0]);
   return (
     <div className={style.wrapper}>
       <div className={style.imageAndInfo}>
@@ -76,7 +75,7 @@ function PublicationCard({
               <div className={style.type}>
                 <select name="type" id="">
                   {types.map((type, index) => (
-                    <option key={index} value={type}>{types}</option>
+                    <option key={index} value={type}>{type}</option>
                   ))}
                 </select>
               </div>
