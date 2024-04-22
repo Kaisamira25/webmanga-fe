@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputField from "../../../../components/InputField/InputField";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import style from "./Error.module.scss";
 
 function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
@@ -33,8 +34,10 @@ function InputValidate({ className, onValidationChange }) {
   };
 
   const handleLoad = async (key) => {
-    if (sessionStorage.getItem('accessToken') !== null) {
-      const decoded = jwtDecode(sessionStorage.getItem('accessToken')).customerId;
+    if (sessionStorage.getItem("accessToken") !== null) {
+      const decoded = jwtDecode(
+        sessionStorage.getItem("accessToken")
+      ).customerId;
       const response = await axios.get(
         "http://localhost:8080/api/v1/customer/" + decoded,
         {}
@@ -81,7 +84,10 @@ function InputValidate({ className, onValidationChange }) {
     handleLoad("phone");
   }, []);
   useEffect(() => {
-    localStorage.setItem("UserData", JSON.stringify({ email, address, phone, fullname }));
+    localStorage.setItem(
+      "UserData",
+      JSON.stringify({ email, address, phone, fullname })
+    );
   }, [email, phone, address, fullname]);
   const validateInput = (key, value) => {
     switch (key) {
@@ -135,7 +141,6 @@ function InputValidate({ className, onValidationChange }) {
           value={fullname}
           onChange={(e) => handleChange("fullname", e.target.value)}
         />
-
       </div>
       <div>
         <InputField
@@ -146,7 +151,7 @@ function InputValidate({ className, onValidationChange }) {
           onChange={(e) => handleChange("email", e.target.value)}
           onLoad={() => handleLoad("email")}
         />
-        {emailError && <span>{emailError}</span>}
+        {emailError && <span className={style.Error}>{emailError}</span>}
       </div>
       <div>
         <InputField
@@ -157,7 +162,7 @@ function InputValidate({ className, onValidationChange }) {
           onChange={(e) => handleChange("address", e.target.value)}
           onLoad={() => handleLoad("address")}
         />
-        {addressError && <span>{addressError}</span>}
+        {addressError && <span className={style.Error}>{addressError}</span>}
       </div>
       <div>
         <InputField
@@ -168,7 +173,7 @@ function InputValidate({ className, onValidationChange }) {
           onChange={(e) => handleChange("phone", e.target.value)}
           onLoad={() => handleLoad("phone")}
         />
-        {phoneError && <span>{phoneError}</span>}
+        {phoneError && <span className={style.Error}>{phoneError}</span>}
       </div>
     </div>
   );

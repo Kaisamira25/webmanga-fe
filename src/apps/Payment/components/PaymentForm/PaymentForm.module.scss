@@ -22,36 +22,20 @@
       .left {
         @include flex-column(column);
         gap: $gap-value-40px;
-        width: $width-60;
+        width: 70%;
         padding: $padding-30px;
         .error {
           background-color: red;
         }
         .mapField {
           @include flex-column(column);
-          gap: $gap-value-40px;
+          gap: 4em;
         }
         @media (max-width: 768px) {
           margin: $margin-auto;
         }
       }
-      .full {
-        @include flex-column(column);
-        gap: $gap-value-40px;
-        width: $width-60;
-        padding: $padding-30px;
-        .error {
-          background-color: red;
-        }
-        .mapField {
-          @include flex-column(column);
-          gap: $gap-value-40px;
-        }
-        @media (max-width: 768px) {
-          width: $width-full;
-          margin: $margin-auto;
-        }
-      }
+      
       .right {
         @include flex-column(column);
         gap: $gap-value-40px;
