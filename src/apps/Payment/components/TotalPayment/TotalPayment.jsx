@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import TextInfo from "../../../../components/TextInfo/TextInfo";
 import ButtonInput from "../../../../components/BtnInput";
 import style from "./TotalPayment.module.scss";
 import FinishPayment from "../../../../components/Models/FinishPayment/FinishPayment";
-import { useState } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import {
+  fetchUserAddress,
+  fetchCreateAddress,
+} from "../../../../services/Service";
 
 export default function TotalPayment({
   textInfo,
@@ -13,6 +17,7 @@ export default function TotalPayment({
 }) {
   const [showFinishModal, setShowFinishModal] = useState(false);
   const [order, setOrder] = useState();
+
   const clearLocal = () => {
     sessionStorage.removeItem("Payment");
     sessionStorage.removeItem("total");
@@ -20,12 +25,29 @@ export default function TotalPayment({
     sessionStorage.removeItem("cart");
   };
   const handleOpenFinishModal = async () => {
-    const userData = JSON.parse(sessionStorage.getItem("UserData"));
+    const userData = JSON.parse(localStorage.getItem("UserData"));
     const id = sessionStorage.getItem("accessToken");
+
+    if (id) {
+      const jwtPayload = jwtDecode(id);
+      const customerId = jwtPayload.customerId;
+      try {
+        const address = await fetchUserAddress(customerId);
+        if (!address) {
+          await fetchCreateAddress(userData.address, userData.phone);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          await fetchCreateAddress(userData.address, userData.phone);
+        } else {
+          throw error;
+        }
+      }
+    }
 
     const order = {
       totalPrice: sessionStorage.getItem("total"),
-      fullname: userData.fullname,
+      fullName: userData.fullName,
       phoneNumber: userData.phone,
       address: userData.address,
       paymentStatus: false,

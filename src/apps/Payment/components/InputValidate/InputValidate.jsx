@@ -8,7 +8,7 @@ function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [fullName, setFullName] = useState("");
   const [emailError, setEmailError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [phoneError, setPhoneError] = useState("");
@@ -24,8 +24,8 @@ function InputValidate({ className, onValidationChange }) {
       case "phone":
         setPhone(value);
         break;
-      case "fullname":
-        setFullname(value);
+      case "fullName":
+        setFullName(value);
         break;
       default:
         break;
@@ -53,8 +53,8 @@ function InputValidate({ className, onValidationChange }) {
         case "phone":
           setPhone(customer.addresses.phoneNumber);
           break;
-        case "Fullname":
-          setPhone("");
+        case "fullName":
+          setFullName(customer.fullName);
           break;
         default:
           break;
@@ -70,8 +70,8 @@ function InputValidate({ className, onValidationChange }) {
         case "phone":
           setPhone("");
           break;
-        case "Fullname":
-          setPhone("");
+        case "fullName":
+          setFullName("");
           break;
         default:
           break;
@@ -82,13 +82,14 @@ function InputValidate({ className, onValidationChange }) {
     handleLoad("email");
     handleLoad("address");
     handleLoad("phone");
+    handleLoad("fullName");
   }, []);
   useEffect(() => {
-    sessionStorage.setItem(
+    localStorage.setItem(
       "UserData",
-      JSON.stringify({ email, address, phone, fullname })
+      JSON.stringify({ email, address, phone, fullName })
     );
-  }, [email, phone, address, fullname]);
+  }, [email, phone, address, fullName]);
   const validateInput = (key, value) => {
     switch (key) {
       case "email":
@@ -114,7 +115,7 @@ function InputValidate({ className, onValidationChange }) {
       email.trim() &&
       address.trim() &&
       phone.trim() &&
-      fullname.trim() &&
+      fullName.trim() &&
       !emailError &&
       !addressError &&
       !phoneError;
@@ -127,7 +128,7 @@ function InputValidate({ className, onValidationChange }) {
     emailError,
     addressError,
     phoneError,
-    fullname,
+    fullName,
     onValidationChange,
   ]);
 
@@ -137,9 +138,9 @@ function InputValidate({ className, onValidationChange }) {
         <InputField
           label={"Name"}
           type={"text"}
-          placeholder={"Fullname"}
-          value={fullname}
-          onChange={(e) => handleChange("fullname", e.target.value)}
+          placeholder={"Full Name"}
+          value={fullName}
+          onChange={(e) => handleChange("fullName", e.target.value)}
         />
       </div>
       <div>

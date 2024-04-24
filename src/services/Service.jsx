@@ -112,6 +112,7 @@ const fetchUpdateAddress = (address, phoneNumber) => {
     phoneNumber,
   });
 };
+
 const fetchCreateAddress = (address, phoneNumber) => {
   return instance.post("/api/v1/customer/address", {
     address,
@@ -137,18 +138,18 @@ const fetchChangePassword = (password, newPassword, confirmPassword) => {
 const fetchPublicationsByAuthor = (authorName) => {
   return instance.get("/api/v1/publications/author/name", {
     params: {
-      author: authorName
-    }
+      author: authorName,
+    },
   });
-}
+};
 
 const fetchHistory = (customerId) => {
   return instance.get(`/api/v1/order/getOrder/${customerId}`);
 };
 
 const createOrder = () => {
-  return instance.post()
-}
+  return instance.post();
+};
 export {
   loginAdmin,
   fetchPublicationsBySearch,
@@ -179,5 +180,5 @@ export {
   fetchUserAddress,
   fetchChangePassword,
   fetchHistory,
-  logoutApi
+  logoutApi,
 };
