@@ -36,7 +36,6 @@ function Invoice() {
         order.orderDay=new Date();
         const response = await updateOrder(order);
         if(response != null){
-            console.log(response)
             fetchOrder();
             setVali("success")
             setInfo("Update success!")
@@ -46,9 +45,7 @@ function Invoice() {
         }
 
     }
-    useEffect(() => {
-        console.log(itemList);
-    }, [itemList])
+   
     const OderTH = [
         { names: "Customer" },
         { names: "Phone Number" },

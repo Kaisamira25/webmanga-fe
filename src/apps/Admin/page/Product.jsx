@@ -272,12 +272,7 @@ function AdminProduct() {
     ) {
       setVali("error");
       setInfo("Please fill in all fields");
-    } else if (newImageUrls.length === 0) {
-      // Hiển thị cảnh báo nếu không có hình ảnh được chọn
-      setVali("error");
-      setInfo("Please select at least one image");
-    }
-
+    } 
     // Kiểm tra các phần tử trong selectedGenres
     else if (selectedGenres.length === 0) {
       // Hiển thị cảnh báo nếu không có thể loại được chọn

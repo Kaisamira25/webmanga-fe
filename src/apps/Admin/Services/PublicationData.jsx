@@ -60,7 +60,18 @@ function PublicData() {
             const token = 'your_actual_access_token_value';
             const response = await axios.put('http://localhost:8080/api/v1/publications/' + id, publics);
             const data = response.data.data
-            const responseDelImage = await axios.delete('http://localhost:8080/api/v1/images/delImage/' + id, {});
+            if(imagePaths.length !== 0){
+                const responseDelImage = await axios.delete('http://localhost:8080/api/v1/images/delImage/' + id, {});
+                const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths)
+                .then((responseImage) => {
+                    console.log(responseImage.data);
+                    return true;
+                })
+                .catch((error) => {
+                    console.error(error);
+                    return false;
+                });
+            }
             if (genres !== null) {
                 const listGenres = genres.map(genre => genre.value);
                 const genreSelectData = await GetGenreSelect(id);
@@ -101,15 +112,7 @@ function PublicData() {
                     const responseGifts = await axios.post('http://localhost:8080/api/v1/publications_gift/' + id, listGifts)
                 }
             }
-            const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths)
-                .then((responseImage) => {
-                    console.log(responseImage.data);
-                    return true;
-                })
-                .catch((error) => {
-                    console.error(error);
-                    return false;
-                });
+            
         } catch (error) {
             console.error('Error fetching publication:', error);
             return false;

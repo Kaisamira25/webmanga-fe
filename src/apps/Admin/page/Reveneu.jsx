@@ -4,12 +4,56 @@ import InputAdmin from "../componnents/InputAdmin";
 import Select from "react-tailwindcss-select";
 import moment from "moment/moment";
 import ReveData from "../Services/ReveneuData";
-
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import faker from 'faker';
+import { height } from "@mui/system";
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 function Reveneu() {
     const [formData, setFormData] = useState({
         dayFrom: null,
         dayTo: null
     })
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart',
+            },
+        },
+    };
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const xyzdata = [{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},]
+    const xydata = {
+        labels,
+        datasets: [{
+            data: xyzdata,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }
+        ],
+    };
     const [data, setData] = useState([]);
     const { fetchReve, order } = ReveData();
     const [xData, setXdata] = useState([]);
@@ -30,11 +74,15 @@ function Reveneu() {
         if (formData.dayTo !== null && formData.dayFrom !== null) {
             const dayFrom = convertDateFormat(formData.dayFrom);
             const dayTo = convertDateFormat(formData.dayTo);
+            console.log(dayFrom +'1923' + dayTo)
             const filteredOrders = order.filter(item => {
                 const orderDate = new Date(item.orderDay);
-                return orderDate >= dayFrom && orderDate <= dayTo;
+                return orderDate <= dayFrom && orderDate >= dayTo;
             });
-            console.log(filteredOrders);
+            newData.push(filteredOrders)
+            newData.sort((a, b) => a.xData - b.xData)
+            console.log(newData);
+            setData(prevData => [...prevData, ...newData]);
         } else if (formData.dayTo !== null && formData.dayFrom === null) {
 
         } else {
@@ -51,9 +99,7 @@ function Reveneu() {
             });
         }
 
-        newData.sort((a, b) => a.xData - b.xData)
-        setData(prevData => [...prevData, ...newData]);
-        console.log(newData)
+
     }, [formData.dayTo, formData.dayFrom, order])
     const xDataArray = data.map(item => item.xData);
     const dataArray = data.map(item => item.data);
@@ -85,18 +131,7 @@ function Reveneu() {
 
                         </div>
                         <div className="w-12/12 h-10 py-5 ms-3">
-                            <LineChart
-                                xAxis={[{ data: xDataArray, scaleType: 'point', label: 'Order', position: "right" }]}
-                                series={[
-                                    {
-                                        data: dataArray,
-                                        area: true,
-                                    },
-                                ]}
-                                width={1200}
-                                height={600}
-
-                            />
+                            <Line options={options} data={xydata} />;
                         </div>
                     </div>
                 </div>
