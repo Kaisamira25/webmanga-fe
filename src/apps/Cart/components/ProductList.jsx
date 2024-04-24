@@ -12,12 +12,16 @@ function ProductList({ onCartUpdate }) {
 
   const fetchCartData = async () => {
     try {
-      const cartItems = JSON.parse(localStorage.getItem("cart"));
+      const cartItems = JSON.parse(sessionStorage.getItem("cart"));
       if (cartItems && cartItems.length > 0) {
         const products = [];
         for (const item of cartItems) {
           const response = await fetchProductById(item.id);
-          const productWithQty = { ...response.data.data, qty: item.qty };
+          const productWithQty = {
+            ...response.data.data,
+            qty: item.qty,
+            type: item.type,
+          };
           products.push(productWithQty);
         }
         setCart(products);
@@ -28,7 +32,7 @@ function ProductList({ onCartUpdate }) {
   };
 
   const incDec = async (qty, dec, publicationsID) => {
-    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
 
     const index = cartItems.findIndex((item) => item.id === publicationsID);
     if (index !== -1) {
@@ -40,13 +44,13 @@ function ProductList({ onCartUpdate }) {
         } else {
           cartItems[index].qty = qty;
         }
-        localStorage.setItem("cart", JSON.stringify(cartItems));
+        sessionStorage.setItem("cart", JSON.stringify(cartItems));
         setCart([...cartItems]);
         setQtyChanged((prev) => !prev);
         onCartUpdate();
       } else {
         cartItems[index].qty += 1;
-        localStorage.setItem("cart", JSON.stringify(cartItems));
+        sessionStorage.setItem("cart", JSON.stringify(cartItems));
         setCart([...cartItems]);
         setQtyChanged((prev) => !prev);
         onCartUpdate();
@@ -59,7 +63,11 @@ function ProductList({ onCartUpdate }) {
       {cart.map((product, index) => (
         <div key={index} className={style.productField}>
           <Product
-            bookName={product.publicationsName}
+            bookName={
+              product.type === "Special"
+                ? `${product.publicationsName} - Special`
+                : product.publicationsName
+            }
             imgBook={
               product.images && product.images.length > 0
                 ? product.images[0].imageURL

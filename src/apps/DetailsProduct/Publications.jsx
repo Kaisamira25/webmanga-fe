@@ -21,6 +21,7 @@ function Publications() {
   const [types, setTypes] = useState([]);
   const [discountPrice, setDiscountPrice] = useState(130000);
   const [publicationsByAuthor, setPublicationsByAuthor] = useState({});
+  const [selectedEdition, setSelectedEdition] = useState();
   useEffect(() => {
     const fetchPublicationsDetails = async (id) => {
       const publicationsDetailResponse =
@@ -48,29 +49,52 @@ function Publications() {
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
-  console.log(publicationsInfo.types)
   const handleAddToCart = () => {
-    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
 
     let itemAlreadyInCart = false;
 
-    const updatedCartItems = existingCartItems.map((item) => {
-      if (item.id === publicationsID) {
-        item.qty += quantity;
-        itemAlreadyInCart = true;
-      }
-      return item;
-    });
+    if (selectedEdition === "Regular") {
+      const updatedCartItems = existingCartItems.map((item) => {
+        if (item.id === publicationsID && item.type === "Regular") {
+          item.qty += quantity;
+          item.type = "Regular";
+          itemAlreadyInCart = true;
+        }
+        return item;
+      });
 
-    if (!itemAlreadyInCart) {
-      const newItem = {
-        id: publicationsID,
-        qty: quantity,
-      };
-      updatedCartItems.push(newItem);
+      if (!itemAlreadyInCart) {
+        const newItem = {
+          id: publicationsID,
+          type: "Regular",
+          qty: quantity,
+        };
+        updatedCartItems.push(newItem);
+      }
+      sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      alert("Sản phẩm đã được thêm vào giỏ hàng!");
+    } else {
+      const updatedCartItems = existingCartItems.map((item) => {
+        if (item.id === publicationsID && item.type === "Special") {
+          item.qty += quantity;
+          item.type = "Special";
+          itemAlreadyInCart = true;
+        }
+        return item;
+      });
+
+      if (!itemAlreadyInCart) {
+        const newItem = {
+          id: publicationsID,
+          type: "Special",
+          qty: quantity,
+        };
+        updatedCartItems.push(newItem);
+      }
+      sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      alert("Sản phẩm đã được thêm vào giỏ hàng!");
     }
-    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
-    alert("Sản phẩm đã được thêm vào giỏ hàng!");
   };
   // change quantity
   const handleDecreaseQuantity = () => {
@@ -105,6 +129,7 @@ function Publications() {
           handleIncreaseQuantity={handleIncreaseQuantity}
           handleAddToCart={handleAddToCart}
           quantity={quantity}
+          setSelectedType={setSelectedEdition}
         />
       </div>
       <div className={style.relatedPublications}>

@@ -84,7 +84,7 @@ function InputValidate({ className, onValidationChange }) {
     handleLoad("phone");
   }, []);
   useEffect(() => {
-    localStorage.setItem(
+    sessionStorage.setItem(
       "UserData",
       JSON.stringify({ email, address, phone, fullname })
     );

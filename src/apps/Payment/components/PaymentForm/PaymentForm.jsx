@@ -11,7 +11,7 @@ export default function PaymentForm({ onPaymentInfoChange }) {
     setSelectedOption(selectedValue);
   };
   useEffect(() => {
-    localStorage.setItem("Payment", selectedOption);
+    sessionStorage.setItem("Payment", selectedOption);
   }, [selectedOption]);
   const handleInputValidationChange = (isValid) => {
     setInputValid(isValid);

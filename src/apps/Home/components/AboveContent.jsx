@@ -42,7 +42,7 @@ function AboveContent() {
     setPublications(response.data.data);
   };
   const handlePublicationGetId = (id) => {
-    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
     let itemAlreadyInCart = false;
 
     const updatedCartItems = existingCartItems.map((item) => {
@@ -61,11 +61,11 @@ function AboveContent() {
       updatedCartItems.push(newItem);
     }
 
-    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
     setCartList((prevCartList) => [...prevCartList, id]);
-    navigate("/cart")
+    navigate("/cart");
   };
   return (
     <div className={AboveContentStyle.aboveContainer}>
@@ -90,17 +90,17 @@ function AboveContent() {
         </ul>
       </div>
       <div className={AboveContentStyle.abovePublicationsContainer}>
-          {publications.map((item, index) => (
-            <CardPublications
-              id={item.publicationsId}
-              imgSrc={item.imageURL}
-              name={item.publicationsName}
-              key={index}
-              priceBeforeDiscount={item.unitPrice}
-              onClickNavigate={handlePublicationId}
-              onClickGetItem={handlePublicationGetId}
-            />
-          ))}
+        {publications.map((item, index) => (
+          <CardPublications
+            id={item.publicationsId}
+            imgSrc={item.imageURL}
+            name={item.publicationsName}
+            key={index}
+            priceBeforeDiscount={item.unitPrice}
+            onClickNavigate={handlePublicationId}
+            onClickGetItem={handlePublicationGetId}
+          />
+        ))}
       </div>
     </div>
   );

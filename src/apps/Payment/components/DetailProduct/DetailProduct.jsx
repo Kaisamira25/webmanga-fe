@@ -13,7 +13,7 @@ function DetailProduct({ isPaymentInfoComplete }) {
   }, []);
   const fetchCartData = async () => {
     try {
-      const cartItems = JSON.parse(localStorage.getItem("cart"));
+      const cartItems = JSON.parse(sessionStorage.getItem("cart"));
       if (cartItems && cartItems.length > 0) {
         const products = [];
         for (const item of cartItems) {
@@ -29,12 +29,10 @@ function DetailProduct({ isPaymentInfoComplete }) {
   };
 
   useEffect(() => {
-    const totalPrice = localStorage.getItem('total');
+    const totalPrice = sessionStorage.getItem("total");
     setTotalPrice(totalPrice);
   }, [cart]);
-  const textInfo = [
-    { title: "Total payment", price: totalPrice },
-  ];
+  const textInfo = [{ title: "Total payment", price: totalPrice }];
 
   return (
     <div className={style.container}>

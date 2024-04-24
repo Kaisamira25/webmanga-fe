@@ -1,3 +1,4 @@
+import { useState } from "react";
 import style from "../scss/PublicationCard.module.scss";
 import Info from "./InfoSquare";
 
@@ -17,6 +18,7 @@ function PublicationCard({
   handleDecreaseQuantity,
   handleIncreaseQuantity,
   handleAddToCart,
+  setSelectedType,
 }) {
   return (
     <div className={style.wrapper}>
@@ -73,9 +75,14 @@ function PublicationCard({
                 </div>
               </div>
               <div className={style.type}>
-                <select name="type" id="">
+                <select
+                  name="type"
+                  onChange={(e) => setSelectedType(e.target.value)}
+                >
                   {types.map((type, index) => (
-                    <option key={index} value={type}>{type}</option>
+                    <option key={index} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>

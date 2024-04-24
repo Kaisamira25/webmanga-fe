@@ -12,34 +12,37 @@ export default function TotalPayment({
   isPaymentInfoComplete,
 }) {
   const [showFinishModal, setShowFinishModal] = useState(false);
-  const [order,setOrder]=useState();
-  const clearLocal =() =>{
-    localStorage.removeItem('Payment')
-    localStorage.removeItem('total')
-    localStorage.removeItem('discount')
-    localStorage.removeItem('cart')
-  }
+  const [order, setOrder] = useState();
+  const clearLocal = () => {
+    sessionStorage.removeItem("Payment");
+    sessionStorage.removeItem("total");
+    sessionStorage.removeItem("discount");
+    sessionStorage.removeItem("cart");
+  };
   const handleOpenFinishModal = async () => {
-    const userData = JSON.parse(localStorage.getItem('UserData'));
-    const id = sessionStorage.getItem('accessToken');
-    
+    const userData = JSON.parse(sessionStorage.getItem("UserData"));
+    const id = sessionStorage.getItem("accessToken");
+
     const order = {
-      totalPrice:localStorage.getItem('total'),
-      fullname:userData.fullname,
-      phoneNumber:userData.phone,
-      address:userData.address,
-      paymentStatus:false,
-      discount: localStorage.getItem('discount')=== null ? null :localStorage.getItem('discount'),
-      email:userData.email,
-      orderItem:JSON.parse(localStorage.getItem('cart')),
-      status:id === null ? false : true
+      totalPrice: sessionStorage.getItem("total"),
+      fullname: userData.fullname,
+      phoneNumber: userData.phone,
+      address: userData.address,
+      paymentStatus: false,
+      discount:
+        sessionStorage.getItem("discount") === null
+          ? null
+          : sessionStorage.getItem("discount"),
+      email: userData.email,
+      orderItem: JSON.parse(sessionStorage.getItem("cart")),
+      status: id === null ? false : true,
     };
     setOrder(order);
-    await axios.post('http://localhost:8080/api/v1/order',order);
+    await axios.post("http://localhost:8080/api/v1/order", order);
     clearLocal();
     setShowFinishModal(true);
   };
- 
+
   return (
     <div className={style.container}>
       <div className={style.text}>
