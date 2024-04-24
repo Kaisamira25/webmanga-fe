@@ -39,7 +39,7 @@ function ResetPassword() {
     <div className={ResetPasswordStyle.resetPasswordWrapper}>
       <div className={ResetPasswordStyle.resetPasswordForm}>
         <form action="">
-          <p>Veriy account</p>
+          <p>Verify account</p>
           <p>We need to know that you are the owner of this account.</p>
           <LoginInput label={"Email"} onChangeValue={handleChangeValue} />
           <div className={ResetPasswordStyle.errorMessage}>
