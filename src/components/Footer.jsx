@@ -1,49 +1,96 @@
 import FaceBookIcon from "../assets/icons/LogosFacebook";
 import XIcon from "../assets/icons/TwitterIcon";
-import MapIcon from "../assets/icons/MapPointIcon";
-import PhoneIcon from '../assets/icons/PhoneIcon'
-import TikTokIcon from '../assets/icons/LogosTiktokIcon'
+import MapPointIcon from "../assets/icons/MapPointIcon";
+import PhoneIcon from "../assets/icons/PhoneIcon";
+import MailIcon from "../assets/icons/MailIcon";
+import TikTokIcon from "../assets/icons/LogosTiktokIcon";
+import FooterStyle from "./scss/Footer.module.scss";
+import { useNavigate } from "react-router-dom";
 function Footer() {
+  const navigate = useNavigate();
+  const handleNavigateToHome = () => {
+    navigate("/home");
+  };
+  const handleNavigateToCart = () => {
+    navigate("/cart");
+  };
+  const handleNavigateToUser = () => {
+    navigate("/user");
+  };
+  const handleNavigateToAboutUs = () => {
+    navigate("/aboutus");
+  };
   return (
-    <footer className="w-full bg-white100 h-auto flex p-10 md:p-20">
-      <div className="basis-1/2">
-        <p className="font-bold text-2xl">LAINOVO</p>
-        <div className="flex flex-col text-md">
-          <a href="/">Home</a>
-          <a href="/">Publications</a>
-          <a href="/">Cart</a>
-          <a href="/">User Info</a>
-        </div>
-      </div>
-      <div className="basis-1/2">
-        <p className="font-bold text-2xl">About Us</p>
-        <div className="text-md flex-col space-y-3">
-          <div className="flex items-center gap-4">
+    <footer className={FooterStyle.footerWrapper}>
+      <h1>Lainovo</h1>
+      <div className={FooterStyle.infoWrapper}>
+        <div className={FooterStyle.footerInfomation}>
+          <div>
             <span>
-              <MapIcon />
+              <MapPointIcon />
+              8/4C1 tổ 8 ấp 3 xã Xuân Thới Đông, huyện Hóc Môn, tp Hồ Chí Minh
             </span>
-            <p>8/4C1 tổ 20 ấp 30 huyện Miền Đất Hứa, thành phố Trên Không</p>
-          </div>
-          <p className="flex gap-4 text-xl">
-            <a href="/">
-              <FaceBookIcon />
-            </a>
-            <a href="/">
-              <XIcon />
-            </a>
-            <a href="/">
-                <TikTokIcon/>
-            </a>
-          </p>
-          <div className="flex items-center gap-4">
             <span>
-                <PhoneIcon/>
+              <PhoneIcon />
+              0988681424
             </span>
-            <p>0988681424</p>
+            <span>
+              <MailIcon />
+              thienthan726@gmail.com
+            </span>
           </div>
         </div>
+        <div className={FooterStyle.footerSupportAndPolicy}>
+          <div id={FooterStyle.footerSupport}>
+            <span>CUSTOMER SUPPORT</span>
+            <ul>
+              <li>Frequently Asked Questions</li>
+              <li>Terms and Conditions</li>
+            </ul>
+          </div>
+          <div id={FooterStyle.footerPolicy}>
+            <span>POLICY</span>
+            <ul>
+              <li>Privacy Policy</li>
+              <li>Payment Policy</li>
+              <li>Shipping Policy</li>
+              <li>Return Policy</li>
+            </ul>
+          </div>
+          <div id={FooterStyle.footerMediaSocial}>
+            <span>MEDIA SOCIAL</span>
+            <div>
+              <ul>
+                <li>
+                  <XIcon />
+                </li>
+                <li>
+                  <FaceBookIcon />
+                </li>
+                <li>
+                  <TikTokIcon />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className={FooterStyle.footerContactMedia}>
+          <span>MEDIA SOCIAL</span>
+          <div>
+            <ul>
+              <li>
+                <XIcon />
+              </li>
+              <li>
+                <FaceBookIcon />
+              </li>
+              <li>
+                <TikTokIcon />
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      {/* demo */}
     </footer>
   );
 }

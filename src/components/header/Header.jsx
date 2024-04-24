@@ -8,11 +8,14 @@ import Arrow from "../../assets/icons/ArrowDown";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
 import { logoutApi } from "../../services/Service";
+// import { useTranslation } from "react-i18next";
+// import i18n from "i18next";
 function Header() {
   const [logout, setLogout] = useState(true);
   const [customerName, setCustomerName] = useState("");
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
+  // const { t } = useTranslation();
   useEffect(() => {
     const checkLogin = () => {
       const customerRole = sessionStorage.getItem("role");
@@ -28,6 +31,9 @@ function Header() {
   }, []);
   const handleLogin = () => {
     navigate("/login");
+    // const languageValue = "vi";
+    // i18n.changeLanguage(languageValue);
+
   };
   const handleLogout = async () => {
     const response = await logoutApi();

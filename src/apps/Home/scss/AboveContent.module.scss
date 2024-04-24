@@ -4,24 +4,28 @@
 .aboveContainer {
   padding-top: 5em;
   padding-bottom: 5em;
-  // height: fit-content;
   .introduce {
     display: flex;
-    justify-content: center;
+    width: 29em;
     flex-wrap: wrap;
     margin-bottom: 2em;
-    gap: 2em;
+    gap: 1em;
+    margin: auto;
+    @include break(lg) {
+      width: 59em;
+    }
   }
   .selectionWrapper {
-    padding-top: 1em;
-    background-color: #f0f0f0;
+    padding-top: 3em;
     display: flex;
-    justify-content: center;
+    width: 10em;
+    margin: auto;
     ul {
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 4em;
+      justify-content: space-between;
+      width: 16em;
       li {
         position: relative;
         overflow: hidden;
@@ -47,7 +51,7 @@
   }
   .abovePublicationsContainer {
     background-color: #f0f0f0;
-    padding-top: 3em;
+    padding-top: 1.5em;
     max-width: 26em;
     display: flex;
     flex-wrap: wrap;
@@ -63,7 +67,7 @@
       max-width: 70em;
     }
     @include break(xxl) {
-      max-width: 84em;
+      max-width: 82em;
     }
   }
 }

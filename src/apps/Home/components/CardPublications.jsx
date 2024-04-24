@@ -38,13 +38,20 @@ function Card({
               {priceBeforeDiscount}
               <p>đ</p>
             </span>
-            <span>
-              {priceAfterDiscount} 120000
-              <p>đ</p>
-            </span>
+            {priceAfterDiscount == null ? (
+              ""
+            ) : (
+              <span>
+                {priceAfterDiscount}
+                <p>đ</p>
+              </span>
+            )}
           </div>
         </div>
         <div>
+          <button onClick={() => navigateToDetail(id)}>
+            <EyeIcon />
+          </button>
           <button onClick={() => getPublicationsId(id)}>
             <IconCart />
           </button>

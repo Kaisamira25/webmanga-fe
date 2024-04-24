@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoginButton from "./components/LoginButton";
 import LoginInput from "./components/LoginInput";
-import LoginStyle from "./scss/Login.module.scss";
+import LoginStyle from "./scss/LoginAdmin.module.scss";
 import { loginAdmin } from "../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import LoginInputPassword from "./components/LoginInputPassword";
@@ -9,6 +9,7 @@ function LoginAdmin() {
   const navigate = useNavigate();
   const [accountName, setAccountName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const handleChangeValueEmail = (e) => {
     setAccountName(e.target.value);
   };
@@ -21,24 +22,19 @@ function LoginAdmin() {
       accountName: accountName,
       password: password,
     };
-    const dataJson = JSON.stringify(data);
-    const response = await loginAdmin(dataJson);
-    console.log(response.data);
-    if (response.data.status == 1) {
-      sessionStorage.setItem("accessToken", response.data.data.accessToken);
-      sessionStorage.setItem("role", "ADMIN");
-      sessionStorage.setItem("accessToken", response.data.data.accessToken)
-      navigate("/admin");
-    } else {
-      console.log("Login fail");
+    try {
+      const response = await loginAdmin(data);
+      if (response.data.status == 1) {
+        sessionStorage.setItem("accessToken", response.data.data.accessToken);
+        sessionStorage.setItem("role", "ADMIN");
+        navigate("/admin");
+      }
+    } catch(error) {
+      if (error.response) {
+        setError(error.response.data.message);
+      }
     }
   };
-  const navigateToRegister = () => {
-    navigate("/register");
-  };
-  const navigateToResetPassword = () => {
-    navigate("/resetpassword")
-  }
   return (
     <div className={LoginStyle.loginWrapper}>
       <div className={LoginStyle.loginForm}>
@@ -57,14 +53,14 @@ function LoginAdmin() {
           />
         </form>
         <span>
-          Forgot password? <a onClick={navigateToResetPassword}>Click here</a>
+          {error}
         </span>
         <LoginButton handleAction={handleLogin} title={"Login"} />
-        <div className={LoginStyle.register}>
+        {/* <div className={LoginStyle.register}>
           <span>
             Don't have an account? <a onClick={navigateToRegister}>Register</a>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
