@@ -1,0 +1,82 @@
+@use "../../../common/responsive" as *;
+@use "../../../common/variables" as *;
+
+.adminContainer {
+  width: 100vw;
+  height: 100vh;
+  .adminWrapper {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    > aside {
+      width: 20%;
+      background-color: $bg-btn-color;
+      padding: 1em 0.5em;
+      height: 100%;
+      .publicationsWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        > div {
+          display: flex;
+          flex-direction: column;
+          row-gap: 0.4em;
+          h5 {
+            font-size: x-large;
+            text-align: center;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0.5em;
+            > li:first-child {
+              display: flex;
+              justify-content: center;
+              background-color: #57b388;
+              cursor: default;
+              user-select: none;
+              height: 2.5em;
+              transition: background-color 0.3s;
+              &:hover {
+                background-color: #57b388;
+              }
+            }
+            li {
+              display: flex;
+              align-items: center;
+              border-radius: 5px;
+              padding: 0.4em;
+              cursor: pointer;
+              transition: background-color 0.3s;
+              &:hover {
+                background-color: $bg-color;
+              }
+            }
+          }
+        }
+        > ul {
+          display: flex;
+          flex-direction: column;
+          row-gap: 1em;
+          li {
+            background-color: $bg-color;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            padding: 0.4em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            &:hover {
+              background-color: #57b388;
+            }
+          }
+        }
+      }
+    }
+    > section {
+      width: 80%;
+      height: 100%;
+    }
+  }
+}

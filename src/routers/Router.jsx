@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 const DetailsProductPage = lazy(() => import("../pages/DetailsProduct/DetailsProductPage"))
 const NewPassword = lazy(() =>import("../pages/ResetPassword/NewPasswordPage"));
-const AdminGenre = lazy(() => import("../apps/Admin/page/Genre"));
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const PaymentPage = lazy(() => import("../pages/Payment/PaymentPage"));
 const UserPage = lazy(() => import("../pages/User/UserPage"));
@@ -11,10 +10,10 @@ const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/Otp/OtpPage")); // Đúng path rồi
 const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"));
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
-const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
 const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
 const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"));
 const AboutPage = lazy(() => import("../pages/About/AboutPage"));
+const Admin = lazy(() => import("../pages/Admin/AdminPage"));
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -30,21 +29,21 @@ const routes = [
   { path: "/resetpassword", element: <ResetPasswordPage /> },
   { path: "/newpassword", element: <NewPassword /> },
   { path: "/aboutus", element: <AboutPage /> },
-  // adminPage
 
+  // adminPage
   { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },
-  { path: "/admin", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/genre", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/cover", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/gift", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/discount", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/product", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/type", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin", element: <Admin />, adminRequired: true },
+  // { path: "/admin/genre", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/cover", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/gift", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/discount", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/product", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/type", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
+  // { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
   { path: "*", element: <ErrorPage /> },
 ];
 
