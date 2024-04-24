@@ -1,3 +1,4 @@
+
 import axios from "axios";
 
 const instance = axios.create({
@@ -149,7 +150,27 @@ const fetchHistory = (customerId) => {
 const createOrder = () => {
   return instance.post()
 }
+const createGenre = (data) => {
+  return instance.post("/api/v1/genre/create", {
+    genre: data
+  })
+}
+const fetchGenre = () => {
+  return instance.get("/api/v1/genre/all");
+}
+const fetchType = () => {
+  return instance.get("/api/v1/type/all")
+}
+const createType = (type) => {
+  return instance.post("/api/v1/type", {
+    typeName: type
+  })
+}
 export {
+  createType,
+  fetchType,
+  fetchGenre,
+  createGenre,
   loginAdmin,
   fetchPublicationsBySearch,
   verifyResetPasswordCode,

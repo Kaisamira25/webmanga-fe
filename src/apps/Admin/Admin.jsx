@@ -9,12 +9,16 @@ import GiftsManager from "./components/GiftsManager";
 import CoversManager from "./components/CoversManager";
 import PublicationsManager from "./components/PublicationsManager";
 import DiscountsManager from "./components/DiscountsManager";
+import { Route, Routes, useNavigate } from "react-router-dom";
 function Admin() {
+  const navigate = useNavigate();
   const [content, setContent] = useState("genres");
   const handleChangeContent = (e) => {
     const page = e.target.getAttribute("value");
-    setContent(page);
+    navigate("/" + page);
+    // setContent(page);
   };
+  const handleNavigateToGenre = () => {};
   return (
     <div className={AdminStyle.adminContainer}>
       <div className={AdminStyle.adminWrapper}>
@@ -70,12 +74,9 @@ function Admin() {
           </div>
         </aside>
         <section className={AdminStyle.content}>
-          {content === "genres" && <GenresManager />}
-          {content === "types" && <TypesManager />}
-          {content === "gifts" && <GiftsManager />}
-          {content === "covers" && <CoversManager />}
-          {content === "publications" && <PublicationsManager />}
-          {content === "discounts" && <DiscountsManager />}
+          <Routes>
+            <Route path="/genres" element={<GenresManager />} />
+          </Routes>
         </section>
       </div>
     </div>

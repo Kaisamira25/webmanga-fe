@@ -1,7 +1,7 @@
 @use "../../../common/responsive" as *;
 @use "../../../common/variables" as *;
 
-button {
+.button {
     background-color: #57b388;
     padding: 0.5em;
     border-radius: 5px;

@@ -1,7 +1,7 @@
 import FormButtonStyle from "../scss/FormButton.module.scss";
-function FormButton({ content }) {
+function FormButton({ content, handleFunction }) {
   return (
-      <button>{content}</button>
+      <button onClick={() => handleFunction()} className={FormButtonStyle.button}>{content}</button>
   );
 }
 
