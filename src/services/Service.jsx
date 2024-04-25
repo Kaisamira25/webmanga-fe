@@ -166,7 +166,28 @@ const createType = (type) => {
     typeName: type
   })
 }
+const fetchGift = () => {
+  return instance.get("/api/v1/gift/all");
+}
+const createGift = (giftName, giftType) => {
+  return instance.post("/api/v1/gift", {
+    promotionalGiftName: giftName,
+    promotionalGiftType: giftType
+  })
+}
+const createCover = (cover) => {
+  return instance.post("/api/v1/cover", {
+    coverType: cover
+  })
+}
+const fetchCover = () => {
+  return instance.get("/api/v1/cover/all");
+}
 export {
+  fetchCover,
+  createCover,
+  createGift,
+  fetchGift,
   createType,
   fetchType,
   fetchGenre,

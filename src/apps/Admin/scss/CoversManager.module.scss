@@ -1,11 +1,11 @@
 @use "../../../common/responsive" as *;
 @use "../../../common/variables" as *;
 
-.typesWrapper {
+.coversWrapper {
   width: 80%;
   height: 100%;
   background-color: $bg-color;
-  .typesContainer {
+  .coversContainer {
     padding: 2em;
     h4 {
       font-size: x-large;
@@ -26,6 +26,7 @@
         padding-bottom: 1em;
         p {
           font-size: small;
+          // color: rgb(247, 244, 70);
         }
       }
       > div:nth-child(3) {
@@ -33,7 +34,6 @@
         flex-direction: column;
         gap: 3em;
         .tableWrapper {
-          // background-color: $bg-btn-color;
           height: 30em;
           overflow-y: auto;
           position: relative;
@@ -47,10 +47,10 @@
             thead {
               position: sticky;
               top: 0;
-              
+
               tr {
                 height: 3em;
-                background-color: $bg-color;
+                background-color: $bg-btn-color;
                 border: 1px solid black;
                 td {
                   border: 1px solid black;
@@ -70,7 +70,7 @@
                   color: black;
                   cursor: pointer;
                   &:hover {
-                    background-color: $bg-color;
+                    background-color: #fff;
                   }
                   button {
                     padding: 0.2em;

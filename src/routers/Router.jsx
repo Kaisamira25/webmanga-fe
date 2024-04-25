@@ -14,6 +14,7 @@ const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswor
 const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"));
 const AboutPage = lazy(() => import("../pages/About/AboutPage"));
 const Admin = lazy(() => import("../pages/Admin/AdminPage"));
+const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
 const routes = [
   // userPage
   { path: "/", element: <HomePage /> },
@@ -33,17 +34,17 @@ const routes = [
   // adminPage
   { path: "/authentication/login/admin/account", element: <LoginAdminPage /> },
   { path: "/admin", element: <Admin />, adminRequired: true },
-  // { path: "/admin/genre", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/cover", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/gift", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/discount", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/product", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/type", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
-  // { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/genres", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/covers", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/gifts", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/discounts", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/publications", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/types", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
   { path: "*", element: <ErrorPage /> },
 ];
 

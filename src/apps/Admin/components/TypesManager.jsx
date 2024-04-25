@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TypeStyle from "../scss/GenresManager.module.scss";
+import TypeStyle from "../scss/TypesManager.module.scss";
 import FormButton from "./FormButton";
 import FormInput from "./FormInput";
 import { createType, fetchType } from "../../../services/Service";
@@ -24,8 +24,8 @@ function TypesManager() {
 
   };
   return (
-    <div className={TypeStyle.genresWrapper}>
-      <div className={TypeStyle.genresContainer}>
+    <div className={TypeStyle.typesWrapper}>
+      <div className={TypeStyle.typesContainer}>
         <h4>Add new type</h4>
         <form>
           <div>

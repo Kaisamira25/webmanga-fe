@@ -23,7 +23,7 @@ function Views() {
     "/admin/covers",
     "/admin/discounts",
     "/admin/gifts",
-    "/admin/product",
+    "/admin/publications",
     "/admin/types",
     "/admin/account",
     "/admin/order",

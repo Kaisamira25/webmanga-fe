@@ -2,14 +2,13 @@
 @use "../../../common/variables" as *;
 
 .adminContainer {
-  width: 100%;
-  height: 100%;
+  width: 20%;
   .adminWrapper {
     display: flex;
-    height: 100%;
     width: 100%;
+    height: 100%;
     > aside {
-      width: 20%;
+      width: 100%;
       background-color: $bg-btn-color;
       padding: 1em 0.5em;
       .publicationsWrapper {
@@ -46,6 +45,7 @@
               align-items: center;
               border-radius: 5px;
               padding: 0.4em;
+              font-size: large;
               cursor: pointer;
               transition: background-color 0.3s;
               &:hover {

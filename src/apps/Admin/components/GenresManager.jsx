@@ -21,7 +21,6 @@ function GenresManager() {
   };
   const handleCreateGenre = async () => {
     const response = await createGenre(genreValueInput);
-    console.log(response.data);
   };
   return (
     <div className={GenresStyle.genresWrapper}>

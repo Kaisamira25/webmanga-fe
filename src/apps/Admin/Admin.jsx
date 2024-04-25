@@ -3,22 +3,15 @@ import AdminStyle from "./scss/Admin.module.scss";
 import BoxIcon from "../../assets/icons/BoxIcon";
 import EmployeeIcon from "../../assets/icons/EmployeeIcon";
 import StatisIcon from "../../assets/icons/StatisIcon";
-import GenresManager from "./components/GenresManager";
-import TypesManager from "./components/TypesManager";
-import GiftsManager from "./components/GiftsManager";
-import CoversManager from "./components/CoversManager";
-import PublicationsManager from "./components/PublicationsManager";
-import DiscountsManager from "./components/DiscountsManager";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function Admin() {
   const navigate = useNavigate();
   const [content, setContent] = useState("genres");
-  const handleChangeContent = (e) => {
-    const page = e.target.getAttribute("value");
-    navigate("/" + page);
+  const handleChangeContent = (path) => {
+    // const page = e.target.getAttribute("value");
+    navigate(`/admin/${path}`);
     // setContent(page);
   };
-  const handleNavigateToGenre = () => {};
   return (
     <div className={AdminStyle.adminContainer}>
       <div className={AdminStyle.adminWrapper}>
@@ -30,25 +23,40 @@ function Admin() {
                 <li>
                   <BoxIcon />
                 </li>
-                <li value={"genres"} onClick={(e) => handleChangeContent(e)}>
+                <li
+                  value={"genres"}
+                  onClick={() => handleChangeContent("genres")}
+                >
                   Genres
                 </li>
-                <li value={"types"} onClick={(e) => handleChangeContent(e)}>
+                <li
+                  value={"types"}
+                  onClick={() => handleChangeContent("types")}
+                >
                   Types
                 </li>
-                <li value={"gifts"} onClick={(e) => handleChangeContent(e)}>
+                <li
+                  value={"gifts"}
+                  onClick={() => handleChangeContent("gifts")}
+                >
                   Gifts
                 </li>
-                <li value={"covers"} onClick={(e) => handleChangeContent(e)}>
+                <li
+                  value={"covers"}
+                  onClick={() => handleChangeContent("covers")}
+                >
                   Covers
                 </li>
                 <li
                   value={"publications"}
-                  onClick={(e) => handleChangeContent(e)}
+                  onClick={() => handleChangeContent("publications")}
                 >
                   Publications
                 </li>
-                <li value={"discounts"} onClick={(e) => handleChangeContent(e)}>
+                <li
+                  value={"discounts"}
+                  onClick={() => handleChangeContent("discounts")}
+                >
                   Discounts
                 </li>
               </ul>
@@ -73,11 +81,14 @@ function Admin() {
             </ul>
           </div>
         </aside>
-        <section className={AdminStyle.content}>
-          <Routes>
-            <Route path="/genres" element={<GenresManager />} />
-          </Routes>
-        </section>
+        {/* <section className={AdminStyle.content}>
+          {content === "genres" && <GenresManager />}
+          {content === "types" && <TypesManager />}
+          {content === "gifts" && <GiftsManager />}
+          {content === "covers" && <CoversManager />}
+          {content === "publications" && <PublicationsManager />}
+          {content === "discounts" && <DiscountsManager />}
+        </section> */}
       </div>
     </div>
   );
