@@ -31,7 +31,6 @@ function Views() {
     "/admin/sales",
     "/admin/employees",
     "/admin/customers",
-    "/admin/orders",
     "/admin/invoice",
     "/admin/revenue",
   ].includes(location.pathname);

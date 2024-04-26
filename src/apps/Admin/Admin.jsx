@@ -9,6 +9,9 @@ function Admin() {
   const handleChangeContent = (path) => {
     navigate(`/admin/${path}`);
   };
+  const handleNavigateToHome = () => {
+    navigate("/home");
+  }
   const handleLogoutAdmin = () => {
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("accessToken");
@@ -43,20 +46,20 @@ function Admin() {
                 <li onClick={() => handleChangeContent("employees")}>
                   Employee Account
                 </li>
-                <li onClick={() => handleChangeContent("orders")}>
-                  Order Manager
+                <li onClick={() => handleChangeContent("customers")}>
+                  Customer Manager
                 </li>
               </ul>
               <ul>
                 <li>
                   <StatisIcon />
                 </li>
-                <li onClick={() => handleChangeContent("invoice")}>Invoice Statistics</li>
+                <li onClick={() => handleChangeContent("invoice")}>Invoice Manager</li>
                 <li onClick={() => handleChangeContent("revenue")}>Revenue Statistics</li>
               </ul>
             </div>
             <ul>
-              <li>Home</li>
+              <li onClick={handleNavigateToHome}>Home</li>
               <li onClick={handleLogoutAdmin}>Logout</li>
             </ul>
           </div>

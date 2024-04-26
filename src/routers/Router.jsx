@@ -47,7 +47,6 @@ const routes = [
   { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/customers", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/orders", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/invoice", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/revenue", element: <HomeAdmin />, adminRequired: true },
   { path: "*", element: <ErrorPage /> },

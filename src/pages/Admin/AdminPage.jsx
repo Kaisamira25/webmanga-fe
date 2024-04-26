@@ -8,9 +8,9 @@ import CoversManager from "../../apps/Admin/components/CoversManager";
 import PublicationsManager from "../../apps/Admin/components/PublicationsManager";
 import TypesManager from "../../apps/Admin/components/TypesManager";
 import EmployeesManager from "../../apps/Admin/components/EmployeesManager";
-import OrderManager from "../../apps/Admin/components/OrderManager";
 import InvoiceStatistics from "../../apps/Admin/components/InvoiceStatistics";
 import RevenueStatistics from "../../apps/Admin/components/RevenueStatistics";
+import CustomerManager from "../../apps/Admin/components/CustomerManager";
 function HomeAdmin() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -25,7 +25,7 @@ function HomeAdmin() {
       {currentPath === "/admin/publications" && <PublicationsManager />}
       {currentPath === "/admin/types" && <TypesManager />}
       {currentPath === "/admin/employees" && <EmployeesManager />}
-      {currentPath === "/admin/orders" && <OrderManager />}
+      {currentPath === "/admin/customers" && <CustomerManager />}
       {currentPath === "/admin/invoice" && <InvoiceStatistics />}
       {currentPath === "/admin/revenue" && <RevenueStatistics />}
     </div>
