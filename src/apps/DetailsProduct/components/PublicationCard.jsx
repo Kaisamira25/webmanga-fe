@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../scss/PublicationCard.module.scss";
 import Info from "./InfoSquare";
 
@@ -18,8 +18,16 @@ function PublicationCard({
   handleDecreaseQuantity,
   handleIncreaseQuantity,
   handleAddToCart,
-  setSelectedType,
 }) {
+  const [selectedType, setSelectedType] = useState(types[0]);
+  useEffect(() => {
+    if (!types.includes(selectedType)) {
+      setSelectedType(types[0]);
+    }
+  }, [types, selectedType]);
+  const handleAddToCartWithTypes = () => {
+    handleAddToCart(selectedType);
+  };
   return (
     <div className={style.wrapper}>
       <div className={style.imageAndInfo}>
@@ -78,6 +86,7 @@ function PublicationCard({
                 <select
                   name="type"
                   onChange={(e) => setSelectedType(e.target.value)}
+                  value={selectedType}
                 >
                   {types.map((type, index) => (
                     <option key={index} value={type}>
@@ -107,7 +116,7 @@ function PublicationCard({
               <button onClick={() => handleIncreaseQuantity()}>+</button>
             </div>
             <div className="addCart">
-              <button onClick={() => handleAddToCart()}>Thêm vào giỏ</button>
+              <button onClick={handleAddToCartWithTypes}>Thêm vào giỏ</button>
             </div>
           </div>
         </div>

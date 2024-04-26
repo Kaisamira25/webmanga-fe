@@ -21,7 +21,6 @@ function Publications() {
   const [types, setTypes] = useState([]);
   const [discountPrice, setDiscountPrice] = useState(130000);
   const [publicationsByAuthor, setPublicationsByAuthor] = useState({});
-  const [selectedEdition, setSelectedEdition] = useState();
   useEffect(() => {
     const fetchPublicationsDetails = async (id) => {
       const publicationsDetailResponse =
@@ -49,12 +48,12 @@ function Publications() {
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
-  const handleAddToCart = () => {
+  const handleAddToCart = (selectedType) => {
     const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
 
     let itemAlreadyInCart = false;
 
-    if (selectedEdition === "Regular") {
+    if (selectedType === "Regular") {
       const updatedCartItems = existingCartItems.map((item) => {
         if (item.id === publicationsID && item.type === "Regular") {
           item.qty += quantity;
@@ -129,7 +128,6 @@ function Publications() {
           handleIncreaseQuantity={handleIncreaseQuantity}
           handleAddToCart={handleAddToCart}
           quantity={quantity}
-          setSelectedType={setSelectedEdition}
         />
       </div>
       <div className={style.relatedPublications}>
