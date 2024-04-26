@@ -29,8 +29,12 @@ function Admin() {
                 <li onClick={() => handleChangeContent("types")}>Types</li>
                 <li onClick={() => handleChangeContent("gifts")}>Gifts</li>
                 <li onClick={() => handleChangeContent("covers")}>Covers</li>
-                <li onClick={() => handleChangeContent("publications")}>Publications</li>
-                <li onClick={() => handleChangeContent("discounts")}>Discounts</li>
+                <li onClick={() => handleChangeContent("publications")}>
+                  Publications
+                </li>
+                <li onClick={() => handleChangeContent("discounts")}>
+                  Discounts
+                </li>
               </ul>
               <ul>
                 <li>
@@ -39,14 +43,16 @@ function Admin() {
                 <li onClick={() => handleChangeContent("employees")}>
                   Employee Account
                 </li>
-                <li onClick={() => handleChangeContent("customers")}>Customer Account</li>
+                <li onClick={() => handleChangeContent("orders")}>
+                  Order Manager
+                </li>
               </ul>
               <ul>
                 <li>
                   <StatisIcon />
                 </li>
-                <li>Invoice Statistics</li>
-                <li>Revenue Statistics</li>
+                <li onClick={() => handleChangeContent("invoice")}>Invoice Statistics</li>
+                <li onClick={() => handleChangeContent("revenue")}>Revenue Statistics</li>
               </ul>
             </div>
             <ul>

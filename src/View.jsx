@@ -30,6 +30,10 @@ function Views() {
     "/admin/stock",
     "/admin/sales",
     "/admin/employees",
+    "/admin/customers",
+    "/admin/orders",
+    "/admin/invoice",
+    "/admin/revenue",
   ].includes(location.pathname);
 
   useEffect(() => {
