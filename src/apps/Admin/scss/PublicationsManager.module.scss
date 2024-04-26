@@ -33,6 +33,7 @@
         }
         > div:last-child {
           display: flex;
+          align-items: flex-end;
           gap: 1em;
         }
       }

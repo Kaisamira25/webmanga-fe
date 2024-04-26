@@ -54,6 +54,17 @@ function PublicationsManager() {
     const response = await createGift(giftName, giftType);
     console.log(response.data.data);
   };
+  const options = [
+    { value: "fox", label: "🦊 Fox" },
+    { value: "Butterfly", label: "🦋 Butterfly" },
+    { value: "Honeybee", label: "🐝 Honeybee" }
+];
+const [animal, setAnimal] = useState(null);
+
+    const handleChange = value => {
+        console.log("value:", value);
+        setAnimal(value);
+    };
   return (
     <div className={PublicationsStyle.publicationsWrapper}>
       <div className={PublicationsStyle.publicationsContainer}>
@@ -112,7 +123,46 @@ function PublicationsManager() {
             </div>
             <label htmlFor="">Description</label>
             <textarea />
-            <div className={PublicationsStyle.dropdown}></div>
+            <div className=" flex-col  ms-1 w-2/12 ">
+              <label>Genres</label>
+              <Select
+                isMultiple
+                isSearchable
+                value={animal}
+                onChange={handleChange}
+                options={options}
+              />
+            </div>
+            <div className=" flex-col  ms-1 w-2/12 ">
+              <label>Gift</label>
+              <Select
+                isMultiple
+                isSearchable
+                value={animal}
+                onChange={handleChange}
+                options={options}
+              />
+            </div>
+            <div className=" flex-col  ms-1 w-2/12 ">
+              <label>Cover</label>
+              <Select
+                isMultiple
+                isSearchable
+                value={animal}
+                onChange={handleChange}
+                options={options}
+              />
+            </div>
+            <div className=" flex-col  ms-1 w-2/12 ">
+              <label>Type</label>
+              <Select
+                isMultiple
+                isSearchable
+                value={animal}
+                onChange={handleChange}
+                options={options}
+              />
+            </div>
             <div>
               <FormButton content={"Add"} handleFunction={handleCreateGift} />
               <FormButton content={"Update"} />

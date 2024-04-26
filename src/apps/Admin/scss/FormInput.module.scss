@@ -6,9 +6,10 @@
   flex-direction: column;
   gap: 0.2em;
   height: 6em;
+  width: 35em;
   .input {
+    width: 100%;
     outline: none;
-    width: 35em;
     padding: 0.5em 1em;
     font-size: small;
     border-radius: 5px;
@@ -16,6 +17,8 @@
     height: 3em;
   }
   p {
+    width: 100%;
+    word-wrap: break-word;
     font-size: small;
     color: rgb(199, 54, 54);
   }
