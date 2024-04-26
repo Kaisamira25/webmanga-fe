@@ -21,7 +21,6 @@ function TypesManager() {
   };
   const handleCreateType = async () => {
     const response = await createType(typesValueInput);
-
   };
   return (
     <div className={TypeStyle.typesWrapper}>
@@ -30,6 +29,7 @@ function TypesManager() {
         <form>
           <div>
             <FormInput
+              label={"Type name"}
               placeholder={"Type new type here"}
               type={"text"}
               handleFunction={handleGetTypes}
@@ -47,6 +47,7 @@ function TypesManager() {
           </div>
           <div>
             <FormInput
+            label={"Search"}
               type={"search"}
               placeholder={"Type the name of the genre to search"}
             />

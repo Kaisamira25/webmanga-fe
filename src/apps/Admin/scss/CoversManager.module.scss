@@ -16,7 +16,8 @@
       > div:first-child {
         display: flex;
         gap: 1em;
-        > div {
+        align-items: flex-end;
+        > div:last-child {
           display: flex;
           gap: inherit;
         }

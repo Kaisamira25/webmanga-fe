@@ -1,11 +1,11 @@
 @use "../../../common/responsive" as *;
 @use "../../../common/variables" as *;
 
-.typesWrapper {
+.discountsWrapper {
   width: 80%;
   height: 100%;
   background-color: $bg-color;
-  .typesContainer {
+  .discountsContainer {
     padding: 2em;
     h4 {
       font-size: x-large;
@@ -15,11 +15,35 @@
       padding: 5em 0;
       > div:first-child {
         display: flex;
+        flex-wrap: wrap;
         gap: 1em;
-        align-items: flex-end;
-        > div:last-child {
+        > div:first-child {
           display: flex;
-          gap: inherit;
+          flex-wrap: wrap;
+          gap: 1em;
+          .dateTimeCreateAndExpiration {
+            display: flex;
+            flex-direction: column;
+            label {
+              font-size: small;
+            }
+          }
+        }
+        > div:nth-child(2) {
+          width: 100%;
+            textarea {
+              width: 100%;
+              resize: none;
+              outline: none;
+              border-radius: 5px;
+              padding: 1em;
+              font-size: small;
+            }
+        }
+        > div:nth-child(3) {
+          display: flex;
+          align-items: flex-end;
+          gap: 1em;
         }
       }
       > div:nth-child(2) {
@@ -27,6 +51,7 @@
         padding-bottom: 1em;
         p {
           font-size: small;
+          // color: rgb(247, 244, 70);
         }
       }
       > div:nth-child(3) {
@@ -34,7 +59,6 @@
         flex-direction: column;
         gap: 3em;
         .tableWrapper {
-          // background-color: $bg-btn-color;
           height: 30em;
           overflow-y: auto;
           position: relative;
@@ -48,10 +72,10 @@
             thead {
               position: sticky;
               top: 0;
-              
+
               tr {
                 height: 3em;
-                background-color: $bg-color;
+                background-color: $bg-btn-color;
                 border: 1px solid black;
                 td {
                   border: 1px solid black;
@@ -71,7 +95,7 @@
                   color: black;
                   cursor: pointer;
                   &:hover {
-                    background-color: $bg-color;
+                    background-color: #fff;
                   }
                   button {
                     padding: 0.2em;

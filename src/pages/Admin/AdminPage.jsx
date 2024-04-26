@@ -7,6 +7,8 @@ import DiscountsManager from "../../apps/Admin/components/DiscountsManager";
 import CoversManager from "../../apps/Admin/components/CoversManager";
 import PublicationsManager from "../../apps/Admin/components/PublicationsManager";
 import TypesManager from "../../apps/Admin/components/TypesManager";
+import EmployeesManager from "../../apps/Admin/components/EmployeesManager";
+
 function HomeAdmin() {
   const location = useLocation();
   const currentPath = location.pathname;
@@ -20,6 +22,7 @@ function HomeAdmin() {
       {currentPath === "/admin/covers" && <CoversManager />}
       {currentPath === "/admin/publications" && <PublicationsManager />}
       {currentPath === "/admin/types" && <TypesManager />}
+      {currentPath === "/admin/employees" && <EmployeesManager />}
     </div>
   );
 }

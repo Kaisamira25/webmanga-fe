@@ -29,6 +29,7 @@ function Views() {
     "/admin/order",
     "/admin/stock",
     "/admin/sales",
+    "/admin/employees",
   ].includes(location.pathname);
 
   useEffect(() => {

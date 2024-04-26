@@ -6,11 +6,13 @@ import StatisIcon from "../../assets/icons/StatisIcon";
 import { useNavigate } from "react-router-dom";
 function Admin() {
   const navigate = useNavigate();
-  const [content, setContent] = useState("genres");
   const handleChangeContent = (path) => {
-    // const page = e.target.getAttribute("value");
     navigate(`/admin/${path}`);
-    // setContent(page);
+  };
+  const handleLogoutAdmin = () => {
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("accessToken");
+    navigate("/home");
   };
   return (
     <div className={AdminStyle.adminContainer}>
@@ -23,49 +25,21 @@ function Admin() {
                 <li>
                   <BoxIcon />
                 </li>
-                <li
-                  value={"genres"}
-                  onClick={() => handleChangeContent("genres")}
-                >
-                  Genres
-                </li>
-                <li
-                  value={"types"}
-                  onClick={() => handleChangeContent("types")}
-                >
-                  Types
-                </li>
-                <li
-                  value={"gifts"}
-                  onClick={() => handleChangeContent("gifts")}
-                >
-                  Gifts
-                </li>
-                <li
-                  value={"covers"}
-                  onClick={() => handleChangeContent("covers")}
-                >
-                  Covers
-                </li>
-                <li
-                  value={"publications"}
-                  onClick={() => handleChangeContent("publications")}
-                >
-                  Publications
-                </li>
-                <li
-                  value={"discounts"}
-                  onClick={() => handleChangeContent("discounts")}
-                >
-                  Discounts
-                </li>
+                <li onClick={() => handleChangeContent("genres")}>Genres</li>
+                <li onClick={() => handleChangeContent("types")}>Types</li>
+                <li onClick={() => handleChangeContent("gifts")}>Gifts</li>
+                <li onClick={() => handleChangeContent("covers")}>Covers</li>
+                <li onClick={() => handleChangeContent("publications")}>Publications</li>
+                <li onClick={() => handleChangeContent("discounts")}>Discounts</li>
               </ul>
               <ul>
                 <li>
                   <EmployeeIcon />
                 </li>
-                <li>Employee Account</li>
-                <li>Customer Account</li>
+                <li onClick={() => handleChangeContent("employees")}>
+                  Employee Account
+                </li>
+                <li onClick={() => handleChangeContent("customers")}>Customer Account</li>
               </ul>
               <ul>
                 <li>
@@ -77,7 +51,7 @@ function Admin() {
             </div>
             <ul>
               <li>Home</li>
-              <li>Logout</li>
+              <li onClick={handleLogoutAdmin}>Logout</li>
             </ul>
           </div>
         </aside>

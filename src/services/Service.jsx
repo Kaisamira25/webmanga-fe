@@ -183,7 +183,24 @@ const createCover = (cover) => {
 const fetchCover = () => {
   return instance.get("/api/v1/cover/all");
 }
+const createDiscount = (discountName, discountPercent, discountCode, expirationDate, description) => {
+  return instance.post("/api/v1/discount",{
+    discountName: discountName,
+    discountPercent: discountPercent,
+    discountCode: discountCode,
+    expirationDate: expirationDate,
+    description: description
+  });
+}
+const fetchDiscount = () => {
+  return instance.get("/api/v1/discount/all");
+}
+const createEmployee = () => {
+  return instance.post("/api/v1/employee/create")
+}
 export {
+  createDiscount,
+  fetchDiscount,
   fetchCover,
   createCover,
   createGift,

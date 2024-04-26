@@ -1,7 +1,11 @@
 @use "../../../common/responsive" as *;
 @use "../../../common/variables" as *;
 
-.input {
+.formInputWrapper {
+  display: flex;
+flex-direction: column;
+gap: 0.2em;
+  .input {
     outline: none;
     width: 35em;
     padding: 0.5em 1em;
@@ -9,4 +13,5 @@
     border-radius: 5px;
     background-color: #f3f3f3;
     height: 3em;
+  }
 }

@@ -4,24 +4,24 @@ import FormButton from "./FormButton";
 import FormInput from "./FormInput";
 import { createCover, fetchCover } from "../../../services/Service";
 function CoversManager() {
-//   const [genreValueInput, setGenreValueInput] = useState("");
+  //   const [genreValueInput, setGenreValueInput] = useState("");
   const [coverName, setCoverName] = useState("");
   const [covers, setCovers] = useState([]);
   useEffect(() => {
     const fetchCoverData = async () => {
       const response = await fetchCover();
-      console.log(response.data.data)
+      console.log(response.data.data);
       setCovers(response.data.data);
     };
     fetchCoverData();
-}, []);
-const handleGetCoverName = (e) => {
+  }, []);
+  const handleGetCoverName = (e) => {
     let coverName = e.target.value;
     coverName = coverName.trim();
     coverName = coverName.charAt(0).toUpperCase() + coverName.slice(1);
     setCoverName(coverName);
-};
-const handleCreateCover = async () => {
+  };
+  const handleCreateCover = async () => {
     const response = await createCover(coverName);
   };
   return (
@@ -31,6 +31,7 @@ const handleCreateCover = async () => {
         <form>
           <div>
             <FormInput
+              label={"Cover type"}
               placeholder={"Type new cover type here"}
               type={"text"}
               handleFunction={handleGetCoverName}
@@ -48,6 +49,7 @@ const handleCreateCover = async () => {
           </div>
           <div>
             <FormInput
+            label={"Search"}
               type={"search"}
               placeholder={"Type the name of the genre to search"}
             />

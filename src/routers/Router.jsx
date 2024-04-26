@@ -40,6 +40,7 @@ const routes = [
   { path: "/admin/discounts", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/publications", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/employees", element: <HomeAdmin/>, adminRequired: true},
   { path: "/admin/types", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },

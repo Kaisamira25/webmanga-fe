@@ -4,7 +4,7 @@ import FormButton from "./FormButton";
 import FormInput from "./FormInput";
 import { createGift, fetchGift } from "../../../services/Service";
 function GiftsManager() {
-//   const [genreValueInput, setGenreValueInput] = useState("");
+  //   const [genreValueInput, setGenreValueInput] = useState("");
   const [giftName, setGiftName] = useState("");
   const [giftType, setGiftType] = useState("");
   const [gifts, setGifts] = useState([]);
@@ -14,20 +14,20 @@ function GiftsManager() {
       setGifts(response.data.data);
     };
     fetchGenreData();
-}, []);
-const handleGetGiftName = (e) => {
+  }, []);
+  const handleGetGiftName = (e) => {
     let giftName = e.target.value;
     giftName = giftName.trim();
     giftName = giftName.charAt(0).toUpperCase() + giftName.slice(1);
     setGiftName(giftName);
-};
-const handleGetGiftType = (e) => {
+  };
+  const handleGetGiftType = (e) => {
     let giftType = e.target.value;
     giftType = giftType.trim();
     giftType = giftType.charAt(0).toUpperCase() + giftType.slice(1);
     setGiftType(giftType);
-};
-const handleCreateGift = async () => {
+  };
+  const handleCreateGift = async () => {
     const response = await createGift(giftName, giftType);
     console.log(response.data.data);
   };
@@ -38,11 +38,13 @@ const handleCreateGift = async () => {
         <form>
           <div>
             <FormInput
+              label={"Gift name"}
               placeholder={"Type new gift name here"}
               type={"text"}
               handleFunction={handleGetGiftName}
             />
             <FormInput
+              label={"Gift type"}
               placeholder={"Type new gift type here"}
               type={"text"}
               handleFunction={handleGetGiftType}
@@ -60,6 +62,7 @@ const handleCreateGift = async () => {
           </div>
           <div>
             <FormInput
+              label={"Search"}
               type={"search"}
               placeholder={"Type the name of the genre to search"}
             />

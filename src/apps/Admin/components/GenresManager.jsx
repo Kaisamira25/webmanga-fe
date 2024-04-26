@@ -29,6 +29,7 @@ function GenresManager() {
         <form>
           <div>
             <FormInput
+            label={"Genre name"}
               placeholder={"Type new genre here"}
               type={"text"}
               handleFunction={handleGetGenre}
@@ -46,6 +47,7 @@ function GenresManager() {
           </div>
           <div>
             <FormInput
+            label={"Search"}
               type={"search"}
               placeholder={"Type the name of the genre to search"}
             />
