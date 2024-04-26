@@ -1,5 +1,5 @@
 import FormInputStyle from "../scss/FormInput.module.scss";
-function FormInput({ label, placeholder, type, handleFunction }) {
+function FormInput({ label, placeholder, type, handleFunction, validate }) {
   return (
     <div className={FormInputStyle.formInputWrapper}>
       <label htmlFor="">{label}</label>
@@ -9,6 +9,7 @@ function FormInput({ label, placeholder, type, handleFunction }) {
         type={type}
         placeholder={placeholder}
       />
+      <p>Note</p>
     </div>
   );
 }

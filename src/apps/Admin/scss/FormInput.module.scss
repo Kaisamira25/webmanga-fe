@@ -3,8 +3,9 @@
 
 .formInputWrapper {
   display: flex;
-flex-direction: column;
-gap: 0.2em;
+  flex-direction: column;
+  gap: 0.2em;
+  height: 6em;
   .input {
     outline: none;
     width: 35em;
@@ -13,5 +14,9 @@ gap: 0.2em;
     border-radius: 5px;
     background-color: #f3f3f3;
     height: 3em;
+  }
+  p {
+    font-size: small;
+    color: rgb(199, 54, 54);
   }
 }

@@ -16,7 +16,8 @@
       > div:first-child {
         display: flex;
         gap: 1em;
-        align-items: flex-end;
+        flex-wrap: wrap;
+        align-items: center;
         > div:last-child {
           display: flex;
           gap: inherit;

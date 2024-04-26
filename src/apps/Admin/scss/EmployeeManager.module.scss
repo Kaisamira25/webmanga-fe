@@ -16,6 +16,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1em;
+      flex-wrap: wrap;
+      align-items: center;
       > div:last-child {
         display: flex;
         align-items: flex-end;
