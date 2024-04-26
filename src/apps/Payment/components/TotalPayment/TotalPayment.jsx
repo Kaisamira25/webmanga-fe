@@ -19,10 +19,10 @@ export default function TotalPayment({
   const [order, setOrder] = useState();
 
   const clearLocal = () => {
-    sessionStorage.removeItem("Payment");
-    sessionStorage.removeItem("total");
-    sessionStorage.removeItem("discount");
-    sessionStorage.removeItem("cart");
+    localStorage.removeItem("Payment");
+    localStorage.removeItem("total");
+    localStorage.removeItem("discount");
+    localStorage.removeItem("cart");
   };
   const handleOpenFinishModal = async () => {
     const userData = JSON.parse(localStorage.getItem("UserData"));
@@ -46,17 +46,17 @@ export default function TotalPayment({
     }
 
     const order = {
-      totalPrice: sessionStorage.getItem("total"),
+      totalPrice: localStorage.getItem("total"),
       fullName: userData.fullName,
       phoneNumber: userData.phone,
       address: userData.address,
       paymentStatus: false,
       discount:
-        sessionStorage.getItem("discount") === null
+        localStorage.getItem("discount") === null
           ? null
-          : sessionStorage.getItem("discount"),
+          : localStorage.getItem("discount"),
       email: userData.email,
-      orderItem: JSON.parse(sessionStorage.getItem("cart")),
+      orderItem: JSON.parse(localStorage.getItem("cart")),
       status: id === null ? false : true,
     };
     setOrder(order);

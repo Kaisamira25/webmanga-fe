@@ -3,6 +3,7 @@ import InputField from "../../../../components/InputField/InputField";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import style from "./Error.module.scss";
+import { fetchUserInfo, fetchUserAddress } from "../../../../services/Service";
 
 function InputValidate({ className, onValidationChange }) {
   const [email, setEmail] = useState("");
@@ -38,10 +39,7 @@ function InputValidate({ className, onValidationChange }) {
       const decoded = jwtDecode(
         sessionStorage.getItem("accessToken")
       ).customerId;
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/customer/" + decoded,
-        {}
-      );
+      const response = await fetchUserInfo(decoded);
       const customer = response.data.data;
       switch (key) {
         case "email":
@@ -78,6 +76,7 @@ function InputValidate({ className, onValidationChange }) {
       }
     }
   };
+
   useEffect(() => {
     handleLoad("email");
     handleLoad("address");

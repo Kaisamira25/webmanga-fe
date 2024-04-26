@@ -42,7 +42,7 @@ function AboveContent() {
     setPublications(response.data.data);
   };
   const handlePublicationGetId = (id) => {
-    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
     let itemAlreadyInCart = false;
 
     const updatedCartItems = existingCartItems.map((item) => {
@@ -61,7 +61,7 @@ function AboveContent() {
       updatedCartItems.push(newItem);
     }
 
-    sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
     setCartList((prevCartList) => [...prevCartList, id]);

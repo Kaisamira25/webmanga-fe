@@ -48,8 +48,8 @@ function Publications() {
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
-  const handleAddToCart = (selectedType) => {
-    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+  const handleAddToCart = () => {
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     let itemAlreadyInCart = false;
 
@@ -71,7 +71,7 @@ function Publications() {
         };
         updatedCartItems.push(newItem);
       }
-      sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     } else {
       const updatedCartItems = existingCartItems.map((item) => {
@@ -91,7 +91,7 @@ function Publications() {
         };
         updatedCartItems.push(newItem);
       }
-      sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
       alert("Sản phẩm đã được thêm vào giỏ hàng!");
     }
   };
