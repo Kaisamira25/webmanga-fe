@@ -15,7 +15,7 @@ function PriceTotal({ cartUpdated }) {
 
   const fetchCartData = async () => {
     try {
-      const cartItems = JSON.parse(sessionStorage.getItem("cart"));
+      const cartItems = JSON.parse(localStorage.getItem("cart"));
       if (cartItems && cartItems.length > 0) {
         const products = [];
         for (const item of cartItems) {
@@ -37,9 +37,9 @@ function PriceTotal({ cartUpdated }) {
     );
     setTotalPrice(totalPrice);
     if (discounts) {
-      sessionStorage.setItem("discount", discounts.discountId);
+      localStorage.setItem("discount", discounts.discountId);
     } else {
-      sessionStorage.setItem("discount", null);
+      localStorage.setItem("discount", null);
     }
   }, [cart, discounts]);
 
@@ -57,13 +57,13 @@ function PriceTotal({ cartUpdated }) {
 
   const totalBill = () => {
     if (discounts) {
-      sessionStorage.setItem(
+      localStorage.setItem(
         "total",
         totalPrice * (1 - discounts.discountPercent / 100)
       );
       return totalPrice * (1 - discounts.discountPercent / 100);
     } else {
-      sessionStorage.setItem("total", totalPrice);
+      localStorage.setItem("total", totalPrice);
       return totalPrice;
     }
   };

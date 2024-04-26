@@ -24,7 +24,7 @@ function Content({
     return navigate(`/detail/${id}`);
   };
   const handlePublicationGetId = (id) => {
-    const existingCartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
     let itemAlreadyInCart = false;
 
     const updatedCartItems = existingCartItems.map((item) => {
@@ -43,7 +43,7 @@ function Content({
       updatedCartItems.push(newItem);
     }
 
-    sessionStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
     navigate("/cart");

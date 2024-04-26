@@ -12,7 +12,7 @@ function ProductList({ onCartUpdate }) {
 
   const fetchCartData = async () => {
     try {
-      const cartItems = JSON.parse(sessionStorage.getItem("cart"));
+      const cartItems = JSON.parse(localStorage.getItem("cart"));
       if (cartItems && cartItems.length > 0) {
         const products = [];
         for (const item of cartItems) {
@@ -32,7 +32,7 @@ function ProductList({ onCartUpdate }) {
   };
 
   const incDec = async (qty, dec, publicationsID) => {
-    let cartItems = JSON.parse(sessionStorage.getItem("cart")) || [];
+    let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     const index = cartItems.findIndex((item) => item.id === publicationsID);
     if (index !== -1) {
@@ -44,13 +44,13 @@ function ProductList({ onCartUpdate }) {
         } else {
           cartItems[index].qty = qty;
         }
-        sessionStorage.setItem("cart", JSON.stringify(cartItems));
+        localStorage.setItem("cart", JSON.stringify(cartItems));
         setCart([...cartItems]);
         setQtyChanged((prev) => !prev);
         onCartUpdate();
       } else {
         cartItems[index].qty += 1;
-        sessionStorage.setItem("cart", JSON.stringify(cartItems));
+        localStorage.setItem("cart", JSON.stringify(cartItems));
         setCart([...cartItems]);
         setQtyChanged((prev) => !prev);
         onCartUpdate();
