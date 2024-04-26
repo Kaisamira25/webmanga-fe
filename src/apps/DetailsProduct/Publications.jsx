@@ -48,7 +48,7 @@ function Publications() {
     };
     fetchPublicationsDetails(publicationsID);
   }, [publicationsID]);
-  const handleAddToCart = () => {
+  const handleAddToCart = (selectedType) => {
     const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     let itemAlreadyInCart = false;
