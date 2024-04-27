@@ -2,15 +2,15 @@ import React from "react";
 import HeaderAdmin from "../../apps/Admin/componnents/_Header-Admin";
 import MenuAdmin from "../../apps/Admin/page/Sidebar";
 import { useLocation } from "react-router-dom";
-import Genre from "../../apps/Admin/page/Genre";
-import AdminCover from "../../apps/Admin/page/Cover";
-import AdminDiscount from "../../apps/Admin/page/Discount";
-import AdminGift from "../../apps/Admin/page/Gift";
-import AdminProduct from "../../apps/Admin/page/Product";
-import AdminType from "../../apps/Admin/page/Type";
+import Genre from "../../apps/Admin/page/GenreManager";
+import AdminCover from "../../apps/Admin/page/CoverManager";
+import AdminDiscount from "../../apps/Admin/page/DiscountManager";
+import AdminGift from "../../apps/Admin/page/GiftManager";
+import AdminProduct from "../../apps/Admin/page/PublicationsManager";
+import AdminType from "../../apps/Admin/page/TypeManager";
 import Reveneu from "../../apps/Admin/page/Reveneu";
-import Invoice from "../../apps/Admin/page/Invoice";
-import Account from "../../apps/Admin/page/Account";
+import Invoice from "../../apps/Admin/page/InvoiceManager";
+import Account from "../../apps/Admin/page/EmployeeManager";
 
 function HomeAdmin() {
     const location = useLocation();

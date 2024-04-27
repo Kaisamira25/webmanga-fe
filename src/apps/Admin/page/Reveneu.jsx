@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { LineChart } from "@mui/x-charts/LineChart";
 import InputAdmin from "../componnents/InputAdmin";
-import Select from "react-tailwindcss-select";
 import moment from "moment/moment";
 import ReveData from "../Services/ReveneuData";
 import {
@@ -27,82 +25,74 @@ ChartJS.register(
     Legend
 );
 function Reveneu() {
-    const [formData, setFormData] = useState({
+    const [formDate, setFormDate] = useState({
         dayFrom: null,
         dayTo: null
     })
+    const [data, setData] = useState([]);
+    const { fetchReve, order, getOrderDate } = ReveData();
     const options = {
         responsive: true,
         plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Line Chart',
-            },
+           
         },
     };
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-    const xyzdata = [{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},{x:1,y:2},]
-    const xydata = {
+    const chart = {
         labels,
         datasets: [{
-            data: xyzdata,
+            data: data,
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
         }
         ],
     };
-    const [data, setData] = useState([]);
-    const { fetchReve, order } = ReveData();
-    const [xData, setXdata] = useState([]);
+
+
     const input = [
         { type: "date", names: "dayFrom", id: "DayFrom", placeholder: "Day From" },
         { type: "date", names: "dayTo", id: "DayTo", placeholder: "Day To" }
     ]
     const handleDayToChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+        setFormDate((prevFormDate) => ({ ...prevFormDate, [name]: value }));
     }
     const convertDateFormat = (dateString) => {
-        return moment(dateString, 'DD/MM/YYYY').toISOString();
+        return moment(dateString, 'YYYY-MM-dd').toString();
     }
 
     useEffect(() => {
-        const newData = [];
-        if (formData.dayTo !== null && formData.dayFrom !== null) {
-            const dayFrom = convertDateFormat(formData.dayFrom);
-            const dayTo = convertDateFormat(formData.dayTo);
-            console.log(dayFrom +'1923' + dayTo)
-            const filteredOrders = order.filter(item => {
-                const orderDate = new Date(item.orderDay);
-                return orderDate <= dayFrom && orderDate >= dayTo;
-            });
-            newData.push(filteredOrders)
-            newData.sort((a, b) => a.xData - b.xData)
-            console.log(newData);
-            setData(prevData => [...prevData, ...newData]);
-        } else if (formData.dayTo !== null && formData.dayFrom === null) {
-
-        } else {
-            order.forEach(order => {
-                const orderDate = new Date(order.orderDay); // Chuyển đổi ngày đơn hàng thành kiểu Date
-                let existingDataIndex = newData.findIndex(data => data.xData === orderDate.getDate());
-                if (existingDataIndex !== -1) {
-                    // Nếu ngày của đơn hàng đã tồn tại trong newData, cập nhật giá trị
-                    newData[existingDataIndex].data += order.totalPrice;
-                } else {
-                    // Nếu ngày của đơn hàng chưa tồn tại trong newData, thêm dữ liệu mới
-                    newData.push({ xData: orderDate.getDate(), data: order.totalPrice });
+        const fetchData = async () => {
+            const newData = [];
+            if (formDate.dayTo !== null && formDate.dayFrom !== null) {
+                try {
+                    const response = await getOrderDate(formDate); // Đợi promise getOrderDate hoàn thành và lấy kết quả
+                    console.log(response);
+                    // Xử lý dữ liệu response ở đây nếu cần
+                } catch (error) {
+                    console.error("Error fetching data:", error);
                 }
-            });
+            } else if (formDate.dayTo !== null && formDate.dayFrom === null) {
+                // Xử lý trường hợp formDate.dayTo tồn tại nhưng formDate.dayFrom không tồn tại
+            } else {
+                // Xử lý trường hợp cả formDate.dayTo và formDate.dayFrom đều không tồn tại
+                order.forEach(order => {
+                    const orderDate = new Date(order.orderDay); // Chuyển đổi ngày đơn hàng thành kiểu Date
+                    let existingDataIndex = newData.findIndex(data => data.date === orderDate.getDate());
+                    if (existingDataIndex !== -1) {
+                        // Nếu ngày của đơn hàng đã tồn tại trong newData, cập nhật giá trị
+                        newData[existingDataIndex].data += order.totalPrice;
+                    } else {
+                        // Nếu ngày của đơn hàng chưa tồn tại trong newData, thêm dữ liệu mới
+                        newData.push({ date: orderDate.getDate(), price: order.totalPrice });
+                    }
+                });
+            }
+            setData(newData);
+            console.log(formDate)
         }
-
-
-    }, [formData.dayTo, formData.dayFrom, order])
-    const xDataArray = data.map(item => item.xData);
-    const dataArray = data.map(item => item.data);
+    fetchData()
+    }, [formDate.dayFrom, formDate.dayTo, order])
     return (
         <div>
             <div className="mt-4">
@@ -131,7 +121,7 @@ function Reveneu() {
 
                         </div>
                         <div className="w-12/12 h-10 py-5 ms-3">
-                            <Line options={options} data={xydata} />;
+                            <Line options={options} data={chart} />;
                         </div>
                     </div>
                 </div>
