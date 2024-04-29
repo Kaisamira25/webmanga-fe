@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 const DetailsProductPage = lazy(() => import("../pages/DetailsProduct/DetailsProductPage"))
 const NewPassword = lazy(() =>import("../pages/ResetPassword/NewPasswordPage"));
-const AdminGenre = lazy(() => import("../apps/Admin/page/Genre"));
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const PaymentPage = lazy(() => import("../pages/Payment/PaymentPage"));
 const UserPage = lazy(() => import("../pages/User/UserPage"));

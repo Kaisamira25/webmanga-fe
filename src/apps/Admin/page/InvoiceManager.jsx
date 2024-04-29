@@ -28,12 +28,12 @@ function Invoice() {
         setItemList(selected.orderItem)
         setorderStatus(orderSta.find((o) => o.value === selected.orderStatus))
         setPayment(paymentSta.find((p) => p.value === selected.paymentStatus))
-        console.log(payment)
     }
     const updateOrders = async (order) => {
         order.orderStatus=orderStatus.value;
         order.paymentStatus=payment.value;
         order.orderDay=new Date();
+        console.log(order)
         const response = await updateOrder(order);
         if(response != null){
             fetchOrder();
@@ -45,6 +45,9 @@ function Invoice() {
         }
 
     }
+    useEffect(() =>{
+        console.log(orderStatus,payment)
+    },[orderStatus,payment])
    
     const OderTH = [
         { names: "Customer" },

@@ -3,7 +3,7 @@ import axios from "axios";
 function CoverData() {
   const [covers, setCovers] = useState([]);
   const [coversSL, setCoverSL] = useState([]);
-
+  
   const fetchCovers = async () => {
     try {
       const token = "your_actual_access_token_value";
