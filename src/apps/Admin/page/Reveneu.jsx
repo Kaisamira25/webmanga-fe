@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import InputAdmin from "../componnents/InputAdmin";
-import { AlertAdmin } from "../componnents/Alert";
+import InputAdmin from "../components/InputAdmin";
+import { AlertAdmin } from "../components/Alert";
 import ReveData from "../Services/ReveneuData";
 import {
   Chart as ChartJS,
