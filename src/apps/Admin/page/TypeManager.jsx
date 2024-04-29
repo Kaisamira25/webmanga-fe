@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { AlertAdmin } from "../componnents/Alert";
-import SearchBar from "../componnents/SearchBar";
+import { AlertAdmin } from "../components/Alert";
+import SearchBar from "../components/SearchBar";
 import TypeData from "../Services/TypeData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
 import { system } from "faker/lib/locales/en";
@@ -20,8 +20,8 @@ function AdminType() {
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks
@@ -30,15 +30,15 @@ function AdminType() {
   useEffect(() => {
     // Nếu thành công khi thêm sản phẩm, thì mới ẩn thông báo sau 5 giây
     if (vali === "success") {
-        const hideAlert = setTimeout(() => {
-            setVali('');
-            setInfo('');
-        }, 5000);
+      const hideAlert = setTimeout(() => {
+        setVali("");
+        setInfo("");
+      }, 5000);
 
-        // Clear timeout khi component unmount để tránh memory leaks
-        return () => clearTimeout(hideAlert);
+      // Clear timeout khi component unmount để tránh memory leaks
+      return () => clearTimeout(hideAlert);
     }
-}, [vali, info]);
+  }, [vali, info]);
   const handleAddType = async () => {
     if (typeName === null || typeName === "") {
       setVali("error");

@@ -1,0 +1,13 @@
+@use "../../../common/responsive" as *;
+@use "../../../common/variables" as *;
+
+.button {
+  background-color: #57b388;
+  padding: 0.5em;
+  border-radius: 5px;
+  min-width: 5em;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $bg-btn-color;
+  }
+}

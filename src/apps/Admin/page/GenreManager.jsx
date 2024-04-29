@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import SearchBar from "../componnents/SearchBar";
+import SearchBar from "../components/SearchBar";
 import GenreData from "../Services/GenreData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
-import { AlertAdmin } from "../componnents/Alert";
+import { AlertAdmin } from "../components/Alert";
 
 function Genre() {
   const [genre, setGenre] = useState("");
@@ -25,7 +25,6 @@ function Genre() {
       (item) => item.genre.toLowerCase() === genre.toLowerCase()
     );
   };
- 
 
   const handleAddGenre = async () => {
     if (genre === null || genre === "") {
@@ -106,8 +105,8 @@ function Genre() {
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks

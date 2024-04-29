@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderAdmin from "../../apps/Admin/componnents/_Header-Admin";
+import HeaderAdmin from "../../apps/Admin/components/_Header-Admin";
 import MenuAdmin from "../../apps/Admin/page/Sidebar";
 import { useLocation } from "react-router-dom";
 import Genre from "../../apps/Admin/page/GenreManager";
@@ -10,33 +10,37 @@ import AdminProduct from "../../apps/Admin/page/PublicationsManager";
 import AdminType from "../../apps/Admin/page/TypeManager";
 import Reveneu from "../../apps/Admin/page/Reveneu";
 import Invoice from "../../apps/Admin/page/InvoiceManager";
-import Account from "../../apps/Admin/page/EmployeeManager";
+import EmployeeManager from "../../apps/Admin/page/EmployeeManager";
+import CustomerManager from "../../apps/Admin/page/CustomerManager";
 
 function HomeAdmin() {
-    const location = useLocation();
-    const currentPath = location.pathname;
-    return (
-        <div className="w-auto ">
-            <HeaderAdmin />
-            <div>
-                <div className="flex">
-                    <div className="w-2/12"><MenuAdmin /></div>
-                    <div className="ms-3 w-10/12 ">
-                        {currentPath === "/admin" && <Genre />}
-                        {currentPath === "/admin/genre" && <Genre />}
-                        {currentPath === "/admin/gift" && <AdminGift/>}
-                        {currentPath === "/admin/discount" && <AdminDiscount />}
-                        {currentPath === "/admin/cover" && <AdminCover />}
-                        {currentPath === "/admin/product" && <AdminProduct />}
-                        {currentPath === "/admin/type" && <AdminType />}
-                        {currentPath === "/admin/order" && <Invoice/> }
-                        {currentPath === "/admin/account" && <Account/>}
-                        {currentPath === "/admin/sales" && <Reveneu />}
-                    </div>
-                </div>
-            </div>
+  const location = useLocation();
+  const currentPath = location.pathname;
+  return (
+    <div className="w-auto ">
+      <HeaderAdmin />
+      <div>
+        <div className="flex">
+          <div className="w-2/12">
+            <MenuAdmin />
+          </div>
+          <div className="ms-3 w-10/12 ">
+            {currentPath === "/admin" && <Genre />}
+            {currentPath === "/admin/genre" && <Genre />}
+            {currentPath === "/admin/gift" && <AdminGift />}
+            {currentPath === "/admin/discount" && <AdminDiscount />}
+            {currentPath === "/admin/cover" && <AdminCover />}
+            {currentPath === "/admin/product" && <AdminProduct />}
+            {currentPath === "/admin/type" && <AdminType />}
+            {currentPath === "/admin/order" && <Invoice />}
+            {currentPath === "/admin/employees" && <EmployeeManager />}
+            {currentPath === "/admin/customers" && <CustomerManager />}
+            {currentPath === "/admin/sales" && <Reveneu />}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default HomeAdmin;

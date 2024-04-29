@@ -137,18 +137,57 @@ const fetchChangePassword = (password, newPassword, confirmPassword) => {
 const fetchPublicationsByAuthor = (authorName) => {
   return instance.get("/api/v1/publications/author/name", {
     params: {
-      author: authorName
-    }
+      author: authorName,
+    },
   });
-}
+};
 
 const fetchHistory = (customerId) => {
   return instance.get(`/api/v1/order/getOrder/${customerId}`);
 };
 
 const createOrder = () => {
-  return instance.post()
-}
+  return instance.post();
+};
+
+const fetchAllEmployees = () => {
+  return instance.get("/api/v1/employee/all");
+};
+
+const fetchEmployeesWithAccountName = (accountName) => {
+  return instance.get(`/api/v1/employee/search/${accountName}`);
+};
+
+const fetchCreateEmployees = (employeeData) => {
+  return instance.post("/api/v1/employee/create", JSON.stringify(employeeData));
+};
+
+const fetchUpdateEmployees = (employee) => {
+  return instance.put(
+    `/api/v1/employee/update/${employee.accountName}`,
+    employee
+  );
+};
+
+const fetchDeleteEmployees = (accountName) => {
+  return instance.delete(`/api/v1/employee/delete/${accountName}`);
+};
+
+const fetchAllCustomers = () => {
+  return instance.get("/api/v1/customer/all");
+};
+
+const fetchUpdateStatusCustomers = (customer) => {
+  return instance.put(
+    `/api/v1/customer/updateStatusCustomer/${customer.customerId}`,
+    customer
+  );
+};
+
+const fetchCustomersWithCustomerId = (customerId) => {
+  return instance.get(`/api/v1/customer/search/${customerId}`);
+};
+
 export {
   loginAdmin,
   fetchPublicationsBySearch,
@@ -179,5 +218,13 @@ export {
   fetchUserAddress,
   fetchChangePassword,
   fetchHistory,
-  logoutApi
+  logoutApi,
+  fetchAllEmployees,
+  fetchEmployeesWithAccountName,
+  fetchCreateEmployees,
+  fetchUpdateEmployees,
+  fetchDeleteEmployees,
+  fetchAllCustomers,
+  fetchUpdateStatusCustomers,
+  fetchCustomersWithCustomerId,
 };

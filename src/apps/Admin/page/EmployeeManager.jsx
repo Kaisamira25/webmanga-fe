@@ -1,72 +1,282 @@
-import React from "react";
-import SearchBar from "../componnents/SearchBar";
-import TableAdmin from "../componnents/TableAdmin";
-import InputAdmin from "../componnents/InputAdmin";
-import MultiSelect from "../componnents/Multiple_Select";
+import React, { useState, useEffect } from "react";
+import EmployeeStyle from "../scss/EmployeeManager.module.scss";
+import FormButton from "../components/FormButton";
+import FormInput from "../components/FormInput";
+import {
+  fetchAllEmployees,
+  fetchEmployeesWithAccountName,
+  fetchCreateEmployees,
+  fetchUpdateEmployees,
+  fetchDeleteEmployees,
+} from "../../../services/Service";
 
-function Account() {
+function EmployeesManager() {
+  const [employees, setEmployees] = useState([]);
+  const [accountName, setAccountName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [isBlocked, setBlocked] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(true);
+  const [editingPassword, setEditingPassword] = useState("");
 
-    const TH = [
-        { names: "Id" },
-        { names: "Email" },
-        { names: "Full Name" },
-        { names: "Is_Verify" },
-        { names: "Is_Block" },
-        { names: "Creat_At" },
-    ]
-    const option=[
-        {value:"1",label:"Lân"},
-        {value:"2",label:"Lân2"},
-        {value:"3",label:"Lân1"}
-    ]
-    const TD = [
-        { id: 1, email: "lan@gmail.com", fullname: "Lâm Tự Lân", Is_Verify: false ? "Đã kích hoạt" : "Chưa kích hoạt", Is_Block: true ? "Hoạt Động" : "Không Hoạt Động", creatAt: "19/03/2003" }
-    ]
-    const AccountIP = [
-        { type: "email", id: "email", name: "email", placeholder: "Email" },
-        { type: "text", id: "fullname", name: "fullname", placeholder: "Fullname" },
-        { type: "password", id: "password", name: "password", placeholder: "Password" },
-    ]
-    return (
-        <div className="h-screen pt-12">
-                <div className="text-black text-start mt-4">
-                    <h3 className="font-bold">Manage Account</h3>
-                </div>
+  useEffect(() => {
+    const fetchEmployeeData = async () => {
+      if (!checkRole()) {
+        console.log("You do not have permission to perform this action");
+        return;
+      }
+      const response = await fetchAllEmployees();
+      console.log(response.data.data);
+      setEmployees(response.data.data);
+    };
+    fetchEmployeeData();
+  }, []);
+
+  const getRole = () => {
+    const token = sessionStorage.getItem("accessToken");
+    const role = JSON.parse(atob(token.split(".")[1])).role;
+    return role[0].authority; // Trả về authority của đối tượng đầu tiên trong mảng role
+  };
+
+  const checkRole = () => {
+    const role = getRole();
+    return role === "ADMIN"; // So sánh với chuỗi "ADMIN"
+  };
+
+  useEffect(() => {
+    console.log("User role is: ", getRole());
+  }, []);
+
+  const handleRadioChange = (e) => {
+    setBlocked(e.target.value === "1");
+  };
+
+  const handleRowClick = (employee) => {
+    console.log(employee);
+    setSelectedEmployee(employee);
+    setAccountName(employee.accountName);
+    setFullName(employee.fullName);
+    setPhone(employee.phone);
+    setAddress(employee.address);
+    setBlocked(employee.isBlocked);
+  };
+
+  const refreshEmployeeData = async () => {
+    const response = await fetchAllEmployees();
+    setEmployees(response.data.data);
+  };
+
+  const handleCreateEmployee = async (event) => {
+    event.preventDefault();
+    if (!checkRole()) {
+      console.log("You do not have permission to perform this action");
+      return;
+    }
+    setBlocked(false);
+    const employeeData = {
+      accountName,
+      fullName,
+      password,
+      phone,
+      address,
+      isBlocked,
+    };
+    const response = await fetchCreateEmployees(employeeData);
+    if (response.status === 200) {
+      console.log("Employee created successfully");
+      setMessage("Employee created successfully");
+      setIsSuccess(true);
+      refreshEmployeeData();
+    } else {
+      console.log("Failed to create employee");
+      setMessage("Failed to create employee");
+      setIsSuccess(false);
+    }
+  };
+
+  const handleUpdateEmployee = async (event) => {
+    event.preventDefault();
+    if (!checkRole()) {
+      console.log("You do not have permission to perform this action");
+      return;
+    }
+    if (typeof selectedEmployee === "undefined" || selectedEmployee === null) {
+      console.log("No employee selected for update");
+    } else {
+      try {
+        const response = await fetchUpdateEmployees({
+          accountName: selectedEmployee.accountName,
+          fullName,
+          phone,
+          address,
+          isBlocked,
+        });
+        if (response.status === 200) {
+          console.log("Employee updated successfully");
+          setMessage("Employee updated successfully");
+          setIsSuccess(true);
+          refreshEmployeeData();
+        } else {
+          console.log("Failed to update employee");
+          setMessage("Failed to update employee");
+          setIsSuccess(false);
+        }
+      } catch (error) {
+        console.log("Failed to update employee", error);
+      }
+    }
+  };
+
+  const handleDeleteEmployee = async (event) => {
+    event.preventDefault();
+    if (!checkRole()) {
+      console.log("You do not have permission to perform this action");
+      return;
+    }
+    if (selectedEmployee) {
+      const response = await fetchDeleteEmployees(selectedEmployee.accountName);
+      if (response.status === 200) {
+        console.log("Employee deleted successfully");
+        setMessage("Employee deleted successfully");
+        setIsSuccess(true);
+        refreshEmployeeData();
+      } else {
+        console.log("Failed to delete employee");
+        setMessage("Failed to delete employee");
+        setIsSuccess(false);
+      }
+    } else {
+      console.log("No employee selected for delete");
+    }
+  };
+
+  const handleSearchEmployee = async (event) => {
+    event.preventDefault();
+    if (!checkRole()) {
+      console.log("You do not have permission to perform this action");
+      return;
+    }
+    const response = await fetchEmployeesWithAccountName(accountName);
+    if (response.status === 200) {
+      setEmployees(response.data.data);
+    } else {
+      console.log("Failed to fetch employees with account name: ", accountName);
+    }
+  };
+
+  return (
+    <div className={EmployeeStyle.employeeWrapper}>
+      <div className={EmployeeStyle.employeeContainer}>
+        <h4>Add new employee</h4>
+        <form>
+          <FormInput
+            placeholder={"Account"}
+            label={"Account"}
+            value={accountName}
+            onChange={(e) => setAccountName(e.target.value)}
+          />
+          <FormInput
+            placeholder={"Full name"}
+            label={"Employee name"}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+          <FormInput placeholder={"Password"} label={"Password"} />
+          <FormInput
+            placeholder={"Phone number"}
+            label={"Phone number"}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <FormInput
+            placeholder={"Address"}
+            label={"Address"}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <div className={EmployeeStyle.radioStyle}>
+            <label htmlFor="">Block account</label>
             <div>
-                <div>
-                    {AccountIP.map((field, index) => (
-                        <InputAdmin
-                            key={index}
-                            type={field.type}
-                            name={field.names}
-                            id={field.id}
-                            placeholder={field.placeholder}
-                        />
-                    ))}
-                    <div className="w-3/12 py-2">
-                        <MultiSelect options={option} placeholder="Role"/>
-                    </div>
-
-                </div>
-                <button
-                    type="button"
-                    formMethod="POST"
-
-                    className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-                >
-                    Add
-                </button>
-                <button
-                    type="button"
-                    formMethod="PUT"
-                    className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-                >
-                    Update
-                </button>
-                <SearchBar />
-                <TableAdmin arraysTH={TH} arraysTD={TD} />
+              <input
+                type="radio"
+                id="choice1"
+                name="choice"
+                value="1"
+                checked={isBlocked}
+                onChange={handleRadioChange}
+              />
+              <label htmlFor="choice1">Block</label>
             </div>
+            <div>
+              <input
+                type="radio"
+                id="choice2"
+                name="choice"
+                value="2"
+                checked={!isBlocked}
+                onChange={handleRadioChange}
+              />
+              <label htmlFor="choice2">Not block</label>
+            </div>
+          </div>
+          <div>
+            <FormButton
+              content={"Create"}
+              onClick={(event) => handleCreateEmployee(event)}
+            />
+            <FormButton
+              content={"Update"}
+              onClick={(event) => handleUpdateEmployee(event)}
+            />
+            <FormButton
+              content={"Delete"}
+              onClick={(event) => handleDeleteEmployee(event)}
+            />
+          </div>
+        </form>
+        <div className={EmployeeStyle.tableWrapper}>
+          <FormInput
+            label={"Search employee"}
+            type={"search"}
+            onClick={(event) => handleSearchEmployee(event)}
+          />
+          {message && (
+            <div className={EmployeeStyle.messageWrapper}>
+              <div style={{ color: isSuccess ? "green" : "red" }}>
+                {message}
+              </div>
+            </div>
+          )}
+          <table>
+            <thead>
+              <tr>
+                <td>Account</td>
+                <td>Employee name</td>
+                <td>Phone number</td>
+                <td>Address</td>
+                <td>Blocked</td>
+              </tr>
+            </thead>
+            <tbody>
+              {employees.map((employee) => (
+                <tr key={employee.id} onClick={() => handleRowClick(employee)}>
+                  <td>{employee.accountName}</td>
+                  <td>{employee.fullName}</td>
+                  <td>{employee.phone}</td>
+                  <td>{employee.address}</td>
+                  <td>{employee.isBlocked ? "Yes" : "No"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-export default Account
+
+export default EmployeesManager;
