@@ -3,18 +3,17 @@ import OrderData from "../Services/OrderData";
 import moment from "moment/moment";
 import Select from "react-tailwindcss-select";
 import { Card } from "react-bootstrap";
-import { AlertAdmin } from "../componnents/Alert";
-
+import { AlertAdmin } from "../components/Alert";
 
 function Invoice() {
-    const { orders, updateOrder,fetchOrder} = OrderData();
-    const [orderStatus, setorderStatus] = useState();
-    const [payment, setPayment] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [itemList, setItemList] = useState([]);
-    const [Order,setOrder]=useState();
-    const [vali,setVali]=useState("");
-    const [info,setInfo]=useState("")
+  const { orders, updateOrder, fetchOrder } = OrderData();
+  const [orderStatus, setorderStatus] = useState();
+  const [payment, setPayment] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [itemList, setItemList] = useState([]);
+  const [Order, setOrder] = useState();
+  const [vali, setVali] = useState("");
+  const [info, setInfo] = useState("");
 
     const handleOrderStatusChange = (value) => {
         setorderStatus(value);
@@ -204,4 +203,4 @@ function Invoice() {
         </div>
     )
 }
-export default Invoice
+export default Invoice;

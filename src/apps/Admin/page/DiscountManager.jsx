@@ -1,21 +1,17 @@
 import React, { useEffect } from "react";
-import { AlertAdmin } from "../componnents/Alert";
+import { AlertAdmin } from "../components/Alert";
 import DiscountData from "../Services/DiscountData";
 import { useState } from "react";
 
 function AdminDiscount() {
-  const {
-    discounts,
-    addDiscounts,
-    updateDiscounts,
-    findDiscount
-  } = DiscountData();
+  const { discounts, addDiscounts, updateDiscounts, findDiscount } =
+    DiscountData();
   const [formData, setFormData] = useState({
     discountName: "",
     discountPercent: "",
     discountCode: "",
     expirationDate: "",
-    description: ""
+    description: "",
   });
   const [discountId, setDiscountId] = useState("");
   const [vali, setVali] = useState("");
@@ -26,36 +22,36 @@ function AdminDiscount() {
     { names: "Active" },
     { names: "DiscountCode" },
     { names: "CreatedAt" },
-    { names: "ExpirationDate" }
+    { names: "ExpirationDate" },
   ];
   const isDiscountExist = () => {
     return discounts.some(
-      (item) => item.discountName.toLowerCase() === formData.discountName.toLowerCase()
+      (item) =>
+        item.discountName.toLowerCase() === formData.discountName.toLowerCase()
     );
   };
   const handleFormDataChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-
 
   const validForm = () => {
     let isValid = true;
-    Object.values(formData).forEach(value => {
-      if (value === '') {
+    Object.values(formData).forEach((value) => {
+      if (value === "") {
         isValid = false;
         return; // Dừng vòng lặp ngay lập tức khi tìm thấy giá trị rỗng
       }
     });
-    if(parseInt(formData.discountPercent) < 0){
+    if (parseInt(formData.discountPercent) < 0) {
       return false;
-    }else{
+    } else {
       return isValid;
     }
-  }
-  useEffect(()=> {
-    validForm()
-  },[formData])
+  };
+  useEffect(() => {
+    validForm();
+  }, [formData]);
 
   const handleAddDiscount = async () => {
     if (!validForm()) {
@@ -74,23 +70,23 @@ function AdminDiscount() {
         discountPercent: "",
         discountCode: "",
         expirationDate: "",
-        description: ""
+        description: "",
       });
     }
   };
   const handleRowClick = (id) => {
     const selected = discounts.find((discount) => discount.discountId === id);
-    console.log(selected)
+    console.log(selected);
     if (selected) {
-      setFormData(prevFormData => ({
+      setFormData((prevFormData) => ({
         ...prevFormData,
         discountName: selected.discountName,
         discountPercent: selected.discountPercent,
         discountCode: selected.discountCode,
         expirationDate: selected.expirationDate,
-        description: selected.description
+        description: selected.description,
       }));
-      setDiscountId(selected.discountId)
+      setDiscountId(selected.discountId);
     }
   };
   const handleUpdateDiscount = async () => {
@@ -98,25 +94,24 @@ function AdminDiscount() {
       setVali("error");
       setInfo("Please fill in all fields!");
     } else {
-     
-        await updateDiscounts(discountId, formData);
-        setVali("success");
-        setInfo("Update complete!");
-        setFormData({
-          discountName: "",
-          discountPercent: "",
-          discountCode: "",
-          expirationDate: "",
-          description: ""
-        });
-        setDiscountId('')
+      await updateDiscounts(discountId, formData);
+      setVali("success");
+      setInfo("Update complete!");
+      setFormData({
+        discountName: "",
+        discountPercent: "",
+        discountCode: "",
+        expirationDate: "",
+        description: "",
+      });
+      setDiscountId("");
     }
   };
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks
@@ -128,8 +123,8 @@ function AdminDiscount() {
   };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0'); // Lấy ngày và thêm số 0 nếu cần
-    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Lấy tháng và thêm số 0 nếu cần
+    const day = date.getDate().toString().padStart(2, "0"); // Lấy ngày và thêm số 0 nếu cần
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Lấy tháng và thêm số 0 nếu cần
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
@@ -152,7 +147,12 @@ function AdminDiscount() {
       id: "discount",
       placeholder: "Discount Code",
     },
-    { type: "date", names: "expirationDate", id: "discount", placeholder: "Expiration_date" },
+    {
+      type: "date",
+      names: "expirationDate",
+      id: "discount",
+      placeholder: "Expiration_date",
+    },
   ];
   return (
     <div className="h-screen pt-12">
@@ -176,8 +176,7 @@ function AdminDiscount() {
                     className="shadow-black peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                     placeholder=""
                   />
-                  <label
-                    className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
+                  <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                     {field.placeholder}
                   </label>
                 </div>
@@ -215,11 +214,22 @@ function AdminDiscount() {
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 ">
           <form className="max-w-sm w-7/12">
-            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <label
+              htmlFor="default-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search
+            </label>
             <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              </div>
-              <input type="search" id="default-search" onChange={handleSearchChange} className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
+              <input
+                type="search"
+                id="default-search"
+                onChange={handleSearchChange}
+                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search"
+                required
+              />
             </div>
           </form>
         </div>
@@ -228,24 +238,45 @@ function AdminDiscount() {
             <thead className="border-b border-black bg-gray-500 uppercase ">
               <tr>
                 {TH.map((item, index) => (
-                  <th className=" text-center font-bold border-r border-black" key={index}>{item.names}</th>
+                  <th
+                    className=" text-center font-bold border-r border-black"
+                    key={index}
+                  >
+                    {item.names}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody className="overflow-y-scroll">
               {discounts.map((item, rowIndex) => (
-                <tr key={rowIndex} name={rowIndex} onClick={() => handleRowClick(item.discountId)} className="cursor-pointer border-b  border-black hover:bg-gray-400">
-                  <td className="text-center border-r border-black">{item.discountName}</td>
-                  <td className="text-center border-r border-black">{item.discountPercent}</td>
-                  <td className="text-center border-r border-black">{(item.active ? 'Active' : 'Non-Active')} </td>
-                  <td className="text-center border-r border-black">{item.discountCode}</td>
-                  <td className="text-center border-r border-black">{formatDate(item.createdAt)}</td>
-                  <td className="text-center border-r border-black">{formatDate(item.expirationDate)}</td>
+                <tr
+                  key={rowIndex}
+                  name={rowIndex}
+                  onClick={() => handleRowClick(item.discountId)}
+                  className="cursor-pointer border-b  border-black hover:bg-gray-400"
+                >
+                  <td className="text-center border-r border-black">
+                    {item.discountName}
+                  </td>
+                  <td className="text-center border-r border-black">
+                    {item.discountPercent}
+                  </td>
+                  <td className="text-center border-r border-black">
+                    {item.active ? "Active" : "Non-Active"}{" "}
+                  </td>
+                  <td className="text-center border-r border-black">
+                    {item.discountCode}
+                  </td>
+                  <td className="text-center border-r border-black">
+                    {formatDate(item.createdAt)}
+                  </td>
+                  <td className="text-center border-r border-black">
+                    {formatDate(item.expirationDate)}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-
         </div>
       </div>
     </div>

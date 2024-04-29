@@ -3,27 +3,27 @@ import InputAdmin from "../componnents/InputAdmin";
 import { AlertAdmin } from "../componnents/Alert";
 import ReveData from "../Services/ReveneuData";
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import faker from 'faker';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import faker from "faker";
 import { height } from "@mui/system";
 import axios from "axios";
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 function Reveneu() {
     const [formDate, setFormDate] = useState({
@@ -285,4 +285,4 @@ function Reveneu() {
         </div>
     )
 }
-export default Reveneu
+export default Reveneu;
