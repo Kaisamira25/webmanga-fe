@@ -97,8 +97,8 @@ function Publications() {
   };
   // change quantity
   const handleDecreaseQuantity = () => {
-    if (quantity <= 0) {
-      setQuantity(0);
+    if (quantity = 0) {
+      setQuantity(1);
     } else {
       setQuantity(quantity - 1);
     }
