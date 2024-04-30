@@ -21,7 +21,26 @@ function EmployeesManager() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
-
+  const [accountError, setAccountError] = useState(false);
+  const [employeesError, setEmployeesError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+  const [addressError, setAddressError] = useState(false);
+  const [errors, setErrors] = useState({
+    accountName: false,
+    fullName: false,
+    password: false,
+    phone: false,
+    address: false,
+  });
+  function validatePhoneNumber(phone) {
+    // kiểm tra xem phone có đúng 10 số
+    return /^\d{10}$/.test(phone);
+  }
+  function validatePassword(password) {
+    // Kiểm tra mật khẩu  dài ít nhất 8 kí tự gồm cả chữ  số
+    return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+  }
   useEffect(() => {
     const fetchEmployeeData = async () => {
       const response = await fetchAllEmployees();
@@ -52,6 +71,48 @@ function EmployeesManager() {
 
   const handleCreateEmployee = async (event) => {
     event.preventDefault();
+    if (!accountName.trim()) {
+      setAccountError(true);
+      return;
+    }
+    if (!fullName.trim()) {
+      setEmployeesError(true);
+      return;
+    }
+    if (!password.trim()) {
+      setPasswordError(true);
+      return;
+    }
+    if (!phone.trim()) {
+      setPhoneError(true);
+      return;
+    }
+    if (!address.trim()) {
+      setAddressError(true);
+      return;
+    }
+    const isPasswordValid = validatePassword(password); // Kiểm tra mật khẩu
+    const isPhoneNumberValid = validatePhoneNumber(phone);
+    setErrors({
+      password: !isPasswordValid,
+      phone: !isPhoneNumberValid,
+    });
+    if (!isPasswordValid) {
+      setMessage("Password is not in correct format.");
+      setIsSuccess(false);
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return;
+    }
+    if (!isPhoneNumberValid) {
+      setMessage("phone number is incorrect.");
+      setIsSuccess(false);
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return;
+    }
     const employeeData = {
       accountName,
       fullName,
@@ -188,31 +249,55 @@ function EmployeesManager() {
             placeholder={"Account"}
             label={"Account"}
             value={accountName}
-            onChange={(e) => setAccountName(e.target.value)}
+            onChange={(e) => {
+              setAccountName(e.target.value);
+              setAccountError(false); // Reset error when input changes
+            }}
+            validate={{ error: accountError && "Account cannot be empty" }}
           />
           <FormInput
             placeholder={"Full name"}
             label={"Employee name"}
             value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(e) => {
+              setFullName(e.target.value);
+              setEmployeesError(false); // Reset error when input changes
+            }}
+            validate={{
+              error: employeesError && "Employee name cannot be empty",
+            }}
           />
           <FormInput
             placeholder={"Password"}
             label={"Password"}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordError(false);
+            }}
+            validate={{ error: passwordError && "Password cannot be empty" }}
+            error={errors.password}
           />
           <FormInput
             placeholder={"Phone number"}
             label={"Phone number"}
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              setPhone(e.target.value);
+              setPasswordError(false);
+            }}
+            validate={{ error: phoneError && "Phone number cannot be empty" }}
+            error={errors.phone}
           />
           <FormInput
             placeholder={"Address"}
             label={"Address"}
             value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={(e) => {
+              setAddress(e.target.value);
+              setAddressError(false);
+            }}
+            validate={{ error: addressError && "Address cannot be empty" }}
           />
           <div className={EmployeeStyle.radioStyle}>
             <label htmlFor="">Block account</label>

@@ -8,6 +8,7 @@ function FormInput({
   disable,
   onChange,
 }) {
+  const showError = validate && validate.error && !value.trim();
   return (
     <div className={FormInputStyle.formInputWrapper}>
       <label htmlFor="">{label}</label>
@@ -19,7 +20,7 @@ function FormInput({
         placeholder={placeholder}
         readOnly={disable}
       />
-      <p>Note</p>
+      <p>{showError && <p style={{ color: "red" }}>{validate.error}</p>}</p>
     </div>
   );
 }
