@@ -21,34 +21,14 @@ function EmployeesManager() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
-  const [editingPassword, setEditingPassword] = useState("");
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
-      if (!checkRole()) {
-        console.log("You do not have permission to perform this action");
-        return;
-      }
       const response = await fetchAllEmployees();
       console.log(response.data.data);
       setEmployees(response.data.data);
     };
     fetchEmployeeData();
-  }, []);
-
-  const getRole = () => {
-    const token = sessionStorage.getItem("accessToken");
-    const role = JSON.parse(atob(token.split(".")[1])).role;
-    return role[0].authority; // Trả về authority của đối tượng đầu tiên trong mảng role
-  };
-
-  const checkRole = () => {
-    const role = getRole();
-    return role === "ADMIN"; // So sánh với chuỗi "ADMIN"
-  };
-
-  useEffect(() => {
-    console.log("User role is: ", getRole());
   }, []);
 
   const handleRadioChange = (e) => {
@@ -72,38 +52,45 @@ function EmployeesManager() {
 
   const handleCreateEmployee = async (event) => {
     event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
-      return;
-    }
-    setBlocked(false);
     const employeeData = {
       accountName,
       fullName,
       password,
       phone,
       address,
-      isBlocked,
+      isBlocked: false,
     };
-    const response = await fetchCreateEmployees(employeeData);
-    if (response.status === 200) {
-      console.log("Employee created successfully");
-      setMessage("Employee created successfully");
-      setIsSuccess(true);
-      refreshEmployeeData();
-    } else {
-      console.log("Failed to create employee");
-      setMessage("Failed to create employee");
+
+    try {
+      const response = await fetchCreateEmployees(employeeData);
+      if (response.status === 200) {
+        console.log("Employee created successfully");
+        setMessage("Employee created successfully");
+        setIsSuccess(true);
+        refreshEmployeeData();
+        setTimeout(() => {
+          setMessage("");
+        }, 1000);
+      } else {
+        console.log("Failed to create employee");
+        setMessage("Failed to create employee");
+        setIsSuccess(false);
+        setTimeout(() => {
+          setMessage("");
+        }, 1000);
+      }
+    } catch (error) {
+      console.log("An error occurred while creating the employee:", error);
+      setMessage("An error occurred while creating the employee");
       setIsSuccess(false);
+      setTimeout(() => {
+        setMessage("");
+      }, 1000);
     }
   };
 
   const handleUpdateEmployee = async (event) => {
     event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
-      return;
-    }
     if (typeof selectedEmployee === "undefined" || selectedEmployee === null) {
       console.log("No employee selected for update");
     } else {
@@ -120,23 +107,30 @@ function EmployeesManager() {
           setMessage("Employee updated successfully");
           setIsSuccess(true);
           refreshEmployeeData();
+          setTimeout(() => {
+            setMessage("");
+          }, 1000);
         } else {
           console.log("Failed to update employee");
           setMessage("Failed to update employee");
           setIsSuccess(false);
+          setTimeout(() => {
+            setMessage("");
+          }, 1000);
         }
       } catch (error) {
-        console.log("Failed to update employee", error);
+        console.log("An error occurred while updating the employee:", error);
+        setMessage("An error occurred while updating the employee");
+        setIsSuccess(false);
+        setTimeout(() => {
+          setMessage("");
+        }, 1000);
       }
     }
   };
 
   const handleDeleteEmployee = async (event) => {
     event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
-      return;
-    }
     if (selectedEmployee) {
       const response = await fetchDeleteEmployees(selectedEmployee.accountName);
       if (response.status === 200) {
@@ -144,27 +138,44 @@ function EmployeesManager() {
         setMessage("Employee deleted successfully");
         setIsSuccess(true);
         refreshEmployeeData();
+        setTimeout(() => {
+          setMessage("");
+        }, 1000);
       } else {
         console.log("Failed to delete employee");
         setMessage("Failed to delete employee");
         setIsSuccess(false);
+        setTimeout(() => {
+          setMessage("");
+        }, 1000);
       }
     } else {
       console.log("No employee selected for delete");
     }
   };
 
-  const handleSearchEmployee = async (event) => {
+  const handleResetEmployee = async (event) => {
     event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
+    setAccountName("");
+    setFullName("");
+    setPassword("");
+    setPhone("");
+    setAddress("");
+    setBlocked(false);
+    setSelectedEmployee(null);
+  };
+
+  const handleSearchEmployee = async (searchQuery) => {
+    if (searchQuery.trim() === "") {
+      fetchAllEmployees();
       return;
     }
-    const response = await fetchEmployeesWithAccountName(accountName);
+
+    const response = await fetchEmployeesWithAccountName(searchQuery);
     if (response.status === 200) {
       setEmployees(response.data.data);
     } else {
-      console.log("Failed to fetch employees with account name: ", accountName);
+      console.log("Failed to fetch employees with account name: ", searchQuery);
     }
   };
 
@@ -185,7 +196,12 @@ function EmployeesManager() {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
-          <FormInput placeholder={"Password"} label={"Password"} />
+          <FormInput
+            placeholder={"Password"}
+            label={"Password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <FormInput
             placeholder={"Phone number"}
             label={"Phone number"}
@@ -236,14 +252,19 @@ function EmployeesManager() {
               content={"Delete"}
               onClick={(event) => handleDeleteEmployee(event)}
             />
+            <FormButton
+              content={"Reset"}
+              onClick={(event) => handleResetEmployee(event)}
+            />
           </div>
         </form>
         <div className={EmployeeStyle.tableWrapper}>
           <FormInput
             label={"Search employee"}
             type={"search"}
-            onClick={(event) => handleSearchEmployee(event)}
+            onChange={(e) => handleSearchEmployee(e.target.value)}
           />
+
           {message && (
             <div className={EmployeeStyle.messageWrapper}>
               <div style={{ color: isSuccess ? "green" : "red" }}>
@@ -258,6 +279,7 @@ function EmployeesManager() {
                 <td>Employee name</td>
                 <td>Phone number</td>
                 <td>Address</td>
+                <td>Role</td>
                 <td>Blocked</td>
               </tr>
             </thead>
@@ -268,6 +290,7 @@ function EmployeesManager() {
                   <td>{employee.fullName}</td>
                   <td>{employee.phone}</td>
                   <td>{employee.address}</td>
+                  <td>{employee.roleName}</td>
                   <td>{employee.isBlocked ? "Yes" : "No"}</td>
                 </tr>
               ))}

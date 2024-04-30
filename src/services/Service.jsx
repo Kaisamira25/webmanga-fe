@@ -159,7 +159,7 @@ const fetchEmployeesWithAccountName = (accountName) => {
 };
 
 const fetchCreateEmployees = (employeeData) => {
-  return instance.post("/api/v1/employee/create", JSON.stringify(employeeData));
+  return instance.post("/api/v1/employee/create", employeeData);
 };
 
 const fetchUpdateEmployees = (employee) => {
@@ -186,6 +186,10 @@ const fetchUpdateStatusCustomers = (customer) => {
 
 const fetchCustomersWithCustomerId = (customerId) => {
   return instance.get(`/api/v1/customer/search/${customerId}`);
+};
+
+const fetchCustomersWithEmail = (email) => {
+  return instance.get(`/api/v1/customer/search/${email}`);
 };
 
 export {
@@ -227,4 +231,5 @@ export {
   fetchAllCustomers,
   fetchUpdateStatusCustomers,
   fetchCustomersWithCustomerId,
+  fetchCustomersWithEmail,
 };

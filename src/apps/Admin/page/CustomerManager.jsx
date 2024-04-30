@@ -5,6 +5,7 @@ import FormInput from "../components/FormInput";
 import {
   fetchAllCustomers,
   fetchUpdateStatusCustomers,
+  fetchCustomersWithEmail,
 } from "../../../services/Service";
 
 function CustomerManager() {
@@ -21,35 +22,11 @@ function CustomerManager() {
 
   useEffect(() => {
     const fetchCustomerData = async () => {
-      if (!checkRole()) {
-        console.log("You do not have permission to perform this action");
-        return;
-      }
       const response = await fetchAllCustomers();
       console.log(response.data.data);
       setCustomers(response.data.data);
     };
     fetchCustomerData();
-  }, []);
-
-  const getRole = () => {
-    const token = sessionStorage.getItem("accessToken");
-    const role = JSON.parse(atob(token.split(".")[1])).role;
-    return role[0].authority; // Trả về authority của đối tượng đầu tiên trong mảng role
-  };
-
-  const checkRole = () => {
-    const role = getRole();
-    if (role === "1" || role === "ADMIN") {
-      return true;
-    } else if (role === "2" || role === "EMPLOYEE") {
-      return true;
-    }
-    return false;
-  };
-
-  useEffect(() => {
-    console.log("User role is: ", getRole());
   }, []);
 
   const handleRadioChange = (e) => {
@@ -74,10 +51,6 @@ function CustomerManager() {
 
   const handleUpdateStatusCustomer = async (event) => {
     event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
-      return;
-    }
     if (typeof selectedCustomer === "undefined" || selectedCustomer === null) {
       console.log("No customer selected for update");
     } else {
@@ -91,27 +64,34 @@ function CustomerManager() {
           setMessage("Customer updated successfully");
           setIsSuccess(true);
           refreshCustomerData();
+          setTimeout(() => {
+            setMessage("");
+          }, 1000);
         } else {
           console.log("Failed to update customer");
           setMessage("Failed to update customer");
           setIsSuccess(false);
+          setTimeout(() => {
+            setMessage("");
+          }, 1000);
         }
       } catch (error) {
         console.log("Failed to update customer", error);
       }
     }
   };
-  const handleSearchCustomer = async (event) => {
-    event.preventDefault();
-    if (!checkRole()) {
-      console.log("You do not have permission to perform this action");
+
+  const handleSearchCustomer = async (searchQuery) => {
+    if (searchQuery.trim() === "") {
+      fetchAllEmployees();
       return;
     }
-    const response = await fetchCustomersWithCustomerId(customerId);
+
+    const response = await fetchCustomersWithEmail(searchQuery);
     if (response.status === 200) {
-      setCustomers(response.data.data);
+      setEmployees(response.data.data);
     } else {
-      console.log("Failed to fetch customers with customerId: ", customerId);
+      console.log("Failed to fetch Customers with email: ", searchQuery);
     }
   };
 
@@ -185,7 +165,7 @@ function CustomerManager() {
           <FormInput
             label={"Search employee"}
             type={"search"}
-            onClick={(event) => handleSearchCustomer(event)}
+            onChange={(e) => handleSearchCustomer(e.target.value)}
           />
           {message && (
             <div className={CustomerStyle.messageWrapper}>

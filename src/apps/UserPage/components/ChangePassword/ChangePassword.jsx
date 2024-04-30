@@ -90,7 +90,7 @@ function ChangePassword() {
   const fields = [
     {
       label: "Old Password *",
-      type: "password",
+      type: "old-password",
       placeholder: "Enter Old Password",
       value: password,
       onChange: (e) => setPassword(e.target.value),
@@ -98,7 +98,7 @@ function ChangePassword() {
     },
     {
       label: "New Password *",
-      type: "password",
+      type: "new-password",
       placeholder: "Enter New Password",
       value: newPassword,
       onChange: (e) => setNewPassword(e.target.value),
@@ -106,7 +106,7 @@ function ChangePassword() {
     },
     {
       label: "Confirm Password *",
-      type: "password",
+      type: "current-password",
       placeholder: "Confirm Password",
       value: confirmPassword,
       onChange: (e) => setConfirmPassword(e.target.value),
