@@ -230,7 +230,12 @@ function EmployeesManager() {
 
   const handleSearchEmployee = async (searchQuery) => {
     if (searchQuery.trim() === "") {
-      fetchAllEmployees();
+      const response = await fetchAllEmployees();
+      if (response.status === 200) {
+        setEmployees(response.data.data);
+      } else {
+        console.log("Failed to fetch all employees");
+      }
       return;
     }
 

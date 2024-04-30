@@ -34,13 +34,17 @@ function CustomerManager() {
   };
 
   const handleRowClick = (customer) => {
-    console.log(customer);
     setSelectedCustomer(customer);
     setCustomerId(customer.customerId);
     setFullName(customer.fullName);
     setEmail(customer.email);
-    setPhoneNumber(customer.addresses.phoneNumber);
-    setAddress(customer.addresses.address);
+    if (customer.addresses) {
+      setPhoneNumber(customer.addresses.phoneNumber);
+      setAddress(customer.addresses.address);
+    } else {
+      setPhoneNumber("");
+      setAddress("");
+    }
     setBlocked(customer.isBlocked);
   };
 
@@ -83,15 +87,24 @@ function CustomerManager() {
 
   const handleSearchCustomer = async (searchQuery) => {
     if (searchQuery.trim() === "") {
-      fetchAllEmployees();
+      const response = await fetchAllCustomers();
+      if (response.status === 200) {
+        setCustomers(response.data.data);
+      } else {
+        console.log("Failed to fetch all customers");
+        setCustomers([]);
+      }
       return;
     }
 
     const response = await fetchCustomersWithEmail(searchQuery);
-    if (response.status === 200) {
-      setEmployees(response.data.data);
+    if (response.status === 200 && response.data.data.length > 0) {
+      console.log(response.data.data);
+      setCustomers(response.data.data);
     } else {
-      console.log("Failed to fetch Customers with email: ", searchQuery);
+      console.log("Failed to fetch customers with email: ", searchQuery);
+      setCustomers([]);
+      ``;
     }
   };
 
@@ -193,8 +206,10 @@ function CustomerManager() {
                   >
                     <td>{customer.fullName}</td>
                     <td>{customer.email}</td>
-                    <td>{customer.addresses.phoneNumber}</td>
-                    <td>{customer.addresses.address}</td>
+                    <td>
+                      {customer.phoneNumber || customer.addresses.phoneNumber}
+                    </td>
+                    <td>{customer.address || customer.addresses.address}</td>
                     <td>{customer.isBlocked ? "Yes" : "No"}</td>
                   </tr>
                 ))}
