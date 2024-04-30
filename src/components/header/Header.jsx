@@ -33,11 +33,10 @@ function Header() {
     navigate("/login");
     // const languageValue = "vi";
     // i18n.changeLanguage(languageValue);
-
   };
+
   const handleLogout = async () => {
     const response = await logoutApi();
-    console.log(response);
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("accessToken");
     setCustomerName("");
@@ -46,6 +45,7 @@ function Header() {
     }, 100);
     setLogout(!logout);
   };
+
   const handleNavigateToHome = () => {
     navigate("/home");
   };

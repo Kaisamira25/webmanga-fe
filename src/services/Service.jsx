@@ -150,6 +150,10 @@ const fetchHistory = (customerId) => {
 const createOrder = () => {
   return instance.post();
 };
+
+const logoutAdmin = () => {
+  return instance.patch("/api/v1/admin/logout");
+};
 export {
   loginAdmin,
   fetchPublicationsBySearch,
@@ -181,4 +185,5 @@ export {
   fetchChangePassword,
   fetchHistory,
   logoutApi,
+  logoutAdmin,
 };
