@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AlertAdmin } from "../components/Alert";
 import CoverData from "../Services/CoverData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
+import FormButton from "../components/FormButton";
 
 function AdminCover() {
   const [coverType, setCoverType] = useState("");
@@ -126,20 +127,10 @@ function AdminCover() {
               </label>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={handleAddCover}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Add
-          </button>
-          <button
-            type="button"
-            onClick={handleUpdateCover}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Update
-          </button>
+          <div className="flex gap-1">
+            <FormButton content={"Add"} onClick={handleAddCover}/>
+            <FormButton content={"Update"} onClick={handleUpdateCover}/>
+          </div>
           <AlertAdmin vali={vali} info={info} />
         </div>
         <div className="w-12/12 h-1/2 mb-1 ">

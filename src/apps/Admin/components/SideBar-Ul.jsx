@@ -3,7 +3,7 @@ import BookIcon from "../../../assets/icons/Book";
 import AdminIcon from "../../../assets/icons/Admin";
 import StatisIcon from "../../../assets/icons/Statis";
 import { Link } from "react-router-dom";
-
+import Sidebar_ui from "../scss/Sidebar_ui.module.scss";
 function SideBar() {
   const UlField = [
     {
@@ -34,26 +34,24 @@ function SideBar() {
         { name: "Revenue Statistics", link: "/admin/sales" },
       ],
     },
+    {
+      name: "Navigate",
+      LiField: [
+        { name: "Home", link: "/home"},
+        { name: "Logout", link: "/home"}
+      ]
+    }
   ];
   return (
-    <div className="pt-lg-3 mb-1 py-2">
+    <div className={Sidebar_ui.sidebar_uiContainer}>
       {UlField.map((field, index) => (
-        <div className="rounded-e rounded-s mb-1 h-auto py-1" key={index}>
-          <ul className="nav ms-1 pb-2 pt-1">
-            <h6 className="sidebar-heading mt-1 mb-1 ms-1 font-bold">
-              <span className="ms-6">
-                {field.svg} {field.name}
-              </span>
-            </h6>
-            {field.LiField.map((liFields, index) => (
-              <div className="text-start ps-8 py-1 hover:text-blue-400">
-                <Link to={liFields.link} key={index}>
-                  <span>{liFields.name}</span>
-                </Link>
-              </div>
-            ))}
-          </ul>
-        </div>
+        <ul key={index}>
+          {field.LiField.map((liFields, index) => (
+            <li key={index}>
+              <Link to={liFields.link}>{liFields.name}</Link>
+            </li>
+          ))}
+        </ul>
       ))}
     </div>
   );
