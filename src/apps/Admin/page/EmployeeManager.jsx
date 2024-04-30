@@ -91,12 +91,14 @@ function EmployeesManager() {
       setAddressError(true);
       return;
     }
-    const isPasswordValid = validatePassword(password); // Kiểm tra mật khẩu
+
+    const isPasswordValid = validatePassword(password);
     const isPhoneNumberValid = validatePhoneNumber(phone);
     setErrors({
       password: !isPasswordValid,
       phone: !isPhoneNumberValid,
     });
+
     if (!isPasswordValid) {
       setMessage("Password is not in correct format.");
       setIsSuccess(false);
@@ -106,7 +108,7 @@ function EmployeesManager() {
       return;
     }
     if (!isPhoneNumberValid) {
-      setMessage("phone number is incorrect.");
+      setMessage("Phone number is incorrect.");
       setIsSuccess(false);
       setTimeout(() => {
         setMessage("");
@@ -251,7 +253,7 @@ function EmployeesManager() {
             value={accountName}
             onChange={(e) => {
               setAccountName(e.target.value);
-              setAccountError(false); // Reset error when input changes
+              setAccountError(false);
             }}
             validate={{ error: accountError && "Account cannot be empty" }}
           />
@@ -261,7 +263,7 @@ function EmployeesManager() {
             value={fullName}
             onChange={(e) => {
               setFullName(e.target.value);
-              setEmployeesError(false); // Reset error when input changes
+              setEmployeesError(false);
             }}
             validate={{
               error: employeesError && "Employee name cannot be empty",
@@ -284,7 +286,7 @@ function EmployeesManager() {
             value={phone}
             onChange={(e) => {
               setPhone(e.target.value);
-              setPasswordError(false);
+              setPhoneError(false);
             }}
             validate={{ error: phoneError && "Phone number cannot be empty" }}
             error={errors.phone}

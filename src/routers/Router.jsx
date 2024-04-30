@@ -11,7 +11,7 @@ const UserPage = lazy(() => import("../pages/User/UserPage"));
 const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
-const OtpPage = lazy(() => import("../pages/Otp/OTPPage")); // Đúng path rồi
+const OtpPage = lazy(() => import("../pages/Otp/OtpPage")); // Đúng path rồi
 const OtpResetPassword = lazy(() =>
   import("../pages/Otp/OtpResetPasswordPage")
 );
