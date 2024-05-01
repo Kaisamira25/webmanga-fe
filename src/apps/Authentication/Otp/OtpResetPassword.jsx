@@ -28,7 +28,7 @@ function OtpResetPassword() {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-          setErrorMessage("Verification code does not exist");
+          setErrorMessage("Authentication failed, please check the code again or click resend ");
         }
       }
     }
