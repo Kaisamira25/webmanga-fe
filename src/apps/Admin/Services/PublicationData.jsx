@@ -61,14 +61,12 @@ function PublicData() {
     };
     const updatePublics = async (id, publics, imagePaths, genres, covers, types, gifts) => {
         try {
-            const token = 'your_actual_access_token_value';
             const response = await axios.put('http://localhost:8080/api/v1/publications/' + id, publics, { headers: headers });
             const data = response.data.data
             if (imagePaths.length !== 0) {
                 const responseDelImage = await axios.delete('http://localhost:8080/api/v1/images/delImage/' + id, { headers: headers });
                 const responseImage = await axios.post('http://localhost:8080/api/v1/images/' + data.publicationsID, imagePaths, { headers: headers })
                     .then((responseImage) => {
-                        console.log(responseImage.data);
                         return true;
                     })
                     .catch((error) => {

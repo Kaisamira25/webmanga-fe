@@ -33,7 +33,6 @@ function Invoice() {
     order.orderStatus = orderStatus.value;
     order.paymentStatus = payment.value;
     order.orderDay = new Date();
-    console.log(order);
     const response = await updateOrder(order);
     if (response != null) {
       fetchOrder();
@@ -44,10 +43,6 @@ function Invoice() {
       setInfo("Update fail!");
     }
   };
-  useEffect(() => {
-    console.log(orderStatus, payment);
-  }, [orderStatus, payment]);
-
   const OderTH = [
     { names: "Customer" },
     { names: "Phone Number" },

@@ -30,7 +30,6 @@ function AdminGift() {
   }, [vali, info]);
 
   const handleAddGift = async () => {
-    console.log(promotionalGiftName, promotionalGiftType);
     if (
       promotionalGiftType.trim() !== "" &&
       promotionalGiftName.trim() !== ""
@@ -53,7 +52,6 @@ function AdminGift() {
   };
   const handleRowClick = (id) => {
     const selected = Gifts.find((gift) => gift.promotionalGiftID === id);
-    console.log(id);
     if (selected) {
       setGiftName(selected.GiftName);
       setGiftType(selected.GiftType);
@@ -65,7 +63,6 @@ function AdminGift() {
       promotionalGiftType.trim() !== "" &&
       promotionalGiftName.trim() !== ""
     ) {
-      console.log(GiftId, { promotionalGiftName, promotionalGiftType });
       await updateGifts(GiftId, { promotionalGiftName, promotionalGiftType });
       setGiftType("");
       setGiftName("");
@@ -105,8 +102,6 @@ function AdminGift() {
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
     await findGift(searchValue);
-    console.log(e.target.value);
-    console.log(Gifts);
   };
   return (
     <div className="h-screen pt-12">

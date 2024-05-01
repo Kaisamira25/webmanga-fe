@@ -21,7 +21,6 @@ function GenreData() {
                 genre: genre.genre,
             }));
             setGenres(modifiedGenres);
-            console.log(modifiedGenres);
         } catch (error) {
             console.error("Error fetching genres:", error);
         }
@@ -30,7 +29,7 @@ function GenreData() {
         try {
             const response = await axios.get(
                 "http://localhost:8080/api/v1/publications_genre/" + id,
-                {}
+                {headers:headers}
             );
             return response.data.data;
         } catch (error) {
@@ -45,8 +44,6 @@ function GenreData() {
                 data,
                 { headers: headers }
             );
-            console.log("Genre added successfully:", response.data);
-            // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGenres để cập nhật danh sách thể loại
             fetchGenres();
         } catch (error) {
             console.error("Error adding genre:", error);
@@ -88,7 +85,6 @@ function GenreData() {
                     genre: genre.genre,
                 }));
                 setGenres(modifiedGenres);
-                console.log(name);
             } else {
                 const response = await axios.get(
                     "http://localhost:8080/api/v1/genre/all",
@@ -99,9 +95,7 @@ function GenreData() {
                     genre: genre.genre,
                 }));
                 setGenres(modifiedGenres);
-                console.log(name);
             }
-            console.log(name);
         } catch (error) {
             return error;
         }

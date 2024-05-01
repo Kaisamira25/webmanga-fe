@@ -76,7 +76,6 @@ function AdminDiscount() {
   };
   const handleRowClick = (id) => {
     const selected = discounts.find((discount) => discount.discountId === id);
-    console.log(selected);
     if (selected) {
       setFormData((prevFormData) => ({
         ...prevFormData,

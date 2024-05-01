@@ -42,21 +42,16 @@ function DiscountData() {
   const findDiscount = async (name) => {
     try {
       if (name !== null && name !== "") {
-
         const response = await axios.get(
           "http://localhost:8080/api/v1/discount/search/" + name,
           {}
         );
         setDiscounts(response.data.data);
       } else {
-
         const response = await axios.get(
           "http://localhost:8080/api/v1/discount/all",
           {}
         );
-        const modifiedDiscounts = response.data.data.map((discount) => ({
-         
-        }));
         setDiscounts(response.data.data);
       }
     } catch (error) {

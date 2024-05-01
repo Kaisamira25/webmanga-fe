@@ -208,9 +208,6 @@ function Reveneu() {
     // Clear timeout khi component unmount để tránh memory leaks
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
-  useEffect(() => {
-    console.log(formYear);
-  }, [formYear.yearEnd, formYear.yearStart]);
   return (
     <div className="h-4/5">
       <div className="mt-4 mb-3">

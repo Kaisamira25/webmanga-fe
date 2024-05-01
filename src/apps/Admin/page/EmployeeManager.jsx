@@ -44,7 +44,6 @@ function EmployeesManager() {
   useEffect(() => {
     const fetchEmployeeData = async () => {
       const response = await fetchAllEmployees();
-      console.log(response.data.data);
       setEmployees(response.data.data);
     };
     fetchEmployeeData();
@@ -55,7 +54,6 @@ function EmployeesManager() {
   };
 
   const handleRowClick = (employee) => {
-    console.log(employee);
     setSelectedEmployee(employee);
     setAccountName(employee.accountName);
     setFullName(employee.fullName);
@@ -127,7 +125,6 @@ function EmployeesManager() {
     try {
       const response = await fetchCreateEmployees(employeeData);
       if (response.status === 200) {
-        console.log("Employee created successfully");
         setMessage("Employee created successfully");
         setIsSuccess(true);
         refreshEmployeeData();
@@ -135,7 +132,6 @@ function EmployeesManager() {
           setMessage("");
         }, 1000);
       } else {
-        console.log("Failed to create employee");
         setMessage("Failed to create employee");
         setIsSuccess(false);
         setTimeout(() => {
@@ -143,7 +139,6 @@ function EmployeesManager() {
         }, 1000);
       }
     } catch (error) {
-      console.log("An error occurred while creating the employee:", error);
       setMessage("An error occurred while creating the employee");
       setIsSuccess(false);
       setTimeout(() => {
@@ -155,7 +150,6 @@ function EmployeesManager() {
   const handleUpdateEmployee = async (event) => {
     event.preventDefault();
     if (typeof selectedEmployee === "undefined" || selectedEmployee === null) {
-      console.log("No employee selected for update");
     } else {
       try {
         const response = await fetchUpdateEmployees({
@@ -166,7 +160,6 @@ function EmployeesManager() {
           isBlocked,
         });
         if (response.status === 200) {
-          console.log("Employee updated successfully");
           setMessage("Employee updated successfully");
           setIsSuccess(true);
           refreshEmployeeData();
@@ -174,7 +167,6 @@ function EmployeesManager() {
             setMessage("");
           }, 1000);
         } else {
-          console.log("Failed to update employee");
           setMessage("Failed to update employee");
           setIsSuccess(false);
           setTimeout(() => {
@@ -182,7 +174,6 @@ function EmployeesManager() {
           }, 1000);
         }
       } catch (error) {
-        console.log("An error occurred while updating the employee:", error);
         setMessage("An error occurred while updating the employee");
         setIsSuccess(false);
         setTimeout(() => {
@@ -197,7 +188,6 @@ function EmployeesManager() {
     if (selectedEmployee) {
       const response = await fetchDeleteEmployees(selectedEmployee.accountName);
       if (response.status === 200) {
-        console.log("Employee deleted successfully");
         setMessage("Employee deleted successfully");
         setIsSuccess(true);
         refreshEmployeeData();
@@ -205,7 +195,6 @@ function EmployeesManager() {
           setMessage("");
         }, 1000);
       } else {
-        console.log("Failed to delete employee");
         setMessage("Failed to delete employee");
         setIsSuccess(false);
         setTimeout(() => {
@@ -213,7 +202,6 @@ function EmployeesManager() {
         }, 1000);
       }
     } else {
-      console.log("No employee selected for delete");
     }
   };
 
@@ -234,7 +222,6 @@ function EmployeesManager() {
       if (response.status === 200) {
         setEmployees(response.data.data);
       } else {
-        console.log("Failed to fetch all employees");
       }
       return;
     }
@@ -243,7 +230,6 @@ function EmployeesManager() {
     if (response.status === 200) {
       setEmployees(response.data.data);
     } else {
-      console.log("Failed to fetch employees with account name: ", searchQuery);
     }
   };
 

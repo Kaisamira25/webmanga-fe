@@ -51,7 +51,6 @@ function AdminCover() {
   };
   const handleRowClick = (id) => {
     const selected = covers.find((cover) => cover.id === id);
-    console.log(id);
     if (selected) {
       setCoverType(selected.coverType);
       setcoverId(selected.id);
@@ -65,7 +64,6 @@ function AdminCover() {
       setVali("error");
       setInfo("Cover type is exist!");
     } else {
-      console.log(coverId, coverType);
       try {
         await updateCovers(coverId, { coverType });
         // Hiển thị alert khi thêm thể loại thành công
@@ -99,8 +97,6 @@ function AdminCover() {
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
     await findCover(searchValue);
-    console.log(e.target.value);
-    console.log(covers);
   };
   return (
     <div className="h-screen pt-12">

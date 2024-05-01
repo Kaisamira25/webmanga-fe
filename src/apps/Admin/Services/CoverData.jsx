@@ -28,8 +28,7 @@ function CoverData() {
   const GetCoverSelect = async (id) => {
     try {
 
-        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {});
-        console.log(response.data.data)
+        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {headers:headers});
         return response.data.data;
     } catch (error) {
         console.error('Error fetching genres:', error);
@@ -43,12 +42,8 @@ function CoverData() {
         "http://localhost:8080/api/v1/cover",
         data,{headers:headers}
       );
-      console.log("Genre added successfully:", response.data);
-      console.log(data);
-      // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
       fetchCovers();
     } catch (error) {
-      console.log(data);
       console.error("Error adding genre:", error);
     }
   };
@@ -60,8 +55,6 @@ function CoverData() {
         "http://localhost:8080/api/v1/cover/" + id,
         data,{headers:headers}
       );
-      console.log("Genre update successfully:", response.data);
-      // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
       fetchCovers();
     } catch (error) {
       console.error("Error adding genre:", error);
@@ -75,7 +68,6 @@ function CoverData() {
         "http://localhost:8080/api/v1/cover/" + id,
         {headers:headers}
       );
-      console.log("Genre delete successfully:", response.data);
       fetchCovers();
       return true;
     } catch (error) {
@@ -96,7 +88,6 @@ function CoverData() {
           coverType: cover.coverType,
         }));
         setCovers(modifiedCovers);
-        console.log(name);
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
@@ -108,16 +99,14 @@ function CoverData() {
           coverType: cover.coverType,
         }));
         setCovers(modifiedCovers);
-        console.log(name);
       }
-      console.log(name);
     } catch (error) {
       return error;
     }
   };
   const CoverSelect = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
+      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {headers:headers});
       const modifiedCover = response.data.data.map(cover => ({
         value: cover.coverID,
         label: cover.coverType
