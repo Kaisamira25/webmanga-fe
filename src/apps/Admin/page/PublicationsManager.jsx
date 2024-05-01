@@ -134,7 +134,6 @@ function AdminProduct() {
             parseInt(giftEP.promotionalGiftID) === parseInt(GiftSL.value)
         );
       });
-
       setSelectedGifts(matchingGiftsSL);
     }
   };

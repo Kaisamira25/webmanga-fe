@@ -30,7 +30,7 @@ function SideBar() {
       name: "Statis",
       svg: <StatisIcon />,
       LiField: [
-        { name: "Invoice Statistics", link: "/admin/order" },
+        { name: "Invoice Manager", link: "/admin/order" },
         { name: "Revenue Statistics", link: "/admin/sales" },
       ],
     },

@@ -51,7 +51,6 @@ function Genre() {
   const handleRowClick = (id) => {
     // Tìm kiếm thông tin genre từ mảng genres dựa trên ID đã truyền
     const selected = genres.find((genre) => genre.id === id);
-    console.log(selected);
     if (selected) {
       setGenre(selected.genre);
       setGenreId(selected.id);
@@ -100,8 +99,6 @@ function Genre() {
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
     await findGenre(searchValue);
-    console.log(e.target.value);
-    console.log(genres);
   };
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
@@ -137,13 +134,13 @@ function Genre() {
             </label>
           </div>
         </div>
-        <div className="flex gap-1 h-10">
+      </div>
+      <div className="flex gap-1 h-10">
           <FormButton content={"Add"} onClick={handleAddGenre} />
           <FormButton content={"Update"} onClick={handleUpdateGenre} />
         </div>
-        <AlertAdmin vali={vali} info={info} />
-      </div>
-      <div className="w-12/12 h-1/2 mb-1 ">
+        <AlertAdmin  vali={vali} info={info} />
+      <div className="w-12/12 h-full mb-1 ">
         <form className="max-w-sm w-7/12">
           <label
             htmlFor="default-search"
@@ -164,8 +161,8 @@ function Genre() {
           </div>
         </form>
       </div>
-      <div className="w-12/12 h-80 border-2 border-black overflow-y-scroll">
-        <table className="w-full overflow-y-scroll h-96  border-s border-black">
+      <div className="w-12/12 h-96 border-2 border-black overflow-y-scroll">
+        <table className="w-full overflow-y-scroll  border-s border-black">
           <thead className="border-b border-black bg-gray-500 uppercase ">
             <tr>
               {TH.map((item, index) => (

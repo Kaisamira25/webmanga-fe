@@ -23,7 +23,6 @@ function CustomerManager() {
   useEffect(() => {
     const fetchCustomerData = async () => {
       const response = await fetchAllCustomers();
-      console.log(response.data.data);
       setCustomers(response.data.data);
     };
     fetchCustomerData();
@@ -56,7 +55,6 @@ function CustomerManager() {
   const handleUpdateStatusCustomer = async (event) => {
     event.preventDefault();
     if (typeof selectedCustomer === "undefined" || selectedCustomer === null) {
-      console.log("No customer selected for update");
     } else {
       try {
         const response = await fetchUpdateStatusCustomers({
@@ -64,7 +62,6 @@ function CustomerManager() {
           isBlocked,
         });
         if (response.status === 200) {
-          console.log("Customer updated successfully");
           setMessage("Customer updated successfully");
           setIsSuccess(true);
           refreshCustomerData();
@@ -72,7 +69,6 @@ function CustomerManager() {
             setMessage("");
           }, 1000);
         } else {
-          console.log("Failed to update customer");
           setMessage("Failed to update customer");
           setIsSuccess(false);
           setTimeout(() => {
@@ -80,7 +76,7 @@ function CustomerManager() {
           }, 1000);
         }
       } catch (error) {
-        console.log("Failed to update customer", error);
+        console.error(error);
       }
     }
   };
@@ -92,7 +88,6 @@ function CustomerManager() {
         console.log(response.data.data);
         setCustomers(response.data.data);
       } else {
-        console.log("Failed to fetch all customers");
         setCustomers([]);
       }
       return;
@@ -100,10 +95,8 @@ function CustomerManager() {
 
     const response = await fetchCustomersWithEmail(searchQuery);
     if (response.status === 200 && response.data.data.length > 0) {
-      console.log(response.data.data);
       setCustomers(response.data.data);
     } else {
-      console.log("Failed to fetch customers with email: ", searchQuery);
       setCustomers([]);
       ``;
     }

@@ -22,11 +22,8 @@ function GiftData() {
         }
     };
     const addGifts = async (data) => {
-        console.log(data)
         try {
-           
             const response = await axios.post('http://localhost:8080/api/v1/gift', data,{headers:headers});
-            // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
             fetchGifts();
         } catch (error) {
             console.error('Error adding genre:', error);
@@ -34,19 +31,15 @@ function GiftData() {
     };
     const GetGiftSelect = async (id) => {
         try {
-           
-            const response = await axios.get('http://localhost:8080/api/v1/publications_gift/' + id, {});
+            const response = await axios.get('http://localhost:8080/api/v1/publications_gift/' + id, {headers:headers});
             return response.data.data;
         } catch (error) {
             console.error('Error fetching genres:', error);
         }
     };
     const updateGifts = async (id, data) => {
-        console.log(data)
         try {
-           
             const response = await axios.put('http://localhost:8080/api/v1/gift/' + id, data,{headers:headers});
-            // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchGifts để cập nhật danh sách thể loại
             fetchGifts();
         } catch (error) {
             console.error('Error adding genre:', error);

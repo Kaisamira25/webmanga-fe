@@ -50,9 +50,7 @@ function TypeData() {
     }
   };
   const deleteTypes = async (id) => {
-    console.log(id);
     try {
-      
       const response = await axios.delete(
         "http://localhost:8080/api/v1/type/" + id,
         {headers:headers}
@@ -75,9 +73,7 @@ function TypeData() {
           typeName: type.typeName,
         }));
         setTypes(modifiedTypes);
-        console.log(name);
       } else {
-        
         const response = await axios.get(
           "http://localhost:8080/api/v1/type/all",
           {}
@@ -87,9 +83,7 @@ function TypeData() {
           typeName: type.typeName,
         }));
         setTypes(modifiedTypes);
-        console.log(name);
       }
-      console.log(name);
     } catch (error) {
       return error;
     }
@@ -108,8 +102,7 @@ function TypeData() {
   };
   const GetTypeSelect = async (id) => {
     try {
-
-        const response = await axios.get('http://localhost:8080/api/v1/publications_type/' + id, {});
+        const response = await axios.get('http://localhost:8080/api/v1/publications_type/' + id, {headers:headers});
         return response.data.data;
     } catch (error) {
         console.error('Error fetching genres:', error);

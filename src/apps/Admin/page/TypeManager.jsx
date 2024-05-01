@@ -63,7 +63,6 @@ function AdminType() {
   };
   const handleRowClick = (id) => {
     const selected = types.find((type) => type.id === id);
-    console.log(id);
     if (selected) {
       setTypeName(selected.typeName);
       setTypeId(selected.id);
@@ -77,7 +76,6 @@ function AdminType() {
       setVali("error");
       setInfo("Type Name is exist!");
     } else {
-      console.log(typeId, typeName);
       try {
         await updateTypes(typeId, { typeName });
         // Hiển thị alert khi thêm thể loại thành công
@@ -111,8 +109,6 @@ function AdminType() {
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
     await findType(searchValue);
-    console.log(e.target.value);
-    console.log(types);
   };
   return (
     <div className="h-screen pt-12">
