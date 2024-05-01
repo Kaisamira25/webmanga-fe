@@ -1,7 +1,7 @@
 import React from "react";
-import BookIcon from "../../../assets/icons/Book";
-import AdminIcon from "../../../assets/icons/Admin";
-import StatisIcon from "../../../assets/icons/Statis";
+// import BookIcon from "../../../assets/icons/Book";
+// import AdminIcon from "../../../assets/icons/Admin";
+// import StatisIcon from "../../../assets/icons/Statis";
 import { Link } from "react-router-dom";
 import Sidebar_ui from "../scss/Sidebar_ui.module.scss";
 import { logoutAdmin } from "../../../services/Service";
@@ -9,7 +9,7 @@ function SideBar() {
   const UlField = [
     {
       name: "Product",
-      svg: <BookIcon />,
+      // svg: <BookIcon />,
       LiField: [
         { name: "Manage Genre", link: "/admin/genre" },
         { name: "Manage Cover", link: "/admin/cover" },
@@ -21,7 +21,7 @@ function SideBar() {
     },
     {
       name: "Account",
-      svg: <AdminIcon />,
+      // svg: <AdminIcon />,
       LiField: [
         { name: "Employee Manage", link: "/admin/employees" },
         { name: "Customer Manage", link: "/admin/customers" },
@@ -29,7 +29,7 @@ function SideBar() {
     },
     {
       name: "Statis",
-      svg: <StatisIcon />,
+      // svg: <StatisIcon />,
       LiField: [
         { name: "Invoice Manager", link: "/admin/order" },
         { name: "Revenue Statistics", link: "/admin/sales" },

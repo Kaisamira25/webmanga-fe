@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GiftData from "../Services/GiftData";
 import { AlertAdmin } from "../components/Alert";
-import CloseBtn from "../../../assets/icons/CloseBtn";
+import DeleteIcon from "../../../assets/icons/DeleteIcon";
 import FormButton from "../components/FormButton";
 
 function AdminGift() {
@@ -172,8 +172,8 @@ function AdminGift() {
           </form>
         </div>
         <div className="w-12/12 h-96 border-2 border-black overflow-y-scroll">
-          <table className="w-full h-full overflow-y-scroll border-s border-black">
-            <thead className="border-b border-black bg-gray-500 uppercase ">
+          <table className="w-full overflow-y-scroll border-black">
+            <thead className="border-b border-black bg-[#c2aa67] uppercase">
               <tr>
                 {TH.map((item, index) => (
                   <th
@@ -191,22 +191,22 @@ function AdminGift() {
                   key={rowIndex}
                   name={rowIndex}
                   onClick={() => handleRowClick(giftRow.promotionalGiftID)}
-                  className="cursor-pointer border-b  border-black hover:bg-gray-400"
+                  className="cursor-pointer border-b  border-[#c2aa67] hover:bg-gray-400"
                 >
                   {Object.values(giftRow).map((value, col) => (
-                    <td className="text-center border-r border-black" key={col}>
+                    <td className="text-center border-r border-[#c2aa67]" key={col}>
                       {value}
                     </td>
                   ))}
-                  <td className="text-center border-r border-black py-2">
+                  <td className="text-center border-r border-[#c2aa67]">
                     <button
                       type="button"
                       onClick={() =>
                         handleDeleteGift(giftRow.promotionalGiftID)
                       }
-                      className="w-6 h-6 bg-red-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                      className="w-8 h-11 bg-[#c2aa67] rounded-md p-2 inline-flex items-center justify-center text-black hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                     >
-                      <CloseBtn />
+                      <DeleteIcon />
                     </button>
                   </td>
                 </tr>

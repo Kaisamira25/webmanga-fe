@@ -558,12 +558,12 @@ function AdminProduct() {
           </>
         ) : null}
         <div className="w-12/12 h-80 border-2 border-black overflow-y-scroll">
-          <table className="w-full h-full overflow-y-scroll border-s border-black">
-            <thead className="border-b border-black bg-gray-500 uppercase ">
+          <table className="w-full h-full overflow-y-scroll border-black">
+            <thead className="border-b border-black bg-[#c2aa67] uppercase">
               <tr className="">
                 {TH.map((item, index) => (
                   <th
-                    className=" text-center font-bold border-r border-black"
+                    className="text-center font-bold border-r border-black h-10"
                     key={index}
                   >
                     {item.names}
@@ -577,27 +577,27 @@ function AdminProduct() {
                   key={rowIndex}
                   name={rowIndex}
                   onClick={() => handleRowClick(publication.publicationsID)}
-                  className="cursor-pointer border-b  border-black hover:bg-gray-400"
+                  className="cursor-pointer border-b  border-[#c2aa67] hover:bg-gray-400"
                 >
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.publicationsName}
                   </td>
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.unitPrice}
                   </td>
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.stock}
                   </td>
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.author}
                   </td>
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.publisher}
                   </td>
-                  <td className="text-center border-r border-black">
+                  <td className="text-center border-r border-[#c2aa67]">
                     {publication.publicationYear}
                   </td>
-                  <td className="text-center border-r border-black px-auto">
+                  <td className="text-center border-r border-[#c2aa67] px-auto">
                     <img
                       className="mx-auto"
                       src={publication.images[0].imageURL}
