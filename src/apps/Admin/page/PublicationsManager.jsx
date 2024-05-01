@@ -8,6 +8,7 @@ import TypeData from "../Services/TypeData";
 import GiftData from "../Services/GiftData";
 import axios from "axios";
 import { AlertAdmin } from "../components/Alert";
+import FormButton from "../components/FormButton";
 
 function AdminProduct() {
   const [vali, setVali] = useState("");
@@ -454,27 +455,11 @@ function AdminProduct() {
         </div>
         <div></div>
 
-        <button
-          type="button"
-          onClick={handleAddPublic}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Add
-        </button>
-        <button
-          type="button"
-          onClick={handleUpdatePublic}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Update
-        </button>
-        <button
-          className=" w-24 h-8 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 px-5 py-1   text-sm  rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          onClick={() => setShowModal(true)}
-        >
-          Image
-        </button>
+        <div className="flex gap-1">
+          <FormButton onClick={handleAddPublic} content={"Add"}/>
+          <FormButton onClick={handleUpdatePublic} content={"Update"}/>
+          <FormButton onClick={() => setShowModal(true)} content={"Image"}/>
+        </div>
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 py-1">
           <form className="max-w-sm w-7/12">

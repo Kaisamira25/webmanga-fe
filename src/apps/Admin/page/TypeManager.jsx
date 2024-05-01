@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import TypeData from "../Services/TypeData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
 import { system } from "faker/lib/locales/en";
+import FormButton from "../components/FormButton";
 
 function AdminType() {
   const [typeName, setTypeName] = useState("");
@@ -138,20 +139,10 @@ function AdminType() {
               </label>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={handleAddType}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Add
-          </button>
-          <button
-            type="button"
-            onClick={handleUpdateType}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Update
-          </button>
+          <div className="flex gap-1">
+            <FormButton content={"Add"} onClick={handleAddType} />
+            <FormButton content={"Update"} onClick={handleUpdateType} />
+          </div>
           <AlertAdmin vali={vali} info={info} />
         </div>
         <div className="w-12/12 h-1/2 mb-1 ">
