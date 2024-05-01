@@ -174,7 +174,7 @@ function AdminProduct() {
   const validForm = () => {
     let isValid = true;
     Object.values(formData).forEach((value) => {
-      if (value === "") {
+      if (value === "" ) {
         isValid = false;
         setVali("error");
         setInfo("Please fill in all fields!");
@@ -211,14 +211,12 @@ function AdminProduct() {
       setVali("error");
       setInfo("Please select at least one genre");
     }
-
     // Kiểm tra các phần tử trong selectedCovers
     else if (selectedCovers.length === 0) {
       // Hiển thị cảnh báo nếu không có bìa sách được chọn
       setVali("error");
       setInfo("Please select at least one cover");
     }
-
     // Kiểm tra các phần tử trong selectedTypes
     else if (selectedTypes.length === 0) {
       // Hiển thị cảnh báo nếu không có loại sách được chọn
@@ -272,6 +270,8 @@ function AdminProduct() {
     ) {
       setVali("error");
       setInfo("Please fill in all fields");
+    }else if (!validForm()){
+      setVali("error");
     }
     // Kiểm tra các phần tử trong selectedGenres
     else if (selectedGenres.length === 0) {

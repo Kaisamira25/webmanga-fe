@@ -47,7 +47,7 @@ function GiftData() {
     };
     const deleteGifts = async (id) => {
         try {
-            const response = await axios.delete('http://localhost:8080/api/v1/gift/' + id, {},{headers:headers});
+            const response = await axios.delete('http://localhost:8080/api/v1/gift/' + id, {headers:headers});
             fetchGifts();
             return true;
         } catch (error) {
@@ -82,7 +82,6 @@ function GiftData() {
     }
     const GiftSelect = async () => {
         try {
-           
             const response = await axios.get('http://localhost:8080/api/v1/gift/all', {});
             const modifiedGifts = response.data.data.map(Gift => ({
                 value: Gift.promotionalGiftID,
