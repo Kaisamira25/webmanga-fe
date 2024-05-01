@@ -32,6 +32,7 @@
         cursor: pointer;
         font-size: medium;
         font-weight: 500;
+        color: $bg-btn-color;
         &::after {
           content: "";
           position: absolute;
@@ -39,7 +40,7 @@
           left: 0;
           width: 0;
           height: 2px;
-          background-color: black;
+          background-color: $bg-btn-color;
           transition: width 0.3s;
         }
         &:hover::after,

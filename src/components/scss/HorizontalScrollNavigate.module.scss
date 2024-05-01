@@ -29,10 +29,13 @@
     gap: 1em;
     button {
         padding: 0.5em;
-        background-color: #ececec;
+        background-color: $bg-btn-color;
         border-radius: 10px;
+        opacity: 0.8;
+        transition: background-color 0.3s, opacity 0.3s;
         &:hover {
-            background-color: #dadada;
+          opacity: 1;
+            background-color: $bg-btn-color;
         }
     }
   }

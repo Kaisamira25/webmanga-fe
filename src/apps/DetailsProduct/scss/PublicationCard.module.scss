@@ -65,7 +65,7 @@
         align-self: flex-start;
         a {
           color: white;
-          background-color: $bg-btn-color;
+          background-color: #87753d;
           border-radius: 5px;
           padding: 5px;
           font-size: 15px;
@@ -175,7 +175,7 @@
           &:first-child {
             display: flex;
             button {
-              background-color: $bg-btn-color;
+              background-color: $bg-color;
               width: 3em;
               height: 3em;
               border-radius: 3px;
@@ -186,7 +186,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              background-color: $bg-btn-color;
+              background-color: $bg-color;
               border-left: 1px solid white;
               border-right: 1px solid white;
             }
@@ -196,7 +196,7 @@
           &:nth-child(2) {
             width: auto;
             button {
-              background-color: $bg-btn-color;
+              background-color: $bg-color;
               height: 3em;
               width: auto;
               padding-left: 1.5em;

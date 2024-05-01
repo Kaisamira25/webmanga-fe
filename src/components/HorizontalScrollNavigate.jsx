@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import Card from "../apps/DetailsProduct/components/Card";
 import HorizonScrollStyle from "./scss/HorizontalScrollNavigate.module.scss";
-import ArrowForward from "../assets/icons/ArrowForward";
-import ArrowBack from "../assets/icons/ArrowBack";
+import ArrowForward from "../assets/icons/ArrowForwardIcon";
+import ArrowBack from "../assets/icons/ArrowBackwardIcon";
 function HorizontalScrollNavigate({ cards, chooseOtherPublications }) {
   const scrollContainer = useRef(null);
   const [cardWidth, setCardWidth] = useState();

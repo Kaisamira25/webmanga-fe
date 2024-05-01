@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import AboveContentStyle from "../scss/AboveContent.module.scss";
 import Introduce from "./Introduce";
-import Shipping from "../../../assets/icons/Shipping";
-import WideVariety from "../../../assets/icons/WideVariety";
-import Money from "../../../assets/icons/Money";
-import Contact from "../../../assets/icons/Contact";
+import Shipping from "../../../assets/icons/ShippingIcon";
+import WideVariety from "../../../assets/icons/BooksIcon";
+import Money from "../../../assets/icons/MoneyIcon";
+import Contact from "../../../assets/icons/PhoneIcon";
 import CardPublications from "./CardPublications";
 import { useNavigate } from "react-router-dom";
 import {

@@ -6,7 +6,7 @@
   justify-content: flex-end;
   > button {
     height: 2.5em;
-    background-color: #5eb192;
+    background-color: #20233a;
     display: flex;
     align-items: center;
     padding: 0 0.5em 0 0.5em;
@@ -15,11 +15,15 @@
     color: white;
     gap: 0.3em;
     outline: none;
+    opacity: 0.8;
+    transition: background-color 0.3s, opacity 0.3s;
     &:hover {
-      background-color: #469175;
+      opacity: 1;
+      background-color: #20233a;
     }
     &.active {
-      background-color: #469175;
+      opacity: 1;
+      background-color: #20233a;
     }
   }
   > div {
@@ -32,14 +36,14 @@
       display: flex;
       flex-wrap: wrap;
       padding: 1em;
-      background-color: $bg-btn-color;
+      background-color: #20233a;
       border-radius: 10px;
       max-width: 100%;
       max-height: 72em;
       box-sizing: border-box;
       row-gap: 1em;
       button {
-        background-color: $bg-btn-color;
+        background-color: #20233a;
         width: calc(100% / 2);
         padding: 0.2em 0.4em 0.2em 0.4em;
         border-radius: 7px;
@@ -52,14 +56,14 @@
           width: calc(100% / 4);
         }
         &:hover {
-          background-color: $bg-color;
-          color: black;
+          background-color: #87753d;
+          color: white;
           // border: 1px solid $bg-color;
         }
         &.isSelected {
-          background-color: $bg-color;
-          color: black;
-          border: 1px solid $bg-color;
+          background-color: #87753d;
+          color: white;
+          // border: 1px solid #87753d;
         }
       }
     }

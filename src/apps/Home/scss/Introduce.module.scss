@@ -4,11 +4,11 @@
 .introduceContainer {
     width: 14em;
     height: 5em;
-    border: 1px solid $bg-btn-color;
+    border: 1px solid $bg-color;
     border-radius: 5px;
     display: flex;
     align-items: center;
-    color: $bg-btn-color;
+    color: $bg-color;
     justify-content: space-around;
     padding: 0 0.4em 0 0.4em;
     > span {

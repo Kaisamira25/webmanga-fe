@@ -6,7 +6,7 @@ function ButtonInput({ type, onClick, placeholder, className }) {
       <button
         type={type}
         onClick={onClick}
-        className={`bg-white50 text-black py-2 px-4 rounded-md hover:bg-green600 w-full ${className}`}
+        className={`bg-[#6b5d31] transition-colors duration-300 text-white py-2 px-4 rounded-md hover:bg-[#87753d] w-full ${className}`}
       >
         {placeholder}
       </button>

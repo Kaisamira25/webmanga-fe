@@ -1,9 +1,9 @@
-import FaceBookIcon from "../assets/icons/LogosFacebook";
-import XIcon from "../assets/icons/TwitterIcon";
-import MapPointIcon from "../assets/icons/MapPointIcon";
-import PhoneIcon from "../assets/icons/PhoneIcon";
+import FaceBookIcon from "../assets/icons/FacebookIcon";
+import XIcon from "../assets/icons/XIcon";
+import MapPointIcon from "../assets/icons/MapIcon";
+import PhoneIcon from "../assets/icons/PhoneIconFooter";
 import MailIcon from "../assets/icons/MailIcon";
-import TikTokIcon from "../assets/icons/LogosTiktokIcon";
+import TikTokIcon from "../assets/icons/TiktokIcon";
 import FooterStyle from "./scss/Footer.module.scss";
 import { useNavigate } from "react-router-dom";
 function Footer() {

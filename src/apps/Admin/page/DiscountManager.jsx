@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { AlertAdmin } from "../components/Alert";
 import DiscountData from "../Services/DiscountData";
 import { useState } from "react";
+import FormButton from "../components/FormButton";
 
 function AdminDiscount() {
   const { discounts, addDiscounts, updateDiscounts, findDiscount } =
@@ -196,20 +197,10 @@ function AdminDiscount() {
             />
           </div>
         </div>
-        <button
-          type="button"
-          onClick={handleAddDiscount}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Add
-        </button>
-        <button
-          type="button"
-          onClick={handleUpdateDiscount}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Update
-        </button>
+        <div className="flex gap-1">
+          <FormButton content={"Add"} onClick={handleAddDiscount}/>
+          <FormButton content={"Update"} onClick={handleUpdateDiscount}/>
+        </div>
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 ">
           <form className="max-w-sm w-7/12">

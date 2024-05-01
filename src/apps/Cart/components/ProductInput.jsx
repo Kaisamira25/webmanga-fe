@@ -29,7 +29,6 @@ function ProductRe() {
             <div className=" border-b-2 border-black">
               <h2 className={style.fontC}>Cart Total</h2>
             </div>
-
             <PriceTotal cartUpdated={cartUpdated} />
           </div>
         </table>

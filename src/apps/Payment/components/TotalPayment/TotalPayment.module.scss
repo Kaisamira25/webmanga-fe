@@ -5,11 +5,13 @@
     padding: 2em;
     .btn {
       padding-bottom: $padding-bottom-30px;
-      background-color: $bg-btn-color;
+      background-color: $bg-color;
+      color: white;
     }
     .btnHidden {
-      background-color: $bg-color-green-400;
+      background-color: #6b5d31;
       pointer-events: none;
+      color: white;
     }
   }
 

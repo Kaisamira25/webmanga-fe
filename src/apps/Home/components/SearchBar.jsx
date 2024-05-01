@@ -1,5 +1,5 @@
 import style from "./SearchBar.module.scss";
-import IconArrow from "../../../assets/icons/Arrow";
+import IconArrow from "../../../assets/icons/ArrowRightIcon";
 function SearchBar({ handleSearch }) {
   return (
     <div className={style.searchBarWrapper}>
