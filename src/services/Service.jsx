@@ -19,6 +19,30 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status == 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = sessionStorage.getItem("refreshToken");
+      const res = await axios.post("http://localhost:8080/api/v1/customers/refreshtoken", {
+        refreshToken,
+      });
+      if (res.status === 201) {
+        // Lưu accessToken mới vào sessionStorage
+        sessionStorage.setItem("accessToken", res.data.accessToken);
+        // Cập nhật Authorization header
+        originalRequest.headers.Authorization = `bearer ${res.data.accessToken}`;
+        // Gửi lại yêu cầu gốc với accessToken mới
+        return instance(originalRequest);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 export default instance;
 
 const fetchAllPublications = () => {
