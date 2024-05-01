@@ -37,7 +37,6 @@ function Header() {
   };
   const handleLogout = async () => {
     const response = await logoutApi();
-    console.log(response);
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("accessToken");
     setCustomerName("");
