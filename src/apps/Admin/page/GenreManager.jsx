@@ -134,12 +134,12 @@ function Genre() {
             </label>
           </div>
         </div>
-        <div className="flex gap-1 h-10">
+      </div>
+      <div className="flex gap-1 h-10">
           <FormButton content={"Add"} onClick={handleAddGenre} />
           <FormButton content={"Update"} onClick={handleUpdateGenre} />
         </div>
-        <AlertAdmin vali={vali} info={info} />
-      </div>
+        <AlertAdmin  vali={vali} info={info} />
       <div className="w-12/12 h-full mb-1 ">
         <form className="max-w-sm w-7/12">
           <label
