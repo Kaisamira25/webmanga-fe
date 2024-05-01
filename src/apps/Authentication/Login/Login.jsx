@@ -47,7 +47,7 @@ function Login() {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-          setErrorMessage("Email is incorrect");
+          setErrorMessage("Email is incorrect or does not exist ");
         }
         if (error.response.status === 400) {
           setErrorMessage("incorrect password");
