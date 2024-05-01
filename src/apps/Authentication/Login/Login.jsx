@@ -36,8 +36,10 @@ function Login() {
 
     try {
       const response = await loginApi(dataJson);
-      const jwtPayload = jwtDecode(response.data.data.accessToken);
-      if (jwtPayload.role[0].authority === "CUSTOMER") {
+      const jwtPayloadRefreshToken = jwtDecode(response.data.data.refreshToken);
+      const jwtPayloadAccessToken = jwtDecode(response.data.data.accessToken);
+      if (jwtPayloadAccessToken.role[0].authority === "CUSTOMER") {
+        sessionStorage.setItem("refreshToken", response.data.data.refreshToken)
         sessionStorage.setItem("role", "CUSTOMER");
         sessionStorage.setItem("accessToken", response.data.data.accessToken);
         navigate("/home");
@@ -47,7 +49,7 @@ function Login() {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-          setErrorMessage("Email is incorrect");
+          setErrorMessage("Email is incorrect or does not exist ");
         }
         if (error.response.status === 400) {
           setErrorMessage("incorrect password");

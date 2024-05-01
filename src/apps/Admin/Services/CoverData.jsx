@@ -3,6 +3,11 @@ import axios from "axios";
 function CoverData() {
   const [covers, setCovers] = useState([]);
   const [coversSL, setCoverSL] = useState([]);
+  
+  const headers = {
+    Authorization: "bearer " + sessionStorage.getItem("accessToken"),
+    "Content-Type": "application/json", // Thêm các headers khác nếu cần
+  };
 
   const fetchCovers = async () => {
     try {
@@ -16,16 +21,14 @@ function CoverData() {
         coverType: cover.coverType,
       }));
       setCovers(modifiedCovers);
-      console.log(modifiedCovers);
     } catch (error) {
       console.error("Error fetching Covers:", error);
     }
   };
   const GetCoverSelect = async (id) => {
     try {
-        const token = 'your_actual_access_token_value';
-        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {});
-        console.log(response.data.data)
+
+        const response = await axios.get('http://localhost:8080/api/v1/publications_cover/' + id, {headers:headers});
         return response.data.data;
     } catch (error) {
         console.error('Error fetching genres:', error);
@@ -37,14 +40,10 @@ function CoverData() {
       const token = "your_actual_access_token_value";
       const response = await axios.post(
         "http://localhost:8080/api/v1/cover",
-        data
+        data,{headers:headers}
       );
-      console.log("Genre added successfully:", response.data);
-      console.log(data);
-      // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
       fetchCovers();
     } catch (error) {
-      console.log(data);
       console.error("Error adding genre:", error);
     }
   };
@@ -54,10 +53,8 @@ function CoverData() {
       const token = "your_actual_access_token_value";
       const response = await axios.put(
         "http://localhost:8080/api/v1/cover/" + id,
-        data
+        data,{headers:headers}
       );
-      console.log("Genre update successfully:", response.data);
-      // Sau khi thêm thể loại thành công, bạn có thể gọi lại hàm fetchCovers để cập nhật danh sách thể loại
       fetchCovers();
     } catch (error) {
       console.error("Error adding genre:", error);
@@ -69,9 +66,8 @@ function CoverData() {
       const token = "your_actual_access_token_value";
       const response = await axios.delete(
         "http://localhost:8080/api/v1/cover/" + id,
-        {}
+        {headers:headers}
       );
-      console.log("Genre delete successfully:", response.data);
       fetchCovers();
       return true;
     } catch (error) {
@@ -92,7 +88,6 @@ function CoverData() {
           coverType: cover.coverType,
         }));
         setCovers(modifiedCovers);
-        console.log(name);
       } else {
         const token = "your_actual_access_token_value";
         const response = await axios.get(
@@ -104,17 +99,14 @@ function CoverData() {
           coverType: cover.coverType,
         }));
         setCovers(modifiedCovers);
-        console.log(name);
       }
-      console.log(name);
     } catch (error) {
       return error;
     }
   };
   const CoverSelect = async () => {
     try {
-      const token = 'your_actual_access_token_value';
-      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {});
+      const response = await axios.get('http://localhost:8080/api/v1/cover/all', {headers:headers});
       const modifiedCover = response.data.data.map(cover => ({
         value: cover.coverID,
         label: cover.coverType

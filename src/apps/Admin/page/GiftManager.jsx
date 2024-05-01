@@ -1,86 +1,88 @@
-import React, { useState , useEffect} from "react";
-import { AlertAdmin } from "../componnents/Alert";
-import CoverData from "../Services/CoverData";
+import React, { useState, useEffect } from "react";
+import GiftData from "../Services/GiftData";
+import { AlertAdmin } from "../components/Alert";
 import CloseBtn from "../../../assets/icons/CloseBtn";
+import FormButton from "../components/FormButton";
 
-function AdminCover() {
-  const [coverType, setCoverType] = useState("");
-  const { covers, addCovers, updateCovers, deleteCovers, findCover } =
-    CoverData();
-  const [coverId, setcoverId] = useState("");
+function AdminGift() {
+  const [GiftId, setGiftId] = useState("");
+  const [promotionalGiftType, setGiftType] = useState("");
+  const [promotionalGiftName, setGiftName] = useState("");
+  const { Gifts, addGifts, updateGifts, deleteGifts, findGift } = GiftData();
   const [vali, setVali] = useState("");
   const [info, setInfo] = useState("");
-  const TH = [{ names: "Id" }, { names: "CoverType" }, { names: "" }];
+
   const isCoverExist = () => {
-    return covers.some(
-      (item) => item.coverType.toLowerCase() === coverType.toLowerCase()
+    return Gifts.some(
+      (item) =>
+        item.GiftName.toLowerCase() === promotionalGiftName.toLowerCase()
     );
   };
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks
     return () => clearTimeout(hideAlert);
   }, [vali, info]);
- 
-  const handleAddCover = async () => {
-    if (coverType === null || coverType === "") {
-      setVali("error");
-      setInfo("Cover type is not empty!");
-    } else if (isCoverExist()) {
-      setVali("error");
-      setInfo("CoverType is exist!");
-    } else {
-      try {
-        await addCovers({ coverType });
-        // Hiển thị alert khi thêm thể loại thành công
-        setVali("success");
-        setInfo("Adding complete");
-        setCoverType("");
-      } catch (error) {
-        // Xử lý khi có lỗi xảy ra trong quá trình thêm thể loại
+
+  const handleAddGift = async () => {
+    if (
+      promotionalGiftType.trim() !== "" &&
+      promotionalGiftName.trim() !== ""
+    ) {
+      if (isCoverExist()) {
         setVali("error");
-        setInfo("Adding fail check field!");
+        setInfo("Gift name is exist!");
+      } else {
+        await addGifts({ promotionalGiftName, promotionalGiftType });
+        setGiftType("");
+        setGiftName("");
+        setVali("success");
+        setInfo("Adding complete!");
       }
+    } else {
+      setVali("error");
+      setInfo("Gift name and gift type not empty!");
+      console.error("Gift type and name must not be empty");
     }
   };
   const handleRowClick = (id) => {
-    const selected = covers.find((cover) => cover.id === id);
-    console.log(id);
+    const selected = Gifts.find((gift) => gift.promotionalGiftID === id);
     if (selected) {
-      setCoverType(selected.coverType);
-      setcoverId(selected.id);
+      setGiftName(selected.GiftName);
+      setGiftType(selected.GiftType);
+      setGiftId(selected.promotionalGiftID);
     }
   };
-  const handleUpdateCover = async () => {
-    if (coverType === null || coverType === "") {
-      setVali("error");
-      setInfo("Cover type is not empty!");
-    } else if (isCoverExist()) {
-      setVali("error");
-      setInfo("Cover type is exist!");
+  const handleUpdateGift = async () => {
+    if (
+      promotionalGiftType.trim() !== "" &&
+      promotionalGiftName.trim() !== ""
+    ) {
+      await updateGifts(GiftId, { promotionalGiftName, promotionalGiftType });
+      setGiftType("");
+      setGiftName("");
+      setGiftId("");
+      setVali("success");
+      setInfo("Update complete!");
     } else {
-      console.log(coverId, coverType);
-      try {
-        await updateCovers(coverId, { coverType });
-        // Hiển thị alert khi thêm thể loại thành công
-        setVali("success");
-        setInfo("Update complete!");
-        setCoverType("");
-      } catch (error) {
-        // Xử lý khi có lỗi xảy ra trong quá trình thêm thể loại
-        setVali("error");
-        setInfo("Update fail!");
-      }
+      setVali("error");
+      setInfo("Gift name and gift type not empty!");
     }
   };
-  const handleDeleteCover = async (id) => {
+  const TH = [
+    { names: "Id" },
+    { names: "Gift Name" },
+    { names: "Gift Type" },
+    { names: "" },
+  ];
+  const handleDeleteGift = async (id) => {
     try {
-      const result = await deleteCovers(id);
+      const result = await deleteGifts(id);
       if (result !== true) {
         // Xóa thất bại
         setVali("error");
@@ -90,22 +92,22 @@ function AdminCover() {
         setVali("success");
         setInfo("Delete complete!");
       }
-      setCoverType("");
+      setGiftType("");
+      setGiftName("");
+      setGiftId("");
     } catch (error) {
       console.error("Error deleting cover:", error);
     }
   };
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
-    await findCover(searchValue);
-    console.log(e.target.value);
-    console.log(covers);
+    await findGift(searchValue);
   };
   return (
     <div className="h-screen pt-12">
       <div className="mt-4">
         <div className="text-black text-start">
-          <h3 className="font-bold">Manage Cover</h3>
+          <h3 className="font-bold">Manage Gift</h3>
         </div>
       </div>
       <div>
@@ -116,30 +118,36 @@ function AdminCover() {
                 type="text"
                 id="cover"
                 name="cover"
-                value={coverType}
-                onChange={(e) => setCoverType(e.target.value)}
+                value={promotionalGiftName}
+                onChange={(e) => setGiftName(e.target.value)}
                 className=" peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                 placeholder=""
               />
               <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
-                CoverType
+                Gift Name
               </label>
             </div>
           </div>
-          <button
-            type="button"
-            onClick={handleAddCover}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Add
-          </button>
-          <button
-            type="button"
-            onClick={handleUpdateCover}
-            className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-          >
-            Update
-          </button>
+          <div className=" w-12/12 py-4 flex-col inline-block w-3/12 me-1">
+            <div className="relative w-full h-10 ">
+              <input
+                type="text"
+                id="cover"
+                name="cover"
+                value={promotionalGiftType}
+                onChange={(e) => setGiftType(e.target.value)}
+                className=" peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                placeholder=""
+              />
+              <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
+                Gift Type
+              </label>
+            </div>
+          </div>
+          <div className="flex gap-1">
+            <FormButton content={"Add"} onClick={handleAddGift} />
+            <FormButton content={"Update"} onClick={handleUpdateGift} />
+          </div>
           <AlertAdmin vali={vali} info={info} />
         </div>
         <div className="w-12/12 h-1/2 mb-1 ">
@@ -178,14 +186,14 @@ function AdminCover() {
               </tr>
             </thead>
             <tbody>
-              {covers.map((coverRow, rowIndex) => (
+              {Gifts.map((giftRow, rowIndex) => (
                 <tr
                   key={rowIndex}
                   name={rowIndex}
-                  onClick={() => handleRowClick(coverRow.id)}
+                  onClick={() => handleRowClick(giftRow.promotionalGiftID)}
                   className="cursor-pointer border-b  border-black hover:bg-gray-400"
                 >
-                  {Object.values(coverRow).map((value, col) => (
+                  {Object.values(giftRow).map((value, col) => (
                     <td className="text-center border-r border-black" key={col}>
                       {value}
                     </td>
@@ -193,7 +201,9 @@ function AdminCover() {
                   <td className="text-center border-r border-black py-2">
                     <button
                       type="button"
-                      onClick={() => handleDeleteCover(coverRow.id)}
+                      onClick={() =>
+                        handleDeleteGift(giftRow.promotionalGiftID)
+                      }
                       className="w-6 h-6 bg-red-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                     >
                       <CloseBtn />
@@ -208,4 +218,4 @@ function AdminCover() {
     </div>
   );
 }
-export default AdminCover;
+export default AdminGift;

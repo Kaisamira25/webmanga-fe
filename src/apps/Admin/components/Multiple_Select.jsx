@@ -12,6 +12,7 @@ export default function MultiSelect({options}) {
 
     return (
         <Select
+            
             isMultiple
             isSearchable
             value={props}

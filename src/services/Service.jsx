@@ -19,6 +19,30 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status == 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = sessionStorage.getItem("refreshToken");
+      const res = await axios.post("http://localhost:8080/api/v1/customers/refreshtoken", {
+        refreshToken,
+      });
+      if (res.status === 201) {
+        // Lưu accessToken mới vào sessionStorage
+        sessionStorage.setItem("accessToken", res.data.accessToken);
+        // Cập nhật Authorization header
+        originalRequest.headers.Authorization = `bearer ${res.data.accessToken}`;
+        // Gửi lại yêu cầu gốc với accessToken mới
+        return instance(originalRequest);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 export default instance;
 
 const fetchAllPublications = () => {
@@ -154,6 +178,48 @@ const createOrder = () => {
 const logoutAdmin = () => {
   return instance.patch("/api/v1/admin/logout");
 };
+const fetchAllEmployees = () => {
+  return instance.get("/api/v1/employee/all");
+};
+
+const fetchEmployeesWithAccountName = (accountName) => {
+  return instance.get(`/api/v1/employee/search/${accountName}`);
+};
+
+const fetchCreateEmployees = (employeeData) => {
+  return instance.post("/api/v1/employee/create", employeeData);
+};
+
+const fetchUpdateEmployees = (employee) => {
+  return instance.put(
+    `/api/v1/employee/update/${employee.accountName}`,
+    employee
+  );
+};
+
+const fetchDeleteEmployees = (accountName) => {
+  return instance.delete(`/api/v1/employee/delete/${accountName}`);
+};
+
+const fetchAllCustomers = () => {
+  return instance.get("/api/v1/customer/all");
+};
+
+const fetchUpdateStatusCustomers = (customer) => {
+  return instance.put(
+    `/api/v1/customer/updateStatusCustomer/${customer.customerId}`,
+    customer
+  );
+};
+
+const fetchCustomersWithCustomerId = (customerId) => {
+  return instance.get(`/api/v1/customer/search/${customerId}`);
+};
+
+const fetchCustomersWithEmail = (email) => {
+  return instance.get(`/api/v1/customer/search/${email}`);
+};
+
 export {
   loginAdmin,
   fetchPublicationsBySearch,
@@ -186,4 +252,13 @@ export {
   fetchHistory,
   logoutApi,
   logoutAdmin,
+  fetchAllEmployees,
+  fetchEmployeesWithAccountName,
+  fetchCreateEmployees,
+  fetchUpdateEmployees,
+  fetchDeleteEmployees,
+  fetchAllCustomers,
+  fetchUpdateStatusCustomers,
+  fetchCustomersWithCustomerId,
+  fetchCustomersWithEmail,
 };

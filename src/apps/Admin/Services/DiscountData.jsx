@@ -3,10 +3,12 @@ import axios from "axios";
 
 function DiscountData() {
   const [discounts, setDiscounts] = useState([]);
-
+  const headers = {
+    Authorization: "bearer " + sessionStorage.getItem("accessToken"),
+    "Content-Type": "application/json", // Thêm các headers khác nếu cần
+  };
   const fetchDiscounts = async () => {
     try {
-      const token = "your_actual_access_token_value";
       const response = await axios.get("http://localhost:8080/api/v1/discount/all",{});
       setDiscounts(response.data.data);
     } catch (error) {
@@ -16,10 +18,9 @@ function DiscountData() {
 
   const addDiscounts = async (data) => {
     try {
-      const token = "your_actual_access_token_value";
       const response = await axios.post(
         "http://localhost:8080/api/v1/discount",
-        data
+        data,{headers:headers}
       );
       fetchDiscounts();
     } catch (error) {
@@ -29,10 +30,9 @@ function DiscountData() {
 
   const updateDiscounts = async (id, data) => {
     try {
-      const token = "your_actual_access_token_value";
       const response = await axios.put(
         "http://localhost:8080/api/v1/discount/" + id,
-        data
+        data,{headers:headers}
       );
       fetchDiscounts();
     } catch (error) {
@@ -42,21 +42,16 @@ function DiscountData() {
   const findDiscount = async (name) => {
     try {
       if (name !== null && name !== "") {
-        const token = "your_actual_access_token_value";
         const response = await axios.get(
           "http://localhost:8080/api/v1/discount/search/" + name,
           {}
         );
         setDiscounts(response.data.data);
       } else {
-        const token = "your_actual_access_token_value";
         const response = await axios.get(
           "http://localhost:8080/api/v1/discount/all",
           {}
         );
-        const modifiedDiscounts = response.data.data.map((discount) => ({
-         
-        }));
         setDiscounts(response.data.data);
       }
     } catch (error) {

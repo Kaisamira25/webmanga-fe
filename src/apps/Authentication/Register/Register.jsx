@@ -49,12 +49,12 @@ function Register() {
     }
     const containsNumber = /\d/;
     if (!containsNumber.test(password)) {
-      setErrorMessage("Password must contain at least one digit");
+      setErrorMessage("Password must contain at least one Number");
       return;
     }
     const containsUpcase = /[A-Z]/;
     if (!containsUpcase.test(password)) {
-      setErrorMessage("Password must contain at least one CAPITAL letter ");
+      setErrorMessage("Password must contain at least one uppercase  letter ");
       return;
     }
     const containsLowpercase = /[a-z]/;
@@ -67,7 +67,7 @@ function Register() {
       return;
     }
     if (password !== repeatPassword) {
-      setErrorMessage("Password and repeated password do not match");
+      setErrorMessage("Password and repeat password do not match");
       return;
     }
 

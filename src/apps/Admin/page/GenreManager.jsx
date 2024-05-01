@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import SearchBar from "../componnents/SearchBar";
+import SearchBar from "../components/SearchBar";
 import GenreData from "../Services/GenreData";
 import CloseBtn from "../../../assets/icons/CloseBtn";
-import { AlertAdmin } from "../componnents/Alert";
+import { AlertAdmin } from "../components/Alert";
+import FormButton from "../components/FormButton";
 
 function Genre() {
   const [genre, setGenre] = useState("");
@@ -25,7 +26,6 @@ function Genre() {
       (item) => item.genre.toLowerCase() === genre.toLowerCase()
     );
   };
- 
 
   const handleAddGenre = async () => {
     if (genre === null || genre === "") {
@@ -51,7 +51,6 @@ function Genre() {
   const handleRowClick = (id) => {
     // Tìm kiếm thông tin genre từ mảng genres dựa trên ID đã truyền
     const selected = genres.find((genre) => genre.id === id);
-    console.log(selected);
     if (selected) {
       setGenre(selected.genre);
       setGenreId(selected.id);
@@ -100,14 +99,12 @@ function Genre() {
   const handleSearchChange = async (e) => {
     const searchValue = e.target.value;
     await findGenre(searchValue);
-    console.log(e.target.value);
-    console.log(genres);
   };
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks
@@ -120,7 +117,7 @@ function Genre() {
           <h3 className="font-bold">Manage Genre</h3>
         </div>
       </div>
-      <div className="py-5">
+      <div className="flex items-center">
         <div className=" w-12/12 py-4 flex-col inline-block w-3/12 me-1">
           <div className="relative w-full h-10 ">
             <input
@@ -129,7 +126,7 @@ function Genre() {
               name="genre"
               value={genre}
               onChange={(e) => setGenre(e.target.value)}
-              className=" peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+              className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
               placeholder=""
             />
             <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
@@ -137,23 +134,13 @@ function Genre() {
             </label>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={handleAddGenre}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Add
-        </button>
-        <button
-          type="button"
-          onClick={handleUpdateGenre}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Update
-        </button>
-        <AlertAdmin vali={vali} info={info} />
       </div>
-      <div className="w-12/12 h-1/2 mb-1 ">
+      <div className="flex gap-1 h-10">
+          <FormButton content={"Add"} onClick={handleAddGenre} />
+          <FormButton content={"Update"} onClick={handleUpdateGenre} />
+        </div>
+        <AlertAdmin  vali={vali} info={info} />
+      <div className="w-12/12 h-full mb-1 ">
         <form className="max-w-sm w-7/12">
           <label
             htmlFor="default-search"
@@ -174,8 +161,8 @@ function Genre() {
           </div>
         </form>
       </div>
-      <div className="w-12/12 h-80 border-2 border-black overflow-y-scroll">
-        <table className="w-full overflow-y-scroll h-96  border-s border-black">
+      <div className="w-12/12 h-96 border-2 border-black overflow-y-scroll">
+        <table className="w-full overflow-y-scroll  border-s border-black">
           <thead className="border-b border-black bg-gray-500 uppercase ">
             <tr>
               {TH.map((item, index) => (

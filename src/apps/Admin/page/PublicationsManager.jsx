@@ -7,7 +7,8 @@ import GenreData from "../Services/GenreData";
 import TypeData from "../Services/TypeData";
 import GiftData from "../Services/GiftData";
 import axios from "axios";
-import { AlertAdmin } from "../componnents/Alert";
+import { AlertAdmin } from "../components/Alert";
+import FormButton from "../components/FormButton";
 
 function AdminProduct() {
   const [vali, setVali] = useState("");
@@ -86,7 +87,7 @@ function AdminProduct() {
     const selected = publics.find((p) => p.publicationsID === id);
     if (selected) {
       const formattedArrivalDay = formatDate(selected.arrivalDay);
-      setFormData((prevFormData) => ({    
+      setFormData((prevFormData) => ({
         ...prevFormData,
         arrivalDay: formattedArrivalDay,
         publicationsName: selected.publicationsName,
@@ -133,7 +134,6 @@ function AdminProduct() {
             parseInt(giftEP.promotionalGiftID) === parseInt(GiftSL.value)
         );
       });
-
       setSelectedGifts(matchingGiftsSL);
     }
   };
@@ -164,8 +164,8 @@ function AdminProduct() {
   useEffect(() => {
     // Xác định hàm để ẩn AlertAdmin sau 5 giây
     const hideAlert = setTimeout(() => {
-      setVali('');
-      setInfo('');
+      setVali("");
+      setInfo("");
     }, 5000);
 
     // Clear timeout khi component unmount để tránh memory leaks
@@ -272,12 +272,7 @@ function AdminProduct() {
     ) {
       setVali("error");
       setInfo("Please fill in all fields");
-    } else if (newImageUrls.length === 0) {
-      // Hiển thị cảnh báo nếu không có hình ảnh được chọn
-      setVali("error");
-      setInfo("Please select at least one image");
     }
-
     // Kiểm tra các phần tử trong selectedGenres
     else if (selectedGenres.length === 0) {
       // Hiển thị cảnh báo nếu không có thể loại được chọn
@@ -459,27 +454,11 @@ function AdminProduct() {
         </div>
         <div></div>
 
-        <button
-          type="button"
-          onClick={handleAddPublic}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Add
-        </button>
-        <button
-          type="button"
-          onClick={handleUpdatePublic}
-          className="w-24 h-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 "
-        >
-          Update
-        </button>
-        <button
-          className=" w-24 h-8 bg-blue-700 text-white hover:bg-blue-800 focus:ring-4 px-5 py-1   text-sm  rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          onClick={() => setShowModal(true)}
-        >
-          Image
-        </button>
+        <div className="flex gap-1">
+          <FormButton onClick={handleAddPublic} content={"Add"}/>
+          <FormButton onClick={handleUpdatePublic} content={"Update"}/>
+          <FormButton onClick={() => setShowModal(true)} content={"Image"}/>
+        </div>
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 py-1">
           <form className="max-w-sm w-7/12">
@@ -525,43 +504,43 @@ function AdminProduct() {
                   <div className="relative p-6 flex-auto">
                     {imageClick.length === 0
                       ? selectedImages.map((image, index) => (
-                        <div
-                          key={index}
-                          className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
-                          style={{ width: "170px", height: "180px" }}
-                        >
-                          <img
-                            src={URL.createObjectURL(image)}
-                            style={{ width: "100%", height: "100%" }}
-                          />
-                          <button
-                            onClick={() => handleRemoveImage(index)}
-                            className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
-                            type="button"
+                          <div
+                            key={index}
+                            className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
+                            style={{ width: "170px", height: "180px" }}
                           >
-                            X
-                          </button>
-                        </div>
-                      ))
+                            <img
+                              src={URL.createObjectURL(image)}
+                              style={{ width: "100%", height: "100%" }}
+                            />
+                            <button
+                              onClick={() => handleRemoveImage(index)}
+                              className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
+                              type="button"
+                            >
+                              X
+                            </button>
+                          </div>
+                        ))
                       : imageClick.map((image, index) => (
-                        <div
-                          key={index}
-                          className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
-                          style={{ width: "170px", height: "180px" }}
-                        >
-                          <img
-                            src={image.imageURL}
-                            style={{ width: "100%", height: "100%" }}
-                          />
-                          <button
-                            onClick={() => handleRemoveImage(index)}
-                            className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
-                            type="button"
+                          <div
+                            key={index}
+                            className="selected-image w-2/12 relative inline-block border-black border-2 ms-1 "
+                            style={{ width: "170px", height: "180px" }}
                           >
-                            X
-                          </button>
-                        </div>
-                      ))}
+                            <img
+                              src={image.imageURL}
+                              style={{ width: "100%", height: "100%" }}
+                            />
+                            <button
+                              onClick={() => handleRemoveImage(index)}
+                              className="absolute top-0 right-0 bg w-1/12 bg-gray-500 border-10"
+                              type="button"
+                            >
+                              X
+                            </button>
+                          </div>
+                        ))}
                   </div>
                   <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                     <button

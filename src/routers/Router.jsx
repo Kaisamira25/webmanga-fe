@@ -1,7 +1,10 @@
 import React, { lazy } from "react";
-const DetailsProductPage = lazy(() => import("../pages/DetailsProduct/DetailsProductPage"))
-const NewPassword = lazy(() =>import("../pages/ResetPassword/NewPasswordPage"));
-const AdminGenre = lazy(() => import("../apps/Admin/page/Genre"));
+const DetailsProductPage = lazy(() =>
+  import("../pages/DetailsProduct/DetailsProductPage")
+);
+const NewPassword = lazy(() =>
+  import("../pages/ResetPassword/NewPasswordPage")
+);
 const HomePage = lazy(() => import("../pages/Home/HomePage"));
 const PaymentPage = lazy(() => import("../pages/Payment/PaymentPage"));
 const UserPage = lazy(() => import("../pages/User/UserPage"));
@@ -9,11 +12,17 @@ const ErrorPage = lazy(() => import("../pages/Error/ErrorPage"));
 const LoginPage = lazy(() => import("../pages/Login/LoginPage"));
 const RegisterPage = lazy(() => import("../pages/Register/RegisterPage"));
 const OtpPage = lazy(() => import("../pages/Otp/OtpPage")); // Đúng path rồi
-const OtpResetPassword = lazy(() => import("../pages/Otp/OtpResetPasswordPage"));
+const OtpResetPassword = lazy(() =>
+  import("../pages/Otp/OtpResetPasswordPage")
+);
 const CartPage = lazy(() => import("../pages/Cart/CartPage"));
 const HomeAdmin = lazy(() => import("../pages/Admin/AdminPage"));
-const ResetPasswordPage = lazy(() => import("../pages/ResetPassword/ResetPasswordPage"));
-const LoginAdminPage = lazy(() => import("../apps/Authentication/Login/LoginAdmin"));
+const ResetPasswordPage = lazy(() =>
+  import("../pages/ResetPassword/ResetPasswordPage")
+);
+const LoginAdminPage = lazy(() =>
+  import("../apps/Authentication/Login/LoginAdmin")
+);
 const AboutPage = lazy(() => import("../pages/About/AboutPage"));
 const routes = [
   // userPage
@@ -41,7 +50,8 @@ const routes = [
   { path: "/admin/product", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/statis", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/type", element: <HomeAdmin />, adminRequired: true },
-  { path: "/admin/account", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/employees", element: <HomeAdmin />, adminRequired: true },
+  { path: "/admin/customers", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/order", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/stock", element: <HomeAdmin />, adminRequired: true },
   { path: "/admin/sales", element: <HomeAdmin />, adminRequired: true },
