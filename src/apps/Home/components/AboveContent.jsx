@@ -65,7 +65,7 @@ function AboveContent() {
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
     setCartList((prevCartList) => [...prevCartList, id]);
-    navigate("/cart");
+    // navigate("/cart");
   };
   return (
     <div className={AboveContentStyle.aboveContainer}>

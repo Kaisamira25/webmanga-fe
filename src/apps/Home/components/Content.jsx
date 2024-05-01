@@ -46,7 +46,7 @@ function Content({
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     alert("Sản phẩm đã được thêm vào giỏ hàng!");
 
-    navigate("/cart");
+    // navigate("/cart");
   };
 
   return (

@@ -121,7 +121,7 @@ function Publications() {
           types={types}
           publicationsYear={publicationsInfo.publicationYear}
           publicationsName={publicationsInfo.publicationsName}
-          discountPrice={discountPrice}
+          // discountPrice={discountPrice}
           unitPrice={publicationsInfo.unitPrice}
           summary={publicationsInfo.summary}
           handleDecreaseQuantity={handleDecreaseQuantity}

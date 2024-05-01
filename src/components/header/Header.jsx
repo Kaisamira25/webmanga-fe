@@ -74,7 +74,7 @@ function Header() {
             <li onClick={handleNavigateToHome}>Home</li>
             <li onClick={handleNavigateToCart}>Cart</li>
             <li onClick={handleNavigateToAboutUs}>About</li>
-            <li onClick={handleNavigateToAboutUs}>Contact</li>
+            {/* <li onClick={handleNavigateToAboutUs}>Contact</li> */}
           </ul>
         </div>
         <div>
