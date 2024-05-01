@@ -89,6 +89,7 @@ function CustomerManager() {
     if (searchQuery.trim() === "") {
       const response = await fetchAllCustomers();
       if (response.status === 200) {
+        console.log(response.data.data);
         setCustomers(response.data.data);
       } else {
         console.log("Failed to fetch all customers");
@@ -207,9 +208,15 @@ function CustomerManager() {
                     <td>{customer.fullName}</td>
                     <td>{customer.email}</td>
                     <td>
-                      {customer.phoneNumber || customer.addresses.phoneNumber}
+                      {!customer.addresses
+                        ? "No phone number yet"
+                        : customer.addresses.phoneNumber}
                     </td>
-                    <td>{customer.address || customer.addresses.address}</td>
+                    <td>
+                      {!customer.addresses
+                        ? "No address yet"
+                        : customer.addresses.address}
+                    </td>
                     <td>{customer.isBlocked ? "Yes" : "No"}</td>
                   </tr>
                 ))}

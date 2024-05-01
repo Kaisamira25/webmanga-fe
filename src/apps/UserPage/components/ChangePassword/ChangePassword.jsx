@@ -41,9 +41,11 @@ function ChangePassword() {
           setToastMessage("Change Password Success!");
           setToastType("success");
           setShowToast(true);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
+          setErrors(["", "", ""]);
+
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1000);
         }
       } catch (error) {
         setToastMessage("Change Password Fail!");
@@ -55,9 +57,34 @@ function ChangePassword() {
     }
   };
 
-  const validateForm = () => {
+  useEffect(() => {
+    setPasswordChecked(false);
+  }, [password]);
+
+  const validateForm = async () => {
     let valid = true;
     const newErrors = ["", "", ""];
+
+    if (isLoggedIn && !passwordChecked) {
+      try {
+        const response = await fetch("/api/v1/customer/verifyPassword", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password: password }),
+        });
+
+        if (!response.valid) {
+          newErrors[0] = "Old password is incorrect!";
+          valid = false;
+        }
+
+        setPasswordChecked(true);
+      } catch (error) {
+        console.error("Error verifying old password:", error);
+      }
+    }
 
     if (!password.trim()) {
       newErrors[0] = "Field cannot be empty!";
@@ -81,15 +108,6 @@ function ChangePassword() {
       valid = false;
     }
 
-    if (isLoggedIn && valid && !passwordChecked) {
-      const currentUserPassword = sessionStorage.getItem("password");
-      if (currentUserPassword !== password) {
-        newErrors[0] = "Old password is incorrect!";
-        valid = false;
-      }
-      setPasswordChecked(true); // Đánh dấu đã kiểm tra mật khẩu cũ
-    }
-
     setErrors(newErrors);
     return valid;
   };
@@ -97,7 +115,8 @@ function ChangePassword() {
   const fields = [
     {
       label: "Old Password *",
-      type: "old-password",
+      type: "password",
+      name: "oldPassword",
       placeholder: "Enter Old Password",
       value: password,
       onChange: (e) => setPassword(e.target.value),
@@ -105,7 +124,8 @@ function ChangePassword() {
     },
     {
       label: "New Password *",
-      type: "new-password",
+      type: "password",
+      name: "newPassword",
       placeholder: "Enter New Password",
       value: newPassword,
       onChange: (e) => setNewPassword(e.target.value),
@@ -113,7 +133,8 @@ function ChangePassword() {
     },
     {
       label: "Confirm Password *",
-      type: "current-password",
+      type: "password",
+      name: "confirmPassword",
       placeholder: "Confirm Password",
       value: confirmPassword,
       onChange: (e) => setConfirmPassword(e.target.value),
