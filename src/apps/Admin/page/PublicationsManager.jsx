@@ -174,7 +174,7 @@ function AdminProduct() {
   const validForm = () => {
     let isValid = true;
     Object.values(formData).forEach((value) => {
-      if (value === "" ) {
+      if (value === "") {
         isValid = false;
         setVali("error");
         setInfo("Please fill in all fields!");
@@ -270,7 +270,7 @@ function AdminProduct() {
     ) {
       setVali("error");
       setInfo("Please fill in all fields");
-    }else if (!validForm()){
+    } else if (!validForm()) {
       setVali("error");
     }
     // Kiểm tra các phần tử trong selectedGenres
@@ -455,9 +455,9 @@ function AdminProduct() {
         <div></div>
 
         <div className="flex gap-1">
-          <FormButton onClick={handleAddPublic} content={"Add"}/>
-          <FormButton onClick={handleUpdatePublic} content={"Update"}/>
-          <FormButton onClick={() => setShowModal(true)} content={"Image"}/>
+          <FormButton onClick={handleAddPublic} content={"Add"} />
+          <FormButton onClick={handleUpdatePublic} content={"Update"} />
+          <FormButton onClick={() => setShowModal(true)} content={"Image"} />
         </div>
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 py-1">

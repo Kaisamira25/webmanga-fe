@@ -120,7 +120,7 @@ function AdminGift() {
             <FormInput
               type={"text"}
               value={promotionalGiftType}
-              onChange={(e) => setGiftName(e.target.value)}
+              onChange={(e) => setGiftType(e.target.value)}
               placeholder={"Gift type"}
             />
           </div>

@@ -235,7 +235,7 @@ function Reveneu() {
                 <div className="py-3 px-2">
                   <button
                     type="button"
-                    className=" w-30 h-10 text-white bg-[#57b388] hover:bg-[#3f8a70] focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2"
+                    className=" w-30 h-10 text-white bg-[#92814d] hover:bg-[#c2aa67] focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2"
                     onClick={handleMonthClick}
                   >
                     Month
@@ -266,7 +266,7 @@ function Reveneu() {
                 <div className="py-3 px-2">
                   <button
                     type="button"
-                    className=" w-30 h-10 text-white bg-[#57b388] hover:bg-[#3f8a70] focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2  "
+                    className=" w-30 h-10 text-white bg-[#92814d] hover:bg-[#c2aa67] focus:ring-4 focus:ring-blue-300 font-sans rounded-lg text-sm px-5 py-1 me-2 mb-2  "
                     onClick={handleYearClick}
                   >
                     Year

@@ -119,11 +119,11 @@ function Invoice() {
       </div>
       <AlertAdmin vali={vali} info={info} />
       <div className="h-96 border-2 border-black overflow-auto">
-        <div className="text-center bg-slate-500 font-bold">
+        <div className="text-center bg-[#92814d] font-bold">
           <span>Invoice</span>
         </div>
         <table className="w-full h-full">
-          <thead className="border-b border-black bg-slate-400  ">
+          <thead className="border-b border-black bg-[#c2aa67]  ">
             <tr>
               {OderTH.map((item, index) => (
                 <th

@@ -198,8 +198,8 @@ function AdminDiscount() {
           </div>
         </div>
         <div className="flex gap-1">
-          <FormButton content={"Add"} onClick={handleAddDiscount}/>
-          <FormButton content={"Update"} onClick={handleUpdateDiscount}/>
+          <FormButton content={"Add"} onClick={handleAddDiscount} />
+          <FormButton content={"Update"} onClick={handleUpdateDiscount} />
         </div>
         <AlertAdmin vali={vali} info={info} />
         <div className="w-12/12 h-1/2 mb-1 ">
@@ -225,7 +225,7 @@ function AdminDiscount() {
         </div>
         <div className="w-12/12 h-80 overflow-y-scroll mb-2 mt-1 ">
           <table className="w-full overflow-y-scroll border-s border-black">
-            <thead className="border-b border-black bg-gray-500 uppercase ">
+            <thead className="border-b border-black bg-[#c2aa67] uppercase ">
               <tr>
                 {TH.map((item, index) => (
                   <th
