@@ -3,7 +3,7 @@ import { AlertAdmin } from "../components/Alert";
 import DiscountData from "../Services/DiscountData";
 import { useState } from "react";
 import FormButton from "../components/FormButton";
-
+import DiscountStyle from "../scss/DiscountManager.module.scss";
 function AdminDiscount() {
   const { discounts, addDiscounts, updateDiscounts, findDiscount } =
     DiscountData();
@@ -198,32 +198,21 @@ function AdminDiscount() {
           </div>
         </div>
         <div className="flex gap-1">
-          <FormButton content={"Add"} onClick={handleAddDiscount}/>
-          <FormButton content={"Update"} onClick={handleUpdateDiscount}/>
+          <FormButton content={"Add"} onClick={handleAddDiscount} />
+          <FormButton content={"Update"} onClick={handleUpdateDiscount} />
         </div>
         <AlertAdmin vali={vali} info={info} />
-        <div className="w-12/12 h-1/2 mb-1 ">
-          <form className="max-w-sm w-7/12">
-            <label
-              htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-            >
-              Search
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-              <input
-                type="search"
-                id="default-search"
-                onChange={handleSearchChange}
-                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search"
-                required
-              />
-            </div>
-          </form>
+        <div className={DiscountStyle.search}>
+          <label htmlFor="default-search">Search</label>
+          <input
+            type="search"
+            id="default-search"
+            onChange={handleSearchChange}
+            placeholder="Search"
+            required
+          />
         </div>
-        <div className="w-12/12 h-80 overflow-y-scroll mb-2 mt-1 ">
+        <div className={DiscountStyle.table}>
           <table className="w-full overflow-y-scroll border-s border-black">
             <thead className="border-b border-black bg-gray-500 uppercase ">
               <tr>

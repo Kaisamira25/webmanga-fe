@@ -4,20 +4,20 @@
 .registerWrapper {
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: $bg-btn-color;
   display: flex;
   justify-content: center;
   align-items: center;
   > .registerForm {
     width: 20em;
-    background-color: $bg-btn-color;
+    background-color: $bg-color;
     padding: 1.5em;
     border-radius: 5px;
     > p {
       text-align: center;
       font-size: xx-large;
       margin-bottom: 1em;
-      color: white;
+      color: $bg-btn-color;
     }
     > form {
       display: flex;
