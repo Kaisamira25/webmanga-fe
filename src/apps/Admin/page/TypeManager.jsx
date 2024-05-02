@@ -5,7 +5,7 @@ import TypeData from "../Services/TypeData";
 import DeleteIcon from "../../../assets/icons/DeleteIcon";
 import { system } from "faker/lib/locales/en";
 import FormButton from "../components/FormButton";
-
+import TypeStyle from "../scss/TypeManager.module.scss";
 function AdminType() {
   const [typeName, setTypeName] = useState("");
   const { types, addTypes, updateTypes, deleteTypes, findType } = TypeData();
@@ -111,7 +111,7 @@ function AdminType() {
     await findType(searchValue);
   };
   return (
-    <div className="h-screen pt-12">
+    <div className={TypeStyle.typeWrapper}>
       <div className="mt-4">
         <div className="text-black text-start">
           <h3 className="font-bold">Manage Type</h3>
